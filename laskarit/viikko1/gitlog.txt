@@ -1,3 +1,4 @@
+
 commit 3ed5f854c5cba3bd218b5a7d55e070cfe62ee30b
 Author: Joni Yrjänä <joniyrjana@gmail.com>
 Date:   Fri Mar 15 12:36:28 2019 +0200
@@ -98,6 +99,7 @@ Author: Joni Yrjänä <joniyrjana@gmail.com>
 Date:   Fri Mar 15 12:20:09 2019 +0200
 
     Add tiedosto.txt.
+
 
  tiedosto.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
