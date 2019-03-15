@@ -1,0 +1,103 @@
+commit 3ed5f854c5cba3bd218b5a7d55e070cfe62ee30b
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:36:28 2019 +0200
+
+    Harjoittelua exercise.
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 9185c84dad0b3367a4be8066ca4513602d4a3ea4
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:34:31 2019 +0200
+
+    Add tiedostoja/file[123].
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 9e6547f6c742b6691046bd63a329f07683631cbe
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:31:03 2019 +0200
+
+    Edits for the 'git add -p' exercise.
+
+ eka.txt    | 1 +
+ kolmas.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit b1126250e69bd666cc92d6fb2dada828e006dc92
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:28:54 2019 +0200
+
+    Move tiedosto.txt to eka.txt.
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4380f39d1ee7885d629b0c0d99def501db2854af
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:28:02 2019 +0200
+
+    Delete toinen.txt.
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2954b9c2d1f82f695356adfd65b42fffbff798d8
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:27:07 2019 +0200
+
+    Edit tiedosto.txt.
+
+ tiedosto.txt | 65 ++----------------------------------------------------------
+ 1 file changed, 2 insertions(+), 63 deletions(-)
+
+commit 762da05020341d1110e09dd78b131f4cb42c05dd
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:25:49 2019 +0200
+
+    Add much text.
+
+ tiedosto.txt | 643 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 643 insertions(+)
+
+commit 8d71f327eaf5f3b30badf1e6bb63293d900112fb
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:23:36 2019 +0200
+
+    Add stuff/jokintiedosto.txt.
+
+ stuff/jokintiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a2af971b37e21df8c647480a0b522c20b3c3e724
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:22:57 2019 +0200
+
+    Add kolmas.txt.
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ab1a68b441c9d6731ebfde2e99915b84a1e443b5
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:21:43 2019 +0200
+
+    Add toinen.txt, change tiedosto.txt.
+
+ tiedosto.txt | 2 ++
+ toinen.txt   | 0
+ 2 files changed, 2 insertions(+)
+
+commit d8073202be10daf3e2da56ebc2ce52e97d532011
+Author: Joni Yrjänä <joniyrjana@gmail.com>
+Date:   Fri Mar 15 12:20:09 2019 +0200
+
+    Add tiedosto.txt.
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
