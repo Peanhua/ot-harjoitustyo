@@ -19,26 +19,32 @@ public class MaksukorttiTest {
     }
     
     @Test
-    public void saldoAlussaOikeinTest() {
+    public void tulostusJaSaldoYhtenevaiset() {
         assertEquals("saldo: 10.0", kortti.toString());
+        assertEquals(1000, kortti.saldo());
+    }
+    
+    @Test
+    public void saldoAlussaOikeinTest() {
+        assertEquals(1000, kortti.saldo());
     }
     
     @Test
     public void lataaminenKasvattaaSaldoaOikeinTest() {
         kortti.lataaRahaa(200);
-        assertEquals("saldo: 12.0", kortti.toString());
+        assertEquals(1200, kortti.saldo());
     }
     
     @Test
     public void saldoVaheneeOikeinJosRahaaOnTarpeeksi() {
         kortti.otaRahaa(200);
-        assertEquals("saldo: 8.0", kortti.toString());
+        assertEquals(800, kortti.saldo());
     }
 
     @Test
     public void saldoEiVaheneJosRahaaEiOleTarpeeksi() {
         kortti.otaRahaa(2000);
-        assertEquals("saldo: 10.0", kortti.toString());
+        assertEquals(1000, kortti.saldo());
     }
     
     @Test
