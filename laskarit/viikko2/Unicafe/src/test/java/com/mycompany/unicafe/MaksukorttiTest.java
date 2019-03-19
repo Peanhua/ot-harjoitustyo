@@ -19,8 +19,16 @@ public class MaksukorttiTest {
     }
     
     @Test
+    public void senttienTulostusOikein() {
+        Maksukortti k1 = new Maksukortti(3);
+        assertEquals("saldo: 0.03", k1.toString());
+        Maksukortti k2 = new Maksukortti(30);
+        assertEquals("saldo: 0.30", k2.toString());
+    }
+    
+    @Test
     public void tulostusJaSaldoYhtenevaiset() {
-        assertEquals("saldo: 10.0", kortti.toString());
+        assertEquals("saldo: 10.00", kortti.toString());
         assertEquals(1000, kortti.saldo());
     }
     
