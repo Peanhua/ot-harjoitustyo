@@ -10,7 +10,7 @@ The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in w
 
 A princess falls into a lake. The only way to save the princess is to retrieve a magical fishing rod from the depths of a cave.
 
-The princess can be also a prince depending on players initial choices.
+The princess can also be a prince depending on players initial choices.
 
 ## Users
 
@@ -37,16 +37,17 @@ As a single player game, there is just one user role: the player.
     * Carrying capacity
   * The player chooses whether the player wants to try to save a princess or a prince
   * The random name is generated for the princess/prince
-* The player can select the random seed used for all the content generation used
+* The player can select the random seed used for all the content generation
 * The player is presented with the plot/quest
 
 ### While the game is on
 * Every character in game can do one action per turn
 * The player is presented a visual layout of the current level the player character is on
-  * The player has limited vision: how far the player character sees things movable objects
+  * The player has limited vision which determines how far the player character sees movable objects
   * The player has a memory of the area the player has seen (aka explored)
+    The explored area is drawn/shown to the player, whereas the parts that are not yet explored are hidden.
 * The player can save the progress of an on-going game
-* The player can complete the game
+* The player can complete the game, ending the game in victory
 * The player character can die, ending the game
 * The player character can move around in a procedurally generated cave
   * The cave is divided into multiple levels
@@ -60,7 +61,8 @@ As a single player game, there is just one user role: the player.
 * The player character can change equipped armor
 * The player character can change wield weapon
 * The player character can level up
-  * Levelling up increases the characters attributes
+  * Levelling up increases one of the characters attributes
+  * The attribute to increase is determined with a weighted random based on current attributes, favoring to increase already attributes that are already high
 * Enemies are controlled by a simple artificial intelligence
   * Enemies move around in the same environment as the player
   * Enemies can attack the player
@@ -73,12 +75,12 @@ As a single player game, there is just one user role: the player.
 * The player is shown what happens
 
 ### When the game ends
-* If the player obtained enough score, the player can enter the highscore list
+* If the player obtained enough score, the player gets placed in the appropriate highscore lists
 
 ### Character attributes
 Every character (both the player and enemies) have the following attributes:
 * Name
-* Current hit points, if current hit points reach 0, then the character dies
+* Current hit points, if current hit points reaches 0, then the character dies
 * Maximum hit points
 * Attack, used in combat together with the defence attribute to determine whether an attack is successful or a miss
 * Defence
@@ -102,20 +104,20 @@ Every character (both the player and enemies) have the following attributes:
 
 ### Items
 Common attributes for all items:
-* Type: armor, weapon, or potion
+* Type: armor, weapon, potion, or the magical fishing rod
 * Weight
-* Durability, this is decreased when the item is used and once it reaches 0, the item is destroyed
+* Durability, this is decreased when the item is used, the item is destroyed if the durability reaches 0
 
 #### Armor items
 Extra attributes for armor items:
 * Armor class value representing how much incoming damage the armor absorbs if worn
 * Armor slot, only one armor item per slot is allowed
-  * Head
-  * Chest
-  * Legs
-  * Hands
-  * Feet
-  * Finger (for rings)
+  * Head (helmets, hats, etc)
+  * Chest (shirts etc)
+  * Legs (pants etc)
+  * Hands (gloves)
+  * Feet (boots)
+  * Finger (rings)
 * Buff (and its attributes) to give when equipped
 
 #### Weapon items
@@ -149,6 +151,7 @@ Square types:
     * Can be re-activated
     * A negative buff for the triggering character can be given
   * Trapdoor, character falls down to the level below
+    * Falling causes damage to the player
 * Wall
 * Stairs up and down
 * Door

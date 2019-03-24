@@ -4,12 +4,12 @@ This is *it*, the *repository*. For the **course**.
 
 # Project: The Fishing Rod of Destiny
 
-The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in which the player descends through a set of dungeon levels to find certain item, and then ascend back to the surface. The player will face dangers such as enemies and traps. The player character can be levelled up, and the player can find tools (mainly armor and weapons) to help in the quest.
+The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in which the player descends through a set of dungeon levels to find certain item, and then ascends back to the surface. The player will face dangers such as enemies and traps. The player character can be levelled up, and the player can find tools (mainly armor and weapons) to help in the quest.
 
 ## Documentation
 
-[Timesheet](documentation/timesheet.md)
-[Requirements Specification](documentation/requirements_specification.md)
+* [Timesheet](documentation/timesheet.md)
+* [Requirements Specification](documentation/requirements_specification.md)
 
 
 
