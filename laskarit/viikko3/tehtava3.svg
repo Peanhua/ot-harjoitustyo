@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="38cm" height="30cm" viewBox="313 215 753 591" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="314.332" y="217" width="53.95" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="314.332" y="217" width="53.95" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="341.307" y="239.9">
+      <tspan x="341.307" y="239.9">main</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="578.806" y="281" width="77" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="578.806" y="281" width="77" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="617.306" y="303.9">
+      <tspan x="617.306" y="303.9">machine</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="988.032" y="334" width="76.55" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="988.032" y="334" width="76.55" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1026.31" y="356.9">
+      <tspan x="1026.31" y="356.9">tank</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="617.306" y1="319" x2="617.306" y2="804.9"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1026.31" y1="372" x2="1026.31" y2="803.9"/>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="357" y="291">
+    <tspan x="357" y="291">new Machine()</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="340" y1="299" x2="569.07" y2="299.959"/>
+    <polygon style="fill: #000000" points="576.57,299.991 566.549,304.949 569.07,299.959 566.591,294.949 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="576.57,299.991 566.549,304.949 569.07,299.959 566.591,294.949 "/>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="341.307" y1="255" x2="341.307" y2="805"/>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="617" y1="354" x2="978.296" y2="353.026"/>
+    <polygon style="fill: #000000" points="985.796,353.006 975.809,358.033 978.296,353.026 975.783,348.033 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="985.796,353.006 975.809,358.033 978.296,353.026 975.783,348.033 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="637" y="347">
+    <tspan x="637" y="347">new FuelTank()</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="800.075" y="415" width="65.9" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="800.075" y="415" width="65.9" height="38"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="833.025" y="437.9">
+      <tspan x="833.025" y="437.9">engine</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="617" y1="435" x2="790.339" y2="434.053"/>
+    <polygon style="fill: #000000" points="797.839,434.012 787.866,439.067 790.339,434.053 787.812,429.067 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="797.839,434.012 787.866,439.067 790.339,434.053 787.812,429.067 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="635" y="428">
+    <tspan x="635" y="428">new Engine(tank)</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="340" y1="480" x2="595.264" y2="478.94"/>
+    <polygon style="fill: #000000" points="602.764,478.909 592.785,483.951 595.264,478.94 592.743,473.951 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="602.764,478.909 592.785,483.951 595.264,478.94 592.743,473.951 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="361" y="474">
+    <tspan x="361" y="474">drive()</tspan>
+  </text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="833.025" y1="453" x2="833.025" y2="805.9"/>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="617" y1="506" x2="817.264" y2="505.046"/>
+    <polygon style="fill: #000000" points="824.764,505.011 814.788,510.058 817.264,505.046 814.74,500.058 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="824.764,505.011 814.788,510.058 817.264,505.046 814.74,500.058 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="636" y="501">
+    <tspan x="636" y="501">start()</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="618" y1="388" x2="1017.26" y2="388.976"/>
+    <polygon style="fill: #000000" points="1024.76,388.995 1014.75,393.97 1017.26,388.976 1014.78,383.97 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1024.76,388.995 1014.75,393.97 1017.26,388.976 1014.78,383.97 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="638" y="385">
+    <tspan x="638" y="385">fill(40)</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="618" y1="593" x2="816.264" y2="592.809"/>
+    <polygon style="fill: #000000" points="823.764,592.802 813.769,597.812 816.264,592.809 813.759,587.812 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="823.764,592.802 813.769,597.812 816.264,592.809 813.759,587.812 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="636" y="588">
+    <tspan x="636" y="588">isRunning()</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="834" y1="530" x2="1016.26" y2="530.949"/>
+    <polygon style="fill: #000000" points="1023.76,530.988 1013.74,535.936 1016.26,530.949 1013.79,525.936 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1023.76,530.988 1013.74,535.936 1016.26,530.949 1013.79,525.936 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="851" y="524">
+    <tspan x="851" y="524">consume(5)</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="834" y1="607" x2="1010.36" y2="605.958"/>
+    <polygon style="fill: #000000" points="1017.86,605.913 1007.89,610.972 1010.36,605.958 1007.83,600.972 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1017.86,605.913 1007.89,610.972 1010.36,605.958 1007.83,600.972 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="852" y="602">
+    <tspan x="852" y="602">contentsLeft()</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="827" y="505" width="15" height="32"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="827" y="505" width="15" height="32"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="605" y="478.9" width="22" height="243.1"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="605" y="478.9" width="22" height="243.1"/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="627" y1="722" x2="815.364" y2="720.954"/>
+    <polygon style="fill: #000000" points="822.864,720.912 812.892,725.968 815.364,720.954 812.836,715.968 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="822.864,720.912 812.892,725.968 815.364,720.954 812.836,715.968 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="639" y="718">
+    <tspan x="639" y="718">useEnergy()</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="1020.1" y="605.9" width="15" height="32"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1020.1" y="605.9" width="15" height="32"/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x1="1020.1" y1="637.9" x2="854.736" y2="638.939"/>
+    <polygon style="fill: #000000" points="847.236,638.986 857.204,633.923 854.736,638.939 857.267,643.923 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="847.236,638.986 857.204,633.923 854.736,638.939 857.267,643.923 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="826" y="592.8" width="16.2" height="73.2"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="826" y="592.8" width="16.2" height="73.2"/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="949" y="636">
+    <tspan x="949" y="636">35</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x1="826" y1="666" x2="635.736" y2="665.049"/>
+    <polygon style="fill: #000000" points="628.236,665.011 638.261,660.061 635.736,665.049 638.211,670.061 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="628.236,665.011 638.261,660.061 635.736,665.049 638.211,670.061 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="746" y="664">
+    <tspan x="746" y="664">true</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="832.1" y1="745.9" x2="1014.36" y2="746.849"/>
+    <polygon style="fill: #000000" points="1021.86,746.888 1011.84,751.836 1014.36,746.849 1011.89,741.836 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1021.86,746.888 1011.84,751.836 1014.36,746.849 1011.89,741.836 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="849.1" y="739.9">
+    <tspan x="849.1" y="739.9">consume(10)</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="825.1" y="720.9" width="15" height="32"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="825.1" y="720.9" width="15" height="32"/>
+  </g>
+</svg>
