@@ -19,8 +19,13 @@ As a single player game, there is just one user role: the player.
 
 ## User Interface
 
+Main menu:
 ![Mainmenu](ui-layout-drafts/mainmenu.png)
+
+Highscores:
 ![Highscores](ui-layout-drafts/highscores.png)
+
+Game:
 ![Game](ui-layout-drafts/game.png)
 
 ## Product Functions
