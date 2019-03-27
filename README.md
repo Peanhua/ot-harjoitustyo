@@ -12,14 +12,16 @@ The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in w
 * [Requirements Specification](documentation/requirements_specification.md)
 
 
+## Commandline functionality
 
-# Tehtävät
+All commands are supposed to be run in the project directory *FishingRodOfDestiny/*.
 
-### Viikko 1
-* [gitlog.txt](laskarit/viikko1/gitlog.txt)
-* [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
+### Testing
 
-### Viikko 2
-* [Maksukortti](laskarit/viikko2/Maksukortti)
-* [Unicafe](laskarit/viikko2/Unicafe)
-* [Unicafe kattavuusraportti](laskarit/viikko2/Unicafe-coverage.png)
+Tests can be run by:
+```mvn test```
+
+Test coverage can be generated with:
+```mvn jacoco:report```
+
+And the results can be seen by pointing browser to *target/site/jacoco/index.html*.
