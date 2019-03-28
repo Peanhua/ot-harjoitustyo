@@ -21,20 +21,30 @@ As a single player game, there is just one user role: the player.
 
 <table>
   <tr>
-    <td>Mainmenu</td>
-    <td><img src="ui-layout-drafts/mainmenu.png" alt="Mainmenu" width="200" /></td>
-  </tr>
-  <tr>
-    <td>Highscores</td>
-    <td><img src="ui-layout-drafts/highscores.png" alt="Highscores" width="200" /></td>
-  </tr>
-  <tr>
-    <td>New game</td>
-    <td><img src="ui-layout-drafts/newgame.png" alt="New game" width="200" /></td>
-  </tr>
-  <tr>
-    <td>Game</td>
-    <td><img src="ui-layout-drafts/game.png" alt="Game" width="200" /></td>
+    <td>
+      <table>
+        <tr>
+          <td>Mainmenu</td>
+          <td><img src="ui-layout-drafts/mainmenu.png" alt="Mainmenu" width="200" /></td>
+        </tr>
+        <tr>
+          <td>Highscores</td>
+          <td><img src="ui-layout-drafts/highscores.png" alt="Highscores" width="200" /></td>
+        </tr>
+        <tr>
+          <td>New game</td>
+          <td><img src="ui-layout-drafts/newgame.png" alt="New game" width="200" /></td>
+        </tr>
+        <tr>
+          <td>Game</td>
+          <td><img src="ui-layout-drafts/game.png" alt="Game" width="200" /></td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <div>User interface flow</div>
+      <div><img src="user_interface_flow.svg" alt="User interface flow" width="400" /></div>
+    </td>
   </tr>
 </table>
 

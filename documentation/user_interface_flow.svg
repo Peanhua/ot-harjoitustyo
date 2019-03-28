@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="26cm" height="15cm" viewBox="28 191 514 284" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="89.45" y="267" width="89.1" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="89.45" y="267" width="89.1" height="38"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="134" y="289.9">
+      <tspan x="134" y="289.9">Mainmenu</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="78.75" y="436" width="92.5" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="78.75" y="436" width="92.5" height="38"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="125" y="458.9">
+      <tspan x="125" y="458.9">Highscores</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="248.25" y="193" width="141.5" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="248.25" y="193" width="141.5" height="54"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="319" y="215.9">
+      <tspan x="319" y="215.9">New game:</tspan>
+      <tspan x="319" y="231.9">Character creation</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="493.95" y="209" width="46.1" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="493.95" y="209" width="46.1" height="38"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="517" y="231.9">
+      <tspan x="517" y="231.9">Plot</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="463.95" y="363" width="60.1" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="463.95" y="363" width="60.1" height="38"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="494" y="385.9">
+      <tspan x="494" y="385.9">Game</tspan>
+    </text>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="28" y="325">
+    <tspan x="28" y="325">Highscores</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 148.125,436 A 117.671,117.671 0 0 0 161.366,314.71"/>
+    <polygon style="fill: #000000" points="166.146,311.968 156.78,305.863 157.516,317.019 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="166.146,311.968 156.78,305.863 157.516,317.019 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 111.725,305 A 117.863,117.863 0 0 0 96.9138,426.222"/>
+    <polygon style="fill: #000000" points="92.098,428.9 101.382,435.13 100.796,423.965 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="92.098,428.9 101.382,435.13 100.796,423.965 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="162" y="426">
+    <tspan x="162" y="426">Close</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 237.378,220.827 A 71.1761,71.1761 0 0 0 178.55,276.5"/>
+    <polygon style="fill: #000000" points="237.246,224.992 247.25,219.999 237.254,214.992 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="237.246,224.992 247.25,219.999 237.254,214.992 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="122" y="250">
+    <tspan x="122" y="250">New game</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 189.292,283.814 A 114.164,114.164 0 0 0 248.25,247"/>
+    <polygon style="fill: #000000" points="188.661,279.384 179.538,285.848 190.183,289.268 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="188.661,279.384 179.538,285.848 190.183,289.268 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="237" y="268">
+    <tspan x="237" y="268">Cancel</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 481.587,220.512 A 163.83,163.83 0 0 0 389.75,220"/>
+    <polygon style="fill: #000000" points="479.946,224.844 491.063,223.651 483.438,215.474 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="479.946,224.844 491.063,223.651 483.438,215.474 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="400" y="206">
+    <tspan x="400" y="206">Start</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 513.801,353.106 A 191.678,191.678 0 0 0 528.525,247"/>
+    <polygon style="fill: #000000" points="509.65,350.933 509.485,362.112 518.528,355.537 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="509.65,350.933 509.485,362.112 518.528,355.537 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 187.781,310.979 A 586.416,586.416 0 0 0 463.95,401"/>
+    <polygon style="fill: #000000" points="190.483,306.895 179.384,305.551 184.969,315.237 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="190.483,306.895 179.384,305.551 184.969,315.237 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="398" y="415">
+    <tspan x="398" y="415">Quit/Save</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 453.674,368.576 A 1407.76,1407.76 0 0 0 178.55,295.5"/>
+    <polygon style="fill: #000000" points="451.887,373.199 463.017,372.14 455.491,363.872 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="451.887,373.199 463.017,372.14 455.491,363.872 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="224" y="303">
+    <tspan x="224" y="303">Load saved game</tspan>
+  </text>
+</svg>
