@@ -11,3 +11,4 @@ Day   | Hours | What was done
       |  0.5  | Created user interface drafts for main menu, highscores, and in-game screens.
       |  1.0  | (Re-)Learning JavaFX and setting up main menu.
 28.3. |  1.0  | Working on main menu.
+      |  1.0  | Creating user interface framework.
