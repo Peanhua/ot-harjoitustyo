@@ -21,28 +21,20 @@ As a single player game, there is just one user role: the player.
 
 <table>
   <tr>
-    <td>
-      [Mainmenu](ui-layout-drafts/mainmenu.png)
-      <img src="ui-layout-drafts/mainmenu.png" alt="Mainmenu" width="200" />
-    </td>
+    <td>Mainmenu</td>
+    <td><img src="ui-layout-drafts/mainmenu.png" alt="Mainmenu" width="200" /></td>
   </tr>
   <tr>
-    <td>
-      [Highscores](ui-layout-drafts/highscores.png)
-      <img src="ui-layout-drafts/highscores.png" alt="Highscores" width="200" />
-    </td>
+    <td>Highscores</td>
+    <td><img src="ui-layout-drafts/highscores.png" alt="Highscores" width="200" /></td>
   </tr>
   <tr>
-    <td>
-      [New game](ui-layout-drafts/newgame.png)
-      <img src="ui-layout-drafts/newgame.png" alt="New game" width="200" />
-    </td>
+    <td>New game</td>
+    <td><img src="ui-layout-drafts/newgame.png" alt="New game" width="200" /></td>
   </tr>
   <tr>
-    <td>
-      [Game](ui-layout-drafts/game.png)
-      <img src="ui-layout-drafts/game.png" alt="Game" width="200" />
-    </td>
+    <td>Game</td>
+    <td><img src="ui-layout-drafts/game.png" alt="Game" width="200" /></td>
   </tr>
 </table>
 
