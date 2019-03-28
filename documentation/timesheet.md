@@ -11,5 +11,5 @@ Day   | Hours | What was done
       |  0.5  | Created user interface drafts for main menu, highscores, and in-game screens.
       |  1.0  | (Re-)Learning JavaFX and setting up main menu.
 28.3. |  1.0  | Working on main menu.
-      |  2.0  | Created user interface framework, basic screen setup/flow.
+      |  4.0  | Created user interface framework, basic screen setup/flow.
       |  1.0  | Created user interface draft for new game screen, and user interface flow diagram.

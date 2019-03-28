@@ -17,7 +17,8 @@ public class FishingRodOfDestinyUi extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("The Fishing Rod Of Destiny");
-
+        primaryStage.setResizable(false);
+        
         Screen mainmenu = new ScreenMainMenu(null, primaryStage);
         mainmenu.show();
         
