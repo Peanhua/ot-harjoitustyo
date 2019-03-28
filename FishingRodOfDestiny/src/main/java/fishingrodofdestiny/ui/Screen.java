@@ -28,8 +28,12 @@ public abstract class Screen {
     
     protected abstract void setup(Group root, Scene scene);
     
-    protected Stage getStage() {
+    protected final Stage getStage() {
         return this.stage;
+    }
+    
+    public final Screen getParent() {
+        return this.parent;
     }
 
     public final void show() {

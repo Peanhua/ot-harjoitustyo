@@ -9,25 +9,25 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
  *
  * @author joyr
  */
-public class ScreenMainMenu extends Screen {
-
-    public ScreenMainMenu(Screen parent, Stage stage) {
+public class ScreenNewGame extends Screen {
+    public ScreenNewGame(Screen parent, Stage stage) {
         super(parent, stage);
     }
 
     @Override
     protected void setup(Group root, Scene scene) {
-        
         VBox vb = new VBox(0);
 
         {
@@ -40,46 +40,35 @@ public class ScreenMainMenu extends Screen {
             
             vb.getChildren().addAll(logov, spacer);
         }
+        
+        {
+            Label l = new Label("Name: ");
+            l.setTextFill(Color.WHITE);
+            vb.getChildren().add(l);
+        }
 
         {
             VBox buttons = new VBox(10);
             buttons.setAlignment(Pos.CENTER);
-            Button newgame = new Button("New Game");
-            newgame.setOnAction(e -> this.startNewGame());
-            buttons.getChildren().addAll(newgame);
 
-            Button loadgame = new Button("Load Saved Game");
-            loadgame.setOnAction(e -> this.loadGame());
-            buttons.getChildren().addAll(loadgame);
+            Button close = new Button("Cancel");
+            close.setOnAction(e-> this.close());
+            buttons.getChildren().addAll(close);
 
-            Button highscores = new Button("Highscore lists");
-            highscores.setOnAction(e -> this.showHighscores());
-            buttons.getChildren().addAll(highscores);
-
-            Button quit = new Button("Quit");
-            quit.setOnAction(e-> this.close());
-            buttons.getChildren().addAll(quit);
+            Button start = new Button("Start New Game");
+            start.setOnAction(e-> this.startNewGame());
+            buttons.getChildren().addAll(start);
             
             vb.getChildren().add(buttons);
         }
-
+        
         root.getChildren().add(vb);
     }
     
     private void startNewGame() {
-        Screen ng = new ScreenNewGame(this, this.getStage());
-        ng.show();
-    }
-    
-    
-    private void loadGame() {
-        Screen g = new ScreenGame(this, this.getStage());
-        g.show();
-    }
-    
-    
-    private void showHighscores() {
-        Screen hs = new ScreenHighscores(this, this.getStage());
-        hs.show();
+        this.close();
+        
+        Screen plot = new ScreenPlot(this.getParent(), this.getStage());
+        plot.show();
     }
 }

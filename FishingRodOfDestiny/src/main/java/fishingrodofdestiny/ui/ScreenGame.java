@@ -19,15 +19,13 @@ import javafx.stage.Stage;
  *
  * @author joyr
  */
-public class ScreenMainMenu extends Screen {
-
-    public ScreenMainMenu(Screen parent, Stage stage) {
+public class ScreenGame extends Screen {
+    public ScreenGame(Screen parent, Stage stage) {
         super(parent, stage);
     }
 
     @Override
     protected void setup(Group root, Scene scene) {
-        
         VBox vb = new VBox(0);
 
         {
@@ -44,17 +42,6 @@ public class ScreenMainMenu extends Screen {
         {
             VBox buttons = new VBox(10);
             buttons.setAlignment(Pos.CENTER);
-            Button newgame = new Button("New Game");
-            newgame.setOnAction(e -> this.startNewGame());
-            buttons.getChildren().addAll(newgame);
-
-            Button loadgame = new Button("Load Saved Game");
-            loadgame.setOnAction(e -> this.loadGame());
-            buttons.getChildren().addAll(loadgame);
-
-            Button highscores = new Button("Highscore lists");
-            highscores.setOnAction(e -> this.showHighscores());
-            buttons.getChildren().addAll(highscores);
 
             Button quit = new Button("Quit");
             quit.setOnAction(e-> this.close());
@@ -62,24 +49,7 @@ public class ScreenMainMenu extends Screen {
             
             vb.getChildren().add(buttons);
         }
-
+        
         root.getChildren().add(vb);
-    }
-    
-    private void startNewGame() {
-        Screen ng = new ScreenNewGame(this, this.getStage());
-        ng.show();
-    }
-    
-    
-    private void loadGame() {
-        Screen g = new ScreenGame(this, this.getStage());
-        g.show();
-    }
-    
-    
-    private void showHighscores() {
-        Screen hs = new ScreenHighscores(this, this.getStage());
-        hs.show();
     }
 }
