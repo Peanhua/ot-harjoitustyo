@@ -50,9 +50,13 @@ public class GameObject {
     }
     
     public void adjustMaxHitpoints(int amount) {
-        this.maxHitpoints += amount;
-        if(this.maxHitpoints < 0)
-            this.maxHitpoints = 0;
+        if(amount <= 0 || this.maxHitpoints < Integer.MAX_VALUE - amount) {
+            this.maxHitpoints += amount;
+            if(this.maxHitpoints < 0)
+                this.maxHitpoints = 0;
+        } else {
+            this.maxHitpoints = Integer.MAX_VALUE;
+        }
     }
     
     public int getInventoryWeightLimit() {
@@ -60,8 +64,12 @@ public class GameObject {
     }
     
     public void adjustInventoryWeightLimit(int amount) {
-        this.inventoryWeightLimit += amount;
-        if(this.inventoryWeightLimit < 0)
-            this.inventoryWeightLimit = 0;
+        if(amount <= 0 || this.inventoryWeightLimit < Integer.MAX_VALUE - amount) {
+            this.inventoryWeightLimit += amount;
+            if(this.inventoryWeightLimit < 0)
+                this.inventoryWeightLimit = 0;
+        } else {
+            this.inventoryWeightLimit = Integer.MAX_VALUE;
+        }
     }
 }
