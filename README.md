@@ -16,6 +16,12 @@ The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in w
 
 All commands are supposed to be run in the project directory *FishingRodOfDestiny/*.
 
+## Running
+
+The game can be run from commandline with the following command:
+```mvn compile exec:java -Dexec.mainClass=fishingrodofdestiny.ui.FishingRodOfDestinyUi```
+
+
 ### Testing
 
 Tests can be run by:
