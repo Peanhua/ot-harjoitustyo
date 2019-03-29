@@ -13,3 +13,4 @@ Day   | Hours | What was done
 28.3. |  1.0  | Working on main menu.
       |  4.0  | Created user interface framework, basic screen setup/flow.
       |  1.0  | Created user interface draft for new game screen, and user interface flow diagram.
+29.3. |  3.0  | User interface framework and new game screen functionality.

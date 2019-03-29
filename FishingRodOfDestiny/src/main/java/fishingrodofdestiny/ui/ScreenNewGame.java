@@ -5,7 +5,9 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.gameobjects.Player;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -25,17 +27,16 @@ import javafx.stage.Stage;
  */
 public class ScreenNewGame extends Screen {
     
-    private int      distPoints;
-    private String[] distLabels = { "Hit Points:",
-                                     "Attack:",
-                                     "Defence:",
-                                     "Carrying Capacity:"
-    };
-    private ArrayList<Integer> distValues;
-    private ArrayList<Text>    distValueTexts;
+    private Player           player;
+    private TextField        name;
+    private PointDistributor pointDistributor;
     
     public ScreenNewGame(Screen parent, Stage stage) {
         super(parent, stage);
+        
+        this.player           = new Player();
+        this.name             = null;
+        this.pointDistributor = null;
     }
 
     @Override
@@ -44,108 +45,48 @@ public class ScreenNewGame extends Screen {
         vb.setAlignment(Pos.CENTER);
         vb.setMinWidth(scene.getWidth());
 
-        vb.getChildren().add(this.createTitle("START NEW GAME"));
-        vb.getChildren().add(this.createVerticalSpacer(50));
+        vb.getChildren().add(UserInterfaceFactory.createTitle("START NEW GAME"));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        TextField name = new TextField();
-        vb.getChildren().add(this.createLabeledInput("Name:", name));
-        vb.getChildren().add(this.createVerticalSpacer(50));
+        this.name = new TextField();
+        vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Name:", this.name));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        
-        { // Point distribution: 
-            this.distPoints = 20;
-            
-            GridPane grid = new GridPane();
-            grid.setAlignment(Pos.CENTER);
-            grid.setHgap(4);
-            grid.setVgap(2);
-
-            int row = 0;
-            {
-                Text t = this.createText("Distribute points:");
-                Text v = this.createText("" + this.distPoints);
-
-                GridPane.setConstraints(t, 0, row);
-                GridPane.setConstraints(v, 1, row);
-                grid.getChildren().addAll(t, v);
-                row++;
-            }
-
-            this.distValues     = new ArrayList<>();
-            this.distValueTexts = new ArrayList<>();
-            
-            for(String label : this.distLabels) {
-                Text t = this.createText(label);
-                Text v = this.createText("0");
-                Button sub = new Button("-");
-                Button add = new Button("+");
-                
-                this.distValues.add(0);
-                this.distValueTexts.add(v);
-
-                GridPane.setConstraints(t, 0, row);
-                GridPane.setConstraints(v, 1, row);
-                GridPane.setConstraints(sub, 2, row);
-                GridPane.setConstraints(add, 3, row);
-                grid.getChildren().addAll(t, v, sub, add);
-                row++;
-            }
-            
-            vb.getChildren().addAll(grid);
-            vb.getChildren().add(this.createVerticalSpacer(50));
-        }
+        this.pointDistributor = new PointDistributor(20); 
+        vb.getChildren().add(this.pointDistributor.createUserInterface());
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
         { // Saving target:
-            GridPane grid = new GridPane();
-            grid.setAlignment(Pos.CENTER);
-            grid.setHgap(4);
-            grid.setVgap(2);
-            
-            Text l1 = this.createText("Save princess:");
-            Text l2 = this.createText("Save prince:");
-            
-            ToggleGroup group = new ToggleGroup();
-            RadioButton button1 = new RadioButton();
-            button1.setToggleGroup(group);
-            button1.setSelected(true);
-            RadioButton button2 = new RadioButton();
-            button2.setToggleGroup(group);
-
-            GridPane.setConstraints(l1, 0, 0);
-            GridPane.setConstraints(l2, 0, 1);
-            GridPane.setConstraints(button1, 1, 0);
-            GridPane.setConstraints(button2, 1, 1);
-            grid.getChildren().addAll(l1, l2, button1, button2);
-            
-            vb.getChildren().addAll(grid);
-            vb.getChildren().add(this.createVerticalSpacer(50));
+            String[] labels = { "Save princess:", "Save prince:" };
+            List<RadioButton> buttons = new ArrayList<>();
+            vb.getChildren().add(UserInterfaceFactory.createRadiobuttonGrid(labels, buttons));
+            vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         }
 
-
         TextField randseed = new TextField();
-        vb.getChildren().add(this.createLabeledInput("Random seed:", randseed));
-        vb.getChildren().add(this.createVerticalSpacer(50));
-
+        vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Random seed:", randseed));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
         { // Cancel/Go -buttons:
-            HBox buttons = new HBox(10);
-            buttons.setAlignment(Pos.CENTER);
-
-            Button close = new Button("Cancel");
-            close.setOnAction(e-> this.close());
-            buttons.getChildren().addAll(close);
-
-            Button start = new Button("Start New Game");
-            start.setOnAction(e-> this.startNewGame());
-            buttons.getChildren().addAll(start);
-            
-            vb.getChildren().add(buttons);
+            String[] labels = { "Cancel", "Start New Game" };
+            List<Button> buttons = new ArrayList<>();
+            vb.getChildren().add(UserInterfaceFactory.createButtonRow(labels, buttons));
+            buttons.get(0).setOnAction(e-> this.close());
+            buttons.get(1).setOnAction(e-> this.startNewGame());
         }
         
         root.getChildren().add(vb);
     }
     
+    
     private void startNewGame() {
+        player.setName(this.name.getText());
+        player.adjustAttack(this.pointDistributor.getPoints(PointDistributor.PointType.ATTACK));
+        player.adjustDefence(this.pointDistributor.getPoints(PointDistributor.PointType.DEFENCE));
+        player.adjustMaxHitpoints(this.pointDistributor.getPoints(PointDistributor.PointType.HITPOINTS));
+        player.adjustInventoryWeightLimit(this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY));
+        System.out.println(player);
+        
         this.close();
         
         Screen plot = new ScreenPlot(this.getParent(), this.getStage());

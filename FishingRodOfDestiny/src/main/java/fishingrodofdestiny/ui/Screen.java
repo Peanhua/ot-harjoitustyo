@@ -64,47 +64,4 @@ public abstract class Screen {
         else
             parent.show();
     }
-    
-    /* Helper methods to create UI elements: */
-    protected Node createLogo(Scene scene) {
-        Image logo = new Image("file:gfx/Logo.png", false);
-        ImageView logov = new ImageView(logo);
-        logov.setTranslateX((scene.getWidth() - logo.getWidth()) / 2);
-        return logov;
-    }
-        
-    
-    protected Text createTitle(String title) {
-        Text t = new Text();
-        t.setFont(Font.font("Tahoma", FontWeight.BOLD, 50));
-        t.setTextAlignment(TextAlignment.CENTER);
-        t.setText(title);
-        t.setFill(Color.WHITE);
-        return t;
-    }
-    
-    protected Region createVerticalSpacer(int height) {
-        Region spacer = new Region();
-        spacer.setMinHeight(height);
-        return spacer;
-    }
-    
-    protected Text createText(String contents) {
-        Text rv = new Text();
-        rv.setFont(Font.font("Tahoma", 16));
-        rv.setText(contents);
-        rv.setFill(Color.WHITE);
-        
-        return rv;
-    }
-    
-    protected Node createLabeledInput(String label, Node input) {
-        HBox hb = new HBox(10);
-        hb.setAlignment(Pos.CENTER);
-            
-        Text l = this.createText(label);
-        hb.getChildren().addAll(l, input);
-            
-        return hb;
-    }
 }

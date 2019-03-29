@@ -29,19 +29,19 @@ public class ScreenPlot extends Screen {
         VBox vb = new VBox(0);
         vb.setAlignment(Pos.CENTER);
 
-        vb.getChildren().add(this.createVerticalSpacer(50));
-        vb.getChildren().add(this.createLogo(scene));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
+        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
 
-        vb.getChildren().add(this.createVerticalSpacer(100));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
 
-        Text t = this.createText("A princess/prince has fallen into the Lake of Sunken Nobles!\n\n"
-                               + "You must rescue her/him by retrieving the Magical Fishing Rod from the depths of cave Caerrbannogh!");
+        Text t = UserInterfaceFactory.createText("A princess/prince has fallen into the Lake of Sunken Nobles!\n\n"
+                                               + "You must rescue her/him by retrieving the Magical Fishing Rod from the depths of cave Caerrbannogh!");
         t.setFont(new Font(20));
         t.setWrappingWidth(500);
         t.setTextAlignment(TextAlignment.CENTER);
         vb.getChildren().add(t);
         
-        vb.getChildren().add(this.createVerticalSpacer(100));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
         
         Button cont = new Button("Continue");
         cont.setOnAction(e-> this.gameOn());

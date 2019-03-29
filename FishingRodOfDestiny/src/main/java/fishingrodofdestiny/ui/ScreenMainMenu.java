@@ -26,9 +26,9 @@ public class ScreenMainMenu extends Screen {
     protected void setup(Group root, Scene scene) {
         VBox vb = new VBox(0);
 
-        vb.getChildren().add(this.createVerticalSpacer(150));
-        vb.getChildren().add(this.createLogo(scene));
-        vb.getChildren().add(this.createVerticalSpacer(150));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(150));
+        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(150));
 
         {
             VBox buttons = new VBox(2);

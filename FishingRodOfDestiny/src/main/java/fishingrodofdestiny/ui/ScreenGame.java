@@ -25,9 +25,9 @@ public class ScreenGame extends Screen {
     protected void setup(Group root, Scene scene) {
         VBox vb = new VBox(0);
 
-        vb.getChildren().add(this.createLogo(scene));
+        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
 
-        vb.getChildren().add(this.createVerticalSpacer(500));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(500));
 
         {
             VBox buttons = new VBox(10);
