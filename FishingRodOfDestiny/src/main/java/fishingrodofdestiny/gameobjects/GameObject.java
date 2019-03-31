@@ -6,6 +6,7 @@
 package fishingrodofdestiny.gameobjects;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,9 +16,10 @@ public class GameObject {
     private String name;
     private int    maxHitpoints;
     private int    currentHitpoints;
+    private int    weight;
     
-    private ArrayList<GameObject> inventory;
-    private int                   inventoryWeightLimit;
+    private List<GameObject> inventory; // TODO: split into own class
+    private int              inventoryWeightLimit;
     
     public GameObject() {
         this.name                 = null;
@@ -25,6 +27,7 @@ public class GameObject {
         this.currentHitpoints     = 1;
         this.inventory            = new ArrayList<>();
         this.inventoryWeightLimit = 0;
+        this.weight               = 1;
     }
     
     @Override
@@ -43,6 +46,10 @@ public class GameObject {
     
     public String getName() {
         return this.name;
+    }
+    
+    public int getHitpoints() {
+        return this.currentHitpoints;
     }
 
     public int getMaxHitpoints() {
@@ -63,6 +70,13 @@ public class GameObject {
         return this.inventoryWeightLimit;
     }
     
+    public void setInventoryWeightLimit(int limit) {
+        if(limit >= 0)
+            this.inventoryWeightLimit = limit;
+        else
+            throw new RuntimeException("Illegal inventory weight limit " + limit + " given to GameObject.setInventoryWeightLimit().");
+    }
+    
     public void adjustInventoryWeightLimit(int amount) {
         if(amount <= 0 || this.inventoryWeightLimit < Integer.MAX_VALUE - amount) {
             this.inventoryWeightLimit += amount;
@@ -71,5 +85,23 @@ public class GameObject {
         } else {
             this.inventoryWeightLimit = Integer.MAX_VALUE;
         }
+    }
+    
+    public List<GameObject> getInventory() {
+        return this.inventory;
+    }
+    
+    public int getInventoryWeight() {
+        int weight = 0;
+        
+        for(GameObject obj : this.inventory) {
+            weight += obj.getWeight();
+        }
+        
+        return weight;
+    }
+    
+    public int getWeight() {
+        return this.weight + this.getInventoryWeight();
     }
 }

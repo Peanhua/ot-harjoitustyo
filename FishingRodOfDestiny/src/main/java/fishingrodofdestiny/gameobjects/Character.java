@@ -23,6 +23,7 @@ public class Character extends GameObject {
         this.defence          = 0;
         this.level            = 0;
         this.experiencePoints = 0;
+        this.setInventoryWeightLimit(20);
     }
     
     @Override
@@ -41,6 +42,22 @@ public class Character extends GameObject {
     
     public int getDefence() {
         return this.defence;
+    }
+    
+    public int getLevel() {
+        return this.level;
+    }
+    
+    public int getExperiencePoints() {
+        return this.experiencePoints;
+    }
+    
+    public int getArmorClass() {
+        return 0; // TODO: calculate from worn armor
+    }
+    
+    public int getDamage() {
+        return 0; // TODO: calculate from stats and currently equipped weapon
     }
     
     public void adjustAttack(int amount) {

@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.gameobjects.Game;
 import fishingrodofdestiny.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +90,8 @@ public class ScreenNewGame extends Screen {
         
         this.close();
         
-        Screen plot = new ScreenPlot(this.getParent(), this.getStage());
+        Game game = new Game(player);
+        Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
     }
 }

@@ -54,13 +54,23 @@ public class UserInterfaceFactory {
         return spacer;
     }
     
-    
-    public static Text createText(String contents) {
+
+    public static Text createText(String contents, int size) {
         Text rv = new Text();
-        rv.setFont(Font.font("Tahoma", 16));
+        rv.setFont(Font.font("Tahoma", size));
         rv.setText(contents);
         rv.setFill(Color.WHITE);
         return rv;
+    }
+
+    
+    public static Text createText(String contents) {
+        return UserInterfaceFactory.createText(contents, 16);
+    }
+    
+    
+    public static Text createSmallText(String contents) {
+        return UserInterfaceFactory.createText(contents, 10);
     }
     
     

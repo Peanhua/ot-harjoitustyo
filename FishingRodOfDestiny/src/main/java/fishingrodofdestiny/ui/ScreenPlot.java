@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.gameobjects.Game;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,8 +21,11 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public class ScreenPlot extends Screen {
-    public ScreenPlot(Screen parent, Stage stage) {
+    private Game game;
+    
+    public ScreenPlot(Game game, Screen parent, Stage stage) {
         super(parent, stage);
+        this.game = game;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class ScreenPlot extends Screen {
     private void gameOn() {
         this.close();
         
-        Screen game = new ScreenGame(this.getParent(), this.getStage());
-        game.show();
+        Screen screen = new ScreenGame(this.game, this.getParent(), this.getStage());
+        screen.show();
     }
 }

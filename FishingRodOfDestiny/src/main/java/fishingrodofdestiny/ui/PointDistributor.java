@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
  *
  * @author joyr
  */
-public class PointDistributor {
+public class PointDistributor extends Widget {
     private Character character;
     
     private int       pointsLeft;
@@ -59,6 +59,7 @@ public class PointDistributor {
     }
     
     
+    @Override
     public Node createUserInterface() {
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -101,7 +102,7 @@ public class PointDistributor {
             row++;
         }
         
-        this.refreshTexts();
+        this.refresh();
         
         return grid;
     }
@@ -123,7 +124,8 @@ public class PointDistributor {
     }
     
     
-    private void refreshTexts() {
+    @Override
+    public void refresh() {
         this.pointsLeftText.setText("" + this.pointsLeft);
         
         for(PointType pt : PointType.values()) {
@@ -140,7 +142,7 @@ public class PointDistributor {
         if(cur > 0) {
             this.pointsLeft += 1;
             this.pointValues.set(ind, cur - 1);
-            this.refreshTexts();
+            this.refresh();
         }
     }
 
@@ -151,7 +153,7 @@ public class PointDistributor {
             this.pointsLeft -= 1;
             int cur = this.pointValues.get(ind);
             this.pointValues.set(ind, cur + 1);
-            this.refreshTexts();
+            this.refresh();
         }
     }
 }

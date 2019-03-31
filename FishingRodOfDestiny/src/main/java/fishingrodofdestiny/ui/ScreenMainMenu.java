@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.gameobjects.Game;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -60,7 +61,8 @@ public class ScreenMainMenu extends Screen {
     
     
     private void loadGame() {
-        Screen g = new ScreenGame(this, this.getStage());
+        Game game = new Game(null);
+        Screen g = new ScreenGame(game, this, this.getStage());
         g.show();
     }
     
