@@ -15,3 +15,4 @@ Day   | Hours | What was done
       |  1.0  | Created user interface draft for new game screen, and user interface flow diagram.
 29.3. |  3.0  | User interface framework and new game screen functionality.
       |  0.5  | Test code and some fixes to make all the tests pass.
+31.3. |  1.5  | User interface (new game and in-game).
