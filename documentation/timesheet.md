@@ -16,3 +16,4 @@ Day   | Hours | What was done
 29.3. |  3.0  | User interface framework and new game screen functionality.
       |  0.5  | Test code and some fixes to make all the tests pass.
 31.3. |  1.5  | User interface (new game and in-game).
+1.4.  |  2.0  | Level generator and level drawing basics.

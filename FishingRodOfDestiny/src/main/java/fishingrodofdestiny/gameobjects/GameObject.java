@@ -13,10 +13,11 @@ import java.util.List;
  * @author joyr
  */
 public class GameObject {
-    private String name;
-    private int    maxHitpoints;
-    private int    currentHitpoints;
-    private int    weight;
+    private String   name;
+    private int      maxHitpoints;
+    private int      currentHitpoints;
+    private int      weight;
+    private Location location;
     
     private List<GameObject> inventory; // TODO: split into own class
     private int              inventoryWeightLimit;
@@ -28,6 +29,7 @@ public class GameObject {
         this.inventory            = new ArrayList<>();
         this.inventoryWeightLimit = 0;
         this.weight               = 1;
+        this.location             = new Location();
     }
     
     @Override
@@ -38,6 +40,10 @@ public class GameObject {
                 + ",inventoryWLimit=" + this.inventoryWeightLimit
                 + ",inventorySize=" + this.inventory.size()
                 + ")";
+    }
+
+    public Location getLocation() {
+        return this.location;
     }
     
     public void setName(String name) {

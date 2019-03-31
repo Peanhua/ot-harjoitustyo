@@ -41,6 +41,10 @@ public class ScreenGame extends Screen {
         CharacterStatus status = new CharacterStatus(this.game.getPlayer());
         hb.getChildren().add(status.createUserInterface());
         
+        LevelView lview = new LevelView();
+        lview.setLevel(this.game.getPlayer().getLocation().getContainerTile().getInLevel());
+        hb.getChildren().add(lview.createUserInterface());
+        
         {
             VBox buttons = new VBox(10);
             buttons.setAlignment(Pos.CENTER);
@@ -49,7 +53,7 @@ public class ScreenGame extends Screen {
             quit.setOnAction(e-> this.close());
             buttons.getChildren().addAll(quit);
             
-            hb.getChildren().add(buttons);
+            vb.getChildren().add(buttons);
         }
         
         root.getChildren().add(vb);

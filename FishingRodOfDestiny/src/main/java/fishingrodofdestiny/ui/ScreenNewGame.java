@@ -7,8 +7,11 @@ package fishingrodofdestiny.ui;
 
 import fishingrodofdestiny.gameobjects.Game;
 import fishingrodofdestiny.gameobjects.Player;
+import fishingrodofdestiny.world.EmptyLevelGenerator;
+import fishingrodofdestiny.world.StairsTile;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -90,7 +93,17 @@ public class ScreenNewGame extends Screen {
         
         this.close();
         
+        
+        // TODO: move this new game setup somewhere else
         Game game = new Game(player);
+        
+        EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 20, 20);
+        for(int i = 0; i < 10; i++)
+            game.addLevel(elg.generateLevel(i));
+        
+        List<StairsTile> stairs = game.getLevel(0).getStairsUp();
+        player.getLocation().set(stairs.get(0));
+        
         Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
     }
