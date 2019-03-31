@@ -87,32 +87,31 @@ public class GameObjectTest {
     
     @Test
     public void adjustingMaxHitpointsWorks() {
-        assertEquals(0, this.object.getMaxHitpoints());
+        assertEquals(1, this.object.getMaxHitpoints());
         int n = 42;
         for(int i = 0; i < n; i++) {
             this.object.adjustMaxHitpoints(1);
-            assertEquals(i + 1, this.object.getMaxHitpoints());
+            assertEquals(1 + i + 1, this.object.getMaxHitpoints());
         }
         this.object.adjustMaxHitpoints(10);
-        assertEquals(n + 10, this.object.getMaxHitpoints());
+        assertEquals(1 + n + 10, this.object.getMaxHitpoints());
         this.object.adjustMaxHitpoints(-5);
-        assertEquals(n + 10 - 5, this.object.getMaxHitpoints());
+        assertEquals(1 + n + 10 - 5, this.object.getMaxHitpoints());
     }
 
     @Test
     public void maxHitpointsDontGoBelowZero() {
-        assertEquals(0, this.object.getMaxHitpoints());
+        assertEquals(1, this.object.getMaxHitpoints());
         this.object.adjustMaxHitpoints(-3);
         assertEquals(0, this.object.getMaxHitpoints());
     }
     
     @Test
     public void maxHitpointsDontOverflow() {
-        assertEquals(0, this.object.getMaxHitpoints());
+        assertEquals(1, this.object.getMaxHitpoints());
         this.object.adjustMaxHitpoints(Integer.MAX_VALUE / 2 + 3);
         assertTrue(this.object.getMaxHitpoints() > 0);
         this.object.adjustMaxHitpoints(Integer.MAX_VALUE / 2 + 3);
         assertTrue(this.object.getMaxHitpoints() > 0);
     }
-        
 }
