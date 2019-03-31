@@ -52,7 +52,7 @@ public class ScreenNewGame extends Screen {
         vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Name:", this.name));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        this.pointDistributor = new PointDistributor(20); 
+        this.pointDistributor = new PointDistributor(this.player, 20); 
         vb.getChildren().add(this.pointDistributor.createUserInterface());
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         

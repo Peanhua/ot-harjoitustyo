@@ -18,6 +18,8 @@ import javafx.scene.text.Text;
  * @author joyr
  */
 public class PointDistributor {
+    private Character character;
+    
     private int       pointsLeft;
     private Text      pointsLeftText;
 
@@ -29,8 +31,8 @@ public class PointDistributor {
         //       OR make character attribute a separate class
         ATTACK,
         DEFENCE,
-        HITPOINTS,
-        CARRYING_CAPACITY;
+        HITPOINTS,          // TODO: rename this to max hitpoints to make it map 1:1 with GameObject
+        CARRYING_CAPACITY;  // TODO: rename this to inventory weight limit to make it map 1:1 with GameObject
         
         public static String getName(PointType pointType) {
             switch(pointType) {
@@ -44,7 +46,8 @@ public class PointDistributor {
     };
     
     
-    public PointDistributor(int pointsToDistribute) {
+    public PointDistributor(Character character, int pointsToDistribute) {
+        this.character  = character;
         this.pointsLeft = pointsToDistribute;
 
         this.pointValues = new ArrayList<>();
@@ -88,9 +91,9 @@ public class PointDistributor {
             add.setOnAction(e -> this.onAddClicked(pt));
 
             GridPane.setConstraints(label, 0, row);
-            GridPane.setConstraints(value, 1, row);
-            GridPane.setConstraints(sub, 2, row);
-            GridPane.setConstraints(add, 3, row);
+            GridPane.setConstraints(sub,   1, row);
+            GridPane.setConstraints(add,   2, row);
+            GridPane.setConstraints(value, 3, row);
             grid.getChildren().addAll(label, value, sub, add);
             
             this.pointValueTexts.set(pt.ordinal(), value);
@@ -109,11 +112,24 @@ public class PointDistributor {
     }
     
     
+    public int getExistingPoints(PointType pointType) {
+        switch(pointType) {
+            case ATTACK:            return this.character.getAttack();
+            case DEFENCE:           return this.character.getDefence();
+            case HITPOINTS:         return this.character.getMaxHitpoints();
+            case CARRYING_CAPACITY: return this.character.getInventoryWeightLimit();
+            default:                throw new RuntimeException("Unknown PointType " + pointType + " for getExistingPoints()");
+        }
+    }
+    
+    
     private void refreshTexts() {
         this.pointsLeftText.setText("" + this.pointsLeft);
         
         for(PointType pt : PointType.values()) {
-            this.pointValueTexts.get(pt.ordinal()).setText("" + this.pointValues.get(pt.ordinal()));
+            int existing = this.getExistingPoints(pt);
+            int add      = this.pointValues.get(pt.ordinal());
+            this.pointValueTexts.get(pt.ordinal()).setText("" + existing + " + " + add + " -> " + (existing + add));
         }
     }
     

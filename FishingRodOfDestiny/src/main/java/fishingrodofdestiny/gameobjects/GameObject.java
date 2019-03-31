@@ -21,8 +21,8 @@ public class GameObject {
     
     public GameObject() {
         this.name                 = null;
-        this.maxHitpoints         = 0;
-        this.currentHitpoints     = 0;
+        this.maxHitpoints         = 1;
+        this.currentHitpoints     = 1;
         this.inventory            = new ArrayList<>();
         this.inventoryWeightLimit = 0;
     }
