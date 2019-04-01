@@ -6,6 +6,7 @@
 package fishingrodofdestiny.ui;
 
 import fishingrodofdestiny.gameobjects.Game;
+import fishingrodofdestiny.gameobjects.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -40,6 +41,7 @@ public class ScreenMainMenu extends Screen {
 
             Button loadgame = new Button("Load Saved Game");
             loadgame.setOnAction(e -> this.loadGame());
+            loadgame.setDisable(true);
 
             Button highscores = new Button("Highscore lists");
             highscores.setOnAction(e -> this.showHighscores());
@@ -61,7 +63,7 @@ public class ScreenMainMenu extends Screen {
     
     
     private void loadGame() {
-        Game game = new Game(null);
+        Game game = new Game(new Player());
         Screen g = new ScreenGame(game, this, this.getStage());
         g.show();
     }

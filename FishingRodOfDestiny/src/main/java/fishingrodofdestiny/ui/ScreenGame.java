@@ -42,8 +42,8 @@ public class ScreenGame extends Screen {
         hb.getChildren().add(status.createUserInterface());
         
         LevelView lview = new LevelView();
-        lview.setLevel(this.game.getPlayer().getLocation().getContainerTile().getInLevel());
         hb.getChildren().add(lview.createUserInterface());
+        lview.setLevel(this.game.getPlayer().getLocation().getContainerTile().getInLevel());
         
         {
             VBox buttons = new VBox(10);
