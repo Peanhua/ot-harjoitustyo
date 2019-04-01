@@ -1,0 +1,30 @@
+# https://www.websequencediagrams.com/
+
+Main->*laitehallinto: new HKLLaitehallinto()
+Main->*rautatietori: new Lataajalaite()
+Main->*ratikka6: new Lukijalaite()
+Main->*bussi244: new Lukijalaite()
+Main->laitehallinto: lisaaLataaja(rautatietori)
+Main->laitehallinto: lisaaLukija(ratikka6)
+Main->laitehallinto: lisaaLukija(bussi244)
+
+Main->*lippuLuukku: new Kioski()
+
+Main->+lippuLuukku: ostaMatkakortti("Arto")
+lippuLuukku->*artonKortti: new Matkakortti("Arto")
+lippuLuukku-->-Main: artonKortti
+
+Main->+rautatietori: lataaArvoa(artonKortti, 3)
+rautatietori->artonKortti: kasvataArvoa(3)
+rautatietori-->-Main:
+
+Main->+ratikka6: ostaLippu(artonKortti, 0)
+ratikka6->+artonKortti: getArvo()
+artonKortti-->-ratikka6: 3
+ratikka6->artonKortti: vahennaArvoa(1.5)
+ratikka6-->-Main: true
+
+Main->+bussi244: ostaLippu(artonKortti, 2)
+bussi244->+artonKortti: getArvo()
+artonKortti-->-bussi244: 1.5
+bussi244-->-Main: false

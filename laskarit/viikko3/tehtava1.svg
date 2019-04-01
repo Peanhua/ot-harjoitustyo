@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="18cm" height="8cm" viewBox="13 66 359 149" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="19cm" height="9cm" viewBox="13 46 377 168" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="138.1" y="175" width="67.8" height="38"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="138.1" y="175" width="67.8" height="38"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="172" y="197.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="172" y="197.9">
       <tspan x="172" y="197.9">Pelaaja</tspan>
     </text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="14.2" y="67" width="63.6" height="38"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="14.2" y="67" width="63.6" height="38"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="46" y="89.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="46" y="89.9">
       <tspan x="46" y="89.9">Noppa</tspan>
     </text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="291.6" y="67" width="78.8" height="38"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="291.6" y="67" width="78.8" height="38"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="331" y="89.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="331" y="89.9">
       <tspan x="331" y="89.9">Peliruutu</tspan>
     </text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="132.7" y="68" width="76.6" height="38"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="132.7" y="68" width="76.6" height="38"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="171" y="90.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="171" y="90.9">
       <tspan x="171" y="90.9">Pelilauta</tspan>
     </text>
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="171,106 171,140.5 172,140.5 172,175 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="175" y="118">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="176" y="171">2..8</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="175" y="118">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="176" y="171">2..8</text>
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="209.3,87 250.45,87 250.45,86 291.6,86 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="213.3" y="83">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="287.6" y="82">40</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="213.3" y="83">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="287.6" y="82">40</text>
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="132.7,87 105.25,87 105.25,86 77.8,86 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="128.7" y="83">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="81.8" y="82">2</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="128.7" y="83">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="81.8" y="82">2</text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="262" y="174" width="96" height="38"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="262" y="174" width="96" height="38"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="310" y="196.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="310" y="196.9">
       <tspan x="310" y="196.9">Pelinappula</tspan>
     </text>
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="205.9,194 233.95,194 233.95,193 262,193 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="209.9" y="190">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="258" y="189">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="209.9" y="190">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="258" y="189">1</text>
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="311.3,105 311.3,139.5 310,139.5 310,174 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="315.3" y="117">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="314" y="170">*</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="315.3" y="117">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="314" y="170">*</text>
   </g>
   <g>
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x1="138.1" y1="194" x2="53.0013" y2="111.766"/>
     <polygon style="fill: #000000" points="47.608,106.554 58.2735,109.907 53.0013,111.766 51.3245,117.098 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="47.608,106.554 58.2735,109.907 53.0013,111.766 51.3245,117.098 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="350.7,67 350.7,47 390,47 390,125 350.7,125 350.7,105 "/>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="354.7" y="63">1</text>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="354.7" y="117">1</text>
   </g>
 </svg>
