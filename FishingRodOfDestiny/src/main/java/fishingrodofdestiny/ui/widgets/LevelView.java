@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.ui;
+package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.Level;
 import javafx.scene.Node;

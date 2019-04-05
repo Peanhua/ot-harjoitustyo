@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.ui.widgets.LevelView;
+import fishingrodofdestiny.ui.widgets.CharacterStatus;
 import fishingrodofdestiny.gameobjects.Game;
 import javafx.geometry.Pos;
 import javafx.scene.Group;

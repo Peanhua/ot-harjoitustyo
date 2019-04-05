@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.ui.widgets.PointDistributor;
 import fishingrodofdestiny.gameobjects.Game;
 import fishingrodofdestiny.gameobjects.Player;
 import fishingrodofdestiny.world.EmptyLevelGenerator;

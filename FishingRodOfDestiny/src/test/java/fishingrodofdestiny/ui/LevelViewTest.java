@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.world.Level;
 import org.junit.After;
 import org.junit.AfterClass;

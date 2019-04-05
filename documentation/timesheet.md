@@ -3,11 +3,7 @@
 Time used for the project.
 
 <table>
-  <tr>
-    <th>Day</th>
-    <th>Hours</th>
-    <th>What was done</th>
-  </tr>
+  <tr><th>Day</th><th>Hours</th><th>What was done</th></tr>
   <tr><td>20.3.</td><td>2.0</td><td>Documentation setup, picking the subject and name of the project, writing requirements specification.</td></tr>
   <tr><td>21.3.</td><td>4.0</td><td>Writing requirements specification.</td></tr>
   <tr><td>24.3.</td><td>0.5</td><td>Writing requirements specification.</td></tr>
@@ -21,4 +17,5 @@ Time used for the project.
   <tr><td>     </td><td>0.5</td><td>Test code and some fixes to make all the tests pass.</td></tr>
   <tr><td>31.3.</td><td>1.5</td><td>User interface (new game and in-game).</td></tr>
   <tr><td>1.4. </td><td>2.0</td><td>Level generator and level drawing basics.</td></tr>
+  <tr><td>5.4. </td><td>0.5</td><td>User interface layout and refactoring.</td></tr>
 </table>
