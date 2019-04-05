@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
-import fishingrodofdestiny.world.Tile;
+import fishingrodofdestiny.world.tiles.Tile;
 
 /**
  * Location of a GameObject, can be either a location on a tile in a cave level, or in the inventory of another GameObject.

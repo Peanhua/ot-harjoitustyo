@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.tiles.WallTile;
 import java.util.Random;
 
 /**

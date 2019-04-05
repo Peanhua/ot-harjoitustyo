@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.tiles.StairsTile;
 import fishingrodofdestiny.world.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;

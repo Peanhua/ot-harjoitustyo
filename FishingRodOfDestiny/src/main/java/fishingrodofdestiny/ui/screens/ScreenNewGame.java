@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.ui;
+package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.ui.widgets.PointDistributor;
 import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.Player;

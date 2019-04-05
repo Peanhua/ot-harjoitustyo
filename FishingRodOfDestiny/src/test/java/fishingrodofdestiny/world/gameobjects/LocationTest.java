@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
-import fishingrodofdestiny.world.FloorTile;
-import fishingrodofdestiny.world.Tile;
+import fishingrodofdestiny.world.tiles.FloorTile;
+import fishingrodofdestiny.world.tiles.Tile;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

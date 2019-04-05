@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.world;
+package fishingrodofdestiny.world.tiles;
 
+import fishingrodofdestiny.world.Level;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -12,14 +13,18 @@ import javafx.scene.paint.Color;
  *
  * @author joyr
  */
-public class StairsDownTile extends StairsTile {
+public class WallTile extends Tile {
 
-    public StairsDownTile(Level inLevel) {
+    public WallTile(Level inLevel) {
         super(inLevel);
     }
     
+    public boolean canBeEntered() {
+        return false;
+    }
+    
     public void draw(GraphicsContext context, int x, int y, int size) {
-        context.setFill(Color.BLACK);
+        context.setFill(Color.DARKGRAY);
         context.fillRect(x, y, size, size);
     }
 }

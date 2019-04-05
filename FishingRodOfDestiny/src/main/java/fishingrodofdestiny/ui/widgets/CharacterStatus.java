@@ -6,7 +6,6 @@
 package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.ui.UserInterfaceFactory;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;

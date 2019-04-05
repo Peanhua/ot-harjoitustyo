@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="30cm" height="9cm" viewBox="263 227 590 178" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="47cm" height="17cm" viewBox="240 223 921 339" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="274" y="246" width="181.4" height="28"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="274" y="246" width="181.4" height="28"/>
@@ -11,12 +11,12 @@
     </text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="558" y="249" width="243" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="558" y="249" width="243" height="28"/>
-    <rect style="fill: #ffffff" x="558" y="231" width="30" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="558" y="231" width="30" height="18"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="564" y="266.9">
-      <tspan x="564" y="266.9">fishingrodofdestiny.ui.widgets</tspan>
+    <rect style="fill: #ffffff" x="917" y="307" width="243" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="917" y="307" width="243" height="28"/>
+    <rect style="fill: #ffffff" x="917" y="289" width="30" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="917" y="289" width="30" height="18"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="923" y="324.9">
+      <tspan x="923" y="324.9">fishingrodofdestiny.ui.widgets</tspan>
     </text>
   </g>
   <g>
@@ -29,32 +29,90 @@
     </text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="555" y="376" width="296.9" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="555" y="376" width="296.9" height="28"/>
-    <rect style="fill: #ffffff" x="555" y="358" width="30" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="555" y="358" width="30" height="18"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="561" y="393.9">
-      <tspan x="561" y="393.9">fishingrodofdestiny.world.gameobjects</tspan>
+    <rect style="fill: #ffffff" x="602" y="488" width="296.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="602" y="488" width="296.9" height="28"/>
+    <rect style="fill: #ffffff" x="602" y="470" width="30" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="602" y="470" width="30" height="18"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="608" y="505.9">
+      <tspan x="608" y="505.9">fishingrodofdestiny.world.gameobjects</tspan>
     </text>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="456.398" y1="260.874" x2="547.334" y2="261.74"/>
-    <polygon style="fill: #000000" points="554.833,261.812 544.786,266.716 547.334,261.74 544.881,256.717 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="554.833,261.812 544.786,266.716 547.334,261.74 544.881,256.717 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="455.4" y1="260" x2="576.266" y2="257.224"/>
+    <polygon style="fill: #000000" points="583.765,257.051 573.882,262.28 576.266,257.224 573.652,252.282 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="583.765,257.051 573.882,262.28 576.266,257.224 573.652,252.282 "/>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="364.902" y1="275" x2="366.119" y2="365.265"/>
-    <polygon style="fill: #000000" points="366.22,372.764 361.086,362.832 366.119,365.265 371.085,362.698 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="366.22,372.764 361.086,362.832 366.119,365.265 371.085,362.698 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="364.7" y1="274" x2="366.101" y2="365.265"/>
+    <polygon style="fill: #000000" points="366.216,372.764 361.063,362.842 366.101,365.265 371.062,362.689 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="366.216,372.764 361.063,362.842 366.101,365.265 371.062,362.689 "/>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="469.495" y1="389.306" x2="544.275" y2="389.528"/>
-    <polygon style="fill: #000000" points="551.775,389.55 541.76,394.521 544.275,389.528 541.79,384.521 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="551.775,389.55 541.76,394.521 544.275,389.528 541.79,384.521 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="707.5" y1="271" x2="748.56" y2="478.449"/>
+    <polygon style="fill: #000000" points="750.016,485.806 743.169,476.968 748.56,478.449 752.979,475.026 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="750.016,485.806 743.169,476.968 748.56,478.449 752.979,475.026 "/>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="389.277" y1="274.981" x2="546.687" y2="370.932"/>
-    <polygon style="fill: #000000" points="553.091,374.836 541.95,373.901 546.687,370.932 547.154,365.362 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="553.091,374.836 541.95,373.901 546.687,370.932 547.154,365.362 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="468.5" y1="403" x2="593.787" y2="482.771"/>
+    <polygon style="fill: #000000" points="600.114,486.799 588.993,485.646 593.787,482.771 594.364,477.211 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="600.114,486.799 588.993,485.646 593.787,482.771 594.364,477.211 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="586" y="243" width="243" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="586" y="243" width="243" height="28"/>
+    <rect style="fill: #ffffff" x="586" y="225" width="30" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="586" y="225" width="30" height="18"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="592" y="260.9">
+      <tspan x="592" y="260.9">fishingrodofdestiny.ui.screens</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="242" y="533" width="250.7" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="242" y="533" width="250.7" height="28"/>
+    <rect style="fill: #ffffff" x="242" y="515" width="30" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="242" y="515" width="30" height="18"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="248" y="550.9">
+      <tspan x="248" y="550.9">fishingrodofdestiny.world.tiles</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="829" y1="257" x2="909.126" y2="315.274"/>
+    <polygon style="fill: #000000" points="915.192,319.685 904.163,317.847 909.126,315.274 910.045,309.759 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="915.192,319.685 904.163,317.847 909.126,315.274 910.045,309.759 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="707.5" y1="271" x2="477.427" y2="371.115"/>
+    <polygon style="fill: #000000" points="470.55,374.108 477.725,365.533 477.427,371.115 481.715,374.702 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="470.55,374.108 477.725,365.533 477.427,371.115 481.715,374.702 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="917" y1="335" x2="900.044" y2="478.331"/>
+    <polygon style="fill: #000000" points="899.163,485.779 895.372,475.261 900.044,478.331 905.303,476.436 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="899.163,485.779 895.372,475.261 900.044,478.331 905.303,476.436 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="917" y1="335" x2="478.166" y2="387.836"/>
+    <polygon style="fill: #000000" points="470.72,388.733 480.051,382.573 478.166,387.836 481.246,392.501 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="470.72,388.733 480.051,382.573 478.166,387.836 481.246,392.501 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="366.25" y1="403" x2="367.268" y2="523.264"/>
+    <polygon style="fill: #000000" points="367.331,530.764 362.247,520.807 367.268,523.264 372.246,520.722 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="367.331,530.764 362.247,520.807 367.268,523.264 372.246,520.722 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="602" y1="516" x2="502.067" y2="544.343"/>
+    <polygon style="fill: #000000" points="494.851,546.39 503.107,538.851 502.067,544.343 505.836,548.472 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="494.851,546.39 503.107,538.851 502.067,544.343 505.836,548.472 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="492.7" y1="533" x2="373.038" y2="409.979"/>
+    <polygon style="fill: #000000" points="367.809,404.603 378.366,408.285 373.038,409.979 371.197,415.257 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="367.809,404.603 378.366,408.285 373.038,409.979 371.197,415.257 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="492.7" y1="533" x2="592.633" y2="504.657"/>
+    <polygon style="fill: #000000" points="599.849,502.61 591.593,510.149 592.633,504.657 588.864,500.528 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="599.849,502.61 591.593,510.149 592.633,504.657 588.864,500.528 "/>
   </g>
 </svg>

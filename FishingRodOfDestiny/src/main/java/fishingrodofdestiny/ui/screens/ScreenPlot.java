@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.ui;
+package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
 import javafx.geometry.Pos;
 import javafx.scene.Group;

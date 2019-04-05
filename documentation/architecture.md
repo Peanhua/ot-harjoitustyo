@@ -9,7 +9,11 @@ Basic architecture is shown below:
   </tr>
   <tr>
     <td>fishingrodofdestiny.ui</td>
-    <td>The user interface and the different screens (views) of the application</td>
+    <td>The user interface base</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.ui.screens</td>
+    <td>The different screens (views) of the application.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.ui.widgets</td>
@@ -22,5 +26,9 @@ Basic architecture is shown below:
   <tr>
     <td>fishingrodofdestiny.world.gameobjects</td>
     <td>Movable objects in the game, for example player, weapon.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.world.tiles</td>
+    <td>Static parts of the levels.</td>
   </tr>
 </table>
