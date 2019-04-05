@@ -27,3 +27,11 @@ Test coverage can be generated with:
 ```mvn jacoco:report```
 
 And the results can be seen by pointing browser to *target/site/jacoco/index.html*.
+
+
+### Checkstyle
+
+Checkstyle can be run by:
+```mvn jxr:jxr checkstyle:checkstyle```
+
+And the results can be seen by pointing browser to *target/site/checkstyle.html*.
