@@ -5,9 +5,6 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.EmptyLevelGenerator;
-import fishingrodofdestiny.world.Level;
-import fishingrodofdestiny.world.StairsTile;
 import fishingrodofdestiny.world.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +36,11 @@ public class Game {
         return this.player;
     }
     
-    public void addLevel(Level level) {
+    private void addLevel(Level level) {
         this.levels.add(level);
     }
     
-    public Level getLevel(int depth) {
+    public final Level getLevel(int depth) {
         return this.levels.get(depth);
     }
 }
