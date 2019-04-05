@@ -13,6 +13,7 @@ import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -54,26 +55,31 @@ public class ScreenNewGame extends Screen {
         vb.getChildren().add(this.pointDistributor.createUserInterface());
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        { // Saving target:
-            String[] labels = { "Save princess:", "Save prince:" };
-            List<RadioButton> buttons = new ArrayList<>();
-            vb.getChildren().add(UserInterfaceFactory.createRadiobuttonGrid(labels, buttons));
-            vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
-        }
+        vb.getChildren().add(this.setupSavingTarget());
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
 
         TextField randseed = new TextField();
         vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Random seed:", randseed));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        { // Cancel/Go -buttons:
-            String[] labels = { "Cancel", "Start New Game" };
-            List<Button> buttons = new ArrayList<>();
-            vb.getChildren().add(UserInterfaceFactory.createButtonRow(labels, buttons));
-            buttons.get(0).setOnAction(e-> this.close());
-            buttons.get(1).setOnAction(e-> this.startNewGame());
-        }
+        vb.getChildren().add(this.setupButtons());
         
         root.getChildren().add(vb);
+    }
+
+    private Node setupSavingTarget() {
+        String[] labels = { "Save princess:", "Save prince:" };
+        List<RadioButton> buttons = new ArrayList<>();
+        return UserInterfaceFactory.createRadiobuttonGrid(labels, buttons);
+    }
+
+    private Node setupButtons() {
+        String[] labels = { "Cancel", "Start New Game" };
+        List<Button> buttons = new ArrayList<>();
+        Node rv = UserInterfaceFactory.createButtonRow(labels, buttons);
+        buttons.get(0).setOnAction(e-> this.close());
+        buttons.get(1).setOnAction(e-> this.startNewGame());
+        return rv;
     }
     
     

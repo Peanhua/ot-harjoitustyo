@@ -29,27 +29,27 @@ public class ScreenHighscores extends Screen {
     protected void setup(Group root, Scene scene) {
         VBox vb = new VBox(0);
 
-        {
-            Image logo = new Image("file:gfx/Logo.png", false);
-            ImageView logov = new ImageView(logo);
-            logov.setTranslateX((scene.getWidth() - logo.getWidth()) / 2);
-            
-            Region spacer = new Region();
-            spacer.setMinHeight(50);
-            
-            vb.getChildren().addAll(logov, spacer);
-        }
 
-        {
-            VBox buttons = new VBox(10);
-            buttons.setAlignment(Pos.CENTER);
+        Image logo = new Image("file:gfx/Logo.png", false);
+        ImageView logov = new ImageView(logo);
+        logov.setTranslateX((scene.getWidth() - logo.getWidth()) / 2);
+        
+        Region spacer = new Region();
+        spacer.setMinHeight(50);
+        
+        vb.getChildren().addAll(logov, spacer);
 
-            Button close = new Button("Close");
-            close.setOnAction(e-> this.close());
-            buttons.getChildren().addAll(close);
+
+
+        VBox buttons = new VBox(10);
+        buttons.setAlignment(Pos.CENTER);
+
+        Button close = new Button("Close");
+        close.setOnAction(e-> this.close());
+        buttons.getChildren().addAll(close);
             
-            vb.getChildren().add(buttons);
-        }
+        vb.getChildren().add(buttons);
+
         
         root.getChildren().add(vb);
     }

@@ -62,13 +62,15 @@ public class Character extends GameObject {
     
     public void adjustAttack(int amount) {
         this.attack += amount;
-        if(this.attack < 0)
+        if (this.attack < 0) {
             this.attack = 0;
+        }
     }
     
     public void adjustDefence(int amount) {
         this.defence += amount;
-        if(this.defence < 0)
+        if (this.defence < 0) {
             this.defence = 0;
+        }
     }
 }

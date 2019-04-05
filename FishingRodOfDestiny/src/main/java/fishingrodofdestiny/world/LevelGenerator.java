@@ -21,6 +21,17 @@ public abstract class LevelGenerator {
         this.width  = width;
         this.height = height;
     }
+
+    protected void createLevelBorders(Level level) {
+        for (int x = 0; x < this.width; x++) {
+            level.setTile(x, 0, new WallTile(level));
+            level.setTile(x, this.height - 1, new WallTile(level));
+        }
+        for (int y = 1; y < this.height - 1; y++) {
+            level.setTile(0, y, new WallTile(level));
+            level.setTile(this.width - 1, y, new WallTile(level));
+        }
+    }        
     
     public abstract Level generateLevel(int caveLevel);
 }

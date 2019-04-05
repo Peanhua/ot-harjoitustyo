@@ -34,9 +34,11 @@ public abstract class Tile {
     public abstract void    draw(GraphicsContext context, int x, int y, int size);
     
     public void drawInventory(GraphicsContext context, int x, int y, int size) {
-        for(GameObject obj : this.inventory.getObjects())
-            if(obj != null)
+        for (GameObject obj : this.inventory.getObjects()) {
+            if (obj != null) {
                 obj.draw(context, x, y, size);
+            }
+        }
     }
     
     public void onEnter(GameObject object) {

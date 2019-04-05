@@ -23,7 +23,7 @@ public class CharacterStatus extends Widget {
         LEVEL, XP, HP, ATTACK, DEFENCE, CARRY, AC, DAMAGE, INVENTORY;
         
         public static String getName(StatType type) {
-            switch(type) {
+            switch (type) {
                 case LEVEL:     return "Level";
                 case XP:        return "XP";
                 case HP:        return "HP";
@@ -45,7 +45,7 @@ public class CharacterStatus extends Widget {
     public CharacterStatus(Character character) {
         this.character = character; // TODO: register listener for character to know when to do a refresh()
         this.texts = new ArrayList<>();
-        for(StatType t : StatType.values()) {
+        for (StatType t : StatType.values()) {
             this.texts.add(null);
         }
     }
@@ -64,8 +64,17 @@ public class CharacterStatus extends Widget {
         GridPane.setColumnSpan(name, 3);
         grid.getChildren().add(name);
         row++;
+
+        row = this.createStatControls(grid, row);
+
+        this.refresh();
         
-        for(StatType type : StatType.values()) {
+        return grid;
+    }
+
+
+    private int createStatControls(GridPane grid, int row) {
+        for (StatType type : StatType.values()) {
             Text label = UserInterfaceFactory.createSmallText(StatType.getName(type) + ":");
             Text value = UserInterfaceFactory.createSmallText("");
             
@@ -77,23 +86,20 @@ public class CharacterStatus extends Widget {
             
             row++;
         }
-        
-        this.refresh();
-        
-        return grid;
+        return row;
     }
     
     
     @Override
     public void refresh() {
-        for(StatType type : StatType.values()) {
+        for (StatType type : StatType.values()) {
             this.texts.get(type.ordinal()).setText(this.getValue(type));
         }
     }
     
     
     private String getValue(StatType type) {
-        switch(type) {
+        switch (type) {
             case LEVEL:     return "" + this.character.getLevel();
             case XP:        return "" + this.character.getExperiencePoints();
             case HP:        return "" + this.character.getHitpoints() + "/" + this.character.getMaxHitpoints();
@@ -102,11 +108,10 @@ public class CharacterStatus extends Widget {
             case CARRY:     return "" + this.character.getInventory().getWeightLimit();
             case AC:        return "" + this.character.getArmorClass();
             case DAMAGE:    return "" + this.character.getDamage();
-            case INVENTORY: {
+            case INVENTORY:
                 int weight = this.character.getInventory().getWeight();
                 int usage  = (int) (100.0 * (double) weight / (double) this.character.getInventory().getWeightLimit());
                 return "" + weight + " (" + usage + "%)";
-            }
             default: throw new RuntimeException("Unkonwn StatType " + type + " for getValue()");
         }
     }

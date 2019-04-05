@@ -25,8 +25,9 @@ public class Game {
         this.levels = new ArrayList<>();
         
         EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 37); // 43x37 fits the screen without scrolling
-        for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++) {
             this.addLevel(elg.generateLevel(i));
+        }
         
         List<StairsTile> stairs = this.getLevel(0).getStairsUp();
         player.getLocation().moveTo(stairs.get(0));

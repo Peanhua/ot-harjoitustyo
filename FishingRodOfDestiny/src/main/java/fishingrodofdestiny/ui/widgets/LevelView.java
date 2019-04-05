@@ -52,8 +52,9 @@ public class LevelView extends Widget {
         //this.graphicsContext.clearRect(0, 0, this.width, this.height);
         this.graphicsContext.fillRect(0, 0, this.width, this.height);
         
-        if(this.level != null)
+        if (this.level != null) {
             this.level.draw(this.graphicsContext);
+        }
     }
     
     

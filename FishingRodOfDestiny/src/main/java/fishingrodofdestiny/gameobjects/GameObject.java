@@ -62,10 +62,11 @@ public class GameObject {
     }
     
     public void adjustMaxHitpoints(int amount) {
-        if(amount <= 0 || this.maxHitpoints < Integer.MAX_VALUE - amount) {
+        if (amount <= 0 || this.maxHitpoints < Integer.MAX_VALUE - amount) {
             this.maxHitpoints += amount;
-            if(this.maxHitpoints < 0)
+            if (this.maxHitpoints < 0) {
                 this.maxHitpoints = 0;
+            }
         } else {
             this.maxHitpoints = Integer.MAX_VALUE;
         }

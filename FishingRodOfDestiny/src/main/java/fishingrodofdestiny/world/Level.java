@@ -24,20 +24,22 @@ public class Level {
         this.height = height;
         
         this.tiles = new ArrayList<>();
-        for(int i = 0; i < width * height; i++)
+        for (int i = 0; i < width * height; i++) {
             this.tiles.add(null);
+        }
     }
     
     public void draw(GraphicsContext context) {
         int tileSize = 16;
-        for(int y = 0; y < this.height; y++)
-            for(int x = 0; x < this.width; x++) {
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
                 Tile t = this.getTile(x, y);
-                if(t != null) {
+                if (t != null) {
                     t.draw(context, x * tileSize, y * tileSize, tileSize);
                     t.drawInventory(context, x * tileSize, y * tileSize, tileSize);
                 }
             }
+        }
     }
     
     public Tile getTile(int x, int y) {
@@ -52,12 +54,13 @@ public class Level {
         // TODO: optimize a bit: keep a list of stairs going up
         List<StairsTile> stairs = new ArrayList<>();
         
-        for(int i = 0; i < this.width * this.height; i++) {
+        for (int i = 0; i < this.width * this.height; i++) {
             try { // TODO: maybe this could be done smarter?
                 StairsUpTile tmp = (StairsUpTile) this.tiles.get(i);
-                if(tmp != null)
+                if (tmp != null) {
                     stairs.add(tmp);
-            } catch(Exception e) {
+                }
+            } catch (Exception e) {
             }
         }
         

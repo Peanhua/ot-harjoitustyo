@@ -21,51 +21,49 @@ public class EmptyLevelGenerator extends LevelGenerator {
     @Override
     public Level generateLevel(int caveLevel) {
         Level level = new Level(this.width, this.height);
-        
-        // Borders:
-        for(int x = 0; x < this.width; x++) {
-            level.setTile(x, 0, new WallTile(level));
-            level.setTile(x, this.height - 1, new WallTile(level));
-        }
-        for(int y = 1; y < this.height - 1; y++) {
-            level.setTile(0, y, new WallTile(level));
-            level.setTile(this.width - 1, y, new WallTile(level));
-        }
+
+        this.createLevelBorders(level);
         
         // Rest of the level is just floor:
-        for(int y = 1; y < this.height - 1; y++)
-            for(int x = 1; x < this.width - 1 ; x++)
+        for (int y = 1; y < this.height - 1; y++) {
+            for (int x = 1; x < this.width - 1; x++) {
                 level.setTile(x, y, new FloorTile(level));
+            }
+        }
 
-        // Place stairs:
+        this.placeStairsUp(level);
+        this.placeStairsDown(level);
+        
+        return level;
+    }
+
+    private void placeStairsUp(Level level) {
         int stairsUpX = -1;
         int stairsUpY = -1;
-        while(true) {
+        while (true) {
             int x = this.random.nextInt(this.width);
             int y = this.random.nextInt(this.height);
             Tile t = level.getTile(x, y);
-            if(t.canBeEntered()) {
+            if (t.getClass() == FloorTile.class) {
                 stairsUpX = x;
                 stairsUpY = y;
                 level.setTile(x, y, new StairsUpTile(level));
                 break;
             }
         }
-        
+    }
+
+    private void placeStairsDown(Level level) {
         StairsTile down = new StairsDownTile(level);
-        while(true) {
+        while (true) {
             int x = this.random.nextInt(this.width);
             int y = this.random.nextInt(this.height);
-            if(x != stairsUpX || y != stairsUpY) {
-                Tile t = level.getTile(x, y);
-                if(t.canBeEntered()) {
-                    level.setTile(x, y, new StairsDownTile(level));
-                    break;
-                }
+            Tile t = level.getTile(x, y);
+            if (t.getClass() == FloorTile.class) {
+                level.setTile(x, y, new StairsDownTile(level));
+                break;
             }
         }
-        
-        return level;
     }
     
 }

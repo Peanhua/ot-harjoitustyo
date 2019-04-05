@@ -92,14 +92,15 @@ public class UserInterfaceFactory {
         grid.setVgap(2);
         
         ToggleGroup group = new ToggleGroup();
-        for(int i = 0; i < labels.length; i++) {
+        for (int i = 0; i < labels.length; i++) {
             Text label  = UserInterfaceFactory.createText(labels[i]);
             
             RadioButton button = new RadioButton();
             buttons.add(button);
             button.setToggleGroup(group);
-            if(i == 0)
+            if (i == 0) {
                 button.setSelected(true);
+            }
             
             GridPane.setConstraints(label, 0, i);
             GridPane.setConstraints(button, 1, i);
@@ -113,7 +114,7 @@ public class UserInterfaceFactory {
     public static Node createButtonRow(String[] labels, List<Button> buttons) {
         HBox hb = new HBox(10);
         hb.setAlignment(Pos.CENTER);
-        for(String label : labels) {
+        for (String label : labels) {
             Button b = new Button(label);
             buttons.add(b);
         }

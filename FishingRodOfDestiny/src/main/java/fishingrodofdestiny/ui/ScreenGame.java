@@ -39,16 +39,15 @@ public class ScreenGame extends Screen {
         CharacterStatus status = new CharacterStatus(this.game.getPlayer());
         leftbox.getChildren().add(status.createUserInterface());
 
-        {
-            VBox buttons = new VBox(10);
-            buttons.setAlignment(Pos.CENTER);
 
-            Button quit = new Button("Quit");
-            quit.setOnAction(e-> this.close());
-            buttons.getChildren().addAll(quit);
+        VBox buttons = new VBox(10);
+        buttons.setAlignment(Pos.CENTER);
+
+        Button quit = new Button("Quit");
+        quit.setOnAction(e-> this.close());
+        buttons.getChildren().addAll(quit);
             
-            leftbox.getChildren().add(buttons);
-        }
+        leftbox.getChildren().add(buttons);
         
         
         LevelView lview = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),

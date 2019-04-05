@@ -37,17 +37,19 @@ public class Inventory {
     }
     
     public final void setWeightLimit(int limit) {
-        if(limit >= 0)
+        if (limit >= 0) {
             this.weightLimit = limit;
-        else
+        } else {
             throw new RuntimeException("Illegal inventory weight limit " + limit + " given to Inventory.setWeightLimit().");
+        }
     }
     
     public void adjustWeightLimit(int amount) {
-        if(amount <= 0 || this.weightLimit < Integer.MAX_VALUE - amount) {
+        if (amount <= 0 || this.weightLimit < Integer.MAX_VALUE - amount) {
             this.weightLimit += amount;
-            if(this.weightLimit < 0)
+            if (this.weightLimit < 0) {
                 this.weightLimit = 0;
+            }
         } else {
             this.weightLimit = Integer.MAX_VALUE;
         }
@@ -60,7 +62,7 @@ public class Inventory {
     public int getWeight() {
         int weight = 0;
         
-        for(GameObject obj : this.objects) {
+        for (GameObject obj : this.objects) {
             weight += obj.getWeight();
         }
         

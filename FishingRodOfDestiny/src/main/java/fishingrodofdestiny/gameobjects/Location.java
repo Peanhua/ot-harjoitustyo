@@ -28,13 +28,14 @@ public class Location {
 
     
     private void removeFromContainer() {
-        if(this.container != null)
+        if (this.container != null) {
             this.container.remove(this.me);
+        }
     }
     
 
     private void moveTo(Inventory target) {
-        if(this.container != target) {
+        if (this.container != target) {
             this.removeFromContainer();
             this.container = target;
             this.container.add(me);
@@ -45,7 +46,7 @@ public class Location {
     public void moveTo(Tile target) {
         this.containerObject = null;
         this.containerTile   = target;
-        if(target != null) {
+        if (target != null) {
             Inventory ti = target.getInventory();
             this.moveTo(ti);
         } else {
@@ -56,7 +57,7 @@ public class Location {
     public void moveTo(GameObject target) {
         this.containerObject = target;
         this.containerTile   = null;
-        if(target != null) {
+        if (target != null) {
             Inventory ti = target.getInventory();
             this.moveTo(ti);
         } else {

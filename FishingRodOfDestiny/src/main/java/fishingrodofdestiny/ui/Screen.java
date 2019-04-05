@@ -47,21 +47,23 @@ public abstract class Screen {
     }
 
     public final void show() {
-        if(this.scene == null) {
+        if (this.scene == null) {
             Group root = new Group();
             this.scene = new Scene(root, 800, 600, Color.BLACK);
 
             this.setup(root, this.scene);
         }
         
-        if(this.scene != null)
+        if (this.scene != null) {
             this.stage.setScene(this.scene);
+        }
     }
 
     public final void close() {
-        if(parent == null)
+        if (parent == null) {
             Platform.exit();
-        else
+        } else {
             parent.show();
+        }
     }
 }

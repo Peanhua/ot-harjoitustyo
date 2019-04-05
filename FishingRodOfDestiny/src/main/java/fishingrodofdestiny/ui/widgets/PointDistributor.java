@@ -37,7 +37,7 @@ public class PointDistributor extends Widget {
         CARRYING_CAPACITY;  // TODO: rename this to inventory weight limit to make it map 1:1 with GameObject
         
         public static String getName(PointType pointType) {
-            switch(pointType) {
+            switch (pointType) {
                 case ATTACK:            return "Attack";
                 case DEFENCE:           return "Defence";
                 case HITPOINTS:         return "Hit Points";
@@ -54,7 +54,7 @@ public class PointDistributor extends Widget {
 
         this.pointValues = new ArrayList<>();
         this.pointValueTexts  = new ArrayList<>();
-        for(int i = 0; i < PointType.values().length; i++) {
+        for (int i = 0; i < PointType.values().length; i++) {
             this.pointValues.add(0);
             this.pointValueTexts.add(null);
         }
@@ -70,19 +70,26 @@ public class PointDistributor extends Widget {
 
         int row = 0;
 
-        {
-            Text label = UserInterfaceFactory.createText("Distribute points:");
-            GridPane.setConstraints(label, 0, row);
-            grid.getChildren().add(label);
 
-            this.pointsLeftText = UserInterfaceFactory.createText("" + this.pointsLeft);
-            GridPane.setConstraints(this.pointsLeftText, 1, row);
-            grid.getChildren().add(this.pointsLeftText);
-        }
+        Text dplabel = UserInterfaceFactory.createText("Distribute points:");
+        GridPane.setConstraints(dplabel, 0, row);
+        grid.getChildren().add(dplabel);
+
+        this.pointsLeftText = UserInterfaceFactory.createText("" + this.pointsLeft);
+        GridPane.setConstraints(this.pointsLeftText, 1, row);
+        grid.getChildren().add(this.pointsLeftText);
 
         row++;
 
-        for(PointType pt : PointType.values()) {
+        row = this.createStatControls(grid, row);
+        
+        this.refresh();
+        
+        return grid;
+    }
+
+    private int createStatControls(GridPane grid, int row) {
+        for (PointType pt : PointType.values()) {
             Text label = UserInterfaceFactory.createText(PointType.getName(pt) + ":");
 
             Text value = UserInterfaceFactory.createText("");
@@ -103,11 +110,9 @@ public class PointDistributor extends Widget {
             
             row++;
         }
-        
-        this.refresh();
-        
-        return grid;
-    }
+
+        return row;
+    }        
     
     
     public int getPoints(PointType pointType) {
@@ -116,7 +121,7 @@ public class PointDistributor extends Widget {
     
     
     public int getExistingPoints(PointType pointType) {
-        switch(pointType) {
+        switch (pointType) {
             case ATTACK:            return this.character.getAttack();
             case DEFENCE:           return this.character.getDefence();
             case HITPOINTS:         return this.character.getMaxHitpoints();
@@ -130,7 +135,7 @@ public class PointDistributor extends Widget {
     public void refresh() {
         this.pointsLeftText.setText("" + this.pointsLeft);
         
-        for(PointType pt : PointType.values()) {
+        for (PointType pt : PointType.values()) {
             int existing = this.getExistingPoints(pt);
             int add      = this.pointValues.get(pt.ordinal());
             this.pointValueTexts.get(pt.ordinal()).setText("" + existing + " + " + add + " -> " + (existing + add));
@@ -141,7 +146,7 @@ public class PointDistributor extends Widget {
     private void onSubtractClicked(PointType pointType) {
         int ind = pointType.ordinal();
         int cur = this.pointValues.get(ind);
-        if(cur > 0) {
+        if (cur > 0) {
             this.pointsLeft += 1;
             this.pointValues.set(ind, cur - 1);
             this.refresh();
@@ -151,7 +156,7 @@ public class PointDistributor extends Widget {
     
     private void onAddClicked(PointType pointType) {
         int ind = pointType.ordinal();
-        if(this.pointsLeft > 0) {
+        if (this.pointsLeft > 0) {
             this.pointsLeft -= 1;
             int cur = this.pointValues.get(ind);
             this.pointValues.set(ind, cur + 1);
