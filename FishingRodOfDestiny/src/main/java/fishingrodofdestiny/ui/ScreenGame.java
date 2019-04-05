@@ -10,7 +10,6 @@ import fishingrodofdestiny.ui.widgets.CharacterStatus;
 import fishingrodofdestiny.world.gameobjects.Game;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
