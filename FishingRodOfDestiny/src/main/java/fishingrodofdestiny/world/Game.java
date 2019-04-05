@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.world.gameobjects;
+package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.EmptyLevelGenerator;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.StairsTile;
+import fishingrodofdestiny.world.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

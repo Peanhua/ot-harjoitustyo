@@ -6,7 +6,7 @@
 package fishingrodofdestiny.ui;
 
 import fishingrodofdestiny.ui.widgets.PointDistributor;
-import fishingrodofdestiny.world.gameobjects.Game;
+import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;

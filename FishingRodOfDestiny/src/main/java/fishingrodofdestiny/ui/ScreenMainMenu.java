@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.ui;
 
-import fishingrodofdestiny.world.gameobjects.Game;
+import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
