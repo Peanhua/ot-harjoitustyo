@@ -26,19 +26,16 @@ public class Location {
         this.containerTile   = null;
     }
 
-    
-    private void removeFromContainer() {
-        if (this.container != null) {
-            this.container.remove(this.me);
-        }
-    }
-    
 
-    private void moveTo(Inventory target) {
+    private void moveToInventory(Inventory target) {
         if (this.container != target) {
-            this.removeFromContainer();
+            if (this.container != null) {
+                this.container.remove(this.me);
+            }
             this.container = target;
-            this.container.add(me);
+            if (this.container != null) {
+                this.container.add(me);
+            }
         }
     }
 
@@ -48,9 +45,9 @@ public class Location {
         this.containerTile   = target;
         if (target != null) {
             Inventory ti = target.getInventory();
-            this.moveTo(ti);
+            this.moveToInventory(ti);
         } else {
-            this.removeFromContainer();
+            this.moveToInventory(null);
         }
     }
     
@@ -59,9 +56,9 @@ public class Location {
         this.containerTile   = null;
         if (target != null) {
             Inventory ti = target.getInventory();
-            this.moveTo(ti);
+            this.moveToInventory(ti);
         } else {
-            this.removeFromContainer();
+            this.moveToInventory(null);
         }
     }
     

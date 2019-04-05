@@ -21,5 +21,6 @@ Time used for the project.
   <tr><td>     </td><td> 1.0</td><td>Game logic and some refactoring.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Setup checkstyle, fixes to get rid of errors and warnings from checkstyle.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Documentation.</td></tr>
-  <tr><th>Total</th><th>25.5</th><th></th></tr>
+  <tr><td>     </td><td> 1.0</td><td>Tests and fix bug found with them.</td></tr>
+  <tr><th>Total</th><th>26.5</th><th></th></tr>
 </table>
