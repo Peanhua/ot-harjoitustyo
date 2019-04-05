@@ -22,9 +22,9 @@ public class LevelView extends Widget {
     private int             height;
     private Level           level;
     
-    public LevelView() {
-        this.width  = 500;
-        this.height = 400;
+    public LevelView(int width, int height) {
+        this.width  = width;
+        this.height = height;
         this.level  = null;
     }
     

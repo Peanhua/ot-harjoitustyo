@@ -36,7 +36,7 @@ public class LevelViewTest {
 
     @Test
     public void doesLevelViewCallLevelDrawingMethod() {
-        LevelView lview = new LevelView();
+        LevelView lview = new LevelView(100, 100);
         lview.createUserInterface();
         lview.setLevel(this.mockedLevel);
         verify(this.mockedLevel, atLeastOnce()).draw(notNull());

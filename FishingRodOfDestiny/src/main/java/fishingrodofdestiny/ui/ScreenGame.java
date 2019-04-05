@@ -29,22 +29,14 @@ public class ScreenGame extends Screen {
 
     @Override
     protected void setup(Group root, Scene scene) {
-        VBox vb = new VBox(0);
-
-        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
-
-        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(20));
-        
         HBox hb = new HBox(20);
-        vb.getChildren().add(hb);
         
+        VBox leftbox = new VBox(0);
+        hb.getChildren().add(leftbox);
+
         CharacterStatus status = new CharacterStatus(this.game.getPlayer());
-        hb.getChildren().add(status.createUserInterface());
-        
-        LevelView lview = new LevelView();
-        hb.getChildren().add(lview.createUserInterface());
-        lview.setLevel(this.game.getPlayer().getLocation().getContainerTile().getInLevel());
-        
+        leftbox.getChildren().add(status.createUserInterface());
+
         {
             VBox buttons = new VBox(10);
             buttons.setAlignment(Pos.CENTER);
@@ -53,9 +45,15 @@ public class ScreenGame extends Screen {
             quit.setOnAction(e-> this.close());
             buttons.getChildren().addAll(quit);
             
-            vb.getChildren().add(buttons);
+            leftbox.getChildren().add(buttons);
         }
         
-        root.getChildren().add(vb);
+        
+        LevelView lview = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),
+                                        (int) scene.getHeight());
+        hb.getChildren().add(lview.createUserInterface());
+        lview.setLevel(this.game.getPlayer().getLocation().getContainerTile().getInLevel());
+        
+        root.getChildren().add(hb);
     }
 }
