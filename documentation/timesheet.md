@@ -2,18 +2,23 @@
 
 Time used for the project.
 
-Day   | Hours | What was done
------ | ----- | --------------------------------
-20.3. |  2.0  | Documentation setup, picking the subject and name of the project, writing requirements specification.
-21.3. |  4.0  | Writing requirements specification.
-24.3. |  0.5  | Writing requirements specification.
-27.3. |  1.0  | Setting up Maven/JavaFX project. Documentation (README.md) update.
-      |  0.5  | Created user interface drafts for main menu, highscores, and in-game screens.
-      |  1.0  | (Re-)Learning JavaFX and setting up main menu.
-28.3. |  1.0  | Working on main menu.
-      |  4.0  | Created user interface framework, basic screen setup/flow.
-      |  1.0  | Created user interface draft for new game screen, and user interface flow diagram.
-29.3. |  3.0  | User interface framework and new game screen functionality.
-      |  0.5  | Test code and some fixes to make all the tests pass.
-31.3. |  1.5  | User interface (new game and in-game).
-1.4.  |  2.0  | Level generator and level drawing basics.
+<table>
+  <tr>
+    <th>Day</th>
+    <th>Hours</th>
+    <th>What was done</th>
+  </tr>
+  <tr><td>20.3.</td><td>2.0</td><td>Documentation setup, picking the subject and name of the project, writing requirements specification.</td></tr>
+  <tr><td>21.3.</td><td>4.0</td><td>Writing requirements specification.</td></tr>
+  <tr><td>24.3.</td><td>0.5</td><td>Writing requirements specification.</td></tr>
+  <tr><td>27.3.</td><td>1.0</td><td>Setting up Maven/JavaFX project. Documentation (README.md) update.</td></tr>
+  <tr><td>     </td><td>0.5</td><td>Created user interface drafts for main menu, highscores, and in-game screens.</td></tr>
+  <tr><td>     </td><td>1.0</td><td>(Re-)Learning JavaFX and setting up main menu.</td></tr>
+  <tr><td>28.3.</td><td>1.0</td><td>Working on main menu.</td></tr>
+  <tr><td>     </td><td>4.0</td><td>Created user interface framework, basic screen setup/flow.</td></tr>
+  <tr><td>     </td><td>1.0</td><td>Created user interface draft for new game screen, and user interface flow diagram.</td></tr>
+  <tr><td>29.3.</td><td>3.0</td><td>User interface framework and new game screen functionality.</td></tr>
+  <tr><td>     </td><td>0.5</td><td>Test code and some fixes to make all the tests pass.</td></tr>
+  <tr><td>31.3.</td><td>1.5</td><td>User interface (new game and in-game).</td></tr>
+  <tr><td>1.4. </td><td>2.0</td><td>Level generator and level drawing basics.</td></tr>
+</table>
