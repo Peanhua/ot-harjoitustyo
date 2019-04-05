@@ -99,12 +99,12 @@ public class CharacterStatus extends Widget {
             case HP:        return "" + this.character.getHitpoints() + "/" + this.character.getMaxHitpoints();
             case ATTACK:    return "" + this.character.getAttack();
             case DEFENCE:   return "" + this.character.getDefence();
-            case CARRY:     return "" + this.character.getInventoryWeightLimit();
+            case CARRY:     return "" + this.character.getInventory().getWeightLimit();
             case AC:        return "" + this.character.getArmorClass();
             case DAMAGE:    return "" + this.character.getDamage();
             case INVENTORY: {
-                int weight = this.character.getInventoryWeight();
-                int usage  = (int) (100.0 * (double) weight / (double) this.character.getInventoryWeightLimit());
+                int weight = this.character.getInventory().getWeight();
+                int usage  = (int) (100.0 * (double) weight / (double) this.character.getInventory().getWeightLimit());
                 return "" + weight + " (" + usage + "%)";
             }
             default: throw new RuntimeException("Unkonwn StatType " + type + " for getValue()");

@@ -89,7 +89,7 @@ public class ScreenNewGame extends Screen {
         player.adjustAttack(this.pointDistributor.getPoints(PointDistributor.PointType.ATTACK));
         player.adjustDefence(this.pointDistributor.getPoints(PointDistributor.PointType.DEFENCE));
         player.adjustMaxHitpoints(this.pointDistributor.getPoints(PointDistributor.PointType.HITPOINTS));
-        player.adjustInventoryWeightLimit(this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY));
+        player.getInventory().adjustWeightLimit(this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY));
         
         this.close();
         

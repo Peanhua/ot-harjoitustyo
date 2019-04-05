@@ -23,7 +23,7 @@ public class Character extends GameObject {
         this.defence          = 0;
         this.level            = 0;
         this.experiencePoints = 0;
-        this.setInventoryWeightLimit(20);
+        this.getInventory().setWeightLimit(20);
     }
     
     @Override

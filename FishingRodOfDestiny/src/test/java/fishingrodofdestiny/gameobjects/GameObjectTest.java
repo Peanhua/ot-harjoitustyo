@@ -48,42 +48,11 @@ public class GameObjectTest {
         this.object.setName("def");
         String s2 = this.object.toString();
         assertTrue(!s1.equals(s2));
-        this.object.adjustInventoryWeightLimit(1);
+        this.object.getInventory().adjustWeightLimit(1);
         String s3 = this.object.toString();
         assertTrue(!s2.equals(s3));
     }
     
-    @Test
-    public void adjustingInventoryWeightLimitWorks() {
-        assertEquals(0, this.object.getInventoryWeightLimit());
-        int n = 42;
-        for(int i = 0; i < n; i++) {
-            this.object.adjustInventoryWeightLimit(1);
-            assertEquals(i + 1, this.object.getInventoryWeightLimit());
-        }
-        this.object.adjustInventoryWeightLimit(10);
-        assertEquals(n + 10, this.object.getInventoryWeightLimit());
-        this.object.adjustInventoryWeightLimit(-5);
-        assertEquals(n + 10 - 5, this.object.getInventoryWeightLimit());
-    }
-        
-
-    @Test
-    public void inventoryWeightLimitDoesntGoBelowZero() {
-        assertEquals(0, this.object.getInventoryWeightLimit());
-        this.object.adjustInventoryWeightLimit(-4);
-        assertEquals(0, this.object.getInventoryWeightLimit());
-    }
-    
-    @Test
-    public void inventoryWeightLimitDoesntOverflow() {
-        assertEquals(0, this.object.getInventoryWeightLimit());
-        this.object.adjustInventoryWeightLimit(Integer.MAX_VALUE / 2 + 3);
-        assertTrue(this.object.getInventoryWeightLimit() > 0);
-        this.object.adjustInventoryWeightLimit(Integer.MAX_VALUE / 2 + 3);
-        assertTrue(this.object.getInventoryWeightLimit() > 0);
-    }
-        
     
     @Test
     public void adjustingMaxHitpointsWorks() {

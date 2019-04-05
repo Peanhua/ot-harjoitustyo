@@ -5,8 +5,9 @@
  */
 package fishingrodofdestiny.gameobjects;
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 
 /**
  *
@@ -19,17 +20,15 @@ public class GameObject {
     private int      weight;
     private Location location;
     
-    private List<GameObject> inventory; // TODO: split into own class
-    private int              inventoryWeightLimit;
+    private Inventory inventory;
     
     public GameObject() {
-        this.name                 = null;
-        this.maxHitpoints         = 1;
-        this.currentHitpoints     = 1;
-        this.inventory            = new ArrayList<>();
-        this.inventoryWeightLimit = 0;
-        this.weight               = 1;
-        this.location             = new Location();
+        this.name             = null;
+        this.maxHitpoints     = 1;
+        this.currentHitpoints = 1;
+        this.inventory        = new Inventory(0);
+        this.weight           = 1;
+        this.location         = new Location();
     }
     
     @Override
@@ -37,8 +36,8 @@ public class GameObject {
         return "GameObject("
                 + "name='" + this.name + "'"
                 + ",hp=" + this.currentHitpoints + "/" + this.maxHitpoints
-                + ",inventoryWLimit=" + this.inventoryWeightLimit
-                + ",inventorySize=" + this.inventory.size()
+                + ",inventoryWLimit=" + this.inventory.getWeightLimit()
+                + ",inventorySize=" + this.inventory.getObjects().size()
                 + ")";
     }
 
@@ -72,42 +71,19 @@ public class GameObject {
         }
     }
     
-    public int getInventoryWeightLimit() {
-        return this.inventoryWeightLimit;
-    }
     
-    public void setInventoryWeightLimit(int limit) {
-        if(limit >= 0)
-            this.inventoryWeightLimit = limit;
-        else
-            throw new RuntimeException("Illegal inventory weight limit " + limit + " given to GameObject.setInventoryWeightLimit().");
-    }
-    
-    public void adjustInventoryWeightLimit(int amount) {
-        if(amount <= 0 || this.inventoryWeightLimit < Integer.MAX_VALUE - amount) {
-            this.inventoryWeightLimit += amount;
-            if(this.inventoryWeightLimit < 0)
-                this.inventoryWeightLimit = 0;
-        } else {
-            this.inventoryWeightLimit = Integer.MAX_VALUE;
-        }
-    }
-    
-    public List<GameObject> getInventory() {
+    public Inventory getInventory() {
         return this.inventory;
     }
     
-    public int getInventoryWeight() {
-        int weight = 0;
-        
-        for(GameObject obj : this.inventory) {
-            weight += obj.getWeight();
-        }
-        
-        return weight;
-    }
     
     public int getWeight() {
-        return this.weight + this.getInventoryWeight();
+        return this.weight + this.inventory.getWeight();
+    }
+    
+    
+    public void draw(GraphicsContext context, int x, int y, int size) {
+        context.setFill(Color.CADETBLUE);
+        context.fillRect(x, y, size, size);
     }
 }

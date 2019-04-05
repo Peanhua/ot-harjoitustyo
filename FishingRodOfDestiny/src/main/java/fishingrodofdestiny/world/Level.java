@@ -33,8 +33,10 @@ public class Level {
         for(int y = 0; y < this.height; y++)
             for(int x = 0; x < this.width; x++) {
                 Tile t = this.getTile(x, y);
-                if(t != null)
+                if(t != null) {
                     t.draw(context, x * tileSize, y * tileSize, tileSize);
+                    t.drawInventory(context, x * tileSize, y * tileSize, tileSize);
+                }
             }
     }
     
