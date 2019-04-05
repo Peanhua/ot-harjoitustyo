@@ -8,22 +8,15 @@ package fishingrodofdestiny.ui;
 import fishingrodofdestiny.ui.widgets.PointDistributor;
 import fishingrodofdestiny.gameobjects.Game;
 import fishingrodofdestiny.gameobjects.Player;
-import fishingrodofdestiny.world.EmptyLevelGenerator;
-import fishingrodofdestiny.world.StairsTile;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -93,17 +86,7 @@ public class ScreenNewGame extends Screen {
         
         this.close();
         
-        
-        // TODO: move this new game setup somewhere else
         Game game = new Game(player);
-        
-        EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 37); // 43x37 fits the screen without scrolling
-        for(int i = 0; i < 10; i++)
-            game.addLevel(elg.generateLevel(i));
-        
-        List<StairsTile> stairs = game.getLevel(0).getStairsUp();
-        player.getLocation().set(stairs.get(0));
-        
         Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
     }
