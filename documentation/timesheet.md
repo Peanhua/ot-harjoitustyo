@@ -4,20 +4,21 @@ Time used for the project.
 
 <table>
   <tr><th>Day</th><th>Hours</th><th>What was done</th></tr>
-  <tr><td>20.3.</td><td>2.0</td><td>Documentation setup, picking the subject and name of the project, writing requirements specification.</td></tr>
-  <tr><td>21.3.</td><td>4.0</td><td>Writing requirements specification.</td></tr>
-  <tr><td>24.3.</td><td>0.5</td><td>Writing requirements specification.</td></tr>
-  <tr><td>27.3.</td><td>1.0</td><td>Setting up Maven/JavaFX project. Documentation (README.md) update.</td></tr>
-  <tr><td>     </td><td>0.5</td><td>Created user interface drafts for main menu, highscores, and in-game screens.</td></tr>
-  <tr><td>     </td><td>1.0</td><td>(Re-)Learning JavaFX and setting up main menu.</td></tr>
-  <tr><td>28.3.</td><td>1.0</td><td>Working on main menu.</td></tr>
-  <tr><td>     </td><td>4.0</td><td>Created user interface framework, basic screen setup/flow.</td></tr>
-  <tr><td>     </td><td>1.0</td><td>Created user interface draft for new game screen, and user interface flow diagram.</td></tr>
-  <tr><td>29.3.</td><td>3.0</td><td>User interface framework and new game screen functionality.</td></tr>
-  <tr><td>     </td><td>0.5</td><td>Test code and some fixes to make all the tests pass.</td></tr>
-  <tr><td>31.3.</td><td>1.5</td><td>User interface (new game and in-game).</td></tr>
-  <tr><td>1.4. </td><td>2.0</td><td>Level generator and level drawing basics.</td></tr>
-  <tr><td>5.4. </td><td>0.5</td><td>User interface layout and refactoring.</td></tr>
-  <tr><td>     </td><td>1.0</td><td>Game logic and some refactoring.</td></tr>
-  <tr><td>     </td><td>1.0</td><td>Setup checkstyle, fixes to get rid of errors and warnings from checkstyle.</td></tr>
+  <tr><td>20.3.</td><td> 2.0</td><td>Documentation setup, picking the subject and name of the project, writing requirements specification.</td></tr>
+  <tr><td>21.3.</td><td> 4.0</td><td>Writing requirements specification.</td></tr>
+  <tr><td>24.3.</td><td> 0.5</td><td>Writing requirements specification.</td></tr>
+  <tr><td>27.3.</td><td> 1.0</td><td>Setting up Maven/JavaFX project. Documentation (README.md) update.</td></tr>
+  <tr><td>     </td><td> 0.5</td><td>Created user interface drafts for main menu, highscores, and in-game screens.</td></tr>
+  <tr><td>     </td><td> 1.0</td><td>(Re-)Learning JavaFX and setting up main menu.</td></tr>
+  <tr><td>28.3.</td><td> 1.0</td><td>Working on main menu.</td></tr>
+  <tr><td>     </td><td> 4.0</td><td>Created user interface framework, basic screen setup/flow.</td></tr>
+  <tr><td>     </td><td> 1.0</td><td>Created user interface draft for new game screen, and user interface flow diagram.</td></tr>
+  <tr><td>29.3.</td><td> 3.0</td><td>User interface framework and new game screen functionality.</td></tr>
+  <tr><td>     </td><td> 0.5</td><td>Test code and some fixes to make all the tests pass.</td></tr>
+  <tr><td>31.3.</td><td> 1.5</td><td>User interface (new game and in-game).</td></tr>
+  <tr><td>1.4. </td><td> 2.0</td><td>Level generator and level drawing basics.</td></tr>
+  <tr><td>5.4. </td><td> 0.5</td><td>User interface layout and refactoring.</td></tr>
+  <tr><td>     </td><td> 1.0</td><td>Game logic and some refactoring.</td></tr>
+  <tr><td>     </td><td> 1.0</td><td>Setup checkstyle, fixes to get rid of errors and warnings from checkstyle.</td></tr>
+  <tr><th>Total</th><th>24.5</th><th></th></tr>
 </table>
