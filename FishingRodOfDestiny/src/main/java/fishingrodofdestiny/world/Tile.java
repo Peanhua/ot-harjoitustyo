@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.gameobjects.GameObject;
-import fishingrodofdestiny.gameobjects.Inventory;
+import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.gameobjects.Inventory;
 import javafx.scene.canvas.GraphicsContext;
 
 /**

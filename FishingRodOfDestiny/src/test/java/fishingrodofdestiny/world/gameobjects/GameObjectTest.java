@@ -1,4 +1,4 @@
-package fishingrodofdestiny.gameobjects;
+package fishingrodofdestiny.world.gameobjects;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,6 +6,7 @@ package fishingrodofdestiny.gameobjects;
  * and open the template in the editor.
  */
 
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
