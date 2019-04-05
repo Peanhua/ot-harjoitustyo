@@ -54,7 +54,7 @@ public class Level {
         
         for(int i = 0; i < this.width * this.height; i++) {
             try { // TODO: maybe this could be done smarter?
-                StairsTile tmp = (StairsTile) this.tiles.get(i);
+                StairsUpTile tmp = (StairsUpTile) this.tiles.get(i);
                 if(tmp != null)
                     stairs.add(tmp);
             } catch(Exception e) {
