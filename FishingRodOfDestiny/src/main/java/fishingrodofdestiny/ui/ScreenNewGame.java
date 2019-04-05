@@ -90,7 +90,6 @@ public class ScreenNewGame extends Screen {
         player.adjustDefence(this.pointDistributor.getPoints(PointDistributor.PointType.DEFENCE));
         player.adjustMaxHitpoints(this.pointDistributor.getPoints(PointDistributor.PointType.HITPOINTS));
         player.adjustInventoryWeightLimit(this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY));
-        System.out.println(player);
         
         this.close();
         
@@ -98,7 +97,7 @@ public class ScreenNewGame extends Screen {
         // TODO: move this new game setup somewhere else
         Game game = new Game(player);
         
-        EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 20, 20);
+        EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 37); // 43x37 fits the screen without scrolling
         for(int i = 0; i < 10; i++)
             game.addLevel(elg.generateLevel(i));
         
