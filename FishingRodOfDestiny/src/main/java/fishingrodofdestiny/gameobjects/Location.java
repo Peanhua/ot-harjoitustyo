@@ -14,42 +14,68 @@ import fishingrodofdestiny.world.Tile;
  * @author joyr
  */
 public class Location {
+    private GameObject me;
+    private Inventory  container;
+    private GameObject containerObject;
     private Tile       containerTile;
-    private GameObject containerInventory;
     
-    public Location() {
-        this.containerTile      = null;
-        this.containerInventory = null;
+    public Location(GameObject owner) {
+        this.me              = owner;
+        this.container       = null;
+        this.containerObject = null;
+        this.containerTile   = null;
     }
+
     
     private void removeFromContainer() {
-        if(this.containerTile != null) {
-            this.containerTile = null;
-            
-        } else if(this.containerInventory != null) {
-            this.containerInventory = null;
-        }
+        if(this.container != null)
+            this.container.remove(this.me);
     }
     
-    public void set(Tile tile) {
-        if(this.containerTile != tile) {
+
+    private void moveTo(Inventory target) {
+        if(this.container != target) {
             this.removeFromContainer();
-            this.containerTile = tile;
+            this.container = target;
+            this.container.add(me);
         }
     }
+
     
-    public void set(GameObject target) {
-        if(this.containerInventory != target) {
+    public void moveTo(Tile target) {
+        this.containerObject = null;
+        this.containerTile   = target;
+        if(target != null) {
+            Inventory ti = target.getInventory();
+            this.moveTo(ti);
+        } else {
             this.removeFromContainer();
-            this.containerInventory = target;
         }
     }
     
+    public void moveTo(GameObject target) {
+        this.containerObject = target;
+        this.containerTile   = null;
+        if(target != null) {
+            Inventory ti = target.getInventory();
+            this.moveTo(ti);
+        } else {
+            this.removeFromContainer();
+        }
+    }
+    
+
+    public Inventory getContainerInventory() {
+        return this.container;
+    }
+    
+
     public Tile getContainerTile() {
         return this.containerTile;
     }
     
-    public GameObject getContainerInventory() {
-        return this.containerInventory;
+
+    public GameObject getContainerObject() {
+        return this.containerObject;
     }
 }

@@ -21,6 +21,17 @@ public class Inventory {
         this.setWeightLimit(weightLimit);
     }
     
+    
+    public void add(GameObject object) {
+        this.objects.add(object);
+    }
+    
+    
+    public void remove(GameObject object) {
+        this.objects.remove(object);
+    }
+    
+    
     public int getWeightLimit() {
         return this.weightLimit;
     }

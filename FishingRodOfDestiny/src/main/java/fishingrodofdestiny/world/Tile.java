@@ -26,6 +26,10 @@ public abstract class Tile {
         return this.inLevel;
     }
     
+    public final Inventory getInventory() {
+        return this.inventory;
+    }
+    
     public abstract boolean canBeEntered();
     public abstract void    draw(GraphicsContext context, int x, int y, int size);
     

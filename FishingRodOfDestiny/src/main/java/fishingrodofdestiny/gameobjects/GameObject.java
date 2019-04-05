@@ -28,7 +28,7 @@ public class GameObject {
         this.currentHitpoints = 1;
         this.inventory        = new Inventory(0);
         this.weight           = 1;
-        this.location         = new Location();
+        this.location         = new Location(this);
     }
     
     @Override
