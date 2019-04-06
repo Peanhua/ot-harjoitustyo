@@ -60,6 +60,5 @@ public class LevelView extends Widget {
     
     public void setLevel(Level level) {
         this.level = level;
-        this.refresh();
     }
 }

@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.observer.Observer;
+import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.tiles.Tile;
 
 /**
@@ -18,14 +20,22 @@ public class Location {
     private Inventory  container;
     private GameObject containerObject;
     private Tile       containerTile;
+    private Subject    onChange;
+
     
     public Location(GameObject owner) {
         this.me              = owner;
         this.container       = null;
         this.containerObject = null;
         this.containerTile   = null;
+        this.onChange        = new Subject();
     }
 
+    
+    public void listenOnChange(Observer observer) {
+        this.onChange.addObserver(observer);
+    }
+    
 
     private void moveToInventory(Inventory target) {
         if (this.container != target) {
@@ -36,6 +46,7 @@ public class Location {
             if (this.container != null) {
                 this.container.add(me);
             }
+            this.onChange.notifyObservers();
         }
     }
 

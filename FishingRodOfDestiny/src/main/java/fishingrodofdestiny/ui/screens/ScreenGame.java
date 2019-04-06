@@ -58,11 +58,16 @@ public class ScreenGame extends Screen {
         this.levelView = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),
                                        (int) scene.getHeight());
         hb.getChildren().add(this.levelView.createUserInterface());
-        this.levelView.setLevel(this.game.getPlayer().getLocation().getContainerTile().getLevel());
+        
+        this.game.getPlayer().getLocation().listenOnChange(() -> {
+            this.onPlayerMoved();
+        });
         
         this.setKeyboardHandlers(root);
         
         root.getChildren().add(hb);
+
+        this.onPlayerMoved();
     }
 
     
@@ -80,7 +85,12 @@ public class ScreenGame extends Screen {
             }
             
             this.game.getPlayer().act(action);
-            this.levelView.refresh();
         });
+    }
+    
+    
+    private void onPlayerMoved() {
+        this.levelView.setLevel(this.game.getPlayer().getLocation().getContainerTile().getLevel());
+        this.levelView.refresh();
     }
 }
