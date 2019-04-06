@@ -31,7 +31,7 @@ public class LocationTest {
     public void setUp() {
         this.object1 = new GameObject();
         this.object2 = new GameObject();
-        this.tile    = new FloorTile(null);
+        this.tile    = new FloorTile(null, 0, 0);
     }
     
 
