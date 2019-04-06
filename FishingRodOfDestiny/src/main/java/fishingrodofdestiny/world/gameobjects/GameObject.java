@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.observer.Observer;
+import fishingrodofdestiny.observer.Subject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -23,20 +25,21 @@ public class GameObject {
         ACTIVATE_TILE  // Tile specific action.
     };
     
-    private String   name;
-    private int      maxHitpoints;
-    private int      currentHitpoints;
-    private int      weight;
-    private Location location;
-    
-    private Inventory inventory;
+    private   String    name;
+    private   int       maxHitpoints;
+    private   int       currentHitpoints;
+    private   int       weight;
+    private   Location  location;
+    protected Subject   onChange;
+    private   Inventory inventory;
     
     public GameObject() {
         this.name             = null;
         this.maxHitpoints     = 1;
         this.currentHitpoints = 1;
-        this.inventory        = new Inventory(0);
         this.weight           = 1;
+        this.inventory        = new Inventory(0);
+        this.onChange         = new Subject();
         this.location         = new Location(this);
     }
     
@@ -49,6 +52,12 @@ public class GameObject {
                 + ",inventorySize=" + this.inventory.getObjects().size()
                 + ")";
     }
+    
+    
+    public void listenOnChange(Observer observer) {
+        this.onChange.addObserver(observer);
+    }
+    
 
     public Location getLocation() {
         return this.location;
@@ -56,6 +65,7 @@ public class GameObject {
     
     public void setName(String name) {
         this.name = name;
+        this.onChange.notifyObservers();
     }
     
     public String getName() {
@@ -79,6 +89,7 @@ public class GameObject {
         } else {
             this.maxHitpoints = Integer.MAX_VALUE;
         }
+        this.onChange.notifyObservers();
     }
     
     

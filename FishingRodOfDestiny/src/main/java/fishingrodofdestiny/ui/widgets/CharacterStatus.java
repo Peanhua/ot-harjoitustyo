@@ -42,11 +42,15 @@ public class CharacterStatus extends Widget {
     
 
     public CharacterStatus(Character character) {
-        this.character = character; // TODO: register listener for character to know when to do a refresh()
+        this.character = character;
         this.texts = new ArrayList<>();
         for (StatType t : StatType.values()) {
             this.texts.add(null);
         }
+        
+        this.character.listenOnChange(() -> {
+            this.refresh();
+        });
     }
 
     

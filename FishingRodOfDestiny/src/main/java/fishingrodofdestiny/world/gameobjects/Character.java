@@ -119,6 +119,7 @@ public class Character extends GameObject {
         if (this.attack < 0) {
             this.attack = 0;
         }
+        this.onChange.notifyObservers();
     }
     
     public void adjustDefence(int amount) {
@@ -126,5 +127,6 @@ public class Character extends GameObject {
         if (this.defence < 0) {
             this.defence = 0;
         }
+        this.onChange.notifyObservers();
     }
 }
