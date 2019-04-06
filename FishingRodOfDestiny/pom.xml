@@ -33,6 +33,7 @@
                 <configuration>
                   <excludes>
                     <exclude>fishingrodofdestiny/ui/*</exclude>
+                    <exclude>fishingrodofdestiny/ui/screens/*</exclude>
                     <exclude>fishingrodofdestiny/ui/widgets/*</exclude>
                   </excludes>
                 </configuration>
