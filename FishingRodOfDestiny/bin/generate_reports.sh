@@ -1,4 +1,4 @@
 #!/bin/bash
 
-mvn clean && mvn compile && mvn test && mvn jacoco:report
+mvn compile && mvn test && mvn jacoco:report && echo "All done."
 
