@@ -8,6 +8,10 @@ Basic architecture is shown below:
     <th>Package</th><th>Description</th>
   </tr>
   <tr>
+    <td>fishingrodofdestiny.observer</td>
+    <td>Helper classes to implement observer pattern.</td>
+  </tr>
+  <tr>
     <td>fishingrodofdestiny.settings</td>
     <td>User settings (keyboard mapping etc).</td>
   </tr>

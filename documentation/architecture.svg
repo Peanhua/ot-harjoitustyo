@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="48cm" height="17cm" viewBox="240 223 956 339" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="48cm" height="20cm" viewBox="240 223 956 399" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="274" y="246" width="181.4" height="28"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="274" y="246" width="181.4" height="28"/>
@@ -138,5 +138,19 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="602" y1="502" x2="405.419" y2="407.775"/>
     <polygon style="fill: #000000" points="398.656,404.533 409.835,404.346 405.419,407.775 405.512,413.364 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="398.656,404.533 409.835,404.346 405.419,407.775 405.512,413.364 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="639" y="593" width="227.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="639" y="593" width="227.6" height="28"/>
+    <rect style="fill: #ffffff" x="639" y="575" width="30" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="639" y="575" width="30" height="18"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="645" y="610.9">
+      <tspan x="645" y="610.9">fishingrodofdestiny.observer</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="750.45" y1="516" x2="752.503" y2="583.268"/>
+    <polygon style="fill: #000000" points="752.732,590.765 747.429,580.922 752.503,583.268 757.424,580.617 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="752.732,590.765 747.429,580.922 752.503,583.268 757.424,580.617 "/>
   </g>
 </svg>
