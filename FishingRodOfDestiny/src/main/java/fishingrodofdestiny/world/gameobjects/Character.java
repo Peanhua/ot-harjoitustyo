@@ -41,6 +41,8 @@ public class Character extends GameObject {
     
     @Override
     public void act(Action action) {
+        this.setMessage("");
+        
         if (action == null) {
             return;
         }

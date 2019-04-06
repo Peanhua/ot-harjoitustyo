@@ -8,6 +8,7 @@ package fishingrodofdestiny.ui.screens;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
+import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import javafx.geometry.Pos;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +29,7 @@ import javafx.stage.Stage;
 public class ScreenGame extends Screen {
     private Game      game;
     private LevelView levelView;
+    private Text      message;
     
     public ScreenGame(Game game, Screen parent, Stage stage) {
         super(parent, stage);
@@ -36,7 +39,10 @@ public class ScreenGame extends Screen {
 
     @Override
     protected void setup(Group root, Scene scene) {
+        VBox main = new VBox(0);
+        
         HBox hb = new HBox(20);
+        main.getChildren().add(hb);
         
         VBox leftbox = new VBox(0);
         hb.getChildren().add(leftbox);
@@ -53,11 +59,19 @@ public class ScreenGame extends Screen {
         buttons.getChildren().addAll(quit);
             
         leftbox.getChildren().add(buttons);
+
         
+        this.message = UserInterfaceFactory.createText("");
+        main.getChildren().add(this.message);
+        this.game.getPlayer().listenOnMessage(() -> {
+            this.message.setText(this.game.getPlayer().getMessage());
+        });
+
         
         this.levelView = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),
-                                       (int) scene.getHeight());
+                                       (int) (scene.getHeight() - this.message.getBoundsInParent().getHeight()));
         hb.getChildren().add(this.levelView.createUserInterface());
+        
         
         this.game.getPlayer().getLocation().listenOnChange(() -> {
             this.onPlayerMoved();
@@ -65,8 +79,10 @@ public class ScreenGame extends Screen {
         
         this.setKeyboardHandlers(root);
         
-        root.getChildren().add(hb);
+        root.getChildren().add(main);
 
+        
+        this.game.getPlayer().setMessage("Welcome to The Fishing Rod of Destiny!");
         this.onPlayerMoved();
     }
 
@@ -83,7 +99,7 @@ public class ScreenGame extends Screen {
             if (player == null) {
                 return;
             }
-            
+
             this.game.getPlayer().act(action);
         });
     }

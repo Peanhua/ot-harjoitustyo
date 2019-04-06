@@ -32,6 +32,8 @@ public class GameObject {
     private   Location  location;
     protected Subject   onChange;
     private   Inventory inventory;
+    private   Subject   onMessage;
+    private   String    message;
     
     public GameObject() {
         this.name             = null;
@@ -41,6 +43,8 @@ public class GameObject {
         this.inventory        = new Inventory(0);
         this.onChange         = new Subject();
         this.location         = new Location(this);
+        this.onMessage        = new Subject();
+        this.message          = "";
     }
     
     @Override
@@ -58,6 +62,22 @@ public class GameObject {
         this.onChange.addObserver(observer);
     }
     
+    
+    public void listenOnMessage(Observer observer) {
+        this.onMessage.addObserver(observer);
+    }
+    
+    public void setMessage(String message) {
+        this.message = message;
+        this.onMessage.notifyObservers();
+    }
+    
+    public String getMessage() {
+        return this.message;
+    }
+    
+    
+
 
     public Location getLocation() {
         return this.location;

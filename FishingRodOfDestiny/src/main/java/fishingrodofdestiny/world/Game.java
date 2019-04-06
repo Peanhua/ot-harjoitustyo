@@ -47,7 +47,7 @@ public class Game {
         this.levels       = new ArrayList<>();
         
         // TODO: move level generation&setup into cavegenerator class
-        EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 37); // 43x37 fits the screen without scrolling
+        EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 35); // 43x35 fits the screen without scrolling
         for (int i = 0; i < 10; i++) {
             this.addLevel(elg.generateLevel(i));
         }
