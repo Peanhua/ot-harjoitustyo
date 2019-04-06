@@ -41,7 +41,7 @@ public class ScreenPlot extends Screen {
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
 
-        String plot = this.getPlot().stream().reduce("", (a, b) -> a + "\n" + b);
+        String plot = this.game.getPlot().stream().reduce("", (a, b) -> a + "\n" + b);
         Text t = UserInterfaceFactory.createText(plot);
         t.setFont(new Font(20));
         t.setWrappingWidth(500);
@@ -55,20 +55,6 @@ public class ScreenPlot extends Screen {
         vb.getChildren().add(cont);
         
         root.getChildren().add(vb);
-    }
-    
-    
-    private List<String> getPlot() {
-        List<String> rv = new ArrayList<>();
-        
-        String rescueTargetName          = this.game.getRescueTarget().getTitleName();
-        String rescueTargetObjectPronoun = this.game.getRescueTarget().getObjectPronoun();
-        
-        rv.add("A " + rescueTargetName + " has fallen into the lake of Sunken Nobles!");
-        rv.add("");
-        rv.add("You must rescue " + rescueTargetObjectPronoun + " by retrieving the Magical Fishing Rod from the depths of cave Caerrbannogh!");
-        
-        return rv;
     }
     
     

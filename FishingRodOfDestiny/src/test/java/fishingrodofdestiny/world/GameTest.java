@@ -9,6 +9,7 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Location;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -61,5 +62,24 @@ public class GameTest {
         boolean movedEast = location.getContainerTile() != originalTile;
         
         assertTrue(movedNorth || movedSouth || movedWest || movedEast);
+    }
+    
+    @Test
+    public void plotsDifferBasedOnRescueTarget() {
+        Game game1 = new Game(this.player, Game.RescueTarget.PRINCESS);
+        Game game2 = new Game(this.player, Game.RescueTarget.PRINCE);
+        
+        List<String> plot1 = game1.getPlot();
+        List<String> plot2 = game2.getPlot();
+        if (plot1.size() == plot2.size()) {
+            boolean differs = false;
+            for (int i = 0; i < plot1.size(); i++) {
+                if (!plot1.get(i).equals(plot2.get(i))) {
+                    differs = true;
+                    break;
+                }
+            }
+            assertTrue(differs);
+        }
     }
 }

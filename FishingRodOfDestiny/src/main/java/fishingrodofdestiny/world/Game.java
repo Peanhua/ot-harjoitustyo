@@ -56,6 +56,21 @@ public class Game {
     }
     
     
+    public List<String> getPlot() {
+        List<String> rv = new ArrayList<>();
+        
+        String rescueTargetName          = this.rescueTarget.getTitleName();
+        String rescueTargetObjectPronoun = this.rescueTarget.getObjectPronoun();
+        
+        rv.add("A " + rescueTargetName + " has fallen into the lake of Sunken Nobles!");
+        rv.add("");
+        rv.add("You must rescue " + rescueTargetObjectPronoun + " by retrieving the Magical Fishing Rod from the depths of cave Caerrbannogh!");
+        
+        return rv;
+    }
+
+    
+    
     public RescueTarget getRescueTarget() {
         return this.rescueTarget;
     }
