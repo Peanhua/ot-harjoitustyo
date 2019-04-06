@@ -36,6 +36,7 @@ public class LevelViewTest {
         LevelView lview = new LevelView(100, 100);
         lview.createUserInterface();
         lview.setLevel(this.mockedLevel);
+        lview.refresh();
         verify(this.mockedLevel, atLeastOnce()).draw(notNull());
     }
 }
