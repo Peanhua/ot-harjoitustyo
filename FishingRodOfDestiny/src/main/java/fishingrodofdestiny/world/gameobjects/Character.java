@@ -46,10 +46,18 @@ public class Character extends GameObject {
         }
         
         switch (action) {
-            case MOVE_NORTH: this.move( 0, -1); break;
-            case MOVE_SOUTH: this.move( 0,  1); break;
-            case MOVE_WEST:  this.move(-1,  0); break;
-            case MOVE_EAST:  this.move( 1,  0); break;
+            case MOVE_NORTH:
+                this.move(0, -1);
+                break;
+            case MOVE_SOUTH:
+                this.move(0, 1);
+                break;
+            case MOVE_WEST:
+                this.move(-1, 0);
+                break;
+            case MOVE_EAST:
+                this.move(1, 0);
+                break;
         }
     }
     
