@@ -54,7 +54,13 @@ public abstract class Tile {
             }
         }
     }
-    
+
+    // Called when the given object moves into this tile:
     public void onEnter(GameObject object) {
+    }
+    
+    
+    // Called when the given object wants to activate some tile specific special action in this tile:
+    public void activate(GameObject object) {
     }
 }

@@ -19,7 +19,8 @@ public class GameObject {
         MOVE_NORTH,
         MOVE_SOUTH,
         MOVE_WEST,
-        MOVE_EAST
+        MOVE_EAST,
+        ACTIVATE_TILE  // Tile specific action.
     };
     
     private String   name;

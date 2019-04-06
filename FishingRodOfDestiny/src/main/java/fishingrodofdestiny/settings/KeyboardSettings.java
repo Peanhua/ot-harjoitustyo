@@ -32,10 +32,11 @@ public class KeyboardSettings {
         this.actionsToKeys = new HashMap<>();
         
         // Setup default keymapping, hard-coded for now:
-        this.actionsToKeys.put(GameObject.Action.MOVE_NORTH, KeyCode.UP);
-        this.actionsToKeys.put(GameObject.Action.MOVE_SOUTH, KeyCode.DOWN);
-        this.actionsToKeys.put(GameObject.Action.MOVE_WEST,  KeyCode.LEFT);
-        this.actionsToKeys.put(GameObject.Action.MOVE_EAST,  KeyCode.RIGHT);
+        this.actionsToKeys.put(GameObject.Action.MOVE_NORTH,    KeyCode.UP);
+        this.actionsToKeys.put(GameObject.Action.MOVE_SOUTH,    KeyCode.DOWN);
+        this.actionsToKeys.put(GameObject.Action.MOVE_WEST,     KeyCode.LEFT);
+        this.actionsToKeys.put(GameObject.Action.MOVE_EAST,     KeyCode.RIGHT);
+        this.actionsToKeys.put(GameObject.Action.ACTIVATE_TILE, KeyCode.E);
         
         // Clone to keysToActions: */
         this.keysToActions = new HashMap<>();

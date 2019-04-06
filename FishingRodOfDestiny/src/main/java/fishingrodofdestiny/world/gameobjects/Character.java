@@ -58,6 +58,12 @@ public class Character extends GameObject {
             case MOVE_EAST:
                 this.move(1, 0);
                 break;
+            case ACTIVATE_TILE:
+                Tile tile = this.getLocation().getContainerTile();
+                if (tile != null) {
+                    tile.activate(this);
+                }
+                break;
         }
     }
     

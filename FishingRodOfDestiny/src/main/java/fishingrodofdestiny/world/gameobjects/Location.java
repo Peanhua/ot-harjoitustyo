@@ -46,6 +46,7 @@ public class Location {
         if (target != null) {
             Inventory ti = target.getInventory();
             this.moveToInventory(ti);
+            target.onEnter(this.me);
         } else {
             this.moveToInventory(null);
         }

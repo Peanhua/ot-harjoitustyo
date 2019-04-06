@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.tiles.StairsDownTile;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.StairsTile;
@@ -31,6 +32,16 @@ public class Level {
             this.tiles.add(null);
         }
     }
+    
+    
+    public int getWidth() {
+        return this.width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
     
     public void draw(GraphicsContext context) {
         int tileSize = 16;
@@ -59,21 +70,33 @@ public class Level {
     public void setTile(int x, int y, Tile tile) {
         this.tiles.set(y * this.width + x, tile);
     }
+
+
+    public List<Tile> getTiles(Class cls) {
+        List<Tile> rv = new ArrayList<>();
+        
+        for (int i = 0; i < this.width * this.height; i++) {
+            Tile tile = this.tiles.get(i);
+            if (tile.getClass() == cls) {
+                rv.add(tile);
+            }
+        }
+        
+        return rv;
+    }
+
     
     public List<StairsTile> getStairsUp() {
         // TODO: optimize a bit: keep a list of stairs going up
         List<StairsTile> stairs = new ArrayList<>();
-        
-        for (int i = 0; i < this.width * this.height; i++) {
-            try { // TODO: maybe this could be done smarter?
-                StairsUpTile tmp = (StairsUpTile) this.tiles.get(i);
-                if (tmp != null) {
-                    stairs.add(tmp);
-                }
-            } catch (Exception e) {
-            }
-        }
-        
+        this.getTiles(StairsUpTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
+        return stairs;
+    }
+
+    
+    public List<StairsTile> getStairsDown() {
+        List<StairsTile> stairs = new ArrayList<>();
+        this.getTiles(StairsDownTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
         return stairs;
     }
 }

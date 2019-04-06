@@ -6,6 +6,7 @@
 package fishingrodofdestiny.world.tiles;
 
 import fishingrodofdestiny.world.Level;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 
 
 /**
@@ -26,5 +27,12 @@ public abstract class StairsTile extends Tile {
     
     public void setTarget(Tile target) {
         this.target = target;
+    }
+    
+    @Override
+    public void activate(GameObject object) {
+        if (this.target != null) {
+            object.getLocation().moveTo(this.target);
+        }
     }
 }

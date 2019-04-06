@@ -46,13 +46,30 @@ public class Game {
         this.rescueTarget = rescueTarget;
         this.levels       = new ArrayList<>();
         
+        // TODO: move level generation&setup into cavegenerator class
         EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 37); // 43x37 fits the screen without scrolling
         for (int i = 0; i < 10; i++) {
             this.addLevel(elg.generateLevel(i));
         }
         
+        this.connectStairs();
+        
         List<StairsTile> stairs = this.getLevel(0).getStairsUp();
         player.getLocation().moveTo(stairs.get(0));
+    }
+    
+    
+    // Connect all the stairs between levels, assumes that there is only one stairs going up and one down on each level:
+    private void connectStairs() {
+        for (int i = 1; i < this.levels.size(); i++) {
+            Level prev = this.levels.get(i - 1);
+            Level cur  = this.levels.get(i);
+            
+            List<StairsTile> prevStairs = prev.getStairsDown();
+            List<StairsTile> curStairs  = cur.getStairsUp();
+            prevStairs.get(0).setTarget(curStairs.get(0));
+            curStairs.get(0).setTarget(prevStairs.get(0));
+        }
     }
     
     
