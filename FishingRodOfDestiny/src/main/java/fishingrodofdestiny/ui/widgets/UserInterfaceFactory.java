@@ -85,19 +85,18 @@ public class UserInterfaceFactory {
     }
     
     
-    public static Node createRadiobuttonGrid(String[] labels, List<RadioButton> buttons) {
+    public static Node createRadiobuttonGrid(String[] labels, ToggleGroup toggleGroup, List<RadioButton> buttons) {
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(4);
         grid.setVgap(2);
         
-        ToggleGroup group = new ToggleGroup();
         for (int i = 0; i < labels.length; i++) {
             Text label  = UserInterfaceFactory.createText(labels[i]);
             
             RadioButton button = new RadioButton();
             buttons.add(button);
-            button.setToggleGroup(group);
+            button.setToggleGroup(toggleGroup);
             if (i == 0) {
                 button.setSelected(true);
             }

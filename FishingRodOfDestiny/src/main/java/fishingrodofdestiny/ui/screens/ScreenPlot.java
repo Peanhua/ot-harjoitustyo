@@ -7,6 +7,8 @@ package fishingrodofdestiny.ui.screens;
 
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -39,8 +41,8 @@ public class ScreenPlot extends Screen {
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
 
-        Text t = UserInterfaceFactory.createText("A princess/prince has fallen into the Lake of Sunken Nobles!\n\n"
-                                               + "You must rescue her/him by retrieving the Magical Fishing Rod from the depths of cave Caerrbannogh!");
+        String plot = this.getPlot().stream().reduce("", (a, b) -> a + "\n" + b);
+        Text t = UserInterfaceFactory.createText(plot);
         t.setFont(new Font(20));
         t.setWrappingWidth(500);
         t.setTextAlignment(TextAlignment.CENTER);
@@ -53,6 +55,20 @@ public class ScreenPlot extends Screen {
         vb.getChildren().add(cont);
         
         root.getChildren().add(vb);
+    }
+    
+    
+    private List<String> getPlot() {
+        List<String> rv = new ArrayList<>();
+        
+        String rescueTargetName          = this.game.getRescueTarget().getTitleName();
+        String rescueTargetObjectPronoun = this.game.getRescueTarget().getObjectPronoun();
+        
+        rv.add("A " + rescueTargetName + " has fallen into the lake of Sunken Nobles!");
+        rv.add("");
+        rv.add("You must rescue " + rescueTargetObjectPronoun + " by retrieving the Magical Fishing Rod from the depths of cave Caerrbannogh!");
+        
+        return rv;
     }
     
     

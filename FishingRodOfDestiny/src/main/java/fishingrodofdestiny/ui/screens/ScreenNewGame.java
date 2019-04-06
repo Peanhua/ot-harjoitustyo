@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,14 +30,15 @@ public class ScreenNewGame extends Screen {
     
     private Player           player;
     private TextField        name;
+    private ToggleGroup      rescueToggleGroup;
     private PointDistributor pointDistributor;
     
     public ScreenNewGame(Screen parent, Stage stage) {
         super(parent, stage);
-        
-        this.player           = new Player();
-        this.name             = null;
-        this.pointDistributor = null;
+        this.player            = new Player();
+        this.name              = null;
+        this.rescueToggleGroup = null;
+        this.pointDistributor  = null;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class ScreenNewGame extends Screen {
         vb.getChildren().add(this.pointDistributor.createUserInterface());
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        vb.getChildren().add(this.setupSavingTarget());
+        vb.getChildren().add(this.setupRescueTarget());
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
 
         TextField randseed = new TextField();
@@ -68,10 +70,17 @@ public class ScreenNewGame extends Screen {
         root.getChildren().add(vb);
     }
 
-    private Node setupSavingTarget() {
-        String[] labels = { "Save princess:", "Save prince:" };
+    private Node setupRescueTarget() {
+        String[]            labels  = { "Rescue princess:",         "Rescue prince:"         };
+        Game.RescueTarget[] targets = { Game.RescueTarget.PRINCESS, Game.RescueTarget.PRINCE };
+        
         List<RadioButton> buttons = new ArrayList<>();
-        return UserInterfaceFactory.createRadiobuttonGrid(labels, buttons);
+        this.rescueToggleGroup = new ToggleGroup();
+        Node node = UserInterfaceFactory.createRadiobuttonGrid(labels, rescueToggleGroup, buttons);
+        for (int i = 0; i < labels.length; i++) {
+            buttons.get(i).setUserData(targets[i]);
+        }
+        return node;
     }
 
     private Node setupButtons() {
@@ -93,7 +102,8 @@ public class ScreenNewGame extends Screen {
         
         this.close();
         
-        Game game = new Game(player);
+        Game.RescueTarget rtarget = (Game.RescueTarget) this.rescueToggleGroup.getSelectedToggle().getUserData();
+        Game game = new Game(player, rtarget);
         Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
     }

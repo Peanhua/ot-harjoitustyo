@@ -31,7 +31,7 @@ public class GameTest {
     @Before
     public void setUp() {
         this.player = new Player();
-        this.game = new Game(this.player);
+        this.game = new Game(this.player, Game.RescueTarget.PRINCESS);
     }
 
     @Test

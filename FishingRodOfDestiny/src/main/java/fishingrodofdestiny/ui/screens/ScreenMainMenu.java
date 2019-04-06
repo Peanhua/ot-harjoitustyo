@@ -68,9 +68,11 @@ public class ScreenMainMenu extends Screen {
     
     
     private void loadGame() {
+        /*
         Game game = new Game(new Player());
         Screen g = new ScreenGame(game, this, this.getStage());
         g.show();
+*/
     }
     
     

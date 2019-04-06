@@ -16,12 +16,35 @@ import java.util.Random;
  * @author joyr
  */
 public class Game {
-    private Player      player;
-    private List<Level> levels;
+    public enum RescueTarget {
+        PRINCESS,
+        PRINCE;
+        
+        public String getTitleName() {
+            if (this == PRINCESS) {
+                return "princess";
+            } else {
+                return "prince";
+            }
+        }
+        
+        public String getObjectPronoun() {
+            if (this == PRINCESS) {
+                return "her";
+            } else {
+                return "him";
+            }
+        }
+    };
     
-    public Game(Player player) {
-        this.player = player;
-        this.levels = new ArrayList<>();
+    private Player       player;
+    private RescueTarget rescueTarget;
+    private List<Level>  levels;
+    
+    public Game(Player player, RescueTarget rescueTarget) {
+        this.player       = player;
+        this.rescueTarget = rescueTarget;
+        this.levels       = new ArrayList<>();
         
         EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 37); // 43x37 fits the screen without scrolling
         for (int i = 0; i < 10; i++) {
@@ -32,6 +55,10 @@ public class Game {
         player.getLocation().moveTo(stairs.get(0));
     }
     
+    
+    public RescueTarget getRescueTarget() {
+        return this.rescueTarget;
+    }
     
     public Player getPlayer() {
         return this.player;
