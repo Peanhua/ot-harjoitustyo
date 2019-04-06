@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import javafx.embed.swing.JFXPanel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,6 +25,7 @@ public class CharacterTest {
         }
     };
     
+    private JFXPanel  jfxPanel;
     private Character character;
     
     public CharacterTest() {
@@ -31,7 +33,13 @@ public class CharacterTest {
     
     @Before
     public void setUp() {
+        this.jfxPanel  = new JFXPanel();
         this.character = new CharacterSubclass();
+    }
+
+    @After
+    public void tearDown() {
+        this.jfxPanel = null;
     }
     
     @Test

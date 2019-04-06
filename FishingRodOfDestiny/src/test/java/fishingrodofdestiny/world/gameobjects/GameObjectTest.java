@@ -6,6 +6,7 @@ package fishingrodofdestiny.world.gameobjects;
  * and open the template in the editor.
  */
 
+import javafx.embed.swing.JFXPanel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +24,7 @@ public class GameObjectTest {
         }
     }
     
+    private JFXPanel   jfxPanel;
     private GameObject object;
     
     public GameObjectTest() {
@@ -30,11 +32,13 @@ public class GameObjectTest {
     
     @Before
     public void setUp() {
-        object = new GameObjectSubclass();
+        this.jfxPanel = new JFXPanel();
+        this.object   = new GameObjectSubclass();
     }
     
     @After
     public void tearDown() {
+        this.jfxPanel = null;
     }
     
     @Test

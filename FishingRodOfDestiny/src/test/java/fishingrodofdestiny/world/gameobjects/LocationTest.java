@@ -7,6 +7,7 @@ package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
+import javafx.embed.swing.JFXPanel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,12 +21,14 @@ import static org.junit.Assert.*;
  */
 public class LocationTest {
     
+    private JFXPanel jfxPanel;
+    
     class GameObjectSubclass extends GameObject {
         public GameObjectSubclass() {
             super("test");
         }
     }
-
+    
     private GameObject object1;
     private GameObject object2;
     private Tile       tile;
@@ -35,10 +38,17 @@ public class LocationTest {
     
     @Before
     public void setUp() {
+        this.jfxPanel = new JFXPanel();
         this.object1 = new GameObjectSubclass();
         this.object2 = new GameObjectSubclass();
         this.tile    = new FloorTile(null, 0, 0);
     }
+    
+    @After
+    public void tearDown() {
+        this.jfxPanel = null;
+    }
+
     
 
     @Test
