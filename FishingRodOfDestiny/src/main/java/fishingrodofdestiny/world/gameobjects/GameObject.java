@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 public abstract class GameObject {
     
     public enum Action {
+        NONE,
         MOVE_NORTH,
         MOVE_SOUTH,
         MOVE_WEST,
@@ -37,6 +38,7 @@ public abstract class GameObject {
     private   Subject   onMessage;
     private   String    message;
     private   Image     onScreenImage;
+    private   Action    nextAction;
     
     public GameObject(String gfxFilename) {
         this.name             = null;
@@ -49,6 +51,7 @@ public abstract class GameObject {
         this.onMessage        = new Subject();
         this.message          = "";
         this.onScreenImage    = ImageCache.getInstance().get(gfxFilename);
+        this.nextAction       = Action.NONE;
     }
     
     @Override
@@ -141,7 +144,19 @@ public abstract class GameObject {
         }
     }
     
+    public final void setNextAction(Action action) {
+        this.nextAction = action;
+    }
+    
     
     public void act(Action action) {
+    }
+    
+    
+    public void tick(double deltaTime) {
+        if (this.nextAction != Action.NONE) {
+            this.act(this.nextAction);
+            this.nextAction = Action.NONE;
+        }
     }
 }

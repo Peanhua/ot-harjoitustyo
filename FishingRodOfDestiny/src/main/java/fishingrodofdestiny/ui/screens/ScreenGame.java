@@ -100,7 +100,8 @@ public class ScreenGame extends Screen {
                 return;
             }
 
-            this.game.getPlayer().act(action);
+            this.game.getPlayer().setNextAction(action);
+            this.game.tick();
         });
     }
     

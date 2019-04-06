@@ -103,4 +103,19 @@ public class Game {
     public final Level getLevel(int depth) {
         return this.levels.get(depth);
     }
+    
+    
+    public final void tick() {
+        if (this.player == null) {
+            return;
+        }
+        
+        List<Level> levels = new ArrayList<>();
+        levels.add(this.player.getLocation().getContainerTile().getLevel());
+        
+        levels.forEach(level -> {
+            level.tick(1.0);
+        });
+    }
+    
 }

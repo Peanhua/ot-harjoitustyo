@@ -5,11 +5,13 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.StairsTile;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -97,5 +99,18 @@ public class Level {
         List<StairsTile> stairs = new ArrayList<>();
         this.getTiles(StairsDownTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
         return stairs;
+    }
+    
+    
+    public void tick(double deltaTime) {
+        // TODO: cache game objects in this level
+        List<GameObject> objects = new ArrayList<>();
+        this.tiles.forEach(tile -> {
+            objects.addAll(tile.getInventory().getObjects());
+        });
+
+        // TODO: sort objects based on their time to execute
+        
+        objects.forEach(obj -> obj.tick(deltaTime));
     }
 }
