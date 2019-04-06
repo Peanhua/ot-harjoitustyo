@@ -8,6 +8,7 @@ package fishingrodofdestiny.world.gameobjects;
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 
@@ -34,6 +35,7 @@ public class GameObject {
     private   Inventory inventory;
     private   Subject   onMessage;
     private   String    message;
+    private   Image     onScreenImage;
     
     public GameObject() {
         this.name             = null;
@@ -45,6 +47,7 @@ public class GameObject {
         this.location         = new Location(this);
         this.onMessage        = new Subject();
         this.message          = "";
+        this.onScreenImage    = null;
     }
     
     @Override
@@ -121,11 +124,20 @@ public class GameObject {
     public int getWeight() {
         return this.weight + this.inventory.getWeight();
     }
-    
+
+
+    protected final void setOnScreenImage(Image image) {
+        this.onScreenImage = image;
+    }
     
     public void draw(GraphicsContext context, int x, int y, int size) {
-        context.setFill(Color.CADETBLUE);
-        context.fillRect(x, y, size, size);
+        if (this.onScreenImage != null) {
+            context.drawImage(this.onScreenImage, x, y, size, size);
+            
+        } else {
+            context.setFill(Color.CADETBLUE);
+            context.fillRect(x, y, size, size);
+        }
     }
     
     

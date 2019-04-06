@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author joyr
@@ -12,6 +14,7 @@ package fishingrodofdestiny.world.gameobjects;
 public class Player extends Character {
     public Player() {
         super();
+        this.setOnScreenImage(new Image("file:gfx/Player.png", false));
     }
     
     @Override
