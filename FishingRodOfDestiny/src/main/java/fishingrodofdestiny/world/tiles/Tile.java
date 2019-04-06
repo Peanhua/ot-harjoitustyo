@@ -7,6 +7,7 @@ package fishingrodofdestiny.world.tiles;
 
 import fishingrodofdestiny.resources.ImageCache;
 import fishingrodofdestiny.world.Level;
+import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Inventory;
 import javafx.scene.canvas.GraphicsContext;

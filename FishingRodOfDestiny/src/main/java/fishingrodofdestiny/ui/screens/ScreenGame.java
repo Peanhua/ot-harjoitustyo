@@ -84,6 +84,7 @@ public class ScreenGame extends Screen {
         
         this.game.getPlayer().setMessage("Welcome to The Fishing Rod of Destiny!");
         this.onPlayerMoved();
+        this.levelView.refresh();
     }
 
     
@@ -102,12 +103,12 @@ public class ScreenGame extends Screen {
 
             this.game.getPlayer().setNextAction(action);
             this.game.tick();
+            this.levelView.refresh();
         });
     }
     
     
     private void onPlayerMoved() {
         this.levelView.setLevel(this.game.getPlayer().getLocation().getContainerTile().getLevel());
-        this.levelView.refresh();
     }
 }

@@ -37,6 +37,7 @@ public class KeyboardSettings {
         this.actionsToKeys.put(GameObject.Action.MOVE_WEST,     KeyCode.LEFT);
         this.actionsToKeys.put(GameObject.Action.MOVE_EAST,     KeyCode.RIGHT);
         this.actionsToKeys.put(GameObject.Action.ACTIVATE_TILE, KeyCode.E);
+        this.actionsToKeys.put(GameObject.Action.ATTACK,        KeyCode.A);
         
         // Clone to keysToActions: */
         this.keysToActions = new HashMap<>();

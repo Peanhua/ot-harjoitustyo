@@ -40,6 +40,18 @@ public abstract class Character extends GameObject {
     }
     
     @Override
+    public void onDestroyTarget(GameObject target) {
+        int xp = 1;
+        
+        if (target instanceof Character) {
+            Character targetCharacter = (Character) target;
+            xp = 1 + targetCharacter.getLevel() * 3;
+        }
+        
+        this.adjustExperiencePoints(xp);
+    }
+    
+    @Override
     public void act(Action action) {
         this.setMessage("");
         
@@ -65,6 +77,9 @@ public abstract class Character extends GameObject {
                 if (tile != null) {
                     tile.activate(this);
                 }
+                break;
+            case ATTACK:
+                this.attack();
                 break;
         }
     }
@@ -92,6 +107,29 @@ public abstract class Character extends GameObject {
         this.getLocation().moveTo(targetTile);
     }
     
+    private void attack() {
+        Tile tile = this.getLocation().getContainerTile();
+        if (tile == null) {
+            return;
+        }
+        
+        GameObject target =
+                tile
+                .getInventory()
+                .getObjects()
+                .stream()
+                .reduce(null, (a, b) -> b != this ? b : a);
+        
+        if (target == null) {
+            this.setMessage("You attack thin air!");
+            return;
+        }
+        
+        int damage = this.getDamage();
+        this.setMessage("You hit " + target.getName() + " for " + damage + "!");
+        target.hit(this, damage);
+    }
+    
     public int getAttack() {
         return this.attack;
     }
@@ -113,7 +151,7 @@ public abstract class Character extends GameObject {
     }
     
     public int getDamage() {
-        return 0; // TODO: calculate from stats and currently equipped weapon
+        return 1; // TODO: calculate from stats and currently equipped weapon
     }
     
     public void adjustAttack(int amount) {
@@ -129,6 +167,11 @@ public abstract class Character extends GameObject {
         if (this.defence < 0) {
             this.defence = 0;
         }
+        this.onChange.notifyObservers();
+    }
+    
+    public void adjustExperiencePoints(int amount) {
+        this.experiencePoints += amount;
         this.onChange.notifyObservers();
     }
 }

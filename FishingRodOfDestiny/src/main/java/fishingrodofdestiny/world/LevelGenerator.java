@@ -5,6 +5,9 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
+import fishingrodofdestiny.world.tiles.FloorTile;
+import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.WallTile;
 import java.util.Random;
 
@@ -22,6 +25,7 @@ public abstract class LevelGenerator {
         this.width  = width;
         this.height = height;
     }
+    
 
     protected void createLevelBorders(Level level) {
         for (int x = 0; x < this.width; x++) {
@@ -37,7 +41,19 @@ public abstract class LevelGenerator {
             x = this.width - 1;
             level.setTile(x, y, new WallTile(level, x, y));
         }
-    }        
+    }
+    
+    protected void placeNPC(Level level, NonPlayerCharacter npc) {
+        while (true) {
+            int x = this.random.nextInt(this.width);
+            int y = this.random.nextInt(this.height);
+            Tile tile = level.getTile(x, y);
+            if (tile.getClass() == FloorTile.class && tile.canBeEntered()) {
+                npc.getLocation().moveTo(tile);
+                break;
+            }
+        }
+    }
     
     public abstract Level generateLevel(int caveLevel);
 }

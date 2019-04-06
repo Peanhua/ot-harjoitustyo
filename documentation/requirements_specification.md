@@ -96,12 +96,6 @@ As a single player game, there is just one user role: the player.
   * Enemies can attack the player
   * Enemies are spawned when the level is generated
 
-### When the player character is fighting with an enemy
-* The game autoplays the combat
-* Both parties hit each others until one dies
-* The damage done per hit is based on the attributes and equipment of both parties
-* The player is shown what happens
-
 ### When the game ends
 * If the player obtained enough score, the player gets placed in the appropriate highscore lists
 

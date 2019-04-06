@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.StairsTile;
@@ -39,7 +40,17 @@ public class EmptyLevelGenerator extends LevelGenerator {
         this.placeStairsUp(level);
         this.placeStairsDown(level);
         
+        this.placeEnemies(level, 10 + caveLevel * 3);
+        
         return level;
+    }
+    
+    private void placeEnemies(Level level, int maxCount) {
+        int n = this.random.nextInt(maxCount);
+        for (int i = 0; i < n; i++) {
+            NonPlayerCharacter npc = new NonPlayerCharacter();
+            this.placeNPC(level, npc);
+        }
     }
 
     private void placeStairsUp(Level level) {

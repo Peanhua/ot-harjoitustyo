@@ -11,7 +11,6 @@ import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.StairsTile;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 
