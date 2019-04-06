@@ -18,6 +18,12 @@ import static org.junit.Assert.*;
  */
 public class CharacterTest {
     
+    class CharacterSubclass extends Character {
+        public CharacterSubclass() {
+            super("test");
+        }
+    };
+    
     private Character character;
     
     public CharacterTest() {
@@ -25,7 +31,7 @@ public class CharacterTest {
     
     @Before
     public void setUp() {
-        this.character = new Character();
+        this.character = new CharacterSubclass();
     }
     
     @Test

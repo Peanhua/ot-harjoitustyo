@@ -13,15 +13,15 @@ import fishingrodofdestiny.world.tiles.Tile;
  *
  * @author joyr
  */
-public class Character extends GameObject {
+public abstract class Character extends GameObject {
     
     private int attack;
     private int defence;
     private int level;
     private int experiencePoints;
 
-    public Character() {
-        super();
+    public Character(String gfxFilename) {
+        super(gfxFilename);
         this.attack           = 0;
         this.defence          = 0;
         this.level            = 0;

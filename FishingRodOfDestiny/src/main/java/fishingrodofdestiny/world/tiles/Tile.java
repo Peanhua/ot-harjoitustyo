@@ -5,10 +5,12 @@
  */
 package fishingrodofdestiny.world.tiles;
 
+import fishingrodofdestiny.resources.ImageCache;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Inventory;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -19,12 +21,14 @@ public abstract class Tile {
     private int       x;
     private int       y;
     private Inventory inventory;
+    private Image     onScreenImage;
     
-    public Tile(Level level, int x, int y) {
+    public Tile(Level level, int x, int y, String gfxFilename) {
         this.level     = level;
         this.x         = x;
         this.y         = y;
         this.inventory = new Inventory(0);
+        this.onScreenImage = ImageCache.getInstance().get(gfxFilename);
     }
     
     public final Level getLevel() {
@@ -45,9 +49,14 @@ public abstract class Tile {
     
     public abstract boolean canBeEntered();
     
-    public abstract void draw(GraphicsContext context, int x, int y, int size);
+    public final void draw(GraphicsContext context, int x, int y, int size) {
+        if (this.onScreenImage != null) {
+            context.drawImage(this.onScreenImage, x, y, size, size);
+        }
+        this.drawInventory(context, x, y, size);
+    }
     
-    public void drawInventory(GraphicsContext context, int x, int y, int size) {
+    private final void drawInventory(GraphicsContext context, int x, int y, int size) {
         for (GameObject obj : this.inventory.getObjects()) {
             if (obj != null) {
                 obj.draw(context, x, y, size);

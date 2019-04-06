@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui.widgets;
 
+import fishingrodofdestiny.resources.ImageCache;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -31,7 +32,7 @@ import javafx.scene.text.TextAlignment;
 public class UserInterfaceFactory {
     
     public static Node createLogo(Scene scene) {
-        Image logo = new Image("file:gfx/Logo.png", false);
+        Image logo = ImageCache.getInstance().get("Logo");
         ImageView logov = new ImageView(logo);
         logov.setTranslateX((scene.getWidth() - logo.getWidth()) / 2);
         return logov;

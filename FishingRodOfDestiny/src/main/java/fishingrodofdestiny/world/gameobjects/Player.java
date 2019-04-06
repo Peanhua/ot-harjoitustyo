@@ -13,8 +13,7 @@ import javafx.scene.image.Image;
  */
 public class Player extends Character {
     public Player() {
-        super();
-        this.setOnScreenImage(new Image("file:gfx/Player.png", false));
+        super("Player");
     }
     
     @Override

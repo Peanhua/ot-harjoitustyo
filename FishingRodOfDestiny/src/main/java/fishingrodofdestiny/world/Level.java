@@ -50,7 +50,6 @@ public class Level {
                 Tile t = this.getTile(x, y);
                 if (t != null) {
                     t.draw(context, x * tileSize, y * tileSize, tileSize);
-                    t.drawInventory(context, x * tileSize, y * tileSize, tileSize);
                 }
             }
         }

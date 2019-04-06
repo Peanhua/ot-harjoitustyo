@@ -17,6 +17,12 @@ import static org.junit.Assert.*;
  */
 public class GameObjectTest {
     
+    class GameObjectSubclass extends GameObject {
+        public GameObjectSubclass() {
+            super("test");
+        }
+    }
+    
     private GameObject object;
     
     public GameObjectTest() {
@@ -24,7 +30,7 @@ public class GameObjectTest {
     
     @Before
     public void setUp() {
-        object = new GameObject();
+        object = new GameObjectSubclass();
     }
     
     @After

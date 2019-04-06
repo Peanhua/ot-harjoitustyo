@@ -7,6 +7,7 @@ package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
+import fishingrodofdestiny.resources.ImageCache;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -16,7 +17,7 @@ import javafx.scene.paint.Color;
  *
  * @author joyr
  */
-public class GameObject {
+public abstract class GameObject {
     
     public enum Action {
         MOVE_NORTH,
@@ -37,7 +38,7 @@ public class GameObject {
     private   String    message;
     private   Image     onScreenImage;
     
-    public GameObject() {
+    public GameObject(String gfxFilename) {
         this.name             = null;
         this.maxHitpoints     = 1;
         this.currentHitpoints = 1;
@@ -47,7 +48,7 @@ public class GameObject {
         this.location         = new Location(this);
         this.onMessage        = new Subject();
         this.message          = "";
-        this.onScreenImage    = null;
+        this.onScreenImage    = ImageCache.getInstance().get(gfxFilename);
     }
     
     @Override

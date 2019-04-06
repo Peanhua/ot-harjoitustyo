@@ -16,15 +16,10 @@ import javafx.scene.paint.Color;
 public class FloorTile extends Tile {
 
     public FloorTile(Level level, int x, int y) {
-        super(level, x, y);
+        super(level, x, y, "tiles/Floor");
     }
     
     public boolean canBeEntered() {
         return true;
-    }
-    
-    public void draw(GraphicsContext context, int x, int y, int size) {
-        context.setFill(Color.CHOCOLATE);
-        context.fillRect(x, y, size, size);
     }
 }
