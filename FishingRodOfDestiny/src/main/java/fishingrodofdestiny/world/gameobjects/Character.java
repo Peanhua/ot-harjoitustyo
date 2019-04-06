@@ -5,6 +5,9 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.Level;
+import fishingrodofdestiny.world.tiles.Tile;
+
 
 /**
  *
@@ -34,6 +37,43 @@ public class Character extends GameObject {
                 + ",level=" + this.level
                 + ",xp=" + this.experiencePoints
                 + ")";
+    }
+    
+    @Override
+    public void act(Action action) {
+        if (action == null) {
+            return;
+        }
+        
+        switch (action) {
+            case MOVE_NORTH: this.move( 0, -1); break;
+            case MOVE_SOUTH: this.move( 0,  1); break;
+            case MOVE_WEST:  this.move(-1,  0); break;
+            case MOVE_EAST:  this.move( 1,  0); break;
+        }
+    }
+    
+    private void move(int deltaX, int deltaY) {
+        Tile myTile = this.getLocation().getContainerTile();
+        if (myTile == null) {
+            return;
+        }
+        
+        Level level = myTile.getLevel();
+        if (level == null) {
+            return;
+        }
+        
+        Tile targetTile = level.getTile(myTile.getX() + deltaX, myTile.getY() + deltaY);
+        if (targetTile == null) {
+            return;
+        }
+        
+        if (!targetTile.canBeEntered()) {
+            return;
+        }
+        
+        this.getLocation().moveTo(targetTile);
     }
     
     public int getAttack() {

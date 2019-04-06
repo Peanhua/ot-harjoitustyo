@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
  */
 public class FloorTile extends Tile {
 
-    public FloorTile(Level inLevel) {
-        super(inLevel);
+    public FloorTile(Level level, int x, int y) {
+        super(level, x, y);
     }
     
     public boolean canBeEntered() {

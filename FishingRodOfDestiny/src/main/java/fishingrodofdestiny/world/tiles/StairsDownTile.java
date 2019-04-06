@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
  */
 public class StairsDownTile extends StairsTile {
 
-    public StairsDownTile(Level inLevel) {
-        super(inLevel);
+    public StairsDownTile(Level level, int x, int y) {
+        super(level, x, y);
     }
     
     public void draw(GraphicsContext context, int x, int y, int size) {

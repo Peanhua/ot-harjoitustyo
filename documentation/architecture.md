@@ -8,8 +8,12 @@ Basic architecture is shown below:
     <th>Package</th><th>Description</th>
   </tr>
   <tr>
+    <td>fishingrodofdestiny.settings</td>
+    <td>User settings (keyboard mapping etc).</td>
+  </tr>
+  <tr>
     <td>fishingrodofdestiny.ui</td>
-    <td>The user interface base</td>
+    <td>The user interface base.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.ui.screens</td>

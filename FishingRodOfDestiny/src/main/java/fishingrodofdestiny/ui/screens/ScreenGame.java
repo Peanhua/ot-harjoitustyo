@@ -5,13 +5,17 @@
  */
 package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
 import fishingrodofdestiny.world.Game;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,11 +25,13 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public class ScreenGame extends Screen {
-    private Game game;
+    private Game      game;
+    private LevelView levelView;
     
     public ScreenGame(Game game, Screen parent, Stage stage) {
         super(parent, stage);
-        this.game = game;
+        this.game      = game;
+        this.levelView = null;
     }
 
     @Override
@@ -49,11 +55,32 @@ public class ScreenGame extends Screen {
         leftbox.getChildren().add(buttons);
         
         
-        LevelView lview = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),
-                                        (int) scene.getHeight());
-        hb.getChildren().add(lview.createUserInterface());
-        lview.setLevel(this.game.getPlayer().getLocation().getContainerTile().getInLevel());
+        this.levelView = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),
+                                       (int) scene.getHeight());
+        hb.getChildren().add(this.levelView.createUserInterface());
+        this.levelView.setLevel(this.game.getPlayer().getLocation().getContainerTile().getLevel());
+        
+        this.setKeyboardHandlers(root);
         
         root.getChildren().add(hb);
+    }
+
+    
+    private void setKeyboardHandlers(Node root) {
+        root.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            KeyboardSettings settings = KeyboardSettings.getInstance();
+            GameObject.Action action = settings.getAction(event.getCode());
+            if (action == null) {
+                return;
+            }
+            
+            GameObject player = this.game.getPlayer();
+            if (player == null) {
+                return;
+            }
+            
+            this.game.getPlayer().act(action);
+            this.levelView.refresh();
+        });
     }
 }

@@ -46,6 +46,13 @@ public class Level {
     }
     
     public Tile getTile(int x, int y) {
+        if (x < 0 || x >= this.width) {
+            return null;
+        }
+        if (y < 0 || y >= this.height) {
+            return null;
+        }
+        
         return this.tiles.get(y * this.width + x);
     }
     

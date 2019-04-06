@@ -14,6 +14,14 @@ import javafx.scene.paint.Color;
  * @author joyr
  */
 public class GameObject {
+    
+    public enum Action {
+        MOVE_NORTH,
+        MOVE_SOUTH,
+        MOVE_WEST,
+        MOVE_EAST
+    };
+    
     private String   name;
     private int      maxHitpoints;
     private int      currentHitpoints;
@@ -86,5 +94,9 @@ public class GameObject {
     public void draw(GraphicsContext context, int x, int y, int size) {
         context.setFill(Color.CADETBLUE);
         context.fillRect(x, y, size, size);
+    }
+    
+    
+    public void act(Action action) {
     }
 }

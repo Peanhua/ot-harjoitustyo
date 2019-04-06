@@ -25,12 +25,17 @@ public abstract class LevelGenerator {
 
     protected void createLevelBorders(Level level) {
         for (int x = 0; x < this.width; x++) {
-            level.setTile(x, 0, new WallTile(level));
-            level.setTile(x, this.height - 1, new WallTile(level));
+            int y = 0;
+            level.setTile(x, y, new WallTile(level, x, y));
+            y = this.height - 1;
+            level.setTile(x, y, new WallTile(level, x, y));
         }
+        
         for (int y = 1; y < this.height - 1; y++) {
-            level.setTile(0, y, new WallTile(level));
-            level.setTile(this.width - 1, y, new WallTile(level));
+            int x = 0;
+            level.setTile(x, y, new WallTile(level, x, y));
+            x = this.width - 1;
+            level.setTile(x, y, new WallTile(level, x, y));
         }
     }        
     
