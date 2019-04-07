@@ -1,7 +1,7 @@
 # Architecture of The Fishing Rod of Destiny
 
 <div>Basic architecture is shown below:</div>
-<div><img src="architecture.svg" alt="Architecture" width="400" /></div>
+<div><img src="architecture.svg" alt="Architecture" width="700" /></div>
 <table>
   <tr>
     <th>Package</th><th>Description</th>
@@ -52,7 +52,7 @@ During an active on-going game, the user interface handles updating the screen b
 
 Application logic is currently contained in the *fishingrodofdestiny.world* and its sub-packages. A single instance of a *Game* holds a single game and its state. A game contains levels. A level defines (class *Level*) one section of the cave, and can be thought to be like a floor in a building, the player starts from the top floor and descends down to bottom floor (and then back up to top floor). A level is made of 2d grid of adjacent tiles (class *Tile*), each tile having the exact same dimensions. A tile contains game objects (class *GameObject*), and game objects can contain other game objects. A game object is a movable object, whereas a tile is a static object.
 
-The game advances when player picks the next action to be performed by the player character (class *Player*, instance of *GameObject*). The *tick()* method is called on the *Game* object, which in turn selects the levels to process, the selection is based on the location of the player character, only nearby levels are processed. The levels then calls the *tick()* methods of all the game objects in the level, and the game objects do whatever they are destined to do. For example the player character might want to move one step to the east.
+The game advances when player picks the next action to be performed by the player character (class *Player*, instance of *GameObject*). The *tick()* method is called on the *Game* object, which in turn selects the levels to process, the selection is based on the location of the player character, only nearby levels are processed. The levels then call the *tick()* method of all of the game objects in the level, and the game objects do whatever they are destined to do. For example the player character might want to move one step to the east.
 
 The game is controlled by the player, and is thus not realtime; the game is not progressing when the player is choosing the next action. This means that triggering the game to progress is done from the user interface. Also the initialization of the game is triggered from the user interface, be it starting a new game or loading a saved game.
 
