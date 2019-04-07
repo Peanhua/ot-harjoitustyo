@@ -28,5 +28,6 @@ Time used for the project.
   <tr><td>     </td><td> 1.0</td><td>User interface.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Graphic assets.</td></tr>
   <tr><td> 7.4.</td><td> 1.0</td><td>Documentation (architecture).</td></tr>
-  <tr><th>Total</th><th>36.5</th><th></th></tr>
+  <tr><td>     </td><td> 1.0</td><td>Game logic and some refactoring.</td></tr>
+  <tr><th>Total</th><th>37.5</th><th></th></tr>
 </table>
