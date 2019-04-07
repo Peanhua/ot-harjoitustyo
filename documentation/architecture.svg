@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="49cm" height="20cm" viewBox="240 223 963 399" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="49cm" height="20cm" viewBox="240 224 963 398" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="274" y="246" width="189.1" height="28"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="274" y="246" width="189.1" height="28"/>
@@ -62,7 +62,7 @@
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="586" y="243" width="250.7" height="28"/>
     <rect style="fill: #ffffff" x="586" y="225" width="30" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="586" y="225" width="30" height="18"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="592" y="260.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="592" y="260.9">
       <tspan x="592" y="260.9">fishingrodofdestiny.ui.screens </tspan>
     </text>
   </g>
@@ -71,7 +71,7 @@
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="242" y="533" width="258.4" height="28"/>
     <rect style="fill: #ffffff" x="242" y="515" width="30" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="242" y="515" width="30" height="18"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="248" y="550.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="248" y="550.9">
       <tspan x="248" y="550.9">fishingrodofdestiny.world.tiles </tspan>
     </text>
   </g>
@@ -120,7 +120,7 @@
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="956" y="414" width="235.3" height="28"/>
     <rect style="fill: #ffffff" x="956" y="396" width="30" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="956" y="396" width="30" height="18"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="962" y="431.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="962" y="431.9">
       <tspan x="962" y="431.9">fishingrodofdestiny.settings </tspan>
     </text>
   </g>
@@ -144,7 +144,7 @@
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="639" y="593" width="235.3" height="28"/>
     <rect style="fill: #ffffff" x="639" y="575" width="30" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="639" y="575" width="30" height="18"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="645" y="610.9">
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="645" y="610.9">
       <tspan x="645" y="610.9">fishingrodofdestiny.observer </tspan>
     </text>
   </g>
