@@ -14,6 +14,18 @@ import java.time.LocalDateTime;
  */
 public abstract class Highscore implements Comparable<Highscore> {
     
+    public enum Type {
+        SCORE;
+        
+        @Override
+        public String toString() {
+            switch (this) {
+                case SCORE: return "Score";
+                default:    return "Unknown";
+            }
+        }
+    };
+    
     private String        name;
     private int           points;
     private LocalDateTime endTimestamp;
@@ -22,6 +34,12 @@ public abstract class Highscore implements Comparable<Highscore> {
         this.name         = fromGame.getPlayer().getCapitalizedName();
         this.points       = -1;
         this.endTimestamp = LocalDateTime.now();
+    }
+    
+    public Highscore(String name, int points, LocalDateTime endTimestamp) {
+        this.name         = name;
+        this.points       = points;
+        this.endTimestamp = endTimestamp;
     }
     
     protected abstract int calculatePoints(Game fromGame);

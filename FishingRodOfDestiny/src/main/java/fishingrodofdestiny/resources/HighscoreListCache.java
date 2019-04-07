@@ -5,6 +5,9 @@
  */
 package fishingrodofdestiny.resources;
 
+import fishingrodofdestiny.dao.FileHighscoreDao;
+import fishingrodofdestiny.dao.HighscoreDao;
+import fishingrodofdestiny.highscores.Highscore;
 import fishingrodofdestiny.highscores.HighscoreList;
 import java.util.HashMap;
 
@@ -23,24 +26,26 @@ public class HighscoreListCache {
     }
     
     
-    private HashMap<String, HighscoreList> highscoreLists;
+    private HashMap<Highscore.Type, HighscoreList> highscoreLists;
+    private HighscoreDao dao;
   
     private HighscoreListCache() {
         this.highscoreLists = new HashMap<>();
+        this.dao = new FileHighscoreDao("./highscores");
     }
     
-    public HighscoreList get(String name) {
-        HighscoreList list = this.highscoreLists.get(name);
+    public HighscoreList get(Highscore.Type type) {
+        HighscoreList list = this.highscoreLists.get(type);
         if (list != null) {
             return list;
         }
         
-        if (this.highscoreLists.containsKey(name)) {
+        if (this.highscoreLists.containsKey(type)) {
             return null;
         }
         
-        list = new HighscoreList(name);
-        this.highscoreLists.put(name, list);
+        list = new HighscoreList(this.dao, type);
+        this.highscoreLists.put(type, list);
         
         return list;
     }

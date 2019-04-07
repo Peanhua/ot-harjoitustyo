@@ -7,6 +7,7 @@ package fishingrodofdestiny.highscores;
 
 import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.Player;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -17,6 +18,11 @@ public class ScoreBasedHighscore extends Highscore {
         super(fromGame);
         this.setPoints(this.calculatePoints(fromGame));
     }
+    
+    public ScoreBasedHighscore(String name, int points, LocalDateTime endTimestamp) {
+        super(name, points, endTimestamp);
+    }
+
 
     @Override
     protected final int calculatePoints(Game fromGame) {

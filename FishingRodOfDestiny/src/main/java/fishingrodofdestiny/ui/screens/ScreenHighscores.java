@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.highscores.Highscore;
 import fishingrodofdestiny.highscores.HighscoreList;
 import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.ui.widgets.HighscoreListView;
@@ -13,9 +14,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -33,17 +31,11 @@ public class ScreenHighscores extends Screen {
     protected void setup(Group root, Scene scene) {
         VBox vb = new VBox(0);
 
-
-        Image logo = new Image("file:gfx/Logo.png", false);
-        ImageView logov = new ImageView(logo);
-        logov.setTranslateX((scene.getWidth() - logo.getWidth()) / 2);
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
+        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
         
-        Region spacer = new Region();
-        spacer.setMinHeight(50);
-        
-        vb.getChildren().addAll(logov, spacer);
-
-        HighscoreList hslist = HighscoreListCache.getInstance().get("Score");
+        HighscoreList hslist = HighscoreListCache.getInstance().get(Highscore.Type.SCORE);
         HighscoreListView hlv = new HighscoreListView(hslist);
         vb.getChildren().add(hlv.createUserInterface());
         

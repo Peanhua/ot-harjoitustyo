@@ -121,7 +121,7 @@ public class ScreenGame extends Screen {
         Highscore hs = new ScoreBasedHighscore(this.game);
 
         HighscoreListCache hc = HighscoreListCache.getInstance();
-        HighscoreList hslist = hc.get("Score");
+        HighscoreList hslist = hc.get(Highscore.Type.SCORE);
         hslist.add(hs);
         
         this.close();

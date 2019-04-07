@@ -30,5 +30,6 @@ Time used for the project.
   <tr><td> 7.4.</td><td> 1.0</td><td>Documentation (architecture).</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Game logic and some refactoring.</td></tr>
   <tr><td>     </td><td> 1.5</td><td>Highscore system and user interface.</td></tr>
-  <tr><th>Total</th><th>39.0</th><th></th></tr>
+  <tr><td>     </td><td> 1.0</td><td>DAO system and file based implementation for highscores.</td></tr>
+  <tr><th>Total</th><th>40.0</th><th></th></tr>
 </table>
