@@ -5,6 +5,10 @@
  */
 package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.highscores.Highscore;
+import fishingrodofdestiny.highscores.HighscoreList;
+import fishingrodofdestiny.highscores.ScoreBasedHighscore;
+import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
@@ -56,7 +60,7 @@ public class ScreenGame extends Screen {
         buttons.setAlignment(Pos.CENTER);
 
         Button quit = new Button("Quit");
-        quit.setOnAction(e-> this.close());
+        quit.setOnAction(e-> this.endGame());
         buttons.getChildren().addAll(quit);
             
         leftbox.getChildren().add(buttons);
@@ -110,5 +114,16 @@ public class ScreenGame extends Screen {
         if (tile != null) {
             this.levelView.setLevel(tile.getLevel());
         }
+    }
+    
+    
+    private void endGame() {
+        Highscore hs = new ScoreBasedHighscore(this.game);
+
+        HighscoreListCache hc = HighscoreListCache.getInstance();
+        HighscoreList hslist = hc.get("Score");
+        hslist.add(hs);
+        
+        this.close();
     }
 }

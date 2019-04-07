@@ -23,7 +23,7 @@ public class NonPlayerCharacter extends Character {
 
     @Override
     protected boolean isValidAttackTarget(GameObject target) {
-        if (! super.isValidAttackTarget(target)) {
+        if (!super.isValidAttackTarget(target)) {
             return false;
         }
         

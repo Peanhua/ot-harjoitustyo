@@ -64,6 +64,9 @@ public class UserInterfaceFactory {
         return rv;
     }
 
+    public static Text createLargeText(String contents) {
+        return UserInterfaceFactory.createText(contents, 20);
+    }
     
     public static Text createText(String contents) {
         return UserInterfaceFactory.createText(contents, 16);

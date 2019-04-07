@@ -5,6 +5,10 @@
  */
 package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.highscores.HighscoreList;
+import fishingrodofdestiny.resources.HighscoreListCache;
+import fishingrodofdestiny.ui.widgets.HighscoreListView;
+import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -39,7 +43,11 @@ public class ScreenHighscores extends Screen {
         
         vb.getChildren().addAll(logov, spacer);
 
-
+        HighscoreList hslist = HighscoreListCache.getInstance().get("Score");
+        HighscoreListView hlv = new HighscoreListView(hslist);
+        vb.getChildren().add(hlv.createUserInterface());
+        
+        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
 
         VBox buttons = new VBox(10);
         buttons.setAlignment(Pos.CENTER);
