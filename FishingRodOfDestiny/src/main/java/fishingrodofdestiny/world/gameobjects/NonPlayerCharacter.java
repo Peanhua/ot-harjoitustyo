@@ -21,4 +21,12 @@ public class NonPlayerCharacter extends Character {
         return "NonPlayerCharacter(" + super.toString() + ")";
     }
 
+    @Override
+    protected boolean isValidAttackTarget(GameObject target) {
+        if (! super.isValidAttackTarget(target)) {
+            return false;
+        }
+        
+        return target instanceof Player;
+    }
 }

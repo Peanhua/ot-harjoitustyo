@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.tiles.Tile;
+
 /**
  *
  * @author joyr
@@ -17,7 +19,21 @@ public class SimpleAiController extends Controller {
 
     @Override
     public GameObject.Action getNextAction() {
-        return null;
+        return this.tryToAttack();
     }
     
+    protected GameObject.Action tryToAttack() {
+        Tile tile = this.getOwner().getLocation().getContainerTile();
+        if (tile == null) {
+            return null;
+        }
+        
+        for (GameObject object : tile.getInventory().getObjects()) {
+            if (object instanceof Player) {
+                return GameObject.Action.ATTACK;
+            }
+        }
+        
+        return null;
+    }
 }

@@ -11,6 +11,7 @@ import fishingrodofdestiny.ui.widgets.CharacterStatus;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.tiles.Tile;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -109,6 +110,9 @@ public class ScreenGame extends Screen {
     
     
     private void onPlayerMoved() {
-        this.levelView.setLevel(this.game.getPlayer().getLocation().getContainerTile().getLevel());
+        Tile tile = this.game.getPlayer().getLocation().getContainerTile();
+        if (tile != null) {
+            this.levelView.setLevel(tile.getLevel());
+        }
     }
 }

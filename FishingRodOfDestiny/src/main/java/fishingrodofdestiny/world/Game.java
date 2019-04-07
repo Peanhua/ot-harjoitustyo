@@ -55,6 +55,7 @@ public class Game {
         this.connectStairs();
         
         List<StairsTile> stairs = this.getLevel(0).getStairsUp();
+        player.setHitpoints(player.getMaxHitpoints());
         player.getLocation().moveTo(stairs.get(0));
     }
     
@@ -106,7 +107,7 @@ public class Game {
     
     
     public final void tick() {
-        if (this.player == null) {
+        if (this.player == null || !this.player.isAlive()) {
             return;
         }
         

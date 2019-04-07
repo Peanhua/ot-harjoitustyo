@@ -58,33 +58,44 @@ public abstract class Character extends GameObject {
         if (action == null) {
             return;
         }
-        
+
         switch (action) {
+            case NONE:
+                this.actionWait();
+                break;
             case MOVE_NORTH:
-                this.move(0, -1);
+                this.actionMove(0, -1);
                 break;
             case MOVE_SOUTH:
-                this.move(0, 1);
+                this.actionMove(0, 1);
                 break;
             case MOVE_WEST:
-                this.move(-1, 0);
+                this.actionMove(-1, 0);
                 break;
             case MOVE_EAST:
-                this.move(1, 0);
+                this.actionMove(1, 0);
                 break;
             case ACTIVATE_TILE:
-                Tile tile = this.getLocation().getContainerTile();
-                if (tile != null) {
-                    tile.activate(this);
-                }
+                this.actionActivateTile();
                 break;
             case ATTACK:
-                this.attack();
+                this.actionAttack();
                 break;
         }
     }
     
-    private void move(int deltaX, int deltaY) {
+    private void actionWait() {
+        this.setMessage("You wait.");
+    }
+    
+    private void actionActivateTile() {
+        Tile tile = this.getLocation().getContainerTile();
+        if (tile != null) {
+            tile.activate(this);
+        }
+    }
+    
+    private void actionMove(int deltaX, int deltaY) {
         Tile myTile = this.getLocation().getContainerTile();
         if (myTile == null) {
             return;
@@ -107,7 +118,11 @@ public abstract class Character extends GameObject {
         this.getLocation().moveTo(targetTile);
     }
     
-    private void attack() {
+    protected boolean isValidAttackTarget(GameObject target) {
+        return target != this;
+    }
+    
+    private void actionAttack() {
         Tile tile = this.getLocation().getContainerTile();
         if (tile == null) {
             return;
@@ -118,7 +133,7 @@ public abstract class Character extends GameObject {
                 .getInventory()
                 .getObjects()
                 .stream()
-                .reduce(null, (a, b) -> b != this ? b : a);
+                .reduce(null, (a, b) -> this.isValidAttackTarget(b) ? b : a);
         
         if (target == null) {
             this.setMessage("You attack thin air!");
@@ -127,6 +142,7 @@ public abstract class Character extends GameObject {
         
         int damage = this.getDamage();
         this.setMessage("You hit " + target.getName() + " for " + damage + "!");
+        target.setMessage(this.getCapitalizedName() + " hits you for " + damage + "!");
         target.hit(this, damage);
     }
     

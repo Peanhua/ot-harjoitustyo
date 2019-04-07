@@ -31,6 +31,7 @@ public abstract class GameObject {
     };
     
     private   String     name;
+    private   boolean    isAlive;
     private   int        maxHitpoints;
     private   int        currentHitpoints;
     private   int        weight;
@@ -45,6 +46,7 @@ public abstract class GameObject {
     
     public GameObject(String gfxFilename) {
         this.name             = null;
+        this.isAlive          = true;
         this.maxHitpoints     = 1;
         this.currentHitpoints = 1;
         this.weight           = 1;
@@ -109,9 +111,21 @@ public abstract class GameObject {
     public int getHitpoints() {
         return this.currentHitpoints;
     }
+    
+    public void setHitpoints(int hitpoints) {
+        if (hitpoints < 1) {
+            return;
+        }
+        this.currentHitpoints = Math.min(hitpoints, this.maxHitpoints);
+        this.onChange.notifyObservers();
+    }
 
     public int getMaxHitpoints() {
         return this.maxHitpoints;
+    }
+    
+    public String getCapitalizedName() {
+        return this.getName().substring(0, 1).toUpperCase() + this.getName().substring(1);
     }
     
     public void hit(GameObject instigator, int damage) {
@@ -119,19 +133,26 @@ public abstract class GameObject {
             this.currentHitpoints -= damage;
         } else {
             if (instigator != null) {
-                String name = this.getName().substring(0, 1).toUpperCase() + this.getName().substring(1);
-                instigator.setMessage(instigator.getMessage() + " " + name + " is destroyed.");
+                instigator.setMessage(instigator.getMessage() + " " + this.getCapitalizedName() + " is destroyed.");
             }
             this.currentHitpoints = 0;
             this.destroy(instigator);
         }
+        this.onChange.notifyObservers();
     }
     
     public void destroy(GameObject instigator) {
+        this.setMessage(this.getMessage() + " You die!");
         if (instigator != null) {
             instigator.onDestroyTarget(this);
         }
+        this.isAlive = false;
         this.getLocation().moveTo((Tile) null);
+        this.onChange.notifyObservers();
+    }
+    
+    public boolean isAlive() {
+        return this.isAlive;
     }
     
     // Called when this destroys the given target:
@@ -188,9 +209,9 @@ public abstract class GameObject {
         if (this.nextAction == null && this.controller != null) {
             this.nextAction = this.controller.getNextAction();
         }
-        if (this.nextAction != Action.NONE) {
+        if (this.nextAction != null) {
             this.act(this.nextAction);
-            this.nextAction = Action.NONE;
+            this.nextAction = null;
         }
     }
 }
