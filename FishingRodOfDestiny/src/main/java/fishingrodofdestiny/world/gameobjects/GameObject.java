@@ -80,13 +80,18 @@ public abstract class GameObject {
         this.onMessage.addObserver(observer);
     }
     
-    public void setMessage(String message) {
-        this.message = message;
+    public void addMessage(String message) {
+        if (this.message.length() > 0) {
+            this.message += " ";
+        }
+        this.message += message;
         this.onMessage.notifyObservers();
     }
     
-    public String getMessage() {
-        return this.message;
+    public String popMessage() {
+        String rv = this.message;
+        this.message = "";
+        return rv;
     }
     
     
@@ -133,7 +138,7 @@ public abstract class GameObject {
             this.currentHitpoints -= damage;
         } else {
             if (instigator != null) {
-                instigator.setMessage(instigator.getMessage() + " " + this.getCapitalizedName() + " is destroyed.");
+                instigator.addMessage(this.getCapitalizedName() + " is destroyed.");
             }
             this.currentHitpoints = 0;
             this.destroy(instigator);
@@ -142,7 +147,7 @@ public abstract class GameObject {
     }
     
     public void destroy(GameObject instigator) {
-        this.setMessage(this.getMessage() + " You die!");
+        this.addMessage("You die!");
         if (instigator != null) {
             instigator.onDestroyTarget(this);
         }

@@ -32,7 +32,7 @@ public abstract class StairsTile extends Tile {
     @Override
     public void activate(GameObject object) {
         if (this.target != null) {
-            object.setMessage("You climb the stairs.");
+            object.addMessage("You climb the stairs.");
             object.getLocation().moveTo(this.target);
         }
     }

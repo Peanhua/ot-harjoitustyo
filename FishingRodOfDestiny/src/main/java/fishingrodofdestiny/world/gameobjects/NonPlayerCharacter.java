@@ -29,4 +29,9 @@ public class NonPlayerCharacter extends Character {
         
         return target instanceof Player;
     }
+
+    @Override
+    public void addMessage(String message) {
+        // Do nothing here, because NPCs don't have any use for messages.
+    }
 }

@@ -62,11 +62,8 @@ public class ScreenGame extends Screen {
         leftbox.getChildren().add(buttons);
 
         
-        this.message = UserInterfaceFactory.createText("");
+        this.message = UserInterfaceFactory.createText("Welcome to The Fishing Rod of Destiny!");
         main.getChildren().add(this.message);
-        this.game.getPlayer().listenOnMessage(() -> {
-            this.message.setText(this.game.getPlayer().getMessage());
-        });
 
         
         this.levelView = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),
@@ -82,8 +79,6 @@ public class ScreenGame extends Screen {
         
         root.getChildren().add(main);
 
-        
-        this.game.getPlayer().setMessage("Welcome to The Fishing Rod of Destiny!");
         this.onPlayerMoved();
         this.levelView.refresh();
     }
@@ -104,6 +99,7 @@ public class ScreenGame extends Screen {
 
             this.game.getPlayer().setNextAction(action);
             this.game.tick();
+            this.message.setText(this.game.getPlayer().popMessage());
             this.levelView.refresh();
         });
     }

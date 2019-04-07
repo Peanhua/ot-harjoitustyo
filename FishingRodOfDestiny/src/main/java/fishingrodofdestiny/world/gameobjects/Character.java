@@ -53,8 +53,6 @@ public abstract class Character extends GameObject {
     
     @Override
     public void act(Action action) {
-        this.setMessage("");
-        
         if (action == null) {
             return;
         }
@@ -85,7 +83,7 @@ public abstract class Character extends GameObject {
     }
     
     private void actionWait() {
-        this.setMessage("You wait.");
+        this.addMessage("You wait.");
     }
     
     private void actionActivateTile() {
@@ -136,13 +134,13 @@ public abstract class Character extends GameObject {
                 .reduce(null, (a, b) -> this.isValidAttackTarget(b) ? b : a);
         
         if (target == null) {
-            this.setMessage("You attack thin air!");
+            this.addMessage("You attack thin air!");
             return;
         }
         
         int damage = this.getDamage();
-        this.setMessage("You hit " + target.getName() + " for " + damage + "!");
-        target.setMessage(this.getCapitalizedName() + " hits you for " + damage + "!");
+        this.addMessage("You hit " + target.getName() + " for " + damage + "!");
+        target.addMessage(this.getCapitalizedName() + " hits you for " + damage + "!");
         target.hit(this, damage);
     }
     
