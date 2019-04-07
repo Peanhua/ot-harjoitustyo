@@ -16,16 +16,17 @@ Time used for the project.
   <tr><td>29.3.</td><td> 3.0</td><td>User interface framework and new game screen functionality.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Test code and some fixes to make all the tests pass.</td></tr>
   <tr><td>31.3.</td><td> 1.5</td><td>User interface (new game and in-game).</td></tr>
-  <tr><td>1.4. </td><td> 2.0</td><td>Level generator and level drawing basics.</td></tr>
-  <tr><td>5.4. </td><td> 0.5</td><td>User interface layout and refactoring.</td></tr>
+  <tr><td> 1.4.</td><td> 2.0</td><td>Level generator and level drawing basics.</td></tr>
+  <tr><td> 5.4.</td><td> 0.5</td><td>User interface layout and refactoring.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Game logic and some refactoring.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Setup checkstyle, fixes to get rid of errors and warnings from checkstyle.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Documentation.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Tests and fix bug found with them.</td></tr>
-  <tr><td>6.4. </td><td> 1.0</td><td>Documentation.</td></tr>
+  <tr><td> 6.4.</td><td> 1.0</td><td>Documentation.</td></tr>
   <tr><td>     </td><td> 5.0</td><td>Game logic and some refactoring.</td></tr>
   <tr><td>     </td><td> 1.5</td><td>Tests.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>User interface.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Graphic assets.</td></tr>
-  <tr><th>Total</th><th>35.5</th><th></th></tr>
+  <tr><td> 7.4.</td><td> 1.0</td><td>Documentation (architecture).</td></tr>
+  <tr><th>Total</th><th>36.5</th><th></th></tr>
 </table>
