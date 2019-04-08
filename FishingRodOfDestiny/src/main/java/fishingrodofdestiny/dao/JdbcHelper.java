@@ -122,18 +122,28 @@ public class JdbcHelper {
     
     private void applyPreparer(PreparedStatement stmt, StatementPreparer preparer) {
         if (preparer != null) {
-            preparer.prepare(stmt);
+            try {
+                preparer.prepare(stmt);
+            } catch (Exception e) {
+                System.out.println("JdbcHelper.applyPreparer(): " + e);
+            }
         }
     }
 
         
     private Integer getGeneratedKey(PreparedStatement stmt) {
         Integer id = null;
-        ResultSet generatedKeys = stmt.getGeneratedKeys();
-        if (generatedKeys.next()) {
-            id = generatedKeys.getInt(1);
+        try {
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                id = generatedKeys.getInt(1);
+            }
+            generatedKeys.close();
+        } catch (Exception e) {
+            System.out.println("JdbcHelper.getGeneratedKey(): " + e);
+            return null;
         }
-        generatedKeys.close();
+
         return id;
     }
 }

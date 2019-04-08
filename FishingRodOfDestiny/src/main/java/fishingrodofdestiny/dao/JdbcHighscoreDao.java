@@ -27,7 +27,7 @@ public class JdbcHighscoreDao extends HighscoreDao {
     private String getLoadSql(Highscore.Type type) {
         // This method exists only because of checkstyle.
         return
-            "SELECT   highscore_id," +
+            "SELECT highscore_id," +
             "       name," +
             "       points," +
             "       game_ended" +
