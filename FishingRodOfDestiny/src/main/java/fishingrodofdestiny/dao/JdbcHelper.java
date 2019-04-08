@@ -46,15 +46,12 @@ public class JdbcHelper {
         if (this.rowSetFactory == null) {
             return null;
         }
-        
-        
+
         try {
             Connection connection = DriverManager.getConnection(this.databaseUrl);
 
             PreparedStatement stmt = connection.prepareStatement(sql);
-            if (preparer != null) {
-                preparer.prepare(stmt);
-            }
+            this.applyPreparer(stmt, preparer);
             ResultSet rs = stmt.executeQuery();
 
             CachedRowSet rv = this.rowSetFactory.createCachedRowSet();
@@ -82,9 +79,7 @@ public class JdbcHelper {
             Connection connection = DriverManager.getConnection(this.databaseUrl);
             
             PreparedStatement stmt = connection.prepareStatement(sql);
-            if (preparer != null) {
-                preparer.prepare(stmt);
-            }
+            this.applyPreparer(stmt, preparer);
             stmt.executeUpdate();
 
             stmt.close();
@@ -108,18 +103,11 @@ public class JdbcHelper {
             Connection connection = DriverManager.getConnection(this.databaseUrl);
             
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            if (preparer != null) {
-                preparer.prepare(stmt);
-            }
+            this.applyPreparer(stmt, preparer);
             stmt.executeUpdate();
-            
-            Integer id = null;
-            ResultSet generatedKeys = stmt.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                id = generatedKeys.getInt(1);
-            }
 
-            generatedKeys.close();
+            Integer id = this.getGeneratedKey(stmt);
+            
             stmt.close();
             connection.close();
 
@@ -129,5 +117,23 @@ public class JdbcHelper {
             System.out.println("JdbcHelper.insert(" + sql + "): " + e);
             return null;
         }
+    }
+
+    
+    private void applyPreparer(PreparedStatement stmt, StatementPreparer preparer) {
+        if (preparer != null) {
+            preparer.prepare(stmt);
+        }
+    }
+
+        
+    private Integer getGeneratedKey(PreparedStatement stmt) {
+        Integer id = null;
+        ResultSet generatedKeys = stmt.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            id = generatedKeys.getInt(1);
+        }
+        generatedKeys.close();
+        return id;
     }
 }

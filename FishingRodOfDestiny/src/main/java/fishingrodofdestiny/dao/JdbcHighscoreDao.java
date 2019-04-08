@@ -23,25 +23,26 @@ public class JdbcHighscoreDao extends HighscoreDao {
         super();
         this.jdbc = new JdbcHelper(databaseUrl);
     }
+
+    private String getLoadSql(Highscore.Type type) {
+        // This method exists only because of checkstyle.
+        return
+            "SELECT   highscore_id," +
+            "       name," +
+            "       points," +
+            "       game_ended" +
+            "  FROM Highscores" +
+            " WHERE highscore_type = '" + type + "'"
+            ;
+    }
     
     @Override
     protected void load(Highscore.Type type) {
         List<Highscore> list = this.getHighscores(type);
         list.clear();
         
-        CachedRowSet rs = this.jdbc.query(
-                "SELECT   highscore_id,"
-                + "       name,"
-                + "       points,"
-                + "       game_ended"
-                + "  FROM Highscores"
-                + " WHERE highscore_type = '" + type + "'"
-        );
-        if (rs == null) {
-            return;
-        }
-        
         try {
+            CachedRowSet rs = this.jdbc.query(getLoadSql(type));
             while (rs.next()) {
                 Integer highscoreId     = rs.getInt("highscore_id");
                 String  name            = rs.getString("name");
