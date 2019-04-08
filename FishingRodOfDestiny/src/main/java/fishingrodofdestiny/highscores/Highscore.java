@@ -26,23 +26,34 @@ public abstract class Highscore implements Comparable<Highscore> {
         }
     };
     
+    private Integer       highscoreId;
     private String        name;
     private int           points;
     private LocalDateTime endTimestamp;
     
     public Highscore(Game fromGame) {
+        this.highscoreId  = null;
         this.name         = fromGame.getPlayer().getCapitalizedName();
         this.points       = -1;
         this.endTimestamp = LocalDateTime.now();
     }
     
-    public Highscore(String name, int points, LocalDateTime endTimestamp) {
+    public Highscore(Integer highscoreId, String name, int points, LocalDateTime endTimestamp) {
+        this.highscoreId  = highscoreId;
         this.name         = name;
         this.points       = points;
         this.endTimestamp = endTimestamp;
     }
     
     protected abstract int calculatePoints(Game fromGame);
+    
+    public Integer getId() {
+        return this.highscoreId;
+    }
+    
+    public void setId(Integer id) {
+        this.highscoreId = id;
+    }
     
     public String getName() {
         return this.name;

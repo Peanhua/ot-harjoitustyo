@@ -57,14 +57,7 @@ public class FileHighscoreDao implements HighscoreDao {
                 int    points = Integer.parseInt(reader.nextLine());
                 LocalDateTime timestamp = LocalDateTime.parse(reader.nextLine());
                 
-                Highscore hs = null;
-                
-                switch (type) {
-                    case SCORE:
-                        hs = new ScoreBasedHighscore(name, points, timestamp);
-                        break;
-                }
-                
+                Highscore hs = this.createFromData(type, name, points, timestamp);
                 if (hs != null) {
                     list.add(hs);
                 }
@@ -73,6 +66,17 @@ public class FileHighscoreDao implements HighscoreDao {
         }
     }
     
+    private Highscore createFromData(Highscore.Type type, String name, int points, LocalDateTime timestamp) {
+        Highscore hs = null;
+
+        switch (type) {
+            case SCORE:
+                hs = new ScoreBasedHighscore(null, name, points, timestamp);
+                break;
+        }
+        
+        return hs;
+    }    
     private final void save(Highscore.Type type) {
         List<Highscore> list = this.getHighscores(type);
         try {

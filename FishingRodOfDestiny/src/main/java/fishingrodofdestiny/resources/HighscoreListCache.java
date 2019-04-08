@@ -7,6 +7,7 @@ package fishingrodofdestiny.resources;
 
 import fishingrodofdestiny.dao.FileHighscoreDao;
 import fishingrodofdestiny.dao.HighscoreDao;
+import fishingrodofdestiny.dao.JdbcHighscoreDao;
 import fishingrodofdestiny.highscores.Highscore;
 import fishingrodofdestiny.highscores.HighscoreList;
 import java.util.HashMap;
@@ -31,7 +32,8 @@ public class HighscoreListCache {
   
     private HighscoreListCache() {
         this.highscoreLists = new HashMap<>();
-        this.dao = new FileHighscoreDao("./highscores");
+        //this.dao = new FileHighscoreDao("./highscores");
+        this.dao = new JdbcHighscoreDao("jdbc:sqlite:FishingRodOfDestiny.db");
     }
     
     public HighscoreList get(Highscore.Type type) {

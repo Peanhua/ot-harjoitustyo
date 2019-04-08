@@ -19,8 +19,8 @@ public class ScoreBasedHighscore extends Highscore {
         this.setPoints(this.calculatePoints(fromGame));
     }
     
-    public ScoreBasedHighscore(String name, int points, LocalDateTime endTimestamp) {
-        super(name, points, endTimestamp);
+    public ScoreBasedHighscore(Integer highscoreId, String name, int points, LocalDateTime endTimestamp) {
+        super(highscoreId, name, points, endTimestamp);
     }
 
 
