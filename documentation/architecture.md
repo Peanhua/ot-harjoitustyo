@@ -2,13 +2,29 @@
 
 <div>Basic architecture is shown below:</div>
 <div><img src="architecture.svg" alt="Architecture" width="700" /></div>
+
+## Packages
+<div>All the packages are shown below:</div>
+<div><img src="packages.svg" alt="Packages" width="700" /></div>
 <table>
   <tr>
     <th>Package</th><th>Description</th>
   </tr>
   <tr>
+    <td>fishingrodofdestiny.dao</td>
+    <td>Data access objects and their support classes.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.highscores</td>
+    <td>Highscore handling. Each type of highscore has its own class containing the method to calculate the points for that particular type of highscore.</td>
+  </tr>
+  <tr>
     <td>fishingrodofdestiny.observer</td>
     <td>Helper classes to implement observer pattern.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.resources</td>
+    <td>Resource loading and saving caches, all caches use the singleton pattern.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.settings</td>
