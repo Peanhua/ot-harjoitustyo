@@ -11,6 +11,7 @@ import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -32,6 +34,9 @@ public class ScreenNewGame extends Screen {
     private TextField        name;
     private ToggleGroup      rescueToggleGroup;
     private PointDistributor pointDistributor;
+    private TextField        randomSeed;
+    private Random           random;
+    private Button           startButton;
     
     public ScreenNewGame(Screen parent, Stage stage) {
         super(parent, stage);
@@ -39,7 +44,11 @@ public class ScreenNewGame extends Screen {
         this.name              = null;
         this.rescueToggleGroup = null;
         this.pointDistributor  = null;
+        this.randomSeed        = null;
+        this.random            = new Random();
+        this.startButton       = null;
     }
+    
 
     @Override
     protected void setup(Group root, Scene scene) {
@@ -50,7 +59,7 @@ public class ScreenNewGame extends Screen {
         vb.getChildren().add(UserInterfaceFactory.createTitle("START NEW GAME"));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        this.name = new TextField();
+        this.name = this.createNameField();
         vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Name:", this.name));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
@@ -61,14 +70,26 @@ public class ScreenNewGame extends Screen {
         vb.getChildren().add(this.setupRescueTarget());
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
 
-        TextField randseed = new TextField();
-        vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Random seed:", randseed));
+        this.randomSeed = new TextField("" + this.random.nextInt(1000000));
+        vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Random seed:", this.randomSeed));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
         vb.getChildren().add(this.setupButtons());
         
         root.getChildren().add(vb);
     }
+    
+    
+    private TextField createNameField() {
+        TextField field = new TextField();
+        field.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (this.startButton != null) {
+                this.startButton.setDisable(this.name.getText().length() == 0);
+            }
+        });
+        return field;
+    }
+    
 
     private Node setupRescueTarget() {
         String[]            labels  = { "Rescue princess:",         "Rescue prince:"         };
@@ -88,7 +109,9 @@ public class ScreenNewGame extends Screen {
         List<Button> buttons = new ArrayList<>();
         Node rv = UserInterfaceFactory.createButtonRow(labels, buttons);
         buttons.get(0).setOnAction(e-> this.close());
-        buttons.get(1).setOnAction(e-> this.startNewGame());
+        this.startButton = buttons.get(1);
+        this.startButton.setOnAction(e-> this.startNewGame());
+        this.startButton.setDisable(true);
         return rv;
     }
     
@@ -103,7 +126,7 @@ public class ScreenNewGame extends Screen {
         this.close();
         
         Game.RescueTarget rtarget = (Game.RescueTarget) this.rescueToggleGroup.getSelectedToggle().getUserData();
-        Game game = new Game(player, rtarget);
+        Game game = new Game(Long.parseLong(this.randomSeed.getText()), this.player, rtarget);
         Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
     }

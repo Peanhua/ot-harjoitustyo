@@ -40,14 +40,16 @@ public class Game {
     private Player       player;
     private RescueTarget rescueTarget;
     private List<Level>  levels;
+    private Random       random;
     
-    public Game(Player player, RescueTarget rescueTarget) {
+    public Game(long randomSeed, Player player, RescueTarget rescueTarget) {
         this.player       = player;
         this.rescueTarget = rescueTarget;
         this.levels       = new ArrayList<>();
+        this.random       = new Random(randomSeed);
         
         // TODO: move level generation&setup into cavegenerator class
-        EmptyLevelGenerator elg = new EmptyLevelGenerator(new Random(0), 43, 35); // 43x35 fits the screen without scrolling
+        EmptyLevelGenerator elg = new EmptyLevelGenerator(this.random, 43, 35); // 43x35 fits the screen without scrolling
         for (int i = 0; i < 10; i++) {
             this.addLevel(elg.generateLevel(i));
         }

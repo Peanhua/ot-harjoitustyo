@@ -32,7 +32,7 @@ public class GameTest {
     @Before
     public void setUp() {
         this.player = new Player();
-        this.game = new Game(this.player, Game.RescueTarget.PRINCESS);
+        this.game = new Game(0, this.player, Game.RescueTarget.PRINCESS);
     }
 
     @Test
@@ -66,8 +66,8 @@ public class GameTest {
     
     @Test
     public void plotsDifferBasedOnRescueTarget() {
-        Game game1 = new Game(this.player, Game.RescueTarget.PRINCESS);
-        Game game2 = new Game(this.player, Game.RescueTarget.PRINCE);
+        Game game1 = new Game(0, this.player, Game.RescueTarget.PRINCESS);
+        Game game2 = new Game(0, this.player, Game.RescueTarget.PRINCE);
         
         List<String> plot1 = game1.getPlot();
         List<String> plot2 = game2.getPlot();
