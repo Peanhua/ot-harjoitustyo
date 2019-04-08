@@ -130,7 +130,14 @@ public abstract class GameObject {
     }
     
     public String getCapitalizedName() {
-        return this.getName().substring(0, 1).toUpperCase() + this.getName().substring(1);
+        if (this.getName().length() == 0) {
+            return this.getName();
+        }
+        String rv = this.getName().substring(0, 1).toUpperCase();
+        if (this.getName().length() > 1) {
+            rv += this.getName().substring(1);
+        }
+        return rv;
     }
     
     public void hit(GameObject instigator, int damage) {

@@ -91,4 +91,16 @@ public class GameObjectTest {
         this.object.adjustMaxHitpoints(Integer.MAX_VALUE / 2 + 3);
         assertTrue(this.object.getMaxHitpoints() > 0);
     }
+    
+    @Test
+    public void getCapitalizedNameWorksWithEmptyName() {
+        this.object.setName("");
+        assertTrue(this.object.getCapitalizedName().equals(""));
+    }
+    
+    @Test
+    public void getCapitalizedNameWorksWithShortName() {
+        this.object.setName("x");
+        assertTrue(this.object.getCapitalizedName().equals("X"));
+    }
 }
