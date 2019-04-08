@@ -103,4 +103,28 @@ public class GameObjectTest {
         this.object.setName("x");
         assertTrue(this.object.getCapitalizedName().equals("X"));
     }
+    
+    @Test
+    public void messagesAreRemovedWhenPopped() {
+        this.object.addMessage("first");
+        this.object.popMessage();
+        assertEquals(0, this.object.popMessage().length());
+    }
+    
+    @Test
+    public void multipleMessagesWork() {
+        this.object.addMessage("first");
+        this.object.addMessage("second");
+        this.object.addMessage("third");
+        String msg = this.object.popMessage();
+        assertTrue(msg.contains("first"));
+        assertTrue(msg.contains("second"));
+        assertTrue(msg.contains("third"));
+    }
+    
+    @Test
+    public void objectIsNotAliveAfterHittingItWithEnoughDamage() {
+        this.object.hit(null, this.object.getMaxHitpoints());
+        assertFalse(this.object.isAlive());
+    }
 }
