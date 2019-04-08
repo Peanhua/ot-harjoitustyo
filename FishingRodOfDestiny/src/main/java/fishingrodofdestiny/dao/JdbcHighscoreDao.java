@@ -6,12 +6,8 @@
 package fishingrodofdestiny.dao;
 
 import fishingrodofdestiny.highscores.Highscore;
-import fishingrodofdestiny.highscores.ScoreBasedHighscore;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import javax.sql.rowset.CachedRowSet;
 
@@ -19,29 +15,17 @@ import javax.sql.rowset.CachedRowSet;
  *
  * @author joyr
  */
-public class JdbcHighscoreDao implements HighscoreDao {
+public class JdbcHighscoreDao extends HighscoreDao {
     
-    private HashMap<Highscore.Type, List<Highscore>> highscores;
-    private JdbcHelper jdbc;
+    private final JdbcHelper jdbc;
     
     public JdbcHighscoreDao(String databaseUrl) {
-        this.highscores  = new HashMap<>();
+        super();
         this.jdbc = new JdbcHelper(databaseUrl);
-        for (Highscore.Type type : Highscore.Type.values()) {
-            this.load(type);
-        }
     }
     
-    private List<Highscore> getHighscores(Highscore.Type type) {
-        List<Highscore> list = this.highscores.get(type);
-        if (list == null) {
-            list = new ArrayList<>();
-            this.highscores.put(type, list);
-        }
-        return list;
-    }
-    
-    private final void load(Highscore.Type type) {
+    @Override
+    protected void load(Highscore.Type type) {
         List<Highscore> list = this.getHighscores(type);
         list.clear();
         
@@ -64,13 +48,7 @@ public class JdbcHighscoreDao implements HighscoreDao {
                 int     points          = rs.getInt("points");
                 LocalDateTime gameEnded = LocalDateTime.parse(rs.getString("game_ended"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
-                Highscore hs = null;
-                switch (type) {
-                    case SCORE:
-                        hs = new ScoreBasedHighscore(highscoreId, name, points, gameEnded);
-                        break;
-                }
-                
+                Highscore hs = this.createFromData(highscoreId, type, name, points, gameEnded);
                 if (hs != null) {
                     list.add(hs);
                 }
@@ -95,10 +73,7 @@ public class JdbcHighscoreDao implements HighscoreDao {
 
     @Override
     public Highscore create(Highscore.Type type, Highscore highscore) {
-        List<Highscore> list = this.getHighscores(type);
-        list.add(highscore);
-        Collections.sort(list);
-        
+        super.create(type, highscore);
         this.initializeDatabase();
         Integer id = this.jdbc.insert("INSERT INTO Highscores ( highscore_type, name, points, game_ended ) VALUES ( ?, ?, ?, ? )", (stmt) -> {
             stmt.setString(1, type.toString());
@@ -111,17 +86,10 @@ public class JdbcHighscoreDao implements HighscoreDao {
         return highscore;
     }
 
-    @Override
-    public List<Highscore> getByType(Highscore.Type type) {
-        return this.getHighscores(type);
-    }
 
     @Override
     public void delete(Highscore.Type type, Highscore highscore) {
-        List<Highscore> list = this.getHighscores(type);
-        list.remove(highscore);
-        
+        super.delete(type, highscore);
         this.jdbc.update("DELETE FROM Highscores WHERE highscore_id = " + highscore.getId());
     }
-    
 }

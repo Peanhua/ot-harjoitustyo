@@ -32,6 +32,6 @@ Time used for the project.
   <tr><td>     </td><td> 1.5</td><td>Highscore system and user interface.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>DAO system and file based implementation for highscores.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Jdbc based implementation for highscore saving&loading.</td></tr>
-  <tr><td> 8.4.</td><td> 0.5</td><td>Jdbc based implementation for highscore saving&loading.</td></tr>
-  <tr><th>Total</th><th>41.5</th><th></th></tr>
+  <tr><td> 8.4.</td><td> 1.0</td><td>Jdbc based implementation for highscore saving&loading.</td></tr>
+  <tr><th>Total</th><th>42.0</th><th></th></tr>
 </table>
