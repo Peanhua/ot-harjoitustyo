@@ -43,7 +43,7 @@ public class JdbcHighscoreDao extends HighscoreDao {
         
         try {
             CachedRowSet rs = this.jdbc.query(getLoadSql(type));
-            while (rs.next()) {
+            while (rs != null && rs.next()) {
                 Integer highscoreId     = rs.getInt("highscore_id");
                 String  name            = rs.getString("name");
                 int     points          = rs.getInt("points");
