@@ -32,7 +32,7 @@ import javafx.scene.text.TextAlignment;
 public class UserInterfaceFactory {
     
     public static Node createLogo(Scene scene) {
-        Image logo = ImageCache.getInstance().get("Logo");
+        Image logo = ImageCache.getInstance().get("images/Logo");
         ImageView logov = new ImageView(logo);
         logov.setTranslateX((scene.getWidth() - logo.getWidth()) / 2);
         return logov;

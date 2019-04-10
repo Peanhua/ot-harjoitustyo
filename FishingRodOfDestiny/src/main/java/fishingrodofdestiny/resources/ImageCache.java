@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.resources;
 
+import java.net.URL;
 import java.util.HashMap;
 import javafx.scene.image.Image;
 
@@ -40,11 +41,15 @@ public class ImageCache {
             return null;
         }
         
-        String fullname = "file:gfx/" + name + ".png";
-        image = new Image(fullname, false);
+        String fullname = "fishingrodofdestiny/" + name + ".png";
+        URL imageURL = getClass().getClassLoader().getResource(fullname);
+        if (imageURL != null) {
+            image = new Image(imageURL.toExternalForm(), false);
+        }
+        
         this.images.put(name, image);
         
-        if (image.isError()) {
+        if (image == null || image.isError()) {
             System.out.println("Failed to load " + fullname);
             return null;
         }

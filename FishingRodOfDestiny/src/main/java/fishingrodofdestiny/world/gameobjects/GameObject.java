@@ -55,7 +55,7 @@ public abstract class GameObject {
         this.location         = new Location(this);
         this.onMessage        = new Subject();
         this.message          = "";
-        this.onScreenImage    = ImageCache.getInstance().get(gfxFilename);
+        this.onScreenImage    = ImageCache.getInstance().get("images/" + gfxFilename);
         this.nextAction       = Action.NONE;
         this.controller       = null;
     }

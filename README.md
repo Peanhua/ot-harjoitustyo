@@ -19,6 +19,12 @@ The game can be run from commandline with the following command:
 ```mvn compile exec:java -Dexec.mainClass=fishingrodofdestiny.ui.FishingRodOfDestinyUi```
 
 
+## Packaging
+
+The game can be packaged as a *JAR* -file with the following command:
+```mvn package```
+
+
 ### Testing
 
 Tests can be run by:
