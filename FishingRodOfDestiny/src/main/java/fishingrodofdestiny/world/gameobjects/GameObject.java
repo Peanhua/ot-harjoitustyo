@@ -7,11 +7,9 @@ package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
-import fishingrodofdestiny.resources.ImageCache;
+import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.tiles.Tile;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 
 /**
@@ -40,11 +38,11 @@ public abstract class GameObject {
     private   Inventory  inventory;
     private   Subject    onMessage;
     private   String     message;
-    private   Image      onScreenImage;
     private   Action     nextAction;
     private   Controller controller;
+    private   TileGfx    graphics;
     
-    public GameObject(String gfxFilename) {
+    public GameObject() {
         this.name             = null;
         this.isAlive          = true;
         this.maxHitpoints     = 1;
@@ -55,7 +53,7 @@ public abstract class GameObject {
         this.location         = new Location(this);
         this.onMessage        = new Subject();
         this.message          = "";
-        this.onScreenImage    = ImageCache.getInstance().get("images/" + gfxFilename);
+        this.graphics         = null;
         this.nextAction       = Action.NONE;
         this.controller       = null;
     }
@@ -69,6 +67,12 @@ public abstract class GameObject {
                 + ",inventorySize=" + this.inventory.getObjects().size()
                 + ")";
     }
+    
+    
+    protected final void setGraphics(TileGfx graphics) {
+        this.graphics = graphics;
+    }
+        
     
     
     public void listenOnChange(Observer observer) {
@@ -194,18 +198,8 @@ public abstract class GameObject {
     }
 
 
-    protected final void setOnScreenImage(Image image) {
-        this.onScreenImage = image;
-    }
-    
     public void draw(GraphicsContext context, int x, int y, int size) {
-        if (this.onScreenImage != null) {
-            context.drawImage(this.onScreenImage, x, y, size, size);
-            
-        } else {
-            context.setFill(Color.CADETBLUE);
-            context.fillRect(x, y, size, size);
-        }
+        this.graphics.draw(context, x, y, size);
     }
     
     public final void setNextAction(Action action) {

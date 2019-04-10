@@ -6,8 +6,7 @@
 package fishingrodofdestiny.world.tiles;
 
 import fishingrodofdestiny.world.Level;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import fishingrodofdestiny.world.TileGfx;
 
 /**
  *
@@ -16,6 +15,7 @@ import javafx.scene.paint.Color;
 public class StairsDownTile extends StairsTile {
 
     public StairsDownTile(Level level, int x, int y) {
-        super(level, x, y, "tiles/StairsDown");
+        super(level, x, y);
+        this.setGraphics(new TileGfx("rltiles/nh32", 448, 896, 32, 32));
     }
 }

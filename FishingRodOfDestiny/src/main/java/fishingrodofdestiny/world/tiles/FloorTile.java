@@ -6,6 +6,7 @@
 package fishingrodofdestiny.world.tiles;
 
 import fishingrodofdestiny.world.Level;
+import fishingrodofdestiny.world.TileGfx;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -16,7 +17,8 @@ import javafx.scene.paint.Color;
 public class FloorTile extends Tile {
 
     public FloorTile(Level level, int x, int y) {
-        super(level, x, y, "tiles/Floor");
+        super(level, x, y);
+        this.setGraphics(new TileGfx("rltiles/nh32", 256, 896, 32, 32));
     }
     
     public boolean canBeEntered() {

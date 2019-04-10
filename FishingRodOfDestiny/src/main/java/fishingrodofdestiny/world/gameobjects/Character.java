@@ -20,8 +20,8 @@ public abstract class Character extends GameObject {
     private int level;
     private int experiencePoints;
 
-    public Character(String gfxFilename) {
-        super(gfxFilename);
+    public Character() {
+        super();
         this.attack           = 0;
         this.defence          = 0;
         this.level            = 0;

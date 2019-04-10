@@ -5,7 +5,9 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
-import javafx.scene.image.Image;
+import fishingrodofdestiny.world.TileGfx;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +15,12 @@ import javafx.scene.image.Image;
  */
 public class Player extends Character {
     public Player() {
-        super("Player");
+        super();
+        
+        List<String> filenames = new ArrayList<>();
+        filenames.add("DawnLike/Characters/Player0");
+        filenames.add("DawnLike/Characters/Player1");
+        this.setGraphics(new TileGfx(filenames, 0, 112, 16, 16));
     }
     
     @Override

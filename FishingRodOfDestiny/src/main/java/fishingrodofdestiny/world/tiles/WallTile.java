@@ -6,6 +6,7 @@
 package fishingrodofdestiny.world.tiles;
 
 import fishingrodofdestiny.world.Level;
+import fishingrodofdestiny.world.TileGfx;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -16,7 +17,8 @@ import javafx.scene.paint.Color;
 public class WallTile extends Tile {
 
     public WallTile(Level level, int x, int y) {
-        super(level, x, y, "tiles/Wall");
+        super(level, x, y);
+        this.setGraphics(new TileGfx("DawnLike/Objects/Wall", 48, 192, 16, 16));
     }
     
     public boolean canBeEntered() {

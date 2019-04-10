@@ -8,6 +8,13 @@ The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in w
 * [Requirements Specification](documentation/requirements_specification.md)
 * [Timesheet](documentation/timesheet.md)
 
+## License
+
+This software is licensed under [The GNU General Public License version 3](LICENSE), with the following exceptions:
+
+* [The RLTiles tileset](rltiles.sf.net) under [FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/](FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/) are in public domain. You can find the original tileset at: [rltiles.sf.net](rltiles.sf.net).
+* [The DawnLike tileset](https://opengameart.org/users/dragondeplatino) by [DragonDePlatino](https://opengameart.org/users/dragondeplatino) under [FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/DawnLike/](FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/DawnLike) are licensed under the [CC-BY-SA 4.0](https://creativecommons.org/licenses/by/4.0/) license.
+
 
 ## Commandline functionality
 
