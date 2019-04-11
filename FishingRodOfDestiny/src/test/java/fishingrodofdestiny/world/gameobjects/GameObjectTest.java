@@ -127,4 +127,10 @@ public class GameObjectTest {
         this.object.hit(null, this.object.getMaxHitpoints());
         assertFalse(this.object.isAlive());
     }
+    
+    @Test
+    public void getCapitalizedNameWorks() {
+        this.object.setName("abc");
+        assertTrue(this.object.getCapitalizedName().equals("Abc"));
+    }
 }

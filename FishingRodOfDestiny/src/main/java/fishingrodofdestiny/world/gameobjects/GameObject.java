@@ -134,6 +134,9 @@ public abstract class GameObject {
     }
     
     public String getCapitalizedName() {
+        if (this.getName() == null) {
+            return "";
+        }
         if (this.getName().length() == 0) {
             return this.getName();
         }
