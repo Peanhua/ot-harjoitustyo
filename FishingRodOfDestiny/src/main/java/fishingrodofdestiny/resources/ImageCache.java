@@ -119,8 +119,8 @@ public class ImageCache {
         PixelReader reader = source.getPixelReader();
         PixelWriter writer = image.getPixelWriter();
         
-        for(int y = 0; y < height; y++) {
-            for(int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 writer.setColor(x, y, reader.getColor(offsetX + x, offsetY + y));
             }
         }
@@ -140,8 +140,8 @@ public class ImageCache {
         PixelReader prForeground = foreground.getPixelReader();
         PixelWriter pwCombined   = combined.getPixelWriter();
 
-        for(int y = 0; y < height; y++) {
-            for(int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 Color bg = prBackground.getColor(x, y);
                 Color fg = prForeground.getColor(x, y);
                 
@@ -150,8 +150,7 @@ public class ImageCache {
                 double g = (1.0 - a) * bg.getGreen() + a * fg.getGreen();
                 double b = (1.0 - a) * bg.getBlue()  + a * fg.getBlue();
 
-                Color color = new Color(r, g, b, 1);
-                pwCombined.setColor(x, y, color);
+                pwCombined.setColor(x, y, new Color(r, g, b, 1));
             }
         }
         
