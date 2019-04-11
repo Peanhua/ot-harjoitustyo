@@ -16,11 +16,7 @@ import java.util.List;
 public class Player extends Character {
     public Player() {
         super();
-        
-        List<String> filenames = new ArrayList<>();
-        filenames.add("DawnLike/Characters/Player0");
-        filenames.add("DawnLike/Characters/Player1");
-        this.setGraphics(new TileGfx(filenames, 0, 112, 16, 16));
+        this.setGraphics(new TileGfx("rltiles/nh32", 160, 352, 32, 32));
     }
     
     @Override

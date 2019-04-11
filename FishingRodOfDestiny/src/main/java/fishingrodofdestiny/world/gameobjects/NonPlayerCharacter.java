@@ -18,11 +18,7 @@ public class NonPlayerCharacter extends Character {
         super();
         this.setController(new SimpleAiController(this));
         this.setName("monster");
-
-        List<String> filenames = new ArrayList<>();
-        filenames.add("DawnLike/Characters/Undead0");
-        filenames.add("DawnLike/Characters/Undead1");
-        this.setGraphics(new TileGfx(filenames, 0, 0, 16, 16));
+        this.setGraphics(new TileGfx("rltiles/nh32", 192, 0, 32, 32));
     }
     
     @Override
