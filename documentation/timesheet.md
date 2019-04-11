@@ -38,6 +38,6 @@ Time used for the project.
   <tr><td>     </td><td> 1.0</td><td>Documentation (architecture).</td></tr>
   <tr><td>10.4.</td><td> 1.5</td><td>Figuring out how to load resources.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Finding tile graphics and setting them up.</td></tr>
-  <tr><td>11.4.</td><td> 1.5</td><td>Finding tile graphics and setting them up.</td></tr>
-  <tr><th>Total</th><th>47.5</th><th></th></tr>
+  <tr><td>11.4.</td><td> 3.0</td><td>Finding tile graphics and setting them up.</td></tr>
+  <tr><th>Total</th><th>49.0</th><th></th></tr>
 </table>

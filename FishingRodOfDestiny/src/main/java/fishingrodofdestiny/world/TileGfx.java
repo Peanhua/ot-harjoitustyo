@@ -16,37 +16,54 @@ import javafx.scene.image.Image;
  * @author joyr
  */
 public class TileGfx {
+    private final List<Image> sourceImages;
     private final List<Image> images;
-    private final int         offsetX;
-    private final int         offsetY;
-    private final int         width;
-    private final int         height;
+    private Image             background;
     private int               currentFrame;
 
-    public TileGfx(int gfxOffsetX, int gfxOffsetY, int gfxWidth, int gfxHeight) {
+    private TileGfx() {
+        this.sourceImages = new ArrayList<>();
         this.images       = new ArrayList<>();
-        this.offsetX      = gfxOffsetX;
-        this.offsetY      = gfxOffsetY;
-        this.width        = gfxWidth;
-        this.height       = gfxHeight;
+        this.background   = null;
         this.currentFrame = -1;
     }
 
     public TileGfx(String gfxFilename, int gfxOffsetX, int gfxOffsetY, int gfxWidth, int gfxHeight) {
-        this(gfxOffsetX, gfxOffsetY, gfxWidth, gfxHeight);
-        this.images.add(ImageCache.getInstance().get(gfxFilename));
+        this();
+        this.sourceImages.add(ImageCache.getInstance().getPartial(gfxFilename, gfxOffsetX, gfxOffsetY, gfxWidth, gfxHeight));
+        this.sourceImages.forEach(image -> this.images.add(image));
     }
      
     public TileGfx(List<String> gfxFilenames, int gfxOffsetX, int gfxOffsetY, int gfxWidth, int gfxHeight) {
-        this(gfxOffsetX, gfxOffsetY, gfxWidth, gfxHeight);
-        for (String filename : gfxFilenames) {
-            this.images.add(ImageCache.getInstance().get(filename));
-        }
+        this();
+        gfxFilenames.forEach(filename ->
+            this.sourceImages.add(ImageCache.getInstance().getPartial(filename, gfxOffsetX, gfxOffsetY, gfxWidth, gfxHeight))
+        );
+        this.sourceImages.forEach(image -> this.images.add(image));
     }
     
     
+    public final void setBackground(Image background) {
+        if (this.background == background) {
+            return;
+        }
+        
+        this.background = background;
+        this.images.clear();
+
+        if (this.background == null) {
+            this.sourceImages.forEach(image -> this.images.add(image));
+            
+        } else {
+            ImageCache cache = ImageCache.getInstance();
+            this.sourceImages.forEach(image -> {
+                this.images.add(cache.getCombined(this.background, image));
+            });
+        }
+    }
+    
     public void draw(GraphicsContext context, int x, int y, int size) {
-        context.drawImage(this.getNextFrame(), this.offsetX, this.offsetY, this.width, this.height, x, y, size, size);
+        context.drawImage(this.getNextFrame(), x, y, size, size);
     }
     
     public Image getNextFrame() {

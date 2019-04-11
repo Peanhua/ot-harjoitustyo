@@ -32,8 +32,16 @@ public abstract class Tile {
         this.graphics  = null;
     }
     
+    public TileGfx getGraphics() {
+        return this.graphics;
+    }
+    
     protected final void setGraphics(TileGfx graphics) {
         this.graphics = graphics;
+    }
+    
+    protected final void setGraphicsBackground(Image background) {
+        this.graphics.setBackground(background);
     }
     
     public final Level getLevel() {

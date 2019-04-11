@@ -17,5 +17,8 @@ public class StairsUpTile extends StairsTile {
     public StairsUpTile(Level level, int x, int y) {
         super(level, x, y);
         this.setGraphics(new TileGfx("rltiles/nh32", 416, 896, 32, 32));
+        
+        Tile floor = new FloorTile(level, x, y);
+        this.setGraphicsBackground(floor.getGraphics().getNextFrame());
     }
 }
