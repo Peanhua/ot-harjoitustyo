@@ -20,7 +20,7 @@ public class GameObjectTest {
     
     class GameObjectSubclass extends GameObject {
         public GameObjectSubclass() {
-            super("test");
+            super();
         }
     }
     

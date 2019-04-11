@@ -25,7 +25,7 @@ public class LocationTest {
     
     class GameObjectSubclass extends GameObject {
         public GameObjectSubclass() {
-            super("test");
+            super();
         }
     }
     
