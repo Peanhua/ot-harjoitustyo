@@ -28,7 +28,7 @@ public class HighscoreList {
 
         while (true) {
             List<Highscore> list = this.dao.getByType(this.type);
-            if (list.size() < this.max) {
+            if (list.size() <= this.max) {
                 break;
             }
             // Too many highscores, remove the one with lowest score:
