@@ -42,18 +42,19 @@ public abstract class LevelGenerator {
             level.setTile(x, y, new WallTile(level, x, y));
         }
     }
-    
-    protected void placeNPC(Level level, NonPlayerCharacter npc) {
-        while (true) {
-            int x = this.random.nextInt(this.width);
-            int y = this.random.nextInt(this.height);
-            Tile tile = level.getTile(x, y);
-            if (tile.getClass() == FloorTile.class && tile.canBeEntered()) {
-                npc.getLocation().moveTo(tile);
-                break;
+
+
+    protected void fillEmptySpace(Level level) {
+        for (int y = 0; y < level.getHeight(); y++) {
+            for (int x = 0; x < level.getWidth(); x++) {
+                Tile t = level.getTile(x, y);
+                if (t == null) {
+                    level.setTile(x, y, new WallTile(level, x, y));
+                }
             }
         }
     }
+    
     
     public abstract Level generateLevel(int caveLevel);
 }

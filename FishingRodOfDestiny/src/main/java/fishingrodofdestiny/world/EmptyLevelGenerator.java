@@ -8,7 +8,6 @@ package fishingrodofdestiny.world;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
-import fishingrodofdestiny.world.tiles.StairsTile;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
 import java.util.Random;
@@ -26,7 +25,10 @@ public class EmptyLevelGenerator extends LevelGenerator {
     
     @Override
     public Level generateLevel(int caveLevel) {
-        Level level = new Level(this.width, this.height);
+        LevelSettings settings = new LevelSettings();
+        settings.addEnemyType(NonPlayerCharacter.class, 1 + caveLevel * 5, 0.2);
+        settings.addEnemyType(NonPlayerCharacter.class, 1 + caveLevel * 5, 0.8);
+        Level level = new Level(settings, this.width, this.height);
 
         this.createLevelBorders(level);
         
@@ -36,49 +38,7 @@ public class EmptyLevelGenerator extends LevelGenerator {
                 level.setTile(x, y, new FloorTile(level, x, y));
             }
         }
-
-        this.placeStairsUp(level);
-        this.placeStairsDown(level);
-        
-        this.placeEnemies(level, 10 + caveLevel * 3);
         
         return level;
     }
-    
-    private void placeEnemies(Level level, int maxCount) {
-        int n = this.random.nextInt(maxCount);
-        for (int i = 0; i < n; i++) {
-            NonPlayerCharacter npc = new NonPlayerCharacter();
-            this.placeNPC(level, npc);
-        }
-    }
-
-    private void placeStairsUp(Level level) {
-        int stairsUpX = -1;
-        int stairsUpY = -1;
-        while (true) {
-            int x = this.random.nextInt(this.width);
-            int y = this.random.nextInt(this.height);
-            Tile t = level.getTile(x, y);
-            if (t.getClass() == FloorTile.class) {
-                stairsUpX = x;
-                stairsUpY = y;
-                level.setTile(x, y, new StairsUpTile(level, x, y));
-                break;
-            }
-        }
-    }
-
-    private void placeStairsDown(Level level) {
-        while (true) {
-            int x = this.random.nextInt(this.width);
-            int y = this.random.nextInt(this.height);
-            Tile t = level.getTile(x, y);
-            if (t.getClass() == FloorTile.class) {
-                level.setTile(x, y, new StairsDownTile(level, x, y));
-                break;
-            }
-        }
-    }
-    
 }

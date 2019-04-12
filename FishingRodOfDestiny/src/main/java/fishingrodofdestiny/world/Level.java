@@ -6,12 +6,15 @@
 package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
+import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.StairsTile;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -20,13 +23,15 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Level {
     
-    private int        width;
-    private int        height;
-    private List<Tile> tiles;
+    private LevelSettings settings;
+    private int           width;
+    private int           height;
+    private List<Tile>    tiles;
     
-    public Level(int width, int height) {
-        this.width  = width;
-        this.height = height;
+    public Level(LevelSettings settings, int width, int height) {
+        this.settings = settings;
+        this.width    = width;
+        this.height   = height;
         
         this.tiles = new ArrayList<>();
         for (int i = 0; i < width * height; i++) {
@@ -67,6 +72,30 @@ public class Level {
         return this.tiles.get(y * this.width + x);
     }
     
+
+    public Tile getRandomTileOfType(Random random, Class type) {
+        return this.getRandomTileOfTypeInArea(random, type, 0, 0, this.width, this.height);
+    }
+    
+    public Tile getRandomTileOfTypeInArea(Random random, Class type, int topleftX, int topleftY, int areaWidth, int areaHeight) {
+        areaWidth  = Math.min(areaWidth,  this.width - topleftX);
+        areaHeight = Math.min(areaHeight, this.height - topleftY);
+        if (areaWidth <= 0 || areaHeight <= 0) {
+            return null;
+        }
+        for (int i = 0; i < areaWidth * areaHeight; i++) {
+            int x = topleftX + random.nextInt(areaWidth);
+            int y = topleftY + random.nextInt(areaHeight);
+            Tile t = this.getTile(x, y);
+            if (t.getClass() == type) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    
+    
     public void setTile(int x, int y, Tile tile) {
         this.tiles.set(y * this.width + x, tile);
     }
@@ -83,6 +112,44 @@ public class Level {
         }
         
         return rv;
+    }
+    
+    
+    public int getObjectCount(Class type) {
+        // TODO: cache the most frequently queried types (all variations of NonPlayerCharacters)
+        int count = 0;
+        
+        for (Tile tile : this.tiles) {
+            for (GameObject object : tile.getInventory().getObjects()) {
+                if (object.getClass() == type) {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    /*
+    * Spawn a new NPC based on settings for this level.
+    */
+    public NonPlayerCharacter spawnNPC(Random random) {
+        // Generate the NPC:
+        Class type = this.settings.getEnemyForLevel(random, this);
+        NonPlayerCharacter npc = null;
+        if (type == NonPlayerCharacter.class) {
+            npc = new NonPlayerCharacter();
+        }
+        if (npc == null) {
+            return null;
+        }
+        // Place the NPC appropriately:
+        Tile tile = this.getRandomTileOfType(random, FloorTile.class);
+        if (tile == null) {
+            return null;
+        }
+        npc.getLocation().moveTo(tile);
+        return npc;
     }
 
     
@@ -111,5 +178,25 @@ public class Level {
         // TODO: sort objects based on their time to execute
         
         objects.forEach(obj -> obj.tick(deltaTime));
+    }
+    
+    
+    @Override
+    public String toString() {
+        String rv = "";
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                Tile t = this.getTile(x, y);
+                if (t == null) {
+                    rv += "X";
+                } else if (t.getClass() == FloorTile.class) {
+                    rv += ".";
+                } else {
+                    rv += " ";
+                }
+            }
+            rv += "\n";
+        }
+        return rv;
     }
 }
