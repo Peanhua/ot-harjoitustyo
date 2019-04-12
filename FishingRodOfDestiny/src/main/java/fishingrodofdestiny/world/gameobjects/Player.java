@@ -6,8 +6,6 @@
 package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.world.TileGfx;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
