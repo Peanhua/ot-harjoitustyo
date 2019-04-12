@@ -51,10 +51,10 @@ public class ScreenNewGame extends Screen {
     
 
     @Override
-    protected void setup(Group root, Scene scene) {
+    protected Node createUserInterface() {
         VBox vb = new VBox(0);
         vb.setAlignment(Pos.CENTER);
-        vb.setMinWidth(scene.getWidth());
+//        vb.setMinWidth(scene.getWidth());
 
         vb.getChildren().add(UserInterfaceFactory.createTitle("START NEW GAME"));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
@@ -76,7 +76,7 @@ public class ScreenNewGame extends Screen {
         
         vb.getChildren().add(this.setupButtons());
         
-        root.getChildren().add(vb);
+        return vb;
     }
     
     

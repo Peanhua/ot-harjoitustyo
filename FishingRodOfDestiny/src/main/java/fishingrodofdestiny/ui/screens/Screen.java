@@ -6,8 +6,14 @@
 package fishingrodofdestiny.ui.screens;
 
 import javafx.application.Platform;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -26,7 +32,7 @@ public abstract class Screen {
         this.scene  = null;
     }
     
-    protected abstract void setup(Group root, Scene scene);
+    protected abstract Node createUserInterface();
     
     protected final Stage getStage() {
         return this.stage;
@@ -38,10 +44,10 @@ public abstract class Screen {
 
     public final void show() {
         if (this.scene == null) {
-            Group root = new Group();
+            BorderPane root = new BorderPane();
+            root.setStyle("-fx-background-color: #000000;");
+            root.setCenter(this.createUserInterface());
             this.scene = new Scene(root, 800, 600, Color.BLACK);
-
-            this.setup(root, this.scene);
         }
         
         if (this.scene != null) {

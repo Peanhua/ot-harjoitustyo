@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -32,12 +33,12 @@ public class ScreenPlot extends Screen {
     }
 
     @Override
-    protected void setup(Group root, Scene scene) {
+    protected Node createUserInterface() {
         VBox vb = new VBox(0);
         vb.setAlignment(Pos.CENTER);
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
-        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
+        vb.getChildren().add(UserInterfaceFactory.createLogo(null));
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
 
@@ -54,7 +55,7 @@ public class ScreenPlot extends Screen {
         cont.setOnAction(e-> this.gameOn());
         vb.getChildren().add(cont);
         
-        root.getChildren().add(vb);
+        return vb;
     }
     
     

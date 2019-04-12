@@ -22,7 +22,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -43,14 +45,11 @@ public class ScreenGame extends Screen {
     }
 
     @Override
-    protected void setup(Group root, Scene scene) {
-        VBox main = new VBox(0);
-        
-        HBox hb = new HBox(20);
-        main.getChildren().add(hb);
+    protected Node createUserInterface() {
+        BorderPane main = new BorderPane();
         
         VBox leftbox = new VBox(0);
-        hb.getChildren().add(leftbox);
+        main.setLeft(leftbox);
 
         CharacterStatus status = new CharacterStatus(this.game.getPlayer());
         leftbox.getChildren().add(status.createUserInterface());
@@ -67,24 +66,24 @@ public class ScreenGame extends Screen {
 
         
         this.message = UserInterfaceFactory.createText("Welcome to The Fishing Rod of Destiny!");
-        main.getChildren().add(this.message);
+        main.setBottom(this.message);
 
         
-        this.levelView = new LevelView((int) scene.getWidth() - 20 - (int) leftbox.getBoundsInParent().getWidth(),
-                                       (int) (scene.getHeight() - this.message.getBoundsInParent().getHeight()));
-        hb.getChildren().add(this.levelView.createUserInterface());
+        this.levelView = new LevelView();
+        Node lv = this.levelView.createUserInterface();
+        main.setCenter(lv);
         
         
         this.game.getPlayer().getLocation().listenOnChange(() -> {
             this.onPlayerMoved();
         });
         
-        this.setKeyboardHandlers(root);
+        this.setKeyboardHandlers(main);
         
-        root.getChildren().add(main);
-
         this.onPlayerMoved();
-        this.levelView.refresh();
+        //this.levelView.refresh();
+        
+        return main;
     }
 
     

@@ -12,6 +12,7 @@ import fishingrodofdestiny.ui.widgets.HighscoreListView;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -28,11 +29,11 @@ public class ScreenHighscores extends Screen {
     }
 
     @Override
-    protected void setup(Group root, Scene scene) {
+    protected Node createUserInterface() {
         VBox vb = new VBox(0);
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
-        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
+        vb.getChildren().add(UserInterfaceFactory.createLogo(null));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
         
         HighscoreList hslist = HighscoreListCache.getInstance().get(Highscore.Type.SCORE);
@@ -50,7 +51,6 @@ public class ScreenHighscores extends Screen {
             
         vb.getChildren().add(buttons);
 
-        
-        root.getChildren().add(vb);
+        return vb;
     }
 }

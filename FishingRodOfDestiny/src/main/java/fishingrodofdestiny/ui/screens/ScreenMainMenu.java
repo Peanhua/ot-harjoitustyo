@@ -27,16 +27,16 @@ public class ScreenMainMenu extends Screen {
     }
 
     @Override
-    protected void setup(Group root, Scene scene) {
+    protected Node createUserInterface() {
         VBox vb = new VBox(0);
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(150));
-        vb.getChildren().add(UserInterfaceFactory.createLogo(scene));
+        vb.getChildren().add(UserInterfaceFactory.createLogo(null));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(150));
 
         vb.getChildren().add(this.setupButtons());
 
-        root.getChildren().add(vb);
+        return vb;
     }
 
     private Node setupButtons() {

@@ -6,6 +6,7 @@
 package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.Level;
+import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -23,10 +24,10 @@ public class LevelView extends Widget {
     private int             width;
     private int             height;
     private Level           level;
+    private int             centerAtX;
+    private int             centerAtY;
     
-    public LevelView(int width, int height) {
-        this.width  = width;
-        this.height = height;
+    public LevelView() {
         this.level  = null;
     }
     
@@ -34,20 +35,44 @@ public class LevelView extends Widget {
     public Node createUserInterface() {
         this.container = new Pane();
         this.container.setMaxWidth(Double.MAX_VALUE);
+        this.container.setMaxHeight(Double.MAX_VALUE);
 
+        this.width           = 0;
+        this.height          = 0;
+        this.canvas          = null;
+        this.graphicsContext = null;
+        
+        this.container.heightProperty().addListener((o) -> {
+            this.onResized();
+        });
+
+        return this.container;
+    }
+
+    
+    private void onResized() {
+        this.width  = (int) this.container.getWidth();
+        this.height = (int) this.container.getHeight();
+        
+        if (this.canvas != null) {
+            this.container.getChildren().remove(this.canvas);
+        }
+        
         this.canvas = new Canvas(this.width, this.height);
         this.graphicsContext = canvas.getGraphicsContext2D();
 
         this.container.getChildren().add(this.canvas);
         
-        return this.container;
+        this.refresh();
     }
-    
-    
+
+
     @Override
     public void refresh() {
-        // TODO: if the current size of the container is changed, re-create or adjust the canvas to fit the container to make this scalable
-        //       then also get rid of the width and height parameters for the constructor
+        if (this.width == 0 || this.canvas == null) {
+            return;
+        }
+
         this.graphicsContext.setFill(Color.BLACK);
         //this.graphicsContext.clearRect(0, 0, this.width, this.height);
         this.graphicsContext.fillRect(0, 0, this.width, this.height);
@@ -60,5 +85,9 @@ public class LevelView extends Widget {
     
     public void setLevel(Level level) {
         this.level = level;
+    }
+    
+    
+    public void centerAtTile(int x, int y) {
     }
 }
