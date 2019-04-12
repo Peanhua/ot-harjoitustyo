@@ -57,4 +57,5 @@ public abstract class LevelGenerator {
     
     
     public abstract Level generateLevel(int caveLevel);
+    public abstract void  connectStartEnd(Level level);
 }

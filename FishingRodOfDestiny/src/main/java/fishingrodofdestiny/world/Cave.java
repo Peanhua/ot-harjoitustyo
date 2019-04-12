@@ -30,6 +30,7 @@ public class Cave {
         }
         
         this.addStairs(random);
+        this.levels.forEach(level -> lg.connectStartEnd(level));
         this.connectStairs();
         this.populateNPCs(random);
     }

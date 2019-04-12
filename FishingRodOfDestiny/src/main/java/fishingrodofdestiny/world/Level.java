@@ -198,4 +198,61 @@ public class Level {
         }
         return rv;
     }
+    
+    
+    private List<List<Tile>> connectedTileGroups;
+    private boolean[]        visitedTiles;
+    private List<Tile>       currentConnectedTileGroup;
+    
+    public List<List<Tile>> getConnectedTileGroups() {
+        this.connectedTileGroups = new ArrayList<>();
+        this.visitedTiles = new boolean[this.width * this.height];
+        
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                List<Tile> list = this.getConnectedTiles(x, y);
+                if (list != null) {
+                    this.connectedTileGroups.add(list);
+                }
+            }
+        }
+        
+        return this.connectedTileGroups;
+    }
+    
+    public List<Tile> getConnectedTiles(int x, int y) {
+        if (this.visitedTiles[x + y * this.width]) {
+            return null;
+        }
+        
+        this.currentConnectedTileGroup = new ArrayList<>();
+        this.getConnectedTilesDFS(x, y);
+        if (this.currentConnectedTileGroup.size() == 0) {
+            return null;
+        }
+        return this.currentConnectedTileGroup;
+    }
+    
+    private void getConnectedTilesDFS(int x, int y) {
+        if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
+            return;
+        }
+        
+        if (this.visitedTiles[x + y * this.width]) {
+            return;
+        }
+
+        this.visitedTiles[x + y * this.width] = true;
+
+        Tile tile = this.getTile(x, y);
+        if (!tile.canBeEntered()) {
+            return;
+        }
+
+        this.currentConnectedTileGroup.add(tile);
+        this.getConnectedTilesDFS(x, y - 1);
+        this.getConnectedTilesDFS(x, y + 1);
+        this.getConnectedTilesDFS(x - 1, y);
+        this.getConnectedTilesDFS(x + 1, y);
+    }
 }

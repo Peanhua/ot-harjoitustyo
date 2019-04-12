@@ -41,4 +41,7 @@ public class EmptyLevelGenerator extends LevelGenerator {
         
         return level;
     }
+    
+    public void connectStartEnd(Level level) {
+    }
 }

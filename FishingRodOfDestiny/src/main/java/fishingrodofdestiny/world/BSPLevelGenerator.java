@@ -41,6 +41,49 @@ public class BSPLevelGenerator extends LevelGenerator {
         
         return level;
     }
+
+    public void connectStartEnd(Level level) {
+        List<List<Tile>> connectedTileGroups = level.getConnectedTileGroups();
+
+        Tile stairsUp   = level.getStairsUp().get(0);
+        Tile stairsDown = level.getStairsDown().get(0);
+        List<Tile> startGroup = null;
+        List<Tile> endGroup   = null;
+        for (List<Tile> list : connectedTileGroups) {
+            if (startGroup == null && list.contains(stairsUp)) {
+                startGroup = list;
+            }
+            if (endGroup == null && list.contains(stairsDown)) {
+                endGroup = list;
+            }
+        }
+        if (startGroup != endGroup) {
+            this.connectTileGroups(level, startGroup, endGroup);
+        }
+    }
+
+    private void connectTileGroups(Level level, List<Tile> srcGroup, List<Tile> dstGroup) {
+        Tile srcClosest = null;
+        Tile dstClosest = null;
+        long closestDistance = 0;
+        
+        for (Tile src : srcGroup) {
+            for (Tile dst : dstGroup) {
+                long dx = src.getX() - dst.getX();
+                long dy = src.getY() - dst.getY();
+                long distance = dx * dx + dy * dy;
+                if (srcClosest == null || distance < closestDistance) {
+                    srcClosest = src;
+                    dstClosest = dst;
+                    closestDistance = distance;
+                }
+            }
+        }
+        
+        Node startNode = new Node(this.random, 1, null, srcClosest.getX(), srcClosest.getY(), 1, 1);
+        Node endNode   = new Node(this.random, 1, null, dstClosest.getX(), dstClosest.getY(), 1, 1);
+        startNode.createCorridor(level, endNode);
+    }
 }
 
 
@@ -210,21 +253,21 @@ class Node {
             this.childB.fillInCorridors(level);
         }
         if (this.childA != null && this.childB != null) {
-            this.createCorridor(level, this.childA, this.childB);
+            this.childA.createCorridor(level, this.childB);
         }
     }
     
 
-    private void createCorridor(Level level, Node from, Node to) {
-        Position src = new Position(this.random, from);
+    public void createCorridor(Level level, Node to) {
+        Position src = new Position(this.random, this);
         Position dst = new Position(this.random, to);
 
         while (true) {
             Tile t = level.getTile(src.x, src.y);
-            if (t == null) {
+            if (t == null || t.getClass() == WallTile.class) {
                 level.setTile(src.x, src.y, new FloorTile(level, src.x, src.y));
             }
-
+            
             if (src.x == dst.x && src.y == dst.y) {
                 break;
             }
