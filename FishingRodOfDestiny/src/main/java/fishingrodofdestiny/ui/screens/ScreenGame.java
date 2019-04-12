@@ -88,11 +88,11 @@ public class ScreenGame extends Screen {
     
     private void handleCommand(KeyboardSettings.Command command) {
         switch(command) {
-            case ZOOM_IN:
+            case ZOOM_OUT:
                 this.levelView.setTileSize(this.levelView.getTileSize() / 2);
                 this.levelView.refresh();
                 break;
-            case ZOOM_OUT:
+            case ZOOM_IN:
                 this.levelView.setTileSize(this.levelView.getTileSize() * 2);
                 this.levelView.refresh();
                 break;

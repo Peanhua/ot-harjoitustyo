@@ -7,6 +7,8 @@ The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in w
 * [Architecture](documentation/architecture.md)
 * [Requirements Specification](documentation/requirements_specification.md)
 * [Timesheet](documentation/timesheet.md)
+* [Manual](documentation/manual.md)
+
 
 ## License
 
