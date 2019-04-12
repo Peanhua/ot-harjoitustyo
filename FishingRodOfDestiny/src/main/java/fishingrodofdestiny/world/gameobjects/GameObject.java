@@ -41,6 +41,7 @@ public abstract class GameObject {
     private   Action     nextAction;
     private   Controller controller;
     private   TileGfx    graphics;
+    private   int        drawingOrder;
     
     public GameObject() {
         this.name             = null;
@@ -56,6 +57,7 @@ public abstract class GameObject {
         this.graphics         = null;
         this.nextAction       = Action.NONE;
         this.controller       = null;
+        this.drawingOrder     = 0;
     }
     
     @Override
@@ -66,6 +68,16 @@ public abstract class GameObject {
                 + ",inventoryWLimit=" + this.inventory.getWeightLimit()
                 + ",inventorySize=" + this.inventory.getObjects().size()
                 + ")";
+    }
+    
+    
+    public int getDrawingOrder() {
+        return this.drawingOrder;
+    }
+    
+    
+    protected void setDrawingOrder(int order) {
+        this.drawingOrder = order;
     }
     
     

@@ -44,5 +44,6 @@ Time used for the project.
   <tr><td>12.4.</td><td> 6.0</td><td>Level generation.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Tests.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Code cleanup.</td></tr>
+  <tr><td>     </td><td> 0.5</td><td>Game logic and content.</td></tr>
   <tr><th>Total</th><th>59.5</th><th></th></tr>
 </table>

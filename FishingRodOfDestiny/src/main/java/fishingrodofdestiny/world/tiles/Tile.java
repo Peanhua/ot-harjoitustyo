@@ -68,16 +68,9 @@ public abstract class Tile {
     }
     
     private final void drawInventory(GraphicsContext context, int x, int y, int size) {
-        this.inventory.getObjects().forEach(obj -> {
-            if (!obj.getClass().isAssignableFrom(Character.class)) {
-                obj.draw(context, x, y, size);
-            }
-        });
-        this.inventory.getObjects().forEach(obj -> {
-            if (obj.getClass().isAssignableFrom(Character.class)) {
-                obj.draw(context, x, y, size);
-            }
-        });
+        this.inventory.getObjects().stream()
+                .sorted((a, b) -> a.getDrawingOrder() - b.getDrawingOrder())
+                .forEach(obj -> obj.draw(context, x, y, size));
     }
 
     // Called when the given object moves into this tile:

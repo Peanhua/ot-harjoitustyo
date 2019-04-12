@@ -26,6 +26,7 @@ public abstract class Character extends GameObject {
         this.defence          = 0;
         this.level            = 0;
         this.experiencePoints = 0;
+        this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
     
@@ -37,6 +38,16 @@ public abstract class Character extends GameObject {
                 + ",level=" + this.level
                 + ",xp=" + this.experiencePoints
                 + ")";
+    }
+
+    @Override
+    public void destroy(GameObject instigator) {
+        Tile tile = this.getLocation().getContainerTile();
+        if (tile != null) {
+            GameObject splatter = new BloodSplatter();
+            splatter.getLocation().moveTo(tile);
+        }
+        super.destroy(instigator);
     }
     
     @Override
@@ -54,6 +65,9 @@ public abstract class Character extends GameObject {
     @Override
     public void act(Action action) {
         if (action == null) {
+            return;
+        }
+        if (!this.isAlive()) {
             return;
         }
 
