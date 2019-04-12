@@ -54,8 +54,8 @@ public class KeyboardSettings {
         }
 
         this.keysToCommands = new HashMap<>();
-        this.keysToCommands.put(KeyCode.PAGE_UP,   Command.ZOOM_IN);
-        this.keysToCommands.put(KeyCode.PAGE_DOWN, Command.ZOOM_OUT);
+        this.keysToCommands.put(KeyCode.PAGE_DOWN, Command.ZOOM_IN);
+        this.keysToCommands.put(KeyCode.PAGE_UP,   Command.ZOOM_OUT);
     }
     
     public KeyCode getKey(GameObject.Action action) {
