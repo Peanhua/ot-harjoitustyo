@@ -68,11 +68,16 @@ public abstract class Tile {
     }
     
     private final void drawInventory(GraphicsContext context, int x, int y, int size) {
-        for (GameObject obj : this.inventory.getObjects()) {
-            if (obj != null) {
+        this.inventory.getObjects().forEach(obj -> {
+            if (!obj.getClass().isAssignableFrom(Character.class)) {
                 obj.draw(context, x, y, size);
             }
-        }
+        });
+        this.inventory.getObjects().forEach(obj -> {
+            if (obj.getClass().isAssignableFrom(Character.class)) {
+                obj.draw(context, x, y, size);
+            }
+        });
     }
 
     // Called when the given object moves into this tile:
