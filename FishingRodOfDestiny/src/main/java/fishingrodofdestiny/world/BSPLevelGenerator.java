@@ -75,6 +75,29 @@ class Room {
 }
 
 
+class Position {
+    public int x;
+    public int y;
+    
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+
+    public Position(Random random, Node node) {
+        Room room = node.getRoom();
+        if (room != null) {
+            this.x = room.topleftX + random.nextInt(room.width);
+            this.y = room.topleftY + random.nextInt(room.height);
+        } else {
+            this.x = node.getTopLeft().x + random.nextInt(node.getWidth());
+            this.y = node.getTopLeft().y + random.nextInt(node.getHeight());
+        }
+    }
+}
+
+
 class Node {
     private Random random;
     private int minSize;
@@ -101,6 +124,22 @@ class Node {
         this.width    = width;
         this.height   = height;
         this.room     = null;
+    }
+    
+    public Room getRoom() {
+        return this.room;
+    }
+    
+    public Position getTopLeft() {
+        return new Position(this.topleftX, this.topleftY);
+    }
+    
+    public int getWidth() {
+        return this.width;
+    }
+    
+    public int getHeight() {
+        return this.height;
     }
 
     public void split(boolean horizontal) {
@@ -174,52 +213,28 @@ class Node {
             this.createCorridor(level, this.childA, this.childB);
         }
     }
+    
 
     private void createCorridor(Level level, Node from, Node to) {
-        int srcX = from.topleftX + this.random.nextInt(from.width);
-        int srcY = from.topleftY + this.random.nextInt(from.height);
-        if (from.room != null) {
-            srcX = from.room.topleftX + this.random.nextInt(from.room.width);
-            srcY = from.room.topleftY + this.random.nextInt(from.room.height);
-        }
-
-        int dstX = to.topleftX + this.random.nextInt(to.width);
-        int dstY = to.topleftY + this.random.nextInt(to.height);
-        if (to.room != null) {
-            dstX = to.room.topleftX + this.random.nextInt(to.room.width);
-            dstY = to.room.topleftY + this.random.nextInt(to.room.height);
-        }
-        // First skip until we find the wall:
-        while (true) {
-            Tile t = level.getTile(srcX, srcY);
-            if (t == null) {
-                break;
-            }
-            int deltaX = dstX - srcX;
-            int deltaY = dstY - srcY;
-            if (deltaX != 0 && (deltaY == 0 || this.random.nextInt(100) < 75)) {
-                srcX += deltaX / Math.abs(deltaX);
-            } else {
-                srcY += deltaY / Math.abs(deltaY);
-            }
-        }
+        Position src = new Position(this.random, from);
+        Position dst = new Position(this.random, to);
 
         while (true) {
-            Tile t = level.getTile(srcX, srcY);
+            Tile t = level.getTile(src.x, src.y);
             if (t == null) {
-                level.setTile(srcX, srcY, new FloorTile(level, srcX, srcY));
+                level.setTile(src.x, src.y, new FloorTile(level, src.x, src.y));
             }
 
-            if(srcX == dstX && srcY == dstY) {
+            if (src.x == dst.x && src.y == dst.y) {
                 break;
             }
 
-            int deltaX = dstX - srcX;
-            int deltaY = dstY - srcY;
+            int deltaX = dst.x - src.x;
+            int deltaY = dst.y - src.y;
             if (deltaX != 0 && (deltaY == 0 || this.random.nextInt(100) < 75)) {
-                srcX += deltaX / Math.abs(deltaX);
+                src.x += deltaX / Math.abs(deltaX);
             } else {
-                srcY += deltaY / Math.abs(deltaY);
+                src.y += deltaY / Math.abs(deltaY);
             }
         }
     }

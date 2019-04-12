@@ -48,7 +48,7 @@ public class Cave {
     // Add stairs, alternating between "topleft = stairs up and bottomright = stairs down" with the opposite "bottomright = stairs up and topleft = stairs down".
     private void addStairs(Random random) {
         boolean topLeftIsUp = true;
-        for(Level level : this.levels) {
+        for (Level level : this.levels) {
             Tile up   = this.findFloorFromTopLeft(random, level);
             Tile down = this.findFloorFromBottomRight(random, level);
             if (!topLeftIsUp) {
