@@ -81,15 +81,35 @@ public class ScreenGame extends Screen {
         this.setKeyboardHandlers(main);
         
         this.onPlayerMoved();
-        //this.levelView.refresh();
         
         return main;
     }
 
     
+    private void handleCommand(KeyboardSettings.Command command) {
+        switch(command) {
+            case ZOOM_IN:
+                this.levelView.setTileSize(this.levelView.getTileSize() / 2);
+                this.levelView.refresh();
+                break;
+            case ZOOM_OUT:
+                this.levelView.setTileSize(this.levelView.getTileSize() * 2);
+                this.levelView.refresh();
+                break;
+        }
+    }
+    
+    
     private void setKeyboardHandlers(Node root) {
         root.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             KeyboardSettings settings = KeyboardSettings.getInstance();
+            
+            KeyboardSettings.Command command = settings.getCommand(event.getCode());
+            if (command != null) {
+                this.handleCommand(command);
+                return;
+            }
+            
             GameObject.Action action = settings.getAction(event.getCode());
             if (action == null) {
                 return;

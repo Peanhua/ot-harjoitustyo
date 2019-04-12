@@ -25,8 +25,15 @@ public class KeyboardSettings {
     }
     
     
+    public enum Command {
+        ZOOM_IN,
+        ZOOM_OUT
+    };
+    
+    
     private HashMap<GameObject.Action, KeyCode> actionsToKeys;
     private HashMap<KeyCode, GameObject.Action> keysToActions;
+    private HashMap<KeyCode, Command>           keysToCommands;
   
     private KeyboardSettings() {
         this.actionsToKeys = new HashMap<>();
@@ -45,6 +52,10 @@ public class KeyboardSettings {
         for (GameObject.Action action : this.actionsToKeys.keySet()) {
             this.keysToActions.put(this.actionsToKeys.get(action), action);
         }
+
+        this.keysToCommands = new HashMap<>();
+        this.keysToCommands.put(KeyCode.PAGE_DOWN, Command.ZOOM_IN);
+        this.keysToCommands.put(KeyCode.PAGE_UP,   Command.ZOOM_OUT);
     }
     
     public KeyCode getKey(GameObject.Action action) {
@@ -53,5 +64,9 @@ public class KeyboardSettings {
     
     public GameObject.Action getAction(KeyCode keyCode) {
         return this.keysToActions.get(keyCode);
+    }
+    
+    public Command getCommand(KeyCode keyCode) {
+        return this.keysToCommands.get(keyCode);
     }
 }

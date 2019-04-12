@@ -6,7 +6,6 @@
 package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.Level;
-import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -26,9 +25,11 @@ public class LevelView extends Widget {
     private Level           level;
     private int             centerAtX;
     private int             centerAtY;
+    private int             tileSize;
     
     public LevelView() {
-        this.level  = null;
+        this.level    = null;
+        this.tileSize = 32;
     }
     
     @Override
@@ -78,13 +79,13 @@ public class LevelView extends Widget {
         this.graphicsContext.fillRect(0, 0, this.width, this.height);
         
         if (this.level != null) {
-            int horizontalTiles = this.width / 32;
-            int verticalTiles   = this.height / 32;
+            int horizontalTiles = this.width / this.tileSize;
+            int verticalTiles   = this.height / this.tileSize;
             int maxX = this.level.getWidth() - horizontalTiles;
             int maxY = this.level.getHeight() - verticalTiles;
             int topLeftX = Math.max(0, Math.min(maxX, this.centerAtX - horizontalTiles / 2));
             int topLeftY = Math.max(0, Math.min(maxY, this.centerAtY - verticalTiles / 2));
-            this.level.draw(this.graphicsContext, 32, topLeftX, topLeftY, horizontalTiles, verticalTiles);
+            this.level.draw(this.graphicsContext, this.tileSize, topLeftX, topLeftY, horizontalTiles, verticalTiles);
         }
     }
     
@@ -97,5 +98,16 @@ public class LevelView extends Widget {
     public void centerAtTile(int x, int y) {
         this.centerAtX = x;
         this.centerAtY = y;
+    }
+    
+    
+    public void setTileSize(int size) {
+        if (size > 4 && size <= 64) {
+            this.tileSize = size;
+        }
+    }
+    
+    public int getTileSize() {
+        return this.tileSize;
     }
 }
