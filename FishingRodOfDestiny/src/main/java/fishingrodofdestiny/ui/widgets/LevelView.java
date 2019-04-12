@@ -48,7 +48,7 @@ public class LevelView extends Widget {
     public void refresh() {
         // TODO: if the current size of the container is changed, re-create or adjust the canvas to fit the container to make this scalable
         //       then also get rid of the width and height parameters for the constructor
-        this.graphicsContext.setFill(Color.RED);
+        this.graphicsContext.setFill(Color.BLACK);
         //this.graphicsContext.clearRect(0, 0, this.width, this.height);
         this.graphicsContext.fillRect(0, 0, this.width, this.height);
         
