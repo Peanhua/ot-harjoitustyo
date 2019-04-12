@@ -112,6 +112,7 @@ public class ScreenGame extends Screen {
         Tile tile = this.game.getPlayer().getLocation().getContainerTile();
         if (tile != null) {
             this.levelView.setLevel(tile.getLevel());
+            this.levelView.centerAtTile(tile.getX(), tile.getY());
         }
     }
     

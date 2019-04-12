@@ -78,7 +78,13 @@ public class LevelView extends Widget {
         this.graphicsContext.fillRect(0, 0, this.width, this.height);
         
         if (this.level != null) {
-            this.level.draw(this.graphicsContext);
+            int horizontalTiles = this.width / 32;
+            int verticalTiles   = this.height / 32;
+            int maxX = this.level.getWidth() - horizontalTiles;
+            int maxY = this.level.getHeight() - verticalTiles;
+            int topLeftX = Math.max(0, Math.min(maxX, this.centerAtX - horizontalTiles / 2));
+            int topLeftY = Math.max(0, Math.min(maxY, this.centerAtY - verticalTiles / 2));
+            this.level.draw(this.graphicsContext, 32, topLeftX, topLeftY, horizontalTiles, verticalTiles);
         }
     }
     
@@ -89,5 +95,7 @@ public class LevelView extends Widget {
     
     
     public void centerAtTile(int x, int y) {
+        this.centerAtX = x;
+        this.centerAtY = y;
     }
 }

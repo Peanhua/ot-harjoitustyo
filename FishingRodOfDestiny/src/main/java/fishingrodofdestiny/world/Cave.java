@@ -24,7 +24,7 @@ public class Cave {
     
     public Cave(Random random) {
         this.levels = new ArrayList<>();
-        LevelGenerator lg = new BSPLevelGenerator(random, 43, 35); // 43x35 fits the screen without scrolling
+        LevelGenerator lg = new BSPLevelGenerator(random, 80, 60);
         for (int i = 0; i < 10; i++) {
             this.addLevel(lg.generateLevel(i));
         }

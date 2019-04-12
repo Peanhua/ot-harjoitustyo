@@ -49,11 +49,10 @@ public class Level {
     }
     
     
-    public void draw(GraphicsContext context) {
-        int tileSize = 16;
-        for (int y = 0; y < this.height; y++) {
-            for (int x = 0; x < this.width; x++) {
-                Tile t = this.getTile(x, y);
+    public void draw(GraphicsContext context, int tileSize, int topLeftX, int topLeftY, int maxWidth, int maxHeight) {
+        for (int y = 0; topLeftY + y < this.height; y++) {
+            for (int x = 0; topLeftX + x < this.width; x++) {
+                Tile t = this.getTile(topLeftX + x, topLeftY + y);
                 if (t != null) {
                     t.draw(context, x * tileSize, y * tileSize, tileSize);
                 }
