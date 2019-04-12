@@ -54,24 +54,16 @@ public class ScreenGame extends Screen {
         CharacterStatus status = new CharacterStatus(this.game.getPlayer());
         leftbox.getChildren().add(status.createUserInterface());
 
-
-        VBox buttons = new VBox(10);
-        buttons.setAlignment(Pos.CENTER);
-
         Button quit = new Button("Quit");
         quit.setOnAction(e-> this.endGame());
-        buttons.getChildren().addAll(quit);
-            
-        leftbox.getChildren().add(buttons);
+        leftbox.getChildren().add(quit);
 
-        
-        this.message = UserInterfaceFactory.createText("Welcome to The Fishing Rod of Destiny!");
-        main.setBottom(this.message);
-
-        
         this.levelView = new LevelView();
         Node lv = this.levelView.createUserInterface();
         main.setCenter(lv);
+
+        this.message = UserInterfaceFactory.createText("Welcome to The Fishing Rod of Destiny!");
+        main.setBottom(this.message);
         
         
         this.game.getPlayer().getLocation().listenOnChange(() -> {
@@ -87,7 +79,7 @@ public class ScreenGame extends Screen {
 
     
     private void handleCommand(KeyboardSettings.Command command) {
-        switch(command) {
+        switch (command) {
             case ZOOM_OUT:
                 this.levelView.setTileSize(this.levelView.getTileSize() / 2);
                 this.levelView.refresh();
