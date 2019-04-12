@@ -27,6 +27,7 @@ public class JdbcHelper {
     
     private String        databaseUrl;
     private RowSetFactory rowSetFactory;
+    private Connection    connection;
 
     public JdbcHelper(String databaseUrl) {
         this.databaseUrl   = databaseUrl;
@@ -34,6 +35,20 @@ public class JdbcHelper {
             this.rowSetFactory = RowSetProvider.newFactory();
         } catch (Exception e) {
             this.rowSetFactory = null;
+        }
+        this.connection = null;
+    }
+    
+    
+    private void openConnection() throws SQLException {
+        if (this.connection != null) {
+            if (!this.connection.isValid(1)) {
+                this.connection.close();
+                this.connection = null;
+            }
+        }
+        if (this.connection == null) {
+            this.connection = DriverManager.getConnection(this.databaseUrl);
         }
     }
     
@@ -48,7 +63,7 @@ public class JdbcHelper {
         }
 
         try {
-            Connection connection = DriverManager.getConnection(this.databaseUrl);
+            this.openConnection();
 
             PreparedStatement stmt = connection.prepareStatement(sql);
             this.applyPreparer(stmt, preparer);
@@ -59,7 +74,6 @@ public class JdbcHelper {
 
             stmt.close();
             rs.close();
-            connection.close();
             
             return rv;
             
@@ -76,14 +90,13 @@ public class JdbcHelper {
     
     public boolean update(String sql, StatementPreparer preparer) {
         try {
-            Connection connection = DriverManager.getConnection(this.databaseUrl);
+            this.openConnection();
             
             PreparedStatement stmt = connection.prepareStatement(sql);
             this.applyPreparer(stmt, preparer);
             stmt.executeUpdate();
 
             stmt.close();
-            connection.close();
 
             return true;
             
@@ -100,7 +113,7 @@ public class JdbcHelper {
 
     public Integer insert(String sql, StatementPreparer preparer) {
         try {
-            Connection connection = DriverManager.getConnection(this.databaseUrl);
+            this.openConnection();
             
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             this.applyPreparer(stmt, preparer);
@@ -109,7 +122,6 @@ public class JdbcHelper {
             Integer id = this.getGeneratedKey(stmt);
             
             stmt.close();
-            connection.close();
 
             return id;
             
