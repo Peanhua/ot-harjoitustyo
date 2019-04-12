@@ -97,7 +97,7 @@ public class ScreenGame extends Screen {
             }
             
             GameObject player = this.game.getPlayer();
-            if (player == null) {
+            if (player == null || !player.isAlive()) {
                 return;
             }
 
