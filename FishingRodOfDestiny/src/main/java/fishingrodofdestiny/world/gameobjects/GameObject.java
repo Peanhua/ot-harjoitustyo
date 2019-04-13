@@ -162,14 +162,16 @@ public abstract class GameObject {
     public void hit(GameObject instigator, int damage) {
         if (this.currentHitpoints > damage) {
             this.currentHitpoints -= damage;
+            this.onChange.notifyObservers();
         } else {
             if (instigator != null) {
                 instigator.addMessage(this.getCapitalizedName() + " is destroyed.");
             }
             this.currentHitpoints = 0;
             this.destroy(instigator);
+            // onChange.notifyObservers() is not called here because destroy() does that for us
+            // TODO: make it "safe" to call notifyObservers() multiple times (asynchronously) within a timeframe so that the observers get notified only once
         }
-        this.onChange.notifyObservers();
     }
     
     public void destroy(GameObject instigator) {
