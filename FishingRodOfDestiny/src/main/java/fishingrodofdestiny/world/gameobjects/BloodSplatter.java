@@ -14,7 +14,7 @@ import fishingrodofdestiny.world.TileGfx;
 public class BloodSplatter extends GameObject {
     
     public BloodSplatter() {
-        super();
+        super("pool of blood");
         this.adjustMaxHitpoints(100);
         this.setHitpoints(this.getMaxHitpoints());
         this.setGraphics(new TileGfx("rltiles/tile", 292, 800, 32, 32));

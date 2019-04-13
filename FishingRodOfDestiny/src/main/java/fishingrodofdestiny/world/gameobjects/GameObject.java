@@ -60,6 +60,11 @@ public abstract class GameObject {
         this.drawingOrder     = 0;
     }
     
+    public GameObject(String name) {
+        this();
+        this.name = name;
+    }
+    
     @Override
     public String toString() {
         return "GameObject("

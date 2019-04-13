@@ -17,7 +17,7 @@ public abstract class StairsTile extends Tile {
     private Tile target;
     
     public StairsTile(Level level, int x, int y) {
-        super(level, x, y);
+        super(level, x, y, "ladders");
         this.target = null;
     }
     

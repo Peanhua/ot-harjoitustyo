@@ -15,7 +15,7 @@ import fishingrodofdestiny.world.TileGfx;
 public class WallTile extends Tile {
 
     public WallTile(Level level, int x, int y) {
-        super(level, x, y);
+        super(level, x, y, "wall");
         this.setGraphics(new TileGfx("rltiles/tile", 320, 0, 32, 32));
     }
     

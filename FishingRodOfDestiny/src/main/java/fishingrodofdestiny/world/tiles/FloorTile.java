@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 public class FloorTile extends Tile {
 
     public FloorTile(Level level, int x, int y) {
-        super(level, x, y);
+        super(level, x, y, "floor");
         this.setGraphics(new TileGfx("rltiles/nh32", 256, 896, 32, 32));
     }
     

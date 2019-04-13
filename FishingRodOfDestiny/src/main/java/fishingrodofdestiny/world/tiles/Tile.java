@@ -23,13 +23,19 @@ public abstract class Tile {
     private int       y;
     private Inventory inventory;
     private TileGfx   graphics;
+    private String    name;
     
-    public Tile(Level level, int x, int y) {
+    public Tile(Level level, int x, int y, String name) {
         this.level     = level;
         this.x         = x;
         this.y         = y;
         this.inventory = new Inventory(0);
         this.graphics  = null;
+        this.name      = name;
+    }
+    
+    public String getName() {
+        return this.name;
     }
     
     public TileGfx getGraphics() {

@@ -12,19 +12,18 @@ import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
+import fishingrodofdestiny.ui.widgets.LocationInfo;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.Tile;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
+import javafx.event.Event;
+import javafx.event.EventDispatchChain;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,27 +33,34 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public class ScreenGame extends Screen {
-    private Game      game;
-    private LevelView levelView;
-    private Text      message;
+    private Game         game;
+    private LevelView    levelView;
+    private Text         message;
+    private LocationInfo locationInfo;
     
     public ScreenGame(Game game, Screen parent, Stage stage) {
         super(parent, stage);
-        this.game      = game;
-        this.levelView = null;
+        this.game         = game;
+        this.levelView    = null;
+        this.message      = null;
+        this.locationInfo = null;
     }
 
     @Override
     protected Node createUserInterface() {
         BorderPane main = new BorderPane();
         
-        VBox leftbox = new VBox(0);
+        VBox leftbox = new VBox(20);
         main.setLeft(leftbox);
 
         CharacterStatus status = new CharacterStatus(this.game.getPlayer());
         leftbox.getChildren().add(status.createUserInterface());
+        
+        this.locationInfo = new LocationInfo();
+        leftbox.getChildren().add(this.locationInfo.createUserInterface());
 
         Button quit = new Button("Quit");
+        quit.setFocusTraversable(false);
         quit.setOnAction(e-> this.endGame());
         leftbox.getChildren().add(quit);
 
@@ -76,7 +82,7 @@ public class ScreenGame extends Screen {
         
         return main;
     }
-
+    
     
     private void handleCommand(KeyboardSettings.Command command) {
         switch (command) {
@@ -91,8 +97,9 @@ public class ScreenGame extends Screen {
         }
     }
     
-    
     private void setKeyboardHandlers(Node root) {
+        root.setFocusTraversable(true);
+                
         root.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             KeyboardSettings settings = KeyboardSettings.getInstance();
             
@@ -125,6 +132,12 @@ public class ScreenGame extends Screen {
         if (tile != null) {
             this.levelView.setLevel(tile.getLevel());
             this.levelView.centerAtTile(tile.getX(), tile.getY());
+        }
+        
+        if (this.game.getPlayer().isAlive()) {
+            this.locationInfo.setTile(tile);
+        } else {
+            this.locationInfo.refresh();
         }
     }
     
