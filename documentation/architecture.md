@@ -64,16 +64,6 @@ User interface is made of a number of *screens*, each defined in their own class
 During an active on-going game, the user interface handles updating the screen based on events from the game and by querying the current state of it.
 
 
-### Switching between screens
-
-There are two ways to switch between screens, both methods use the same basic logic.
-
-* The current screen is replaced with a new screen.
-* A child screen is shown until the child is closed.
-
-When a new screen is created, it is given its parent screen. When the newly created screen is closed, the parent screen is re-shown.
-
-
 ## Application logic
 
 Application logic is currently contained in the *fishingrodofdestiny.world* and its sub-packages. A single instance of a *Game* holds a single game and its state. A game contains levels, and a game also contains reference to the player game object for ease of access / finding it.
