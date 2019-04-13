@@ -81,6 +81,6 @@ The game is controlled by the player, and is thus not realtime; the game is not 
 
 ### Monster hits player
 
-The following sequence diagram describes what happens when a monster hits player, and the player dies. The possible event listeners for onChange events are not shown, for the player this would be the CharacterStatus widget showing the players current status. Also the internal works of Location object are not shown (which again would contain a triggered event, causing the LevelView to update).
+The following sequence diagram describes what happens when a monster hits the player, and the player dies. The possible event listeners for onChange events are not shown, for the player this would be the CharacterStatus widget showing the players current status. Also the internal works of Location objects are not shown (which again for the players Location object would contain a triggered event, causing the LevelView to update).
 <div><img src="monster_hit_player_sequence_diagram.svg" alt="Sequence diagram about monster hitting the player" width="900" /></div>
 
