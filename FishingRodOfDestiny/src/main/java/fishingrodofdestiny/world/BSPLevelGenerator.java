@@ -42,8 +42,10 @@ public class BSPLevelGenerator extends LevelGenerator {
         return level;
     }
 
+    @Override
     public void connectStartEnd(Level level) {
-        List<List<Tile>> connectedTileGroups = level.getConnectedTileGroups();
+        LevelMapConnectedTilesAlgorithm cta = new LevelMapConnectedTilesAlgorithm(level.getMap());
+        List<List<Tile>> connectedTileGroups = cta.getConnectedTileGroups();
 
         Tile stairsUp   = level.getStairsUp().get(0);
         Tile stairsDown = level.getStairsDown().get(0);
@@ -137,6 +139,32 @@ class Position {
             this.x = node.getTopLeft().x + random.nextInt(node.getWidth());
             this.y = node.getTopLeft().y + random.nextInt(node.getHeight());
         }
+    }
+
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Position other = (Position) obj;
+        if (this.x != other.x || this.y != other.y) {
+            return false;
+        }
+        return true;
+    }
+    
+
+    @Override
+    public int hashCode() {
+        String h = "" + this.x + "," + this.y;
+        return h.hashCode();
     }
 }
 
@@ -268,7 +296,7 @@ class Node {
                 level.setTile(src.x, src.y, new FloorTile(level, src.x, src.y));
             }
             
-            if (src.x == dst.x && src.y == dst.y) {
+            if (src.equals(dst)) {
                 break;
             }
 

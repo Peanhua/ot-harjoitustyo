@@ -23,20 +23,16 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Level {
     
-    private LevelSettings settings;
-    private int           width;
-    private int           height;
-    private List<Tile>    tiles;
+    private final LevelSettings settings;
+    private final int           width;
+    private final int           height;
+    private final LevelMap      map;
     
     public Level(LevelSettings settings, int width, int height) {
         this.settings = settings;
         this.width    = width;
         this.height   = height;
-        
-        this.tiles = new ArrayList<>();
-        for (int i = 0; i < width * height; i++) {
-            this.tiles.add(null);
-        }
+        this.map      = new LevelMap(this.width, this.height);
     }
     
     
@@ -45,7 +41,12 @@ public class Level {
     }
     
     public int getHeight() {
-        return height;
+        return this.height;
+    }
+    
+    
+    public LevelMap getMap() {
+        return this.map;
     }
     
     
@@ -61,14 +62,7 @@ public class Level {
     }
     
     public Tile getTile(int x, int y) {
-        if (x < 0 || x >= this.width) {
-            return null;
-        }
-        if (y < 0 || y >= this.height) {
-            return null;
-        }
-        
-        return this.tiles.get(y * this.width + x);
+        return this.map.getTile(x, y);
     }
     
 
@@ -96,29 +90,15 @@ public class Level {
     
     
     public void setTile(int x, int y, Tile tile) {
-        this.tiles.set(y * this.width + x, tile);
+        this.map.setTile(x, y, tile);
     }
 
 
-    public List<Tile> getTiles(Class cls) {
-        List<Tile> rv = new ArrayList<>();
-        
-        for (int i = 0; i < this.width * this.height; i++) {
-            Tile tile = this.tiles.get(i);
-            if (tile.getClass() == cls) {
-                rv.add(tile);
-            }
-        }
-        
-        return rv;
-    }
-    
-    
     public int getObjectCount(Class type) {
         // TODO: cache the most frequently queried types (all variations of NonPlayerCharacters)
         int count = 0;
         
-        for (Tile tile : this.tiles) {
+        for (Tile tile : this.map.getTiles()) {
             for (GameObject object : tile.getInventory().getObjects()) {
                 if (object.getClass() == type) {
                     count++;
@@ -155,14 +135,14 @@ public class Level {
     public List<StairsTile> getStairsUp() {
         // TODO: optimize a bit: keep a list of stairs going up
         List<StairsTile> stairs = new ArrayList<>();
-        this.getTiles(StairsUpTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
+        this.map.getTiles(StairsUpTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
         return stairs;
     }
 
     
     public List<StairsTile> getStairsDown() {
         List<StairsTile> stairs = new ArrayList<>();
-        this.getTiles(StairsDownTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
+        this.map.getTiles(StairsDownTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
         return stairs;
     }
     
@@ -170,7 +150,7 @@ public class Level {
     public void tick(double deltaTime) {
         // TODO: cache game objects in this level
         List<GameObject> objects = new ArrayList<>();
-        this.tiles.forEach(tile -> {
+        this.map.getTiles().forEach(tile -> {
             objects.addAll(tile.getInventory().getObjects());
         });
 
@@ -197,62 +177,5 @@ public class Level {
             rv += "\n";
         }
         return rv;
-    }
-    
-    
-    private List<List<Tile>> connectedTileGroups;
-    private boolean[]        visitedTiles;
-    private List<Tile>       currentConnectedTileGroup;
-    
-    public List<List<Tile>> getConnectedTileGroups() {
-        this.connectedTileGroups = new ArrayList<>();
-        this.visitedTiles = new boolean[this.width * this.height];
-        
-        for (int y = 0; y < this.height; y++) {
-            for (int x = 0; x < this.width; x++) {
-                List<Tile> list = this.getConnectedTiles(x, y);
-                if (list != null) {
-                    this.connectedTileGroups.add(list);
-                }
-            }
-        }
-        
-        return this.connectedTileGroups;
-    }
-    
-    public List<Tile> getConnectedTiles(int x, int y) {
-        if (this.visitedTiles[x + y * this.width]) {
-            return null;
-        }
-        
-        this.currentConnectedTileGroup = new ArrayList<>();
-        this.getConnectedTilesDFS(x, y);
-        if (this.currentConnectedTileGroup.size() == 0) {
-            return null;
-        }
-        return this.currentConnectedTileGroup;
-    }
-    
-    private void getConnectedTilesDFS(int x, int y) {
-        if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
-            return;
-        }
-        
-        if (this.visitedTiles[x + y * this.width]) {
-            return;
-        }
-
-        this.visitedTiles[x + y * this.width] = true;
-
-        Tile tile = this.getTile(x, y);
-        if (!tile.canBeEntered()) {
-            return;
-        }
-
-        this.currentConnectedTileGroup.add(tile);
-        this.getConnectedTilesDFS(x, y - 1);
-        this.getConnectedTilesDFS(x, y + 1);
-        this.getConnectedTilesDFS(x - 1, y);
-        this.getConnectedTilesDFS(x + 1, y);
     }
 }
