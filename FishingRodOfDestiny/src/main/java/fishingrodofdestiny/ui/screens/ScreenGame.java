@@ -12,15 +12,18 @@ import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
+import fishingrodofdestiny.ui.widgets.ConfirmationRequester;
 import fishingrodofdestiny.ui.widgets.LocationInfo;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -31,6 +34,8 @@ import javafx.stage.Stage;
  */
 public class ScreenGame extends Screen {
     private Game         game;
+    private StackPane    root;
+    private Node         gameView;
     private LevelView    levelView;
     private Text         message;
     private LocationInfo locationInfo;
@@ -38,6 +43,8 @@ public class ScreenGame extends Screen {
     public ScreenGame(Game game, Screen parent, Stage stage) {
         super(parent, stage);
         this.game         = game;
+        this.root         = null;
+        this.gameView     = null;
         this.levelView    = null;
         this.message      = null;
         this.locationInfo = null;
@@ -45,7 +52,11 @@ public class ScreenGame extends Screen {
 
     @Override
     protected Node createUserInterface() {
+        this.root = new StackPane();
+        
         BorderPane main = new BorderPane();
+        this.gameView = main;
+        this.root.getChildren().add(main);
         
         VBox leftbox = new VBox(20);
         main.setLeft(leftbox);
@@ -58,7 +69,7 @@ public class ScreenGame extends Screen {
 
         Button quit = new Button("Quit");
         quit.setFocusTraversable(false);
-        quit.setOnAction(e-> this.endGame());
+        quit.setOnAction(e-> this.onEndGameClicked());
         leftbox.getChildren().add(quit);
 
         this.levelView = new LevelView();
@@ -73,11 +84,12 @@ public class ScreenGame extends Screen {
             this.onPlayerMoved();
         });
         
-        this.setKeyboardHandlers(main);
+        this.setKeyboardHandlers();
+        this.enableInputHandlers();
         
         this.onPlayerMoved();
         
-        return main;
+        return root;
     }
     
     
@@ -91,13 +103,22 @@ public class ScreenGame extends Screen {
                 this.levelView.setTileSize(this.levelView.getTileSize() * 2);
                 this.levelView.refresh();
                 break;
+            case EXIT:
+                this.onEndGameClicked();
+                break;
         }
     }
     
-    private void setKeyboardHandlers(Node root) {
-        root.setFocusTraversable(true);
-                
-        root.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+    private void enableInputHandlers() {
+        this.gameView.setFocusTraversable(true);
+    }
+    
+    private void disableInputHandlers() {
+        this.gameView.setFocusTraversable(false);
+    }
+    
+    private void setKeyboardHandlers() {
+        this.gameView.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             KeyboardSettings settings = KeyboardSettings.getInstance();
             
             KeyboardSettings.Command command = settings.getCommand(event.getCode());
@@ -139,13 +160,34 @@ public class ScreenGame extends Screen {
     }
     
     
+    private void onEndGameClicked() {
+        if (this.game.getPlayer().isAlive()) {
+            ConfirmationRequester cr = new ConfirmationRequester("You are still alive!\nAre you sure you want to exit?", "Cancel", "Exit");
+            this.disableInputHandlers();
+            List<Button> buttons = cr.show(this.root);
+            
+            buttons.get(0).setOnAction(e -> {
+                cr.close();
+                this.enableInputHandlers();
+            });
+            
+            buttons.get(1).setOnAction(e -> {
+                cr.close();
+                endGame();
+            });
+            
+        } else {
+            endGame();
+        }
+    }
+
     private void endGame() {
         Highscore hs = new ScoreBasedHighscore(this.game);
 
         HighscoreListCache hc = HighscoreListCache.getInstance();
         HighscoreList hslist = hc.get(Highscore.Type.SCORE);
         hslist.add(hs);
-        
+
         this.close();
     }
 }

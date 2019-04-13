@@ -27,7 +27,8 @@ public class KeyboardSettings {
     
     public enum Command {
         ZOOM_IN,
-        ZOOM_OUT
+        ZOOM_OUT,
+        EXIT
     };
     
     
@@ -56,6 +57,7 @@ public class KeyboardSettings {
         this.keysToCommands = new HashMap<>();
         this.keysToCommands.put(KeyCode.PAGE_DOWN, Command.ZOOM_IN);
         this.keysToCommands.put(KeyCode.PAGE_UP,   Command.ZOOM_OUT);
+        this.keysToCommands.put(KeyCode.ESCAPE,    Command.EXIT);
     }
     
     public KeyCode getKey(GameObject.Action action) {

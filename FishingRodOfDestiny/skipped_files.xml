@@ -12,6 +12,7 @@
   <suppress files="fishingrodofdestiny.ui.screens.ScreenNewGame.java" checks="[a-zA-Z0-9]*"/>
   <suppress files="fishingrodofdestiny.ui.screens.ScreenPlot.java" checks="[a-zA-Z0-9]*"/>
   <suppress files="fishingrodofdestiny.ui.widgets.CharacterStatus.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.ConfirmationRequester.java" checks="[a-zA-Z0-9]*"/>
   <suppress files="fishingrodofdestiny.ui.widgets.HighscoreListView.java" checks="[a-zA-Z0-9]*"/>
   <suppress files="fishingrodofdestiny.ui.widgets.LevelView.java" checks="[a-zA-Z0-9]*"/>
   <suppress files="fishingrodofdestiny.ui.widgets.LocationInfo.java" checks="[a-zA-Z0-9]*"/>
