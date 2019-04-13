@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+  <suppress files="fishingrodofdestiny.ui.screens.Screen.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.screens.ScreenGame.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.screens.ScreenHighscores.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.screens.ScreenMainMenu.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.screens.ScreenNewGame.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.screens.ScreenPlot.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.CharacterStatus.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.HighscoreListView.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.LevelView.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.LocationInfo.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.PointDistributor.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.UserInterfaceFactory.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="fishingrodofdestiny.ui.widgets.Widget.java" checks="[a-zA-Z0-9]*"/>
+</suppressions>
