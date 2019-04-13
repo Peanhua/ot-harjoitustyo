@@ -64,15 +64,33 @@ User interface is made of a number of *screens*, each defined in their own class
 During an active on-going game, the user interface handles updating the screen based on events from the game and by querying the current state of it.
 
 
+### Switching between screens
+
+There are two ways to switch between screens, both methods use the same basic logic.
+
+* The current screen is replaced with a new screen.
+* A child screen is shown until the child is closed.
+
+When a new screen is created, it is given its parent screen. When the newly created screen is closed, the parent screen is re-shown.
+
+
 ## Application logic
 
 Application logic is currently contained in the *fishingrodofdestiny.world* and its sub-packages. A single instance of a *Game* holds a single game and its state. A game contains levels, and a game also contains reference to the player game object for ease of access / finding it.
 
-A level defines (class *Level*) one section of the cave, and can be thought to be like a floor in a building, the player starts from the top floor and descends down to bottom floor (and then back up to the top floor). A level is made of 2d grid of adjacent tiles (class *Tile*), each tile having the exact same dimensions. A tile contains game objects (class *GameObject*), and game objects can contain other game objects. A game object is a movable object, whereas a tile is a static object. Certains types of tiles can have link to other tile, for example stairs down is connected to stairs up on another level.
+A level defines (class *Level*) one section of the cave, and can be thought to be like a floor in a building, the player starts from the top floor and descends down to bottom floor (and then back up to the top floor). A level is made of 2d grid of adjacent tiles (class *Tile*), each tile having the exact same dimensions. The actual tile objects in the level are stored in a container class *LevelMap*.
+
+A tile contains game objects (class *GameObject*), and game objects can contain other game objects. A game object is a movable object, whereas a tile is a static object. Certains types of tiles can have link to other tile, for example stairs down is connected to stairs up on another level.
 
 <div><img src="application_logic.svg" alt="Application logic" width="200" /></div>
 
 The game advances when player picks the next action to be performed by the player character (class *Player*, instance of *GameObject*). The *tick()* method is called on the *Game* object, which in turn selects the levels to process, the selection is based on the location of the player character, only nearby levels are processed. The levels then call the *tick()* method of all of the game objects in the level, and the game objects do whatever they are destined to do. For example the player character might want to move one step to the east.
 
 The game is controlled by the player, and is thus not realtime; the game is not progressing when the player is choosing the next action. This means that triggering the game to progress is done from the user interface. Also the initialization of the game is triggered from the user interface, be it starting a new game or loading a saved game.
+
+
+### Monster hits player
+
+The following sequence diagram describes what happens when a monster hits player, and the player dies. The possible event listeners for onChange events are not shown, for the player this would be the CharacterStatus widget showing the players current status. Also the internal works of Location object are not shown (which again would contain a triggered event, causing the LevelView to update).
+<div><img src="monster_hit_player_sequence_diagram.svg" alt="Sequence diagram about monster hitting the player" width="700" /></div>
 
