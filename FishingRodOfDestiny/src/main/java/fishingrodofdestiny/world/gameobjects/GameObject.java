@@ -76,7 +76,7 @@ public abstract class GameObject {
     }
     
     
-    protected void setDrawingOrder(int order) {
+    protected final void setDrawingOrder(int order) {
         this.drawingOrder = order;
     }
     
@@ -205,7 +205,7 @@ public abstract class GameObject {
     }
     
     
-    public Inventory getInventory() {
+    public final Inventory getInventory() {
         return this.inventory;
     }
     

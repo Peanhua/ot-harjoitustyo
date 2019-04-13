@@ -60,6 +60,8 @@ public abstract class Character extends GameObject {
         }
         
         this.adjustExperiencePoints(xp);
+
+        super.onDestroyTarget(target);
     }
     
     @Override
