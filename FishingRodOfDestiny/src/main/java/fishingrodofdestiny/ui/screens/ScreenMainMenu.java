@@ -6,11 +6,7 @@
 package fishingrodofdestiny.ui.screens;
 
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
-import fishingrodofdestiny.world.Game;
-import fishingrodofdestiny.world.gameobjects.Player;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
