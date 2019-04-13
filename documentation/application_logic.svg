@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="12cm" height="10cm" viewBox="316 181 223 195" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="12cm" height="12cm" viewBox="316 135 223 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
-    <rect style="fill: #ffffff" x="339" y="185" width="46" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="339" y="185" width="46" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="362" y="199">Game</text>
-    <rect style="fill: #ffffff" x="339" y="203" width="46" height="4"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="339" y="203" width="46" height="4"/>
+    <rect style="fill: #ffffff" x="390.5" y="139.5" width="46" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="390.5" y="139.5" width="46" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="413.5" y="153.5">Game</text>
+    <rect style="fill: #ffffff" x="390.5" y="157.5" width="46" height="4"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="390.5" y="157.5" width="46" height="4"/>
   </g>
   <g>
     <rect style="fill: #ffffff" x="424.511" y="257.296" width="86.95" height="18"/>
@@ -16,11 +16,11 @@
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="424.511" y="275.296" width="86.95" height="4"/>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="342.36" y="262.565" width="43.5" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="342.36" y="262.565" width="43.5" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="364.11" y="276.565">Level</text>
-    <rect style="fill: #ffffff" x="342.36" y="280.565" width="43.5" height="4"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="342.36" y="280.565" width="43.5" height="4"/>
+    <rect style="fill: #ffffff" x="338.86" y="190.065" width="43.5" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="338.86" y="190.065" width="43.5" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="360.61" y="204.065">Level</text>
+    <rect style="fill: #ffffff" x="338.86" y="208.065" width="43.5" height="4"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="338.86" y="208.065" width="43.5" height="4"/>
   </g>
   <g>
     <rect style="fill: #ffffff" x="347.598" y="332.326" width="32.95" height="18"/>
@@ -30,13 +30,13 @@
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="347.598" y="350.326" width="32.95" height="4"/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="362,207 362,234.782 364.11,234.782 364.11,262.565 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="366" y="219">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="368.11" y="258.565">*</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="390.5,148.5 360.61,148.5 360.61,190.065 "/>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="386.5" y="144.5">1</text>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="364.61" y="186.065">*</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="364.11,284.565 364.11,308.445 364.073,308.445 364.073,332.326 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="368.11" y="296.565">1</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="361.447,274.834 361.447,303.58 364.073,303.58 364.073,332.326 "/>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="365.447" y="286.834">1</text>
     <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="368.073" y="328.326">*</text>
   </g>
   <g>
@@ -52,9 +52,9 @@
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="443.265" y="203.742" width="49.65" height="4"/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,194 414.132,194 414.132,194.742 443.265,194.742 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="389" y="190">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="439.265" y="190.742">1</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="436.5,148.5 468.09,148.5 468.09,185.742 "/>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="440.5" y="144.5">1</text>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="472.09" y="181.742">1</text>
   </g>
   <g>
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="468.09" y1="207.742" x2="468.012" y2="245.06"/>
@@ -69,5 +69,17 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="347.598,341.326 316.693,341.326 316.693,375.387 355.835,375.387 355.835,354.326 "/>
     <text font-size="9.59961" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="343.598" y="337.326">0..1</text>
     <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="359.835" y="366.326">0..1</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="326.347" y="252.834" width="70.2" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="326.347" y="252.834" width="70.2" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="361.447" y="266.834">LevelMap</text>
+    <rect style="fill: #ffffff" x="326.347" y="270.834" width="70.2" height="4"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="326.347" y="270.834" width="70.2" height="4"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="360.61,212.065 360.61,232.449 361.447,232.449 361.447,252.834 "/>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="364.61" y="224.065">1</text>
+    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="365.447" y="248.834">1</text>
   </g>
 </svg>
