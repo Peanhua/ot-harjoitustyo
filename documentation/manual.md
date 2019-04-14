@@ -7,3 +7,4 @@
 * `e` to climb ladders up/down
 * `page up` to zoom out
 * `page down` to zoom in
+* `w` to wait
