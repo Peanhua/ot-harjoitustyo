@@ -16,12 +16,10 @@ import fishingrodofdestiny.ui.widgets.ConfirmationRequester;
 import fishingrodofdestiny.ui.widgets.LocationInfo;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
-import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.controllers.Controller;
 import fishingrodofdestiny.world.controllers.PlayerController;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
-import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
@@ -86,6 +84,8 @@ public class ScreenGame extends Screen {
         this.enableInputHandlers();
         
         this.onPlayerMoved();
+        this.locationInfo.refresh();
+        // The levelView doesn't need to be refresh()'d here because it will receive a resize event which will cause the refresh() to happen.
         
         return main;
     }
@@ -145,8 +145,11 @@ public class ScreenGame extends Screen {
             }
             
             if (this.forwardJavaFXEventToPlayerController(event)) {
+                Player player = this.game.getPlayer();
+                
                 this.game.tick();
-                this.message.setText(this.game.getPlayer().popMessage());
+                this.message.setText(player.popMessage());
+                this.locationInfo.refresh();
                 this.levelView.refresh();
             }
         });
@@ -154,16 +157,14 @@ public class ScreenGame extends Screen {
     
     
     private void onPlayerMoved() {
-        Tile tile = this.game.getPlayer().getLocation().getContainerTile();
+        Player player = this.game.getPlayer();
+        Tile tile = player.getLocation().getContainerTile();
         if (tile != null) {
             this.levelView.setLevel(tile.getLevel());
             this.levelView.centerAtTile(tile.getX(), tile.getY());
         }
-        
-        if (this.game.getPlayer().isAlive()) {
+        if (player.isAlive()) {
             this.locationInfo.setTile(tile);
-        } else {
-            this.locationInfo.refresh();
         }
     }
     

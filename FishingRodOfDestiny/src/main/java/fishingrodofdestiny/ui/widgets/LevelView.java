@@ -75,8 +75,8 @@ public class LevelView extends Widget {
         }
 
         this.graphicsContext.setFill(Color.BLACK);
-        //this.graphicsContext.clearRect(0, 0, this.width, this.height);
         this.graphicsContext.fillRect(0, 0, this.width, this.height);
+        // TODO: check if clearRect() would be faster
         
         if (this.level != null) {
             int horizontalTiles = this.width / this.tileSize;

@@ -129,7 +129,6 @@ public class LocationInfo extends Widget {
     public void setTile(Tile tile) {
         if (this.currentTile != tile) {
             this.currentTile = tile;
-            this.refresh();
         }
     }
 }
