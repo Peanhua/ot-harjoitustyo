@@ -5,9 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.controllers.SimpleAiController;
 import fishingrodofdestiny.world.TileGfx;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -27,7 +26,7 @@ public class NonPlayerCharacter extends Character {
     }
 
     @Override
-    protected boolean isValidAttackTarget(GameObject target) {
+    public boolean isValidAttackTarget(GameObject target) {
         if (!super.isValidAttackTarget(target)) {
             return false;
         }

@@ -9,6 +9,7 @@ import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 
 
@@ -17,17 +18,6 @@ import javafx.scene.canvas.GraphicsContext;
  * @author joyr
  */
 public abstract class GameObject {
-    
-    public enum Action {
-        NONE,
-        MOVE_NORTH,
-        MOVE_SOUTH,
-        MOVE_WEST,
-        MOVE_EAST,
-        ACTIVATE_TILE,  // Tile specific action.
-        ATTACK          // Attack whoever is in the same tile.
-    };
-    
     private   String     name;
     private   boolean    isAlive;
     private   int        maxHitpoints;
@@ -38,10 +28,9 @@ public abstract class GameObject {
     private   Inventory  inventory;
     private   Subject    onMessage;
     private   String     message;
-    private   Action     nextAction;
-    private   Controller controller;
     private   TileGfx    graphics;
     private   int        drawingOrder;
+    private   boolean    canBePickedUp;
     
     public GameObject() {
         this.name             = null;
@@ -55,9 +44,8 @@ public abstract class GameObject {
         this.onMessage        = new Subject();
         this.message          = "";
         this.graphics         = null;
-        this.nextAction       = Action.NONE;
-        this.controller       = null;
         this.drawingOrder     = 0;
+        this.canBePickedUp    = false;
     }
     
     public GameObject(String name) {
@@ -78,6 +66,15 @@ public abstract class GameObject {
     
     public int getDrawingOrder() {
         return this.drawingOrder;
+    }
+    
+    
+    public boolean getCanBePickedUp() {
+        return this.canBePickedUp;
+    }
+    
+    protected final void setCanBePickedUp(boolean canBePickedUp) {
+        this.canBePickedUp = canBePickedUp;
     }
     
     
@@ -116,16 +113,11 @@ public abstract class GameObject {
     }
     
     
-    protected void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-
     public Location getLocation() {
         return this.location;
     }
     
-    public void setName(String name) {
+    public final void setName(String name) {
         this.name = name;
         this.onChange.notifyObservers();
     }
@@ -180,6 +172,7 @@ public abstract class GameObject {
     }
     
     public void destroy(GameObject instigator) {
+        // TODO: separate destroy() and onDestroyed() stuffs to their own methods, destroy() can then be final
         this.addMessage("You die!");
         if (instigator != null) {
             instigator.onDestroyTarget(this);
@@ -219,27 +212,17 @@ public abstract class GameObject {
         return this.weight + this.inventory.getWeight();
     }
 
+    
+    public List<GameObject> getValidAttackTargets(Tile tile) {
+        return null;
+    }
+    
 
     public void draw(GraphicsContext context, int x, int y, int size) {
         this.graphics.draw(context, x, y, size);
     }
     
-    public final void setNextAction(Action action) {
-        this.nextAction = action;
-    }
-    
-    
-    public void act(Action action) {
-    }
-    
-    
+
     public void tick(double deltaTime) {
-        if (this.nextAction == null && this.controller != null) {
-            this.nextAction = this.controller.getNextAction();
-        }
-        if (this.nextAction != null) {
-            this.act(this.nextAction);
-            this.nextAction = null;
-        }
     }
 }

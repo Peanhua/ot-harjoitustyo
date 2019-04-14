@@ -16,14 +16,16 @@ import fishingrodofdestiny.ui.widgets.ConfirmationRequester;
 import fishingrodofdestiny.ui.widgets.LocationInfo;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;
-import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.actions.Action;
+import fishingrodofdestiny.world.controllers.Controller;
+import fishingrodofdestiny.world.controllers.PlayerController;
+import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
-import java.util.List;
+import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,8 +35,7 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public class ScreenGame extends Screen {
-    private Game         game;
-    private StackPane    root;
+    private final Game   game;
     private Node         gameView;
     private LevelView    levelView;
     private Text         message;
@@ -43,7 +44,6 @@ public class ScreenGame extends Screen {
     public ScreenGame(Game game, Screen parent, Stage stage) {
         super(parent, stage);
         this.game         = game;
-        this.root         = null;
         this.gameView     = null;
         this.levelView    = null;
         this.message      = null;
@@ -52,11 +52,9 @@ public class ScreenGame extends Screen {
 
     @Override
     protected Node createUserInterface() {
-        this.root = new StackPane();
         
         BorderPane main = new BorderPane();
         this.gameView = main;
-        this.root.getChildren().add(main);
         
         VBox leftbox = new VBox(20);
         main.setLeft(leftbox);
@@ -89,7 +87,7 @@ public class ScreenGame extends Screen {
         
         this.onPlayerMoved();
         
-        return root;
+        return main;
     }
     
     
@@ -109,11 +107,30 @@ public class ScreenGame extends Screen {
         }
     }
     
-    private void enableInputHandlers() {
+    
+    private boolean forwardJavaFXEventToPlayerController(KeyEvent event) {
+        Player player = this.game.getPlayer();
+        if (player == null || !player.isAlive()) {
+            return false;
+        }
+        
+        Controller controller = player.getController();
+        if (controller == null || !(controller instanceof PlayerController)) {
+            return false;
+        }
+        PlayerController pc = (PlayerController) controller;
+
+        return pc.handleJavaFXEvent(event);
+    }        
+    
+    
+    @Override
+    public void enableInputHandlers() {
         this.gameView.setFocusTraversable(true);
     }
     
-    private void disableInputHandlers() {
+    @Override
+    public void disableInputHandlers() {
         this.gameView.setFocusTraversable(false);
     }
     
@@ -127,20 +144,11 @@ public class ScreenGame extends Screen {
                 return;
             }
             
-            GameObject.Action action = settings.getAction(event.getCode());
-            if (action == null) {
-                return;
+            if (this.forwardJavaFXEventToPlayerController(event)) {
+                this.game.tick();
+                this.message.setText(this.game.getPlayer().popMessage());
+                this.levelView.refresh();
             }
-            
-            GameObject player = this.game.getPlayer();
-            if (player == null || !player.isAlive()) {
-                return;
-            }
-
-            this.game.getPlayer().setNextAction(action);
-            this.game.tick();
-            this.message.setText(this.game.getPlayer().popMessage());
-            this.levelView.refresh();
         });
     }
     
@@ -162,22 +170,12 @@ public class ScreenGame extends Screen {
     
     private void onEndGameClicked() {
         if (this.game.getPlayer().isAlive()) {
-            ConfirmationRequester cr = new ConfirmationRequester("You are still alive!\nAre you sure you want to exit?", "Cancel", "Exit");
-            this.disableInputHandlers();
-            List<Button> buttons = cr.show(this.root);
-            
-            buttons.get(0).setOnAction(e -> {
-                cr.close();
-                this.enableInputHandlers();
+            ConfirmationRequester cr = new ConfirmationRequester(this, "You are still alive!\nAre you sure you want to exit?", "Cancel", "Exit", () -> {
+                this.endGame();
             });
-            
-            buttons.get(1).setOnAction(e -> {
-                cr.close();
-                endGame();
-            });
-            
+            cr.show();
         } else {
-            endGame();
+            this.endGame();
         }
     }
 

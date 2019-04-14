@@ -51,5 +51,6 @@ Time used for the project.
   <tr><td>     </td><td> 3.5</td><td>Documentation.</td></tr>
   <tr><td>     </td><td> 1.5</td><td>User interface.</td></tr>
   <tr><td>14.4.</td><td> 1.5</td><td>User interface.</td></tr>
+  <tr><td>     </td><td> 5.0</td><td>Code refactoring.</td></tr>
   <tr><th>Total</th><th>70.5</th><th></th></tr>
 </table>

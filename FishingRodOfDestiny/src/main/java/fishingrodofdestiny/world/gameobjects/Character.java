@@ -5,8 +5,13 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.controllers.Controller;
+import fishingrodofdestiny.world.actions.ActionMove;
+import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -15,10 +20,11 @@ import fishingrodofdestiny.world.tiles.Tile;
  */
 public abstract class Character extends GameObject {
     
-    private int attack;
-    private int defence;
-    private int level;
-    private int experiencePoints;
+    private int    attack;
+    private int    defence;
+    private int    level;
+    private int    experiencePoints;
+    private Controller controller;
 
     public Character() {
         super();
@@ -26,6 +32,7 @@ public abstract class Character extends GameObject {
         this.defence          = 0;
         this.level            = 0;
         this.experiencePoints = 0;
+        this.controller       = null;
         this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
@@ -64,101 +71,29 @@ public abstract class Character extends GameObject {
         super.onDestroyTarget(target);
     }
     
-    @Override
-    public void act(Action action) {
-        if (action == null) {
-            return;
-        }
-        if (!this.isAlive()) {
-            return;
-        }
-
-        switch (action) {
-            case NONE:
-                this.actionWait();
-                break;
-            case MOVE_NORTH:
-                this.actionMove(0, -1);
-                break;
-            case MOVE_SOUTH:
-                this.actionMove(0, 1);
-                break;
-            case MOVE_WEST:
-                this.actionMove(-1, 0);
-                break;
-            case MOVE_EAST:
-                this.actionMove(1, 0);
-                break;
-            case ACTIVATE_TILE:
-                this.actionActivateTile();
-                break;
-            case ATTACK:
-                this.actionAttack();
-                break;
-        }
-    }
     
-    private void actionWait() {
-        this.addMessage("You wait.");
-    }
-    
-    private void actionActivateTile() {
-        Tile tile = this.getLocation().getContainerTile();
-        if (tile != null) {
-            tile.activate(this);
-        }
-    }
-    
-    private void actionMove(int deltaX, int deltaY) {
-        Tile myTile = this.getLocation().getContainerTile();
-        if (myTile == null) {
-            return;
-        }
-        
-        Level level = myTile.getLevel();
-        if (level == null) {
-            return;
-        }
-        
-        Tile targetTile = level.getTile(myTile.getX() + deltaX, myTile.getY() + deltaY);
-        if (targetTile == null) {
-            return;
-        }
-        
-        if (!targetTile.canBeEntered()) {
-            return;
-        }
-        
-        this.getLocation().moveTo(targetTile);
-    }
-    
-    protected boolean isValidAttackTarget(GameObject target) {
+    public boolean isValidAttackTarget(GameObject target) {
         return target != this;
     }
+
     
-    private void actionAttack() {
-        Tile tile = this.getLocation().getContainerTile();
+    @Override
+    public List<GameObject> getValidAttackTargets(Tile tile) {
         if (tile == null) {
-            return;
+            return null;
         }
         
-        GameObject target =
-                tile
-                .getInventory()
-                .getObjects()
-                .stream()
-                .reduce(null, (a, b) -> this.isValidAttackTarget(b) ? b : a);
+        List<GameObject> targets = new ArrayList<>();
+
+        tile.getInventory().getObjects().forEach(obj -> {
+            if (this.isValidAttackTarget(obj)) {
+                targets.add(obj);
+            }
+        });
         
-        if (target == null) {
-            this.addMessage("You attack thin air!");
-            return;
-        }
-        
-        int damage = this.getDamage();
-        this.addMessage("You hit " + target.getName() + " for " + damage + "!");
-        target.addMessage(this.getCapitalizedName() + " hits you for " + damage + "!");
-        target.hit(this, damage);
-    }
+        return targets.isEmpty() ? null : targets;
+    }        
+
     
     public int getAttack() {
         return this.attack;
@@ -203,5 +138,32 @@ public abstract class Character extends GameObject {
     public void adjustExperiencePoints(int amount) {
         this.experiencePoints += amount;
         this.onChange.notifyObservers();
+    }
+
+    
+    public Controller getController() {
+        return this.controller;
+    }
+    
+    protected final void setController(Controller controller) {
+        this.controller = controller;
+    }
+    
+    
+    @Override
+    public void tick(double deltaTime) {
+        super.tick(deltaTime);
+        
+        if (!this.isAlive()) {
+            return;
+        }
+        if (this.controller == null) {
+            return;
+        }
+        
+        Action nextAction = this.controller.getNextAction();
+        if (nextAction != null) {
+            nextAction.act(this);
+        }
     }
 }

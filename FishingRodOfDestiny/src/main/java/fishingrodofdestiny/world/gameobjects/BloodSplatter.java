@@ -21,6 +21,7 @@ public class BloodSplatter extends GameObject {
     }
 
     public void tick(double deltaTime) {
-        this.hit(this, 1);
+        super.tick(deltaTime);
+        this.hit(null, 1);
     }    
 }

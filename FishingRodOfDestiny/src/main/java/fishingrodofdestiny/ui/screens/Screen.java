@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -17,14 +18,16 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public abstract class Screen {
-    private Screen parent;
-    private Stage  stage;
-    private Scene  scene;
+    private Screen    parentScreen;
+    private Stage     stage;
+    private Scene     scene;
+    private StackPane root;
     
     public Screen(Screen parent, Stage stage) {
-        this.parent = parent;
-        this.stage  = stage;
-        this.scene  = null;
+        this.parentScreen = parent;
+        this.stage        = stage;
+        this.scene        = null;
+        this.root         = null;
     }
     
     protected abstract Node createUserInterface();
@@ -34,15 +37,17 @@ public abstract class Screen {
     }
     
     public final Screen getParent() {
-        return this.parent;
+        return this.parentScreen;
     }
 
     public final void show() {
         if (this.scene == null) {
-            BorderPane root = new BorderPane();
-            root.setStyle("-fx-background-color: #000000;");
-            root.setCenter(this.createUserInterface());
-            this.scene = new Scene(root, 800, 600, Color.BLACK);
+            BorderPane bp = new BorderPane();
+            bp.setStyle("-fx-background-color: #000000;");
+            this.root = new StackPane();
+            bp.setCenter(root);
+            root.getChildren().add(this.createUserInterface());
+            this.scene = new Scene(bp, 800, 600, Color.BLACK);
         }
         
         if (this.scene != null) {
@@ -51,10 +56,20 @@ public abstract class Screen {
     }
 
     public final void close() {
-        if (parent == null) {
+        if (this.parentScreen == null) {
             Platform.exit();
         } else {
-            parent.show();
+            this.parentScreen.show();
         }
+    }
+    
+    public final StackPane getRoot() {
+        return this.root;
+    }
+    
+    public void enableInputHandlers() {
+    }
+    
+    public void disableInputHandlers() {
     }
 }

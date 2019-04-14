@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.actions.Action;
+import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Location;
 import fishingrodofdestiny.world.gameobjects.Player;
@@ -49,16 +51,22 @@ public class GameTest {
         Tile originalTile = location.getContainerTile();
         assertTrue(originalTile != null);
         
-        this.player.act(GameObject.Action.MOVE_NORTH);
+        Action action;
+        
+        action = new ActionMove(0, -1);
+        action.act(this.player);
         boolean movedNorth = location.getContainerTile() != originalTile;
 
-        this.player.act(GameObject.Action.MOVE_SOUTH);
+        action = new ActionMove(0, 1);
+        action.act(this.player);
         boolean movedSouth = location.getContainerTile() != originalTile;
 
-        this.player.act(GameObject.Action.MOVE_WEST);
+        action = new ActionMove(-1, 0);
+        action.act(this.player);
         boolean movedWest = location.getContainerTile() != originalTile;
 
-        this.player.act(GameObject.Action.MOVE_EAST);
+        action = new ActionMove(1, 0);
+        action.act(this.player);
         boolean movedEast = location.getContainerTile() != originalTile;
         
         assertTrue(movedNorth || movedSouth || movedWest || movedEast);

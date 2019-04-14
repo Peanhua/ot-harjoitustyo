@@ -6,6 +6,7 @@
 package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.world.TileGfx;
+import fishingrodofdestiny.world.controllers.PlayerController;
 
 /**
  *
@@ -14,6 +15,7 @@ import fishingrodofdestiny.world.TileGfx;
 public class Player extends Character {
     public Player() {
         super();
+        this.setController(new PlayerController(this));
         this.setGraphics(new TileGfx("rltiles/nh32", 160, 352, 32, 32));
     }
     

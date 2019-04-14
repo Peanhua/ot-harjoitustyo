@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.settings;
 
-import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.actions.Action;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,7 +41,10 @@ public class KeyboardSettingsTest {
     @Test
     public void makeSureAllActionsHaveDefaultKeySetting() {
         KeyboardSettings settings = KeyboardSettings.getInstance();
-        for (GameObject.Action action : GameObject.Action.values()) {
+        for (Action.Type action : Action.Type.values()) {
+            if (action == Action.Type.MOVE) { // Ignore MOVE as it alone is not currently a useful command for the player to issue.
+                continue;
+            }
             assertNotNull(settings.getKey(action));
         }
     }
