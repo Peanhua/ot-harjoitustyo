@@ -6,6 +6,7 @@
 package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.gameobjects.LevelMemory;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
@@ -24,17 +25,22 @@ import javafx.scene.canvas.GraphicsContext;
 public class Level {
     
     private final LevelSettings enemySettings;
+    private final int           depth; // how low this is in the cave, top-most is 0
     private final int           width;
     private final int           height;
     private final LevelMap      map;
     
-    public Level(LevelSettings enemySettings, int width, int height) {
+    public Level(LevelSettings enemySettings, int depth, int width, int height) {
         this.enemySettings = enemySettings;
+        this.depth         = depth;
         this.width         = width;
         this.height        = height;
         this.map           = new LevelMap(this.width, this.height);
     }
     
+    public int getDepth() {
+        return this.depth;
+    }
     
     public int getWidth() {
         return this.width;
@@ -50,12 +56,14 @@ public class Level {
     }
     
     
-    public void draw(GraphicsContext context, int tileSize, int topLeftX, int topLeftY, int maxWidth, int maxHeight) {
+    public void draw(LevelMemory memory, GraphicsContext context, int tileSize, int topLeftX, int topLeftY, int maxWidth, int maxHeight) {
         for (int y = 0; topLeftY + y < this.height; y++) {
             for (int x = 0; topLeftX + x < this.width; x++) {
-                Tile t = this.getTile(topLeftX + x, topLeftY + y);
-                if (t != null) {
-                    t.draw(context, x * tileSize, y * tileSize, tileSize);
+                if (memory.isExplored(topLeftX + x, topLeftY + y)) {
+                    Tile t = this.getTile(topLeftX + x, topLeftY + y);
+                    if (t != null) {
+                        t.draw(context, x * tileSize, y * tileSize, tileSize);
+                    }
                 }
             }
         }

@@ -28,7 +28,7 @@ public class EmptyLevelGenerator extends LevelGenerator {
         LevelSettings settings = new LevelSettings();
         settings.addType(NonPlayerCharacter.class, 1 + caveLevel * 5, 0.2);
         settings.addType(NonPlayerCharacter.class, 1 + caveLevel * 5, 0.8);
-        Level level = new Level(settings, this.width, this.height);
+        Level level = new Level(settings, caveLevel, this.width, this.height);
 
         this.createLevelBorders(level);
         

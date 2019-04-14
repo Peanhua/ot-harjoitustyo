@@ -68,7 +68,7 @@ public class ScreenGame extends Screen {
         quit.setOnAction(e-> this.onEndGameClicked());
         leftbox.getChildren().add(quit);
 
-        this.levelView = new LevelView();
+        this.levelView = new LevelView(this.game.getPlayer());
         Node lv = this.levelView.createUserInterface();
         main.setCenter(lv);
 

@@ -6,6 +6,7 @@
 package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.Level;
+import fishingrodofdestiny.world.gameobjects.Player;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -26,10 +27,12 @@ public class LevelView extends Widget {
     private int             centerAtX;
     private int             centerAtY;
     private int             tileSize;
+    private Player          player;
     
-    public LevelView() {
+    public LevelView(Player player) {
         this.level    = null;
         this.tileSize = 32;
+        this.player   = player;
     }
     
     @Override
@@ -85,7 +88,7 @@ public class LevelView extends Widget {
             int maxY = this.level.getHeight() - verticalTiles;
             int topLeftX = Math.max(0, Math.min(maxX, this.centerAtX - horizontalTiles / 2));
             int topLeftY = Math.max(0, Math.min(maxY, this.centerAtY - verticalTiles / 2));
-            this.level.draw(this.graphicsContext, this.tileSize, topLeftX, topLeftY, horizontalTiles, verticalTiles);
+            this.level.draw(this.player.getLevelMemory(this.level), this.graphicsContext, this.tileSize, topLeftX, topLeftY, horizontalTiles, verticalTiles);
         }
     }
     

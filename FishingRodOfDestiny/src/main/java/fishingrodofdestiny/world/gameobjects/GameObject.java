@@ -117,7 +117,7 @@ public abstract class GameObject {
     }
     
     
-    public Location getLocation() {
+    public final Location getLocation() {
         return this.location;
     }
     

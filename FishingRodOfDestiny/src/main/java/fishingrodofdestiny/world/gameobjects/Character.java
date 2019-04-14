@@ -6,9 +6,7 @@
 package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.world.controllers.Controller;
-import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.actions.Action;
-import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
 import java.util.List;

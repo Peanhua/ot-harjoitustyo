@@ -30,7 +30,7 @@ public class BSPLevelGenerator extends LevelGenerator {
         LevelSettings enemySettings = new LevelSettings();
         enemySettings.addType(NonPlayerCharacter.class, 10 + caveLevel * 5, 1.0);
         
-        Level level = new Level(enemySettings, this.width, this.height);
+        Level level = new Level(enemySettings, caveLevel, this.width, this.height);
         
         Node root = new Node(this.random, 12, null, 1, 1, this.width - 2, this.height - 2);
         root.split(false);
