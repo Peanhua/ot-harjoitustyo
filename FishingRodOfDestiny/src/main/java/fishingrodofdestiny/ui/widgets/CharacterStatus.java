@@ -51,9 +51,6 @@ public class CharacterStatus extends Widget {
         this.character.listenOnChange(() -> {
             this.refresh();
         });
-        this.character.getInventory().listenOnChange(() -> {
-            this.refresh();
-        });
     }
 
     

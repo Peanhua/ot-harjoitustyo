@@ -46,6 +46,10 @@ public abstract class GameObject {
         this.graphics         = null;
         this.drawingOrder     = 0;
         this.canBePickedUp    = false;
+        
+        this.inventory.listenOnChange(() -> {
+            this.onChange.notifyObservers();
+        });
     }
     
     public GameObject(String name) {
