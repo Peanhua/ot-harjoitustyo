@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.ui.widgets;
+package fishingrodofdestiny.ui.windows;
 
 import fishingrodofdestiny.ui.screens.Screen;
+import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
 import java.util.List;

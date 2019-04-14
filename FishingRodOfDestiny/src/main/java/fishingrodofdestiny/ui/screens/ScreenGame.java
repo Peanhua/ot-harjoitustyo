@@ -12,7 +12,7 @@ import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
-import fishingrodofdestiny.ui.widgets.ConfirmationRequester;
+import fishingrodofdestiny.ui.windows.ConfirmationRequester;
 import fishingrodofdestiny.ui.widgets.LocationInfo;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.Game;

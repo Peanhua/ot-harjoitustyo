@@ -7,7 +7,7 @@ package fishingrodofdestiny.world.controllers;
 
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.screens.Screen;
-import fishingrodofdestiny.ui.widgets.ChooseItemRequester;
+import fishingrodofdestiny.ui.windows.ChooseItemRequester;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.actions.ActionAttack;

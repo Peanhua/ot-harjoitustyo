@@ -41,7 +41,11 @@ List of all packages:
   </tr>
   <tr>
     <td>fishingrodofdestiny.ui.widgets</td>
-    <td>Widgets used in the screens.</td>
+    <td>Widgets used in the screens and windows.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.ui.windows</td>
+    <td>Windows used in the screens. For example a modal requester used to confirm if the player wants to quit the game.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.world</td>
