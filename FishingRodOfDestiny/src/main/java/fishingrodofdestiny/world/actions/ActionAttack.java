@@ -28,6 +28,11 @@ public class ActionAttack extends Action {
             return;
         }
         
+        if (!me.getLocation().equals(target.getLocation())) {
+            me.addMessage("You attack thin air as " + target.getCapitalizedName() + " has slipped out of your reach!");
+            return;
+        }
+        
         int damage = me.getDamage();
         me.addMessage("You hit " + target.getName() + " for " + damage + "!");
         target.addMessage(me.getCapitalizedName() + " hits you for " + damage + "!");

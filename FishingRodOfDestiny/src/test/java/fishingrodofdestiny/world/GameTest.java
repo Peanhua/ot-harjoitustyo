@@ -73,6 +73,23 @@ public class GameTest {
     }
     
     @Test
+    public void playerTickIsCalledFromGameTick() {
+        class MockPlayer extends Player {
+            public boolean wasCalled = false;
+            
+            @Override
+            public void tick(double deltaTime) {
+                this.wasCalled = true;
+            }
+        }
+        
+        MockPlayer plr = new MockPlayer();
+        Game g = new Game(0, plr, Game.RescueTarget.PRINCESS);
+        g.tick();
+        assertTrue(plr.wasCalled);
+    }
+    
+    @Test
     public void plotsDifferBasedOnRescueTarget() {
         Game game1 = new Game(0, this.player, Game.RescueTarget.PRINCESS);
         Game game2 = new Game(0, this.player, Game.RescueTarget.PRINCE);
