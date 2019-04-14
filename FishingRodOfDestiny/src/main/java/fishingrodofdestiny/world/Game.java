@@ -5,8 +5,9 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.tiles.StairsTile;
 import fishingrodofdestiny.world.gameobjects.Player;
+import fishingrodofdestiny.world.tiles.ExitCaveTile;
+import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -48,9 +49,9 @@ public class Game {
         this.random       = new Random(randomSeed);
         this.cave         = new Cave(this.random);
         
-        List<StairsTile> stairs = this.cave.getLevel(0).getStairsUp();
+        List<Tile> exits = this.cave.getLevel(0).getMap().getTiles(ExitCaveTile.class);
         player.setHitpoints(player.getMaxHitpoints());
-        player.getLocation().moveTo(stairs.get(0));
+        player.getLocation().moveTo(exits.get(0));
     }
     
     

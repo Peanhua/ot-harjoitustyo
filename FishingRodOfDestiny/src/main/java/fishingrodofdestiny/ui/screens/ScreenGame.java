@@ -84,6 +84,10 @@ public class ScreenGame extends Screen {
             this.message.setText(player.popMessage());
             this.locationInfo.refresh();
             this.levelView.refresh();
+            
+            if (player.getGameCompleted()) {
+                this.gameCompleted();
+            }
         });
         
         this.setKeyboardHandlers();
@@ -187,5 +191,9 @@ public class ScreenGame extends Screen {
         hslist.add(hs);
 
         this.close();
+    }
+    
+    private void gameCompleted() {
+        this.endGame();
     }
 }

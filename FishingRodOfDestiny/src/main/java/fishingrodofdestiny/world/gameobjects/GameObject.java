@@ -216,6 +216,11 @@ public abstract class GameObject {
         return this.weight + this.inventory.getWeight();
     }
 
+    protected final void setWeight(int weight) {
+        this.weight = weight;
+        this.onChange.notifyObservers();
+    }
+    
     
     public List<GameObject> getValidAttackTargets(Tile tile) {
         return null;

@@ -5,7 +5,9 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
+import fishingrodofdestiny.world.tiles.ExitCaveTile;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
 import fishingrodofdestiny.world.tiles.StairsTile;
@@ -32,6 +34,7 @@ public class Cave {
         this.addStairs(random);
         this.levels.forEach(level -> lg.connectStartEnd(level));
         this.connectStairs();
+        this.setupGameCompletionObjects();
         this.populateNPCs(random);
     }
 
@@ -109,5 +112,24 @@ public class Cave {
                 }
             }
         });
+    }
+    
+    
+    private void setupGameCompletionObjects() {
+        // Change the stairs up on first level to exit cave tile:
+        Level level = this.levels.get(0);
+        List<StairsTile> stairs = level.getStairsUp();
+        Tile tile = stairs.get(0);
+        Tile newTile = new ExitCaveTile(level, tile.getX(), tile.getY());
+        level.setTile(tile.getX(), tile.getY(), newTile);
+        // Change the stairs down on last level to normal floor tile:
+        level = this.levels.get(this.levels.size() - 1);
+        stairs = level.getStairsDown();
+        tile = stairs.get(0);
+        newTile = new FloorTile(level, tile.getX(), tile.getY());
+        level.setTile(tile.getX(), tile.getY(), newTile);
+        // And add the fishing rod in there:
+        FishingRod rod = new FishingRod();
+        rod.getLocation().moveTo(newTile);
     }
 }

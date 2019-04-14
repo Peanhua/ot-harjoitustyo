@@ -27,6 +27,10 @@ public class ScoreBasedHighscore extends Highscore {
     @Override
     protected final int calculatePoints(Game fromGame) {
         Player player = fromGame.getPlayer();
-        return player.getLevel() * 1000 + player.getExperiencePoints();
+        int points = 0;
+        points += player.getExperiencePoints();
+        points += player.getLevel() * 1000;
+        points += player.getGameCompleted() ? 10000 : 0;
+        return  points;
     }
 }
