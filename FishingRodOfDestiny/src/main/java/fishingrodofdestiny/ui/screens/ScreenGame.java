@@ -75,9 +75,15 @@ public class ScreenGame extends Screen {
         this.message = UserInterfaceFactory.createText("Welcome to The Fishing Rod of Destiny!");
         main.setBottom(this.message);
         
-        
-        this.game.getPlayer().getLocation().listenOnChange(() -> {
+        Player player = this.game.getPlayer();
+        player.getLocation().listenOnChange(() -> {
             this.onPlayerMoved();
+        });
+        player.getController().listenOnNewAction(() -> {
+            this.game.tick();
+            this.message.setText(player.popMessage());
+            this.locationInfo.refresh();
+            this.levelView.refresh();
         });
         
         this.setKeyboardHandlers();
@@ -120,7 +126,7 @@ public class ScreenGame extends Screen {
         }
         PlayerController pc = (PlayerController) controller;
 
-        return pc.handleJavaFXEvent(event);
+        return pc.handleJavaFXEvent(this, event);
     }        
     
     
@@ -144,14 +150,7 @@ public class ScreenGame extends Screen {
                 return;
             }
             
-            if (this.forwardJavaFXEventToPlayerController(event)) {
-                Player player = this.game.getPlayer();
-                
-                this.game.tick();
-                this.message.setText(player.popMessage());
-                this.locationInfo.refresh();
-                this.levelView.refresh();
-            }
+            this.forwardJavaFXEventToPlayerController(event);
         });
     }
     

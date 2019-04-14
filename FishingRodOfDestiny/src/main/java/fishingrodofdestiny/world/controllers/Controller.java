@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world.controllers;
 
+import fishingrodofdestiny.observer.Observer;
+import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.gameobjects.Character;
 
@@ -15,19 +17,28 @@ import fishingrodofdestiny.world.gameobjects.Character;
 public abstract class Controller {
     private Character owner;
     private Action    nextAction;
+    private Subject   onNewAction;
     
     
     protected Controller(Character owner) {
-        this.owner      = owner;
-        this.nextAction = null;
+        this.owner       = owner;
+        this.nextAction  = null;
+        this.onNewAction = new Subject();
     }
     
-    public Character getOwner() {
+    public final Character getOwner() {
         return this.owner;
+    }
+
+    public final void listenOnNewAction(Observer observer) {
+        this.onNewAction.addObserver(observer);
     }
     
     public final void setNextAction(Action action) {
         this.nextAction = action;
+        if (action != null) {
+            this.onNewAction.notifyObservers();
+        }
     }
     
     public Action getNextAction() {

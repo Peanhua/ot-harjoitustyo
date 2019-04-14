@@ -95,6 +95,17 @@ public abstract class Character extends GameObject {
     }        
 
     
+    public List<GameObject> getValidPickUpTargets() {
+        List<GameObject> items = new ArrayList<>();
+        this.getLocation().getContainerTile().getInventory().getObjects().forEach(object -> {
+            if (object.getCanBePickedUp()) {
+                items.add(object);
+            }
+        });
+        return items;
+    }
+    
+    
     public int getAttack() {
         return this.attack;
     }

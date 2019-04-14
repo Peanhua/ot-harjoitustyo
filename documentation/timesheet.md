@@ -51,6 +51,7 @@ Time used for the project.
   <tr><td>     </td><td> 3.5</td><td>Documentation.</td></tr>
   <tr><td>     </td><td> 1.5</td><td>User interface.</td></tr>
   <tr><td>14.4.</td><td> 1.5</td><td>User interface.</td></tr>
-  <tr><td>     </td><td> 5.5</td><td>Code refactoring.</td></tr>
-  <tr><th>Total</th><th>76.0</th><th></th></tr>
+  <tr><td>     </td><td> 6.0</td><td>Code refactoring.</td></tr>
+  <tr><td>     </td><td> 1.5</td><td>Implementing picking up items.</td></tr>
+  <tr><th>Total</th><th>78.0</th><th></th></tr>
 </table>

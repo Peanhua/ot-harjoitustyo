@@ -22,5 +22,17 @@ public class ActionPickUp extends Action {
     
     @Override
     public void act(Character me) {
+        if (target == null) {
+            me.addMessage("You pick up nothing.");
+            return;
+        }
+        
+        if (!target.isAlive() || !target.getLocation().equals(me.getLocation())) {
+            me.addMessage("You are unable to pick up " + target.getName() + " because it is not here!");
+            return;
+        }
+
+        me.addMessage("You pick up " + target.getName() + ".");
+        target.getLocation().moveTo(me);
     }
 }

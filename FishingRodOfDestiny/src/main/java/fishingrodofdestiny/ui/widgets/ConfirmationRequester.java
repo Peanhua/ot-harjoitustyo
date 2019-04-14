@@ -28,7 +28,6 @@ public class ConfirmationRequester extends Window {
         void confirmed();
     }
 
-    private List<Button> buttons;
     private final String messageText;
     private final String cancelText;
     private final String confirmText;
@@ -60,8 +59,8 @@ public class ConfirmationRequester extends Window {
         pane.setCenter(content);
         
         String[] labels = { this.cancelText, this.confirmText };
-        this.buttons = new ArrayList<>();
-        Node brow = UserInterfaceFactory.createButtonRow(labels, this.buttons);
+        List<Button> buttons = new ArrayList<>();
+        Node brow = UserInterfaceFactory.createButtonRow(labels, buttons);
         brow.setStyle("-fx-padding: 0 0 10 0;");
         pane.setBottom(brow);
         
@@ -74,7 +73,7 @@ public class ConfirmationRequester extends Window {
             this.handler.confirmed();
         });
         
-        this.setFocusDefault(this.buttons.get(0));
+        this.setFocusDefault(buttons.get(0));
 
         return pane;
     }

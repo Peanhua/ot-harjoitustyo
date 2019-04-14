@@ -8,6 +8,7 @@ package fishingrodofdestiny.world.gameobjects;
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.Objects;
 
 /**
  * Location of a GameObject, can be either a location on a tile in a cave level, or in the inventory of another GameObject.
@@ -31,6 +32,31 @@ public class Location {
         this.onChange        = new Subject();
     }
 
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Location other = (Location) obj;
+
+        return this.container == other.container;
+    }
+
+    @Override
+    public int hashCode() {
+        if (this.container == null) {
+            return 42;
+        }
+        return this.container.hashCode();
+    }
+    
     
     public void listenOnChange(Observer observer) {
         this.onChange.addObserver(observer);
