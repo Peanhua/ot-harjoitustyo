@@ -48,15 +48,17 @@ public class PlayerController extends Controller {
     }
     
     private Action mapActionTypeToAction(Action.Type actionType) {
-        switch (actionType) {
-            case ACTIVATE_TILE: return this.actionActivateTile();
-            case ATTACK:        return this.actionAttack();
-            case MOVE_NORTH:    return this.actionMove(0, -1);
-            case MOVE_SOUTH:    return this.actionMove(0, 1);
-            case MOVE_WEST:     return this.actionMove(-1, 0);
-            case MOVE_EAST:     return this.actionMove(1, 0);
-            case PICK_UP:       return this.actionPickUp();
-            case WAIT:          return this.actionWait();
+        if (actionType != null) {
+            switch (actionType) {
+                case ACTIVATE_TILE: return this.actionActivateTile();
+                case ATTACK:        return this.actionAttack();
+                case MOVE_NORTH:    return this.actionMove(0, -1);
+                case MOVE_SOUTH:    return this.actionMove(0, 1);
+                case MOVE_WEST:     return this.actionMove(-1, 0);
+                case MOVE_EAST:     return this.actionMove(1, 0);
+                case PICK_UP:       return this.actionPickUp();
+                case WAIT:          return this.actionWait();
+            }
         }
         return null;
     }
