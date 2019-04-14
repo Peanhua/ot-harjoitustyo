@@ -22,14 +22,12 @@ import javafx.scene.text.TextAlignment;
  *
  * @author joyr
  */
-public class ConfirmationRequester {
+public class ConfirmationRequester extends Window {
     
     public interface ConfirmationHandler {
         void confirmed();
     }
 
-    private final Screen screen;
-    private Pane         window;
     private List<Button> buttons;
     private final String messageText;
     private final String cancelText;
@@ -37,24 +35,16 @@ public class ConfirmationRequester {
     private final ConfirmationHandler handler;
     
     public ConfirmationRequester(Screen screen, String message, String cancel, String confirm, ConfirmationHandler handler) {
-        this.screen      = screen;
-        this.window      = null;
+        super(screen);
         this.messageText = message;
         this.cancelText  = cancel;
         this.confirmText = confirm;
         this.handler     = handler;
     }
     
-    public void show() {
-        this.window = new StackPane();
-        
-        Region shadow = new Region();
-        window.getChildren().add(shadow);
-        shadow.setStyle("-fx-background-color: #000000;");
-        shadow.setOpacity(0.5);
-        
+    @Override
+    protected Node createUserInterface() {
         BorderPane pane = new BorderPane();
-        window.getChildren().add(pane);
         pane.setStyle(""
                 + "-fx-background-color: #000000;"
                 + "-fx-border-width: 2;"
@@ -77,22 +67,15 @@ public class ConfirmationRequester {
         
         buttons.get(0).setOnAction(e -> {
             this.close();
-            screen.enableInputHandlers();
         });
 
         buttons.get(1).setOnAction(e -> {
             this.close();
-            screen.enableInputHandlers();
             this.handler.confirmed();
         });
         
-        screen.getRoot().getChildren().add(this.window);
-        
-        screen.disableInputHandlers();
-        this.buttons.get(0).requestFocus();
-    }
+        this.setFocusDefault(this.buttons.get(0));
 
-    public void close() {
-        screen.getRoot().getChildren().remove(this.window);
+        return pane;
     }
 }
