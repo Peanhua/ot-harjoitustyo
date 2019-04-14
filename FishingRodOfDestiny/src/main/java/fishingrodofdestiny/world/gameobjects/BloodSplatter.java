@@ -17,7 +17,7 @@ public class BloodSplatter extends GameObject {
         super("pool of blood");
         this.adjustMaxHitpoints(100);
         this.setHitpoints(this.getMaxHitpoints());
-        this.setGraphics(new TileGfx("rltiles/tile", 292, 800, 32, 32));
+        this.setGraphics(new TileGfx("rltiles/tile", 288, 800, 32, 32));
     }
 
     public void tick(double deltaTime) {
