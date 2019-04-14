@@ -54,5 +54,6 @@ Time used for the project.
   <tr><td>     </td><td> 6.0</td><td>Code refactoring.</td></tr>
   <tr><td>     </td><td> 1.5</td><td>Implementing picking up items.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Content.</td></tr>
-  <tr><th>Total</th><th>78.5</th><th></th></tr>
+  <tr><td>     </td><td> 0.5</td><td>Documentation.</td></tr>
+  <tr><th>Total</th><th>79.0</th><th></th></tr>
 </table>

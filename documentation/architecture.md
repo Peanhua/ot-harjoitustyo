@@ -4,8 +4,9 @@
 <div><img src="architecture.svg" alt="Architecture" width="700" /></div>
 
 ## Packages
-<div>All the packages are shown below:</div>
-<div><img src="packages.svg" alt="Packages" width="700" /></div>
+
+List of all packages:
+
 <table>
   <tr>
     <th>Package</th><th>Description</th>
@@ -47,6 +48,14 @@
     <td>The game world and its logic.</td>
   </tr>
   <tr>
+    <td>fishingrodofdestiny.world.actions</td>
+    <td>Actions characters can perform, for example move and attack.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.world.controllers</td>
+    <td>Character controllers, used to determine the next action the controlled character should make.</td>
+  </tr>
+  <tr>
     <td>fishingrodofdestiny.world.gameobjects</td>
     <td>Movable objects in the game, for example player, weapon.</td>
   </tr>
@@ -66,7 +75,7 @@ During an active on-going game, the user interface handles updating the screen b
 
 ## Application logic
 
-Application logic is currently contained in the *fishingrodofdestiny.world* and its sub-packages. A single instance of a *Game* holds a single game and its state. A game contains levels, and a game also contains reference to the player game object for ease of access / finding it.
+Application logic is contained in the *fishingrodofdestiny.world* and its sub-packages. A single instance of a *Game* holds a single game and its state. A game contains levels, and a game also contains reference to the player game object for ease of access / finding it.
 
 A level defines (class *Level*) one section of the cave, and can be thought to be like a floor in a building, the player starts from the top floor and descends down to bottom floor (and then back up to the top floor). A level is made of 2d grid of adjacent tiles (class *Tile*), each tile having the exact same dimensions. The actual tile objects in the level are stored in a container class *LevelMap*.
 
@@ -77,6 +86,15 @@ A tile contains game objects (class *GameObject*), and game objects can contain 
 The game advances when player picks the next action to be performed by the player character (class *Player*, instance of *GameObject*). The *tick()* method is called on the *Game* object, which in turn selects the levels to process, the selection is based on the location of the player character, only nearby levels are processed. The levels then call the *tick()* method of all of the game objects in the level, and the game objects do whatever they are destined to do. For example the player character might want to move one step to the east.
 
 The game is controlled by the player, and is thus not realtime; the game is not progressing when the player is choosing the next action. This means that triggering the game to progress is done from the user interface. Also the initialization of the game is triggered from the user interface, be it starting a new game or loading a saved game.
+
+
+### Character controllers
+
+Both the player character and non player characters are controlled by controllers. The controllers are attached to the characters, each having their own instance of a controller. Both the character and its controller know about each others.
+
+The player controller uses input from the user (through JavaFX events) to determine the next action. More complicated actions may cause the player controller to show additional user interface controls on screen. For example, when player presses the key to pick up item when there are multiple items on the ground, the controller opens up a item chooser requester for the user to choose which item to pick up. After the user chooses the item, the appropriate action is created.
+
+The non player characters uses artificial intelligence to determine the next action.
 
 
 ### Monster hits player
