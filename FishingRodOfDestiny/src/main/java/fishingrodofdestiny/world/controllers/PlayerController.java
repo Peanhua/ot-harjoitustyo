@@ -77,6 +77,7 @@ public class PlayerController extends Controller {
         List<GameObject> targets = this.getOwner().getValidAttackTargets(tile);
         if (targets == null) {
             this.setNextAction(new ActionAttack(null));
+            return true;
         }
         this.setNextAction(new ActionAttack(targets.get(0)));
         return true;
