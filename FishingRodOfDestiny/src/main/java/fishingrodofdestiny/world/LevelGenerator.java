@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
@@ -55,6 +57,25 @@ public abstract class LevelGenerator {
         }
     }
     
+    
+    public void placeItems(LevelSettings itemSettings, Level level) {
+        while (true) {
+            Class type = itemSettings.getNext(random, level);
+            GameObject item = null;
+            if (type == GoldCoin.class) {
+                item = new GoldCoin();
+            }
+            if (item == null) {
+                break;
+            }
+
+            Tile tile = level.getRandomTileOfType(random, FloorTile.class);
+            if (tile != null) {
+                item.getLocation().moveTo(tile);
+            }
+        }
+    }
+
     
     public abstract Level generateLevel(int caveLevel);
     public abstract void  connectStartEnd(Level level);

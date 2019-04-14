@@ -5,11 +5,11 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.WallTile;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -27,10 +27,10 @@ public class BSPLevelGenerator extends LevelGenerator {
     
     @Override
     public Level generateLevel(int caveLevel) {
-        LevelSettings settings = new LevelSettings();
-        settings.addEnemyType(NonPlayerCharacter.class, 10 + caveLevel * 5, 1.0);
+        LevelSettings enemySettings = new LevelSettings();
+        enemySettings.addType(NonPlayerCharacter.class, 10 + caveLevel * 5, 1.0);
         
-        Level level = new Level(settings, this.width, this.height);
+        Level level = new Level(enemySettings, this.width, this.height);
         
         Node root = new Node(this.random, 12, null, 1, 1, this.width - 2, this.height - 2);
         root.split(false);
@@ -39,9 +39,13 @@ public class BSPLevelGenerator extends LevelGenerator {
         root.fillInCorridors(level);
         this.fillEmptySpace(level);
         
+        LevelSettings itemSettings = new LevelSettings();
+        itemSettings.addType(GoldCoin.class, 10 + caveLevel * 20, 1.0);
+        this.placeItems(itemSettings, level);
+        
         return level;
     }
-
+    
     @Override
     public void connectStartEnd(Level level) {
         LevelMapConnectedTilesAlgorithm cta = new LevelMapConnectedTilesAlgorithm(level.getMap());

@@ -16,53 +16,49 @@ import java.util.Random;
  * @author joyr
  */
 public class LevelSettings {
-    private final List<Enemy> enemies;
-    private int               minimumNumberOfEnemies;
-    private int               maximumNumberOfEnemies;
+    private final List<ObjectConfiguration> objects;
+    private int                             minimumNumberOfObjects;
+    private int                             maximumNumberOfObjects;
     
     public LevelSettings() {
-        this.enemies = new ArrayList<>();
-        this.minimumNumberOfEnemies = 0;
-        this.maximumNumberOfEnemies = 1;
+        this.objects                = new ArrayList<>();
+        this.minimumNumberOfObjects = 0;
+        this.maximumNumberOfObjects = 1;
     }
     
-    public void addEnemyType(Class type, int maximumCount, double weight) {
-        if (!NonPlayerCharacter.class.isAssignableFrom(type)) {
-            throw new RuntimeException("Illegal type " + type + ": it is not a subclass of NonPlayerCharacter.");
-        }
-        
-        this.enemies.add(new Enemy(type, maximumCount, weight));
+    public void addType(Class type, int maximumCount, double weight) {
+        this.objects.add(new ObjectConfiguration(type, maximumCount, weight));
     }
 
 
-    public Class getEnemyForLevel(Random random, Level level) {
-        List<Enemy> possibleEnemies = new ArrayList<>();
-        for (int i = 0; i < this.enemies.size(); i++) {
-            Enemy enemy = this.enemies.get(i);
-            if (level.getObjectCount(enemy.getType()) < enemy.getMaxCount()) {
-                possibleEnemies.add(enemy);
+    public Class getNext(Random random, Level level) {
+        List<ObjectConfiguration> possible = new ArrayList<>();
+        for (int i = 0; i < this.objects.size(); i++) {
+            ObjectConfiguration conf = this.objects.get(i);
+            if (level.getObjectCount(conf.getType()) < conf.getMaxCount()) {
+                possible.add(conf);
             }
         }
 
-        if (possibleEnemies.isEmpty()) {
+        if (possible.isEmpty()) {
             return null;
         }
         
-        possibleEnemies.forEach(enemy -> enemy.setProbabilityModifier(random.nextDouble()));
-        Collections.sort(possibleEnemies);
+        possible.forEach(conf -> conf.setProbabilityModifier(random.nextDouble()));
+        Collections.sort(possible);
         
-        return possibleEnemies.get(0).getType();
+        return possible.get(0).getType();
     }
 }
 
 
-class Enemy implements Comparable<Enemy> {
+class ObjectConfiguration implements Comparable<ObjectConfiguration> {
     private Class  type;
     private double weight;
     private double currentProbability;
     private int    maxCount;
 
-    public Enemy(Class type, int maxCount, double weight) {
+    public ObjectConfiguration(Class type, int maxCount, double weight) {
         this.type     = type;
         this.maxCount = maxCount;
         this.weight   = weight;
@@ -91,7 +87,7 @@ class Enemy implements Comparable<Enemy> {
     }
 
     @Override
-    public int compareTo(Enemy other) {
+    public int compareTo(ObjectConfiguration other) {
         if (other.currentProbability > this.currentProbability) {
             return 1;
         } else if (other.currentProbability < this.currentProbability) {

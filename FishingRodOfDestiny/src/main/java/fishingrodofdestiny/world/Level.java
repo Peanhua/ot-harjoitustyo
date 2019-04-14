@@ -23,16 +23,16 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Level {
     
-    private final LevelSettings settings;
+    private final LevelSettings enemySettings;
     private final int           width;
     private final int           height;
     private final LevelMap      map;
     
-    public Level(LevelSettings settings, int width, int height) {
-        this.settings = settings;
-        this.width    = width;
-        this.height   = height;
-        this.map      = new LevelMap(this.width, this.height);
+    public Level(LevelSettings enemySettings, int width, int height) {
+        this.enemySettings = enemySettings;
+        this.width         = width;
+        this.height        = height;
+        this.map           = new LevelMap(this.width, this.height);
     }
     
     
@@ -114,7 +114,7 @@ public class Level {
     */
     public NonPlayerCharacter spawnNPC(Random random) {
         // Generate the NPC:
-        Class type = this.settings.getEnemyForLevel(random, this);
+        Class type = this.enemySettings.getNext(random, this);
         NonPlayerCharacter npc = null;
         if (type == NonPlayerCharacter.class) {
             npc = new NonPlayerCharacter();
