@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -29,6 +30,8 @@ public class Level {
     private final int           width;
     private final int           height;
     private final LevelMap      map;
+    private final Color         shadowColor;
+
     
     public Level(LevelSettings enemySettings, int depth, int width, int height) {
         this.enemySettings = enemySettings;
@@ -36,6 +39,7 @@ public class Level {
         this.width         = width;
         this.height        = height;
         this.map           = new LevelMap(this.width, this.height);
+        this.shadowColor   = new Color(0, 0, 0, 0.5);
     }
     
     public int getDepth() {
@@ -57,12 +61,19 @@ public class Level {
     
     
     public void draw(LevelMemory memory, GraphicsContext context, int tileSize, int topLeftX, int topLeftY, int maxWidth, int maxHeight) {
+        context.setFill(this.shadowColor);
         for (int y = 0; topLeftY + y < this.height; y++) {
             for (int x = 0; topLeftX + x < this.width; x++) {
                 if (memory.isExplored(topLeftX + x, topLeftY + y)) {
                     Tile t = this.getTile(topLeftX + x, topLeftY + y);
                     if (t != null) {
-                        t.draw(context, x * tileSize, y * tileSize, tileSize);
+                        boolean seen = memory.isSeen(topLeftX + x, topLeftY + y);
+
+                        t.draw(context, x * tileSize, y * tileSize, tileSize, seen);
+                        
+                        if (!seen) {
+                            context.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                        }
                     }
                 }
             }

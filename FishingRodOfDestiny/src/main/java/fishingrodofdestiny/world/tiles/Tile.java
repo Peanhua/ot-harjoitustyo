@@ -68,9 +68,11 @@ public abstract class Tile {
     
     public abstract boolean canBeEntered();
     
-    public final void draw(GraphicsContext context, int x, int y, int size) {
+    public final void draw(GraphicsContext context, int x, int y, int size, boolean drawInventory) {
         this.graphics.draw(context, x, y, size);
-        this.drawInventory(context, x, y, size);
+        if (drawInventory) {
+            this.drawInventory(context, x, y, size);
+        }
     }
     
     private final void drawInventory(GraphicsContext context, int x, int y, int size) {

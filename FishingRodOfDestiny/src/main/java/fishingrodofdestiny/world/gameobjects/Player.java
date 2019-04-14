@@ -11,19 +11,24 @@ import fishingrodofdestiny.world.controllers.PlayerController;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
 import java.util.List;
+import rlforj.los.IFovAlgorithm;
+import rlforj.los.ShadowCasting;
 
 /**
  *
  * @author joyr
  */
 public class Player extends Character {
-    private boolean           gameCompleted;
-    private List<LevelMemory> levelMemories;
+    private boolean                 gameCompleted;
+    private final List<LevelMemory> levelMemories;
+    private final IFovAlgorithm     fovAlgorithm;
+
     
     public Player() {
         super();
         this.gameCompleted = false;
         this.levelMemories = new ArrayList<>();
+        this.fovAlgorithm  = new ShadowCasting();
         this.setController(new PlayerController(this));
         this.setGraphics(new TileGfx("rltiles/nh32", 160, 352, 32, 32));
         this.getLocation().listenOnChange(() -> this.explore());
@@ -54,11 +59,21 @@ public class Player extends Character {
     }
     
     
+    private int getFovRadius() {
+        return 5;
+    }
+    
+    
     public LevelMemory getLevelMemory(Level level) {
         while (this.levelMemories.size() <= level.getDepth()) {
-            this.levelMemories.add(new LevelMemory(level));
+            this.levelMemories.add(null);
         }
-        return this.levelMemories.get(level.getDepth());
+        LevelMemory memory = this.levelMemories.get(level.getDepth());
+        if (memory == null) {
+            memory = new LevelMemory(level);
+            this.levelMemories.set(level.getDepth(), memory);
+        }
+        return memory;
     }
     
     private void explore() {
@@ -66,15 +81,9 @@ public class Player extends Character {
         if (tile == null) {
             return;
         }
-        
         Level level = tile.getLevel();
         LevelMemory memory = this.getLevelMemory(level);
-        int myX = tile.getX();
-        int myY = tile.getY();
-        for (int y = -1; y <= 1; y++) {
-            for (int x = -1; x <= 1; x++) {
-                memory.remember(myX + x, myY + y);
-            }
-        }
+        memory.setCurrentVisionCenter(tile.getX(), tile.getY());
+        this.fovAlgorithm.visitFieldOfView(memory, tile.getX(), tile.getY(), this.getFovRadius());
     }
 }

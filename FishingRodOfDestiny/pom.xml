@@ -29,6 +29,12 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.27.2.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/fr.irit.smac.thirdparty.net.sf.rlforj/rlforj -->
+        <dependency>
+            <groupId>fr.irit.smac.thirdparty.net.sf.rlforj</groupId>
+            <artifactId>rlforj</artifactId>
+            <version>0.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
