@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.observer.Observer;
+import fishingrodofdestiny.observer.Subject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,34 +17,51 @@ import java.util.List;
 public class Inventory {
     private final List<GameObject> objects;
     private int                    weightLimit;
+    private Subject                onChange;
     
     public Inventory(int weightLimit) {
-        this.objects = new ArrayList<>();
-        this.setWeightLimit(weightLimit);
+        this.objects  = new ArrayList<>();
+        this.onChange = new Subject();
+
+        this.checkWeightLimit(weightLimit);
+        this.weightLimit = weightLimit;
+    }
+    
+    
+    public void listenOnChange(Observer observer) {
+        this.onChange.addObserver(observer);
     }
     
     
     public void add(GameObject object) {
         this.objects.add(object);
+        this.onChange.notifyObservers();
     }
     
     
     public void remove(GameObject object) {
         this.objects.remove(object);
+        this.onChange.notifyObservers();
     }
     
     
     public int getWeightLimit() {
         return this.weightLimit;
     }
+
     
-    public final void setWeightLimit(int limit) {
-        if (limit >= 0) {
-            this.weightLimit = limit;
-        } else {
+    private void checkWeightLimit(int limit) {
+        if (limit < 0) {
             throw new RuntimeException("Illegal inventory weight limit " + limit + " given to Inventory.setWeightLimit().");
         }
     }
+    
+    public final void setWeightLimit(int limit) {
+        this.checkWeightLimit(limit);
+        this.weightLimit = limit;
+        this.onChange.notifyObservers();
+    }
+
     
     public void adjustWeightLimit(int amount) {
         if (amount <= 0 || this.weightLimit < Integer.MAX_VALUE - amount) {
@@ -53,11 +72,13 @@ public class Inventory {
         } else {
             this.weightLimit = Integer.MAX_VALUE;
         }
+        this.onChange.notifyObservers();
     }
 
     public List<GameObject> getObjects() {
         return this.objects;
     }
+
     
     public int getWeight() {
         int weight = 0;
@@ -68,6 +89,4 @@ public class Inventory {
         
         return weight;
     }
-    
-
 }
