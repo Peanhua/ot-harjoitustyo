@@ -17,6 +17,11 @@ This software is licensed under [The GNU General Public License version 3](LICEN
 * [The RLTiles tileset](http://rltiles.sf.net) under [FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/](FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/) are in public domain. These are slightly modified, you can find the original tilesets at: [rltiles.sf.net](http://rltiles.sf.net).
 
 
+## Releases
+
+[Week 5](releases/tag/week5)
+
+
 ## Commandline functionality
 
 All commands are supposed to be run in the project directory *FishingRodOfDestiny/*.
