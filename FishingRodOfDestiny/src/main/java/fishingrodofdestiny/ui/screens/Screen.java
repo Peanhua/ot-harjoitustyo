@@ -43,11 +43,11 @@ public abstract class Screen {
     public final void show() {
         if (this.scene == null) {
             BorderPane bp = new BorderPane();
-            bp.setStyle("-fx-background-color: #000000;");
             this.root = new StackPane();
             bp.setCenter(root);
             root.getChildren().add(this.createUserInterface());
             this.scene = new Scene(bp, 800, 600, Color.BLACK);
+            this.scene.getStylesheets().add("/fishingrodofdestiny/css/scene.css");
         }
         
         if (this.scene != null) {

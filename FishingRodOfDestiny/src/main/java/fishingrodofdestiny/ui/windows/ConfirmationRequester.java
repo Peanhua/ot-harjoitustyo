@@ -10,12 +10,8 @@ import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -45,24 +41,19 @@ public class ConfirmationRequester extends Window {
     @Override
     protected Node createUserInterface() {
         BorderPane pane = new BorderPane();
-        pane.setStyle(""
-                + "-fx-background-color: #000000;"
-                + "-fx-border-width: 2;"
-                + "-fx-border-color: #ffffff;"
-                + "-fx-border-radius: 5"
-        );
+        pane.getStyleClass().add("window");
         pane.setMaxSize(300, 200);
         
         Text content = UserInterfaceFactory.createText(this.messageText);
         content.setWrappingWidth(250);
         content.setTextAlignment(TextAlignment.CENTER);
-        content.setStyle("-fx-padding: 10 10 10 10;");
+        pane.getStyleClass().add("windowTitle");
         pane.setCenter(content);
         
         String[] labels = { this.cancelText, this.confirmText };
         List<Button> buttons = new ArrayList<>();
         Node brow = UserInterfaceFactory.createButtonRow(labels, buttons);
-        brow.setStyle("-fx-padding: 0 0 10 0;");
+        brow.getStyleClass().add("windowButtonRow");
         pane.setBottom(brow);
         
         buttons.get(0).setOnAction(e -> {

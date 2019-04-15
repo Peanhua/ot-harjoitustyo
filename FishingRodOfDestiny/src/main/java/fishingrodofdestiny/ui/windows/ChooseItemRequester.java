@@ -18,6 +18,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -44,17 +46,12 @@ public class ChooseItemRequester extends Window {
     @Override
     protected Node createUserInterface() {
         BorderPane pane = new BorderPane();
-        pane.setStyle(""
-                + "-fx-background-color: #000000;"
-                + "-fx-border-width: 2;"
-                + "-fx-border-color: #ffffff;"
-                + "-fx-border-radius: 5"
-        );
+        pane.getStyleClass().add("window");
         pane.setMaxSize(300, 300);
         
         Text titleText = UserInterfaceFactory.createText(this.title);
         titleText.setTextAlignment(TextAlignment.CENTER);
-        titleText.setStyle("-fx-padding: 10 10 10 10;");
+        pane.getStyleClass().add("windowTitle");
         pane.setTop(titleText);
         
         ObservableList<GameObject> listItems = FXCollections.observableArrayList(this.items);
@@ -77,7 +74,7 @@ public class ChooseItemRequester extends Window {
         String[] labels = { "Cancel", "Ok" };
         List<Button> buttons = new ArrayList<>();
         Node brow = UserInterfaceFactory.createButtonRow(labels, buttons);
-        brow.setStyle("-fx-padding: 0 0 10 0;");
+        brow.getStyleClass().add("windowButtonRow");
         pane.setBottom(brow);
         
         buttons.get(0).setOnAction(e -> {

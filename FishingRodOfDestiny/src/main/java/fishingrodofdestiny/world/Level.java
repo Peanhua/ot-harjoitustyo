@@ -61,6 +61,10 @@ public class Level {
     
     
     public void draw(LevelMemory memory, GraphicsContext context, int tileSize, int topLeftX, int topLeftY, int maxWidth, int maxHeight) {
+        // TODO: test with slower hardware and maybe optimize a bit
+        //       first draw shadowed, shadow them with one call, then draw the normally lit tiles
+        //       also check if there is some blending/drawing mode available from javafx to do the shadowing
+        //       also check if using a scroll pane with the whole level rendered once (only updating what changes) and then scrolling to proper location would be better
         context.setFill(this.shadowColor);
         for (int y = 0; topLeftY + y < this.height; y++) {
             for (int x = 0; topLeftX + x < this.width; x++) {
