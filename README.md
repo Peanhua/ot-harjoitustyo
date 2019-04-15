@@ -14,7 +14,7 @@ The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in w
 
 This software is licensed under [The GNU General Public License version 3](LICENSE), with the following exceptions:
 
-* [The RLTiles tileset](rltiles.sf.net) under [FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/](FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/) are in public domain. You can find the original tileset at: [rltiles.sf.net](rltiles.sf.net).
+* [The RLTiles tileset](http://rltiles.sf.net) under [FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/](FishingRodOfDestiny/src/main/resources/fishingrodofdestiny/rltiles/) are in public domain. These are slightly modified, you can find the original tilesets at: [rltiles.sf.net](http://rltiles.sf.net).
 
 
 ## Commandline functionality
