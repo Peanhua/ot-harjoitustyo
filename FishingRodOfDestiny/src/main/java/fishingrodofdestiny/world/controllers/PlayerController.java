@@ -11,6 +11,7 @@ import fishingrodofdestiny.ui.windows.ChooseItemRequester;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.actions.ActionAttack;
+import fishingrodofdestiny.world.actions.ActionDrop;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.actions.ActionPickUp;
 import fishingrodofdestiny.world.actions.ActionWait;
@@ -55,6 +56,7 @@ public class PlayerController extends Controller {
             switch (actionType) {
                 case ACTIVATE_TILE: return this.actionActivateTile();
                 case ATTACK:        return this.actionAttack();
+                case DROP:          return this.actionDrop(screen);
                 case MOVE_NORTH:    return this.actionMove(0, -1);
                 case MOVE_SOUTH:    return this.actionMove(0, 1);
                 case MOVE_WEST:     return this.actionMove(-1, 0);
@@ -104,6 +106,19 @@ public class PlayerController extends Controller {
         }
         return true;
     }
+    
+    
+    private boolean actionDrop(Screen screen) {
+        List<GameObject> items = this.getOwner().getInventory().getObjects();
+        ChooseItemRequester itemChooser = new ChooseItemRequester(screen, "Choose item to drop", items, (chosenItems) -> {
+            if (chosenItems.size() > 0) {
+                this.setNextAction(new ActionDrop(chosenItems.get(0)));
+            }
+        });
+        itemChooser.show();
+        return true;
+    }
+    
     
     private boolean actionWait() {
         this.setNextAction(new ActionWait());
