@@ -1,5 +1,7 @@
 .root {
   -fx-background-color: #000000;
+  -fx-font-family: "Tahoma";
+  -fx-base: #ff19ff;
 }
 
 Region {
@@ -16,6 +18,16 @@ Button {
   -fx-background-color: #ff19ff;
 }
 
+TextField {
+  -fx-text-fill: #ffffff;
+  -fx-background-color: #800c80;
+}  
+/*
+.radio-button .dot {
+  -fx-mark-color: #ff19ff;
+  -fx-border-color: yellow;
+}
+*/
 .window {
   -fx-background-color: #000000;
   -fx-border-width:     2;
