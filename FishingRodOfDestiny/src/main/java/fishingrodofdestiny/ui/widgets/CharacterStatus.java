@@ -6,6 +6,7 @@
 package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.gameobjects.Character;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
@@ -37,9 +38,9 @@ public class CharacterStatus extends Widget {
         }
     };
 
-    private Character character;
+    private Character  character;
     private List<Text> texts;
-    
+    private Text       weaponText;
 
     public CharacterStatus(Character character) {
         this.character = character;
@@ -69,7 +70,8 @@ public class CharacterStatus extends Widget {
         row++;
 
         row = this.createStatControls(grid, row);
-
+        row = this.createWeaponControls(grid, row);
+        
         this.refresh();
         
         return grid;
@@ -92,11 +94,32 @@ public class CharacterStatus extends Widget {
         return row;
     }
     
+
+    private int createWeaponControls(GridPane grid, int row) {
+        Text label = UserInterfaceFactory.createSmallText("Weapon:");
+        this.weaponText = UserInterfaceFactory.createSmallText("");
+
+        GridPane.setConstraints(label, 1, row);
+        GridPane.setConstraints(this.weaponText, 2, row);
+
+        grid.getChildren().addAll(label, this.weaponText);
+        
+        row++;
+        return row;
+    }
+    
     
     @Override
     public void refresh() {
         for (StatType type : StatType.values()) {
             this.texts.get(type.ordinal()).setText(this.getValue(type));
+        }
+        
+        GameObject weapon = this.character.getWeapon();
+        if (weapon != null) {
+            this.weaponText.setText(weapon.getName());
+        } else {
+            this.weaponText.setText("");
         }
     }
     

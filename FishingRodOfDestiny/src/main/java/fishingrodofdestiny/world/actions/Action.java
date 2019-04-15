@@ -23,7 +23,8 @@ public abstract class Action {
         ACTIVATE_TILE,  // Tile specific action.
         ATTACK,         // Attack whoever is in the same tile.
         PICK_UP,
-        DROP
+        DROP,
+        USE
     };
     
     private final Type type;

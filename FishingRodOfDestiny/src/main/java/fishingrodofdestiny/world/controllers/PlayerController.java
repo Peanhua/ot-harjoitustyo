@@ -14,12 +14,12 @@ import fishingrodofdestiny.world.actions.ActionAttack;
 import fishingrodofdestiny.world.actions.ActionDrop;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.actions.ActionPickUp;
+import fishingrodofdestiny.world.actions.ActionUse;
 import fishingrodofdestiny.world.actions.ActionWait;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.Tile;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.event.Event;
 import javafx.scene.input.KeyEvent;
@@ -63,6 +63,7 @@ public class PlayerController extends Controller {
                 case MOVE_EAST:     return this.actionMove(1, 0);
                 case PICK_UP:       return this.actionPickUp(screen);
                 case WAIT:          return this.actionWait();
+                case USE:           return this.actionUse(screen);
             }
         }
         return false;
@@ -122,6 +123,18 @@ public class PlayerController extends Controller {
     
     private boolean actionWait() {
         this.setNextAction(new ActionWait());
+        return true;
+    }
+    
+    
+    private boolean actionUse(Screen screen) {
+        List<GameObject> items = this.getOwner().getInventory().getObjects();
+        ChooseItemRequester itemChooser = new ChooseItemRequester(screen, "Choose item to use", items, (chosenItems) -> {
+            if (chosenItems.size() > 0) {
+                this.setNextAction(new ActionUse(chosenItems.get(0)));
+            }
+        });
+        itemChooser.show();
         return true;
     }
 }

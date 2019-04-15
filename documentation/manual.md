@@ -10,3 +10,4 @@
 * `w` to wait
 * `p` to pick up items
 * `d` to drop items
+* `u` to use items

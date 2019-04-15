@@ -24,6 +24,7 @@ public abstract class Character extends GameObject {
     private int        level;
     private int        experiencePoints;
     private Controller controller;
+    private Weapon     weapon;
 
     public Character() {
         super();
@@ -33,6 +34,7 @@ public abstract class Character extends GameObject {
         this.level             = 0;
         this.experiencePoints  = 0;
         this.controller        = null;
+        this.weapon            = null;
         this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
@@ -77,6 +79,15 @@ public abstract class Character extends GameObject {
     }
 
     
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+        this.onChange.notifyObservers();
+    }
+    
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+    
     @Override
     public List<GameObject> getValidAttackTargets(Tile tile) {
         if (tile == null) {
@@ -118,11 +129,19 @@ public abstract class Character extends GameObject {
     }
     
     public int getAttack() {
-        return this.attack;
+        int rv = this.attack;
+        if (this.weapon != null) {
+            rv += this.weapon.getAttackBonus();
+        }
+        return rv;
     }
     
     public int getDefence() {
-        return this.defence;
+        int rv = this.defence;
+        if (this.weapon != null) {
+            rv += this.weapon.getDefenceBonus();
+        }
+        return rv;
     }
     
     public int getLevel() {
@@ -147,6 +166,10 @@ public abstract class Character extends GameObject {
         
         damage += this.getAttack();
         
+        if (this.weapon != null) {
+            damage += this.weapon.getDamage();
+        }
+        
         return damage;
     }
     
@@ -163,7 +186,13 @@ public abstract class Character extends GameObject {
             double def = targetCharacter.getDefence();
             if (def > 0.0) {
                 // Clamp the minimum chance to 5%:
-                return Math.max(0.05, (double) this.getAttack() / def);
+                double chance = Math.max(0.05, (double) this.getAttack() / def);
+                
+                if (this.weapon != null) {
+                    chance *= this.weapon.getChanceToHitMultiplier();
+                }
+                
+                return chance;
             }
         }
         return 1.0;
