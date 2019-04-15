@@ -100,11 +100,12 @@ public class CharacterStatus extends Widget {
         this.weaponText = UserInterfaceFactory.createSmallText("");
 
         GridPane.setConstraints(label, 1, row);
-        GridPane.setConstraints(this.weaponText, 2, row);
+        row++;
+        GridPane.setConstraints(this.weaponText, 1, row);
+        row++;
 
         grid.getChildren().addAll(label, this.weaponText);
         
-        row++;
         return row;
     }
     
@@ -117,7 +118,7 @@ public class CharacterStatus extends Widget {
         
         GameObject weapon = this.character.getWeapon();
         if (weapon != null) {
-            this.weaponText.setText(weapon.getName());
+            this.weaponText.setText(" " + weapon.getName());
         } else {
             this.weaponText.setText("");
         }

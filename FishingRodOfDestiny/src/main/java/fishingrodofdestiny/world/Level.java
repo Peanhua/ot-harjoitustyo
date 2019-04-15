@@ -115,6 +115,19 @@ public class Level {
         this.map.setTile(x, y, tile);
     }
 
+    
+    public List<GameObject> getObjects(Class type) {
+        List<GameObject> objects = new ArrayList<>();
+        this.map.getTiles().forEach(tile ->
+            tile.getInventory().getObjects().forEach(obj -> {
+                if (obj.getClass() == type) {
+                    objects.add(obj);
+                }
+            })
+        );
+        return objects;
+    }
+    
 
     public int getObjectCount(Class type) {
         // TODO: cache the most frequently queried types (all variations of NonPlayerCharacters)

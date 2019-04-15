@@ -5,8 +5,10 @@
  */
 package fishingrodofdestiny.world.controllers;
 
+import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.actions.ActionAttack;
 import fishingrodofdestiny.world.actions.Action;
+import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Player;
@@ -29,6 +31,9 @@ public class SimpleAiController extends Controller {
         if (action == null) {
             action = this.tryToAttack();
         }
+        if (action == null) {
+            action = this.tryToFindPlayer();
+        }
         return action;
     }
     
@@ -42,5 +47,44 @@ public class SimpleAiController extends Controller {
         }
         
         return null;
+    }
+    
+    protected Action tryToFindPlayer() {
+        Tile myTile = this.getOwner().getLocation().getContainerTile();
+        if (myTile == null) {
+            return null;
+        }
+        Level level = myTile.getLevel();
+        List<GameObject> players = level.getObjects(Player.class);
+        for (GameObject player : players) {
+            Tile tile = player.getLocation().getContainerTile();
+            int deltaX = tile.getX() - myTile.getX();
+            int deltaY = tile.getY() - myTile.getY();
+            int maxDistance = 7;
+            if (Math.abs(deltaX) <= maxDistance || Math.abs(deltaY) <= maxDistance) {
+                return this.moveTowards(deltaX, deltaY);
+            }
+        }
+        
+        return null;
+    }
+    
+    protected Action moveTowards(int deltaX, int deltaY) {
+        int dx = 0;
+        int dy = 0;
+        if (deltaX != 0) {
+            dx = deltaX / Math.abs(deltaX);
+        }
+        if (deltaY != 0) {
+            dy = deltaY / Math.abs(deltaY);
+        }
+        if (dx != 0 && dy != 0) {
+            if (this.getOwner().getRandom().nextInt(100) < 50) {
+                dx = 0;
+            } else {
+                dy = 0;
+            }
+        }
+        return new ActionMove(dx, dy);
     }
 }
