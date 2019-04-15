@@ -19,7 +19,7 @@ This software is licensed under [The GNU General Public License version 3](LICEN
 
 ## Releases
 
-[Week 5](releases/tag/week5)
+[Week 5](https://github.com/Peanhua/ot-harjoitustyo/releases/tag/week5)
 
 
 ## Commandline functionality
