@@ -59,5 +59,6 @@ Time used for the project.
   <tr><td>     </td><td> 0.5</td><td>Game logic.</td></tr>
   <tr><td>15.4.</td><td> 1.0</td><td>Game logic.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>User interface.</td></tr>
-  <tr><th>Total</th><th>83.0</th><th></th></tr>
+  <tr><td>     </td><td> 0.5</td><td>Content.</td></tr>
+  <tr><th>Total</th><th>83.5</th><th></th></tr>
 </table>

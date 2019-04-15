@@ -182,18 +182,27 @@ public class ScreenGame extends Screen {
             this.endGame();
         }
     }
-
-    private void endGame() {
+    
+    private Highscore createHighscore() {
         Highscore hs = new ScoreBasedHighscore(this.game);
 
         HighscoreListCache hc = HighscoreListCache.getInstance();
         HighscoreList hslist = hc.get(Highscore.Type.SCORE);
         hslist.add(hs);
 
+        return hs;
+    }
+
+    private void endGame() {
+        this.createHighscore();
         this.close();
     }
     
     private void gameCompleted() {
-        this.endGame();
+        this.close();
+        
+        Highscore hs = this.createHighscore();
+        Screen screen = new ScreenGameCompletion(this.game, this.getParent(), this.getStage());
+        screen.show();
     }
 }

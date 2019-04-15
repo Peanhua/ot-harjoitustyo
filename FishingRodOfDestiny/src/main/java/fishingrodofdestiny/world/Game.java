@@ -67,6 +67,24 @@ public class Game {
         
         return rv;
     }
+    
+    public List<String> getPlotFinish() {
+        List<String> rv = new ArrayList<>();
+        
+        String rescueTargetName          = this.rescueTarget.getTitleName();
+        String rescueTargetObjectPronoun = this.rescueTarget.getObjectPronoun();
+
+        rv.add("Congratulations!");
+        rv.add("");
+        rv.add("You have successfully retrieved the Magical Fishing Rod from the depths of cave Caerrbannogh, and used it to save the " + rescueTargetName + " from the lake of Sunken Nobles.");
+        rv.add("");
+        
+        Random r = new Random();
+        String[] stuff = { "happily", "miserably", "strangely", "gloriously", "insanely", "normally", "colorfully", "not so happily", "very happily", "partying hard", "yellowishly" };
+        rv.add("You, and the " + rescueTargetName + ", live the rest of your life " + stuff[r.nextInt(stuff.length)] + ", knowing that you have the Magical Fishing Rod in your hands!");
+        
+        return rv;
+    }
 
     
     
