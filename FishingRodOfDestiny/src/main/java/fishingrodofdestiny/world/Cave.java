@@ -26,8 +26,8 @@ public class Cave {
     
     public Cave(Random random) {
         this.levels = new ArrayList<>();
-        LevelGenerator lg = new BSPLevelGenerator(random, 80, 60);
-        for (int i = 0; i < 10; i++) {
+        LevelGenerator lg = new BSPLevelGenerator(random, 30, 20);
+        for (int i = 0; i < 5; i++) {
             this.addLevel(lg.generateLevel(i));
         }
         

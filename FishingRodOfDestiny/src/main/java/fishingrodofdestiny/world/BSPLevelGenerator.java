@@ -40,7 +40,7 @@ public class BSPLevelGenerator extends LevelGenerator {
         this.fillEmptySpace(level);
         
         LevelSettings itemSettings = new LevelSettings();
-        itemSettings.addType(GoldCoin.class, 10 + caveLevel * 20, 1.0);
+        itemSettings.addType(GoldCoin.class, 3 + caveLevel * 3, 1.0);
         this.placeItems(itemSettings, level);
         
         return level;
