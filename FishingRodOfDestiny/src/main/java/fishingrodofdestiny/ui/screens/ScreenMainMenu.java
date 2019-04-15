@@ -46,7 +46,7 @@ public class ScreenMainMenu extends Screen {
         loadgame.setOnAction(e -> this.loadGame());
         loadgame.setDisable(true);
 
-        Button highscores = new Button("Highscore lists");
+        Button highscores = new Button("Highscores");
         highscores.setOnAction(e -> this.showHighscores());
 
         Button quit = new Button("Quit");

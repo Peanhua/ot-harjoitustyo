@@ -33,6 +33,7 @@ public abstract class Window {
 
         this.window = new StackPane();
         Region shadow = new Region();
+        shadow.getStyleClass().add("shadow");
         shadow.setOpacity(0.5);
         window.getChildren().add(shadow);
         

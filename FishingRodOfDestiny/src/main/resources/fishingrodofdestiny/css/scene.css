@@ -5,11 +5,22 @@
 Region {
   -fx-background-color: #000000;
 }
+.shadow {
+/*  -fx-background-color: #800c80;*/
+}
+
+Button {
+  -fx-text-fill: #ffffff;
+/*  -fx-background-color: #0068ff;*/
+/*  -fx-background-color: #e3a01e;*/
+  -fx-background-color: #ff19ff;
+}
 
 .window {
   -fx-background-color: #000000;
   -fx-border-width:     2;
-  -fx-border-color:     #ffffff;
+/*  -fx-border-color:     #ffffff;*/
+  -fx-border-color:     #a810a8;
   -fx-border-radius:    5;
 }
 
@@ -33,7 +44,9 @@ ListView {
 
 .list-cell:filled:selected:focused,
 .list-cell:filled:selected {
-  -fx-background-color: #0000ff;
+/*  -fx-background-color: #0068ff;*/
+/*  -fx-background-color: #e3a01e;*/
+  -fx-background-color: #ff19ff;
 }
 
 
@@ -43,5 +56,7 @@ ListView {
 }
 
 .list-cell:filled:hover { 
-    -fx-background-color: #000088;
+/*  -fx-background-color: #0044a8;*/
+  /*-fx-background-color: #b27d18;*/
+  -fx-background-color: #a810a8;
 }
