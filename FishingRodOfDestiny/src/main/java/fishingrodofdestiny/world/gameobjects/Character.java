@@ -18,19 +18,21 @@ import java.util.List;
  */
 public abstract class Character extends GameObject {
     
-    private int    attack;
-    private int    defence;
-    private int    level;
-    private int    experiencePoints;
+    private int        attack;
+    private int        defence;
+    private int        naturalArmorClass;
+    private int        level;
+    private int        experiencePoints;
     private Controller controller;
 
     public Character() {
         super();
-        this.attack           = 0;
-        this.defence          = 0;
-        this.level            = 0;
-        this.experiencePoints = 0;
-        this.controller       = null;
+        this.attack            = 0;
+        this.defence           = 0;
+        this.naturalArmorClass = 0;
+        this.level             = 0;
+        this.experiencePoints  = 0;
+        this.controller        = null;
         this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
@@ -103,6 +105,17 @@ public abstract class Character extends GameObject {
         return items;
     }
     
+    protected final void setAttack(int amount) {
+        this.attack = amount;
+    }
+    
+    protected final void setDefence(int amount) {
+        this.defence = amount;
+    }
+    
+    protected final void setNaturalArmorClass(int ac) {
+        this.naturalArmorClass = ac;
+    }
     
     public int getAttack() {
         return this.attack;
@@ -121,12 +134,55 @@ public abstract class Character extends GameObject {
     }
     
     public int getArmorClass() {
-        return 0; // TODO: calculate from worn armor
+        return this.naturalArmorClass; // TODO: calculate from worn armor
     }
     
+    /**
+     * Calculate and return the damage this character does per hit.
+     * 
+     * @return amount of damage per hit
+     */
     public int getDamage() {
-        return 1; // TODO: calculate from stats and currently equipped weapon
+        int damage = 1;
+        
+        damage += this.getAttack();
+        
+        return damage;
     }
+    
+    /**
+     * Calculate and return the chance to hit the target.
+     * 
+     * @param target At who the hit is aimed to.
+     * 
+     * @return chance in the range of [0..1]
+     */
+    public double getChanceToHit(GameObject target) {
+        if (target instanceof Character) {
+            Character targetCharacter = (Character) target;
+            double def = targetCharacter.getDefence();
+            if (def > 0.0) {
+                // Clamp the minimum chance to 5%:
+                return Math.max(0.05, (double) this.getAttack() / def);
+            }
+        }
+        return 1.0;
+    }
+    
+    /**
+     * Calculate how much the damage is reduced based on armor class and other factors.
+     * 
+     * @param damage The damage before reduction.
+     * @return The damage that should be subtracted prior calling this.hit().
+     */
+    public int getDamageReduction(int damage) {
+        int ac = Math.min(100, this.getArmorClass()); // clamp max ac
+        double acModifier = (double) ac * 0.01;
+        double damageReduction = (double) damage * 0.75 * (1.0 - acModifier); // 75% of damage can be reduced by armor class
+
+        return (int) damageReduction;
+    }
+
     
     public void adjustAttack(int amount) {
         this.attack += amount;

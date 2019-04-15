@@ -28,7 +28,6 @@ import javafx.stage.Stage;
  */
 public class ScreenNewGame extends Screen {
     
-    private Player           player;
     private TextField        name;
     private ToggleGroup      rescueToggleGroup;
     private PointDistributor pointDistributor;
@@ -38,7 +37,6 @@ public class ScreenNewGame extends Screen {
     
     public ScreenNewGame(Screen parent, Stage stage) {
         super(parent, stage);
-        this.player            = new Player();
         this.name              = null;
         this.rescueToggleGroup = null;
         this.pointDistributor  = null;
@@ -52,7 +50,6 @@ public class ScreenNewGame extends Screen {
     protected Node createUserInterface() {
         VBox vb = new VBox(0);
         vb.setAlignment(Pos.CENTER);
-//        vb.setMinWidth(scene.getWidth());
 
         vb.getChildren().add(UserInterfaceFactory.createTitle("START NEW GAME"));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
@@ -61,7 +58,7 @@ public class ScreenNewGame extends Screen {
         vb.getChildren().add(UserInterfaceFactory.createLabeledInput("Name:", this.name));
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
-        this.pointDistributor = new PointDistributor(this.player, 20); 
+        this.pointDistributor = new PointDistributor(new Player(), 20); 
         vb.getChildren().add(this.pointDistributor.createUserInterface());
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
         
@@ -115,16 +112,19 @@ public class ScreenNewGame extends Screen {
     
     
     private void startNewGame() {
-        player.setName(this.name.getText());
-        player.adjustAttack(this.pointDistributor.getPoints(PointDistributor.PointType.ATTACK));
-        player.adjustDefence(this.pointDistributor.getPoints(PointDistributor.PointType.DEFENCE));
-        player.adjustMaxHitpoints(this.pointDistributor.getPoints(PointDistributor.PointType.HITPOINTS));
-        player.getInventory().adjustWeightLimit(this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY));
+        Player defaultPlayer = new Player();
+        Player player = new Player(
+                this.name.getText(),
+                this.pointDistributor.getPoints(PointDistributor.PointType.ATTACK)            + defaultPlayer.getAttack(),
+                this.pointDistributor.getPoints(PointDistributor.PointType.DEFENCE)           + defaultPlayer.getDefence(),
+                this.pointDistributor.getPoints(PointDistributor.PointType.HITPOINTS)         + defaultPlayer.getMaxHitpoints(),
+                this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY) + defaultPlayer.getInventory().getWeightLimit()
+        );
         
         this.close();
         
         Game.RescueTarget rtarget = (Game.RescueTarget) this.rescueToggleGroup.getSelectedToggle().getUserData();
-        Game game = new Game(Long.parseLong(this.randomSeed.getText()), this.player, rtarget);
+        Game game = new Game(Long.parseLong(this.randomSeed.getText()), player, rtarget);
         Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
     }

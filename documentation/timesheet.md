@@ -57,9 +57,10 @@ Time used for the project.
   <tr><td>     </td><td> 0.5</td><td>Documentation.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Tests.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Game logic.</td></tr>
-  <tr><td>15.4.</td><td> 1.0</td><td>Game logic.</td></tr>
+  <tr><td>15.4.</td><td> 2.0</td><td>Game logic.</td></tr>
   <tr><td>     </td><td> 1.5</td><td>User interface.</td></tr>
-  <tr><td>     </td><td> 0.5</td><td>Content.</td></tr>
+  <tr><td>     </td><td> 1.5</td><td>Content.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Tests.</td></tr>
-  <tr><th>Total</th><th>84.5</th><th></th></tr>
+  <tr><td>     </td><td> 0.5</td><td>Code refactoring.</td></tr>
+  <tr><th>Total</th><th>87.0</th><th></th></tr>
 </table>

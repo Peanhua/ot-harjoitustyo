@@ -6,7 +6,7 @@
 package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.FishingRod;
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.ExitCaveTile;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
@@ -106,7 +106,7 @@ public class Cave {
     private void populateNPCs(Random random) {
         this.levels.forEach(level -> {
             while (true) {
-                NonPlayerCharacter npc = level.spawnNPC(random);
+                GameObject npc = level.spawnNPC(random);
                 if (npc == null) {
                     break;
                 }

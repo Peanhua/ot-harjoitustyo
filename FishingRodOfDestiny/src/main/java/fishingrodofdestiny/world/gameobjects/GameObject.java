@@ -10,6 +10,7 @@ import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.List;
+import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 
 
@@ -31,6 +32,7 @@ public abstract class GameObject {
     private   TileGfx    graphics;
     private   int        drawingOrder;
     private   boolean    canBePickedUp;
+    private   Random     random;
     
     public GameObject() {
         this.name             = null;
@@ -46,6 +48,7 @@ public abstract class GameObject {
         this.graphics         = null;
         this.drawingOrder     = 0;
         this.canBePickedUp    = false;
+        this.random           = new Random(); // TODO: maybe use a global random object?
         
         this.inventory.listenOnChange(() -> {
             this.onChange.notifyObservers();
@@ -65,6 +68,11 @@ public abstract class GameObject {
                 + ",inventoryWLimit=" + this.inventory.getWeightLimit()
                 + ",inventorySize=" + this.inventory.getObjects().size()
                 + ")";
+    }
+    
+    
+    public final Random getRandom() {
+        return this.random;
     }
     
     
@@ -194,16 +202,12 @@ public abstract class GameObject {
     public void onDestroyTarget(GameObject target) {
     }
     
-    public void adjustMaxHitpoints(int amount) {
-        if (amount <= 0 || this.maxHitpoints < Integer.MAX_VALUE - amount) {
-            this.maxHitpoints += amount;
-            if (this.maxHitpoints < 0) {
-                this.maxHitpoints = 0;
-            }
-        } else {
-            this.maxHitpoints = Integer.MAX_VALUE;
+    public final void setMaxHitpoints(int amount) {
+        if (amount <= 0) {
+            throw new RuntimeException("Amount must be greater than 0.");
         }
-        this.onChange.notifyObservers();
+        this.currentHitpoints = amount;
+        this.maxHitpoints     = amount;
     }
     
     

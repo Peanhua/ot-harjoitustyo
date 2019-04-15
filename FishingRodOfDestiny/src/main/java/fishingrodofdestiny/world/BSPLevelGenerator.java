@@ -5,8 +5,6 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.gameobjects.GoldCoin;
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.WallTile;
@@ -28,7 +26,7 @@ public class BSPLevelGenerator extends LevelGenerator {
     @Override
     public Level generateLevel(int caveLevel) {
         LevelSettings enemySettings = new LevelSettings();
-        enemySettings.addType(NonPlayerCharacter.class, 10 + caveLevel * 5, 1.0);
+        enemySettings.addType(GameObjectFactory.Type.Rat, 10 + this.width * this.height / 50, 1.0);
         
         Level level = new Level(enemySettings, caveLevel, this.width, this.height);
         
@@ -40,7 +38,7 @@ public class BSPLevelGenerator extends LevelGenerator {
         this.fillEmptySpace(level);
         
         LevelSettings itemSettings = new LevelSettings();
-        itemSettings.addType(GoldCoin.class, 3 + caveLevel * 3, 1.0);
+        itemSettings.addType(GameObjectFactory.Type.GoldCoin, 3 + caveLevel * 3, 1.0);
         this.placeItems(itemSettings, level);
         
         return level;

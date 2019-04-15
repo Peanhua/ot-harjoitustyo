@@ -7,7 +7,6 @@ package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.LevelMemory;
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
@@ -132,16 +131,16 @@ public class Level {
         return count;
     }
     
+    public int getObjectCount(GameObjectFactory.Type type) {
+        return this.getObjectCount(GameObjectFactory.getJavaClass(type));
+    }
+    
     /*
     * Spawn a new NPC based on settings for this level.
     */
-    public NonPlayerCharacter spawnNPC(Random random) {
+    public GameObject spawnNPC(Random random) {
         // Generate the NPC:
-        Class type = this.enemySettings.getNext(random, this);
-        NonPlayerCharacter npc = null;
-        if (type == NonPlayerCharacter.class) {
-            npc = new NonPlayerCharacter();
-        }
+        GameObject npc = GameObjectFactory.create(this.enemySettings.getNext(random, this));
         if (npc == null) {
             return null;
         }

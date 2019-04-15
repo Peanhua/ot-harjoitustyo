@@ -6,8 +6,6 @@
 package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.GoldCoin;
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.WallTile;
@@ -60,11 +58,7 @@ public abstract class LevelGenerator {
     
     public void placeItems(LevelSettings itemSettings, Level level) {
         while (true) {
-            Class type = itemSettings.getNext(random, level);
-            GameObject item = null;
-            if (type == GoldCoin.class) {
-                item = new GoldCoin();
-            }
+            GameObject item = GameObjectFactory.create(itemSettings.getNext(random, level));
             if (item == null) {
                 break;
             }

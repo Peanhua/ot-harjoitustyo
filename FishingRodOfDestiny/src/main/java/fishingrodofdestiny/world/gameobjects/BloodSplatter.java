@@ -15,11 +15,11 @@ public class BloodSplatter extends GameObject {
     
     public BloodSplatter() {
         super("pool of blood");
-        this.adjustMaxHitpoints(100);
-        this.setHitpoints(this.getMaxHitpoints());
+        this.setMaxHitpoints(100);
         this.setGraphics(new TileGfx("rltiles/tile", 288, 800, 32, 32));
     }
 
+    @Override
     public void tick(double deltaTime) {
         super.tick(deltaTime);
         this.hit(null, 1);

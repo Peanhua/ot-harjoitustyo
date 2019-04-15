@@ -5,7 +5,6 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,12 +25,12 @@ public class LevelSettings {
         this.maximumNumberOfObjects = 1;
     }
     
-    public void addType(Class type, int maximumCount, double weight) {
+    public void addType(GameObjectFactory.Type type, int maximumCount, double weight) {
         this.objects.add(new ObjectConfiguration(type, maximumCount, weight));
     }
 
 
-    public Class getNext(Random random, Level level) {
+    public GameObjectFactory.Type getNext(Random random, Level level) {
         List<ObjectConfiguration> possible = new ArrayList<>();
         for (int i = 0; i < this.objects.size(); i++) {
             ObjectConfiguration conf = this.objects.get(i);
@@ -53,15 +52,15 @@ public class LevelSettings {
 
 
 class ObjectConfiguration implements Comparable<ObjectConfiguration> {
-    private Class  type;
-    private double weight;
-    private double currentProbability;
-    private int    maxCount;
+    private GameObjectFactory.Type type;
+    private double                 weight;
+    private double                 currentProbability;
+    private int                    maxCount;
 
-    public ObjectConfiguration(Class type, int maxCount, double weight) {
-        this.type     = type;
-        this.maxCount = maxCount;
-        this.weight   = weight;
+    public ObjectConfiguration(GameObjectFactory.Type type, int maxCount, double weight) {
+        this.type               = type;
+        this.maxCount           = maxCount;
+        this.weight             = weight;
         this.currentProbability = weight;
     }
 
@@ -70,7 +69,7 @@ class ObjectConfiguration implements Comparable<ObjectConfiguration> {
         return "Enemy(type=" + this.type + ", maxCount=" + this.maxCount + ", weight=" + this.weight + ", currentProbability=" + this.currentProbability + ", maxCount=" + this.maxCount;
     }
 
-    public Class getType() {
+    public GameObjectFactory.Type getType() {
         return this.type;
     }
 

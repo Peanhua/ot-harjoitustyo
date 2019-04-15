@@ -33,7 +33,21 @@ public class ActionAttack extends Action {
             return;
         }
         
+        double chance = me.getChanceToHit(target);
+        if (me.getRandom().nextDouble() < chance) {
+            this.hitTarget(me);
+            
+        } else {
+            me.addMessage("You try to hit " + target.getName() + ", but miss!");
+            target.addMessage(me.getCapitalizedName() + " tries to hit you, but misses!");
+        }
+    }
+    
+    private void hitTarget(Character me) {
         int damage = me.getDamage();
+        if (target instanceof Character) {
+            damage -= ((Character) target).getDamageReduction(damage);
+        }
         me.addMessage("You hit " + target.getName() + " for " + damage + "!");
         target.addMessage(me.getCapitalizedName() + " hits you for " + damage + "!");
         target.hit(me, damage);

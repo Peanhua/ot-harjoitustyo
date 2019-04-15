@@ -5,11 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
-import fishingrodofdestiny.world.tiles.StairsUpTile;
-import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.FloorTile;
-import fishingrodofdestiny.world.tiles.StairsDownTile;
 import java.util.Random;
 
 /**
@@ -26,8 +22,8 @@ public class EmptyLevelGenerator extends LevelGenerator {
     @Override
     public Level generateLevel(int caveLevel) {
         LevelSettings settings = new LevelSettings();
-        settings.addType(NonPlayerCharacter.class, 1 + caveLevel * 5, 0.2);
-        settings.addType(NonPlayerCharacter.class, 1 + caveLevel * 5, 0.8);
+        settings.addType(GameObjectFactory.Type.Rat, 1 + caveLevel * 5, 0.2);
+        settings.addType(GameObjectFactory.Type.Rat, 1 + caveLevel * 5, 0.8);
         Level level = new Level(settings, caveLevel, this.width, this.height);
 
         this.createLevelBorders(level);
