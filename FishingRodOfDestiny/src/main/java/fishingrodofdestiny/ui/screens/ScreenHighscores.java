@@ -13,6 +13,7 @@ import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -28,27 +29,22 @@ public class ScreenHighscores extends Screen {
 
     @Override
     protected Node createUserInterface() {
-        VBox vb = new VBox(0);
+        BorderPane pane = new BorderPane();
 
-        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
-        vb.getChildren().add(UserInterfaceFactory.createLogo(null));
-        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
+        pane.setTop(UserInterfaceFactory.createLogo());
         
         HighscoreList hslist = HighscoreListCache.getInstance().get(Highscore.Type.SCORE);
         HighscoreListView hlv = new HighscoreListView(hslist);
-        vb.getChildren().add(hlv.createUserInterface());
+        pane.setCenter(hlv.createUserInterface());
         
-        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
-
         VBox buttons = new VBox(10);
         buttons.setAlignment(Pos.CENTER);
 
         Button close = new Button("Close");
         close.setOnAction(e-> this.close());
         buttons.getChildren().addAll(close);
-            
-        vb.getChildren().add(buttons);
-
-        return vb;
+        pane.setBottom(buttons);
+        
+        return pane;
     }
 }
