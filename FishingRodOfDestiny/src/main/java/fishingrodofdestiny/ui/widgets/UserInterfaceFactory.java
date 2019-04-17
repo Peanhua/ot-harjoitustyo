@@ -31,10 +31,9 @@ import javafx.scene.text.TextAlignment;
  */
 public class UserInterfaceFactory {
     
-    public static Node createLogo(Scene scene) {
+    public static Node createLogo() {
         Image logo = ImageCache.getInstance().get("images/Logo");
         ImageView logov = new ImageView(logo);
-        //logov.setTranslateX((scene.getWidth() - logo.getWidth()) / 2);
         return logov;
     }
         
@@ -51,6 +50,7 @@ public class UserInterfaceFactory {
     
     public static Region createVerticalSpacer(int height) {
         Region spacer = new Region();
+        spacer.setOpacity(0.0);
         spacer.setMinHeight(height);
         return spacer;
     }

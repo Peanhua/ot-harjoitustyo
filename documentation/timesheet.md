@@ -64,5 +64,7 @@ Time used for the project.
   <tr><td>     </td><td> 0.5</td><td>Code refactoring.</td></tr>
   <tr><td>16.4.</td><td> 0.5</td><td>Content.</td></tr>
   <tr><td>     </td><td> 0.5</td><td>Game logic.</td></tr>
+  <tr><td>     </td><td> 2.0</td><td>User interface and gfx.</td></tr>
+  <tr><td>17.4.</td><td> 1.0</td><td>User interface and gfx.</td></tr>
   <tr><th>Total</th><th>88.5</th><th></th></tr>
 </table>

@@ -5,10 +5,13 @@
  */
 package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -17,22 +20,27 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public class ScreenMainMenu extends Screen {
-
+    private Starfield starfield;
+    
     public ScreenMainMenu(Screen parent, Stage stage) {
         super(parent, stage);
+        this.starfield = null;
     }
 
     @Override
     protected Node createUserInterface() {
-        VBox vb = new VBox(0);
+        StackPane sp = new StackPane();
+        
+        this.starfield = new Starfield();
+        sp.getChildren().add(this.starfield.createUserInterface());
+        
+        BorderPane pane = new BorderPane();
+        sp.getChildren().add(pane);
+        
+        pane.setTop(UserInterfaceFactory.createLogo());
+        pane.setCenter(this.setupButtons());
 
-        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(150));
-        vb.getChildren().add(UserInterfaceFactory.createLogo(null));
-        vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(150));
-
-        vb.getChildren().add(this.setupButtons());
-
-        return vb;
+        return sp;
     }
 
     private Node setupButtons() {
@@ -58,6 +66,7 @@ public class ScreenMainMenu extends Screen {
     }
     
     private void startNewGame() {
+        this.starfield.disable();
         Screen ng = new ScreenNewGame(this, this.getStage());
         ng.show();
     }
@@ -75,5 +84,10 @@ public class ScreenMainMenu extends Screen {
     private void showHighscores() {
         Screen hs = new ScreenHighscores(this, this.getStage());
         hs.show();
+    }
+
+    @Override
+    public void onShow() {
+        this.starfield.enable();
     }
 }

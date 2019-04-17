@@ -52,6 +52,7 @@ public abstract class Screen {
         
         if (this.scene != null) {
             this.stage.setScene(this.scene);
+            this.onShow();
         }
     }
 
@@ -71,5 +72,8 @@ public abstract class Screen {
     }
     
     public void disableInputHandlers() {
+    }
+
+    public void onShow() {
     }
 }

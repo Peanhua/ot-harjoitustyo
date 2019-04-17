@@ -34,7 +34,7 @@ public class ScreenPlot extends Screen {
         vb.setAlignment(Pos.CENTER);
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(50));
-        vb.getChildren().add(UserInterfaceFactory.createLogo(null));
+        vb.getChildren().add(UserInterfaceFactory.createLogo());
 
         vb.getChildren().add(UserInterfaceFactory.createVerticalSpacer(100));
 

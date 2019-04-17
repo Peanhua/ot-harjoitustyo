@@ -33,7 +33,7 @@ public class ScreenGameCompletion extends Screen {
     protected Node createUserInterface() {
         BorderPane pane = new BorderPane();
 
-        pane.setTop(UserInterfaceFactory.createLogo(null));
+        pane.setTop(UserInterfaceFactory.createLogo());
 
         String plot = this.game.getPlotFinish().stream().reduce("", (a, b) -> a + "\n" + b);
         Text t = UserInterfaceFactory.createText(plot);
