@@ -38,10 +38,10 @@ public class Game {
         }
     };
     
-    private Player       player;
-    private RescueTarget rescueTarget;
-    private Random       random;
-    private Cave         cave;
+    private final Player       player;
+    private final RescueTarget rescueTarget;
+    private final Random       random;
+    private final Cave         cave;
     
     public Game(long randomSeed, Player player, RescueTarget rescueTarget) {
         this.player       = player;

@@ -52,10 +52,10 @@ public class LevelSettings {
 
 
 class ObjectConfiguration implements Comparable<ObjectConfiguration> {
-    private GameObjectFactory.Type type;
-    private double                 weight;
-    private double                 currentProbability;
-    private int                    maxCount;
+    private final GameObjectFactory.Type type;
+    private final double                 weight;
+    private final int                    maxCount;
+    private double                       currentProbability;
 
     public ObjectConfiguration(GameObjectFactory.Type type, int maxCount, double weight) {
         this.type               = type;

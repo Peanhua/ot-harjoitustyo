@@ -17,7 +17,7 @@ import java.util.List;
 public class Inventory {
     private final List<GameObject> objects;
     private int                    weightLimit;
-    private Subject                onChange;
+    private final Subject          onChange;
     
     public Inventory(int weightLimit) {
         this.objects  = new ArrayList<>();

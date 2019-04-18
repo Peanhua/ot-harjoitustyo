@@ -15,7 +15,6 @@ import fishingrodofdestiny.world.tiles.StairsTile;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -24,7 +23,7 @@ import java.util.Random;
  * @author joyr
  */
 public class Cave {
-    private List<Level> levels;
+    private final List<Level> levels;
     private final String[][] possibleTrapScenarios = {
         { "...",
           ".X.",
