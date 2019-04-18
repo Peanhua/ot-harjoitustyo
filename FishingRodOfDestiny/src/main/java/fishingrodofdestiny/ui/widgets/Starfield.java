@@ -164,7 +164,10 @@ public class Starfield extends Widget {
             addMore = true;
             this.timeToNextStar = 0.1;
         }
-            
+        this.manageStars(addMore);
+    }
+
+    private void manageStars(boolean addMore) {
         for (int i = 0; i < stars.length; i++) {
             if (stars[i] == null) {
                 if (addMore) {

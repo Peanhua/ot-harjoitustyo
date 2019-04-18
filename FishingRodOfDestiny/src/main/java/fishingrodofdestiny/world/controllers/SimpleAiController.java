@@ -41,17 +41,22 @@ public class SimpleAiController extends Controller {
             }
         }
         if (action == null) {
-            if (!this.isAggressive) {
-                if (this.getOwner().getRandom().nextInt(100) < 30) {
-                    int distance = this.getDistanceToPlayer();
-                    if (distance >= 0 && distance <= this.automaticAggressionDistance) {
-                        this.isAggressive = true;
-                    }
-                }
-            }
+            this.makeAggressive();
         }
         
         return action;
+    }
+
+    private void makeAggressive() {
+        if (this.isAggressive) {
+            return;
+        }
+        if (this.getOwner().getRandom().nextInt(100) < 30) {
+            int distance = this.getDistanceToPlayer();
+            if (distance >= 0 && distance <= this.automaticAggressionDistance) {
+                this.isAggressive = true;
+            }
+        }
     }
     
     
