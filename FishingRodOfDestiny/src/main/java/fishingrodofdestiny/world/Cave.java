@@ -9,11 +9,13 @@ import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.ExitCaveTile;
 import fishingrodofdestiny.world.tiles.FloorTile;
+import fishingrodofdestiny.world.tiles.PitTrapTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
 import fishingrodofdestiny.world.tiles.StairsTile;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -23,6 +25,60 @@ import java.util.Random;
  */
 public class Cave {
     private List<Level> levels;
+    private final String[][] possibleTrapScenarios = {
+        { "...",
+          ".X.",
+          "..."
+        },
+        { "..#",
+          ".X#",
+          "..#"
+        },
+        { "###",
+          ".X.",
+          "..."
+        },
+        { "#..",
+          "#X.",
+          "#.."
+        },
+        { "...",
+          ".X.",
+          "###"
+        },
+        { "#..",
+          "#X.",
+          "###"
+        },
+        { "###",
+          "#X.",
+          "#.."
+        },
+        { "###",
+          ".X#",
+          "..#"
+        },
+        { "..#",
+          ".X#",
+          "###"
+        },
+        { "###",
+          "#X#",
+          "#.#"
+        },
+        { "###",
+          ".X#",
+          "###"
+        },
+        { "#.#",
+          "#X#",
+          "###"
+        },
+        { "###",
+          "#X.",
+          "###"
+        }
+    };
     
     public Cave(Random random) {
         this.levels = new ArrayList<>();
@@ -35,6 +91,7 @@ public class Cave {
         this.levels.forEach(level -> lg.connectStartEnd(level));
         this.connectStairs();
         this.setupGameCompletionObjects();
+        this.addTraps(random);
         this.populateNPCs(random);
     }
 
@@ -131,5 +188,63 @@ public class Cave {
         // And add the fishing rod in there:
         FishingRod rod = new FishingRod();
         rod.getLocation().moveTo(newTile);
+    }
+    
+    
+    private void addTraps(Random random) {
+        for (int i = 1; i < this.levels.size(); i++) {
+            Level prev = this.levels.get(i - 1);
+            Level cur  = this.levels.get(i);
+            
+            for (int j = 0; j < 10; j++) {
+                Tile floor = prev.getRandomTileOfType(random, FloorTile.class);
+                Tile floorDownstairs = cur.getTile(floor.getX(), floor.getY());
+                if (floorDownstairs.getClass() == floor.getClass()) {
+                    String[] thisLocation = this.getScenarioData(prev, floor.getX(), floor.getY());
+                    if (this.matchScenario(thisLocation, this.possibleTrapScenarios)) {
+                        PitTrapTile trap = new PitTrapTile(prev, floor.getX(), floor.getY());
+                        trap.setTarget(floorDownstairs);
+                        prev.setTile(floor.getX(), floor.getY(), trap);
+                    }
+                }
+            }
+        }
+    }
+    
+    private String[] getScenarioData(Level level, int x, int y) {
+        String[] map = new String[3];
+        for (int yi = -1; yi <= 1; yi++) {
+            String currentLine = "";
+            for (int xi = -1; xi <= 1; xi++) {
+                if (xi == 0 && yi == 0) {
+                    currentLine += "X";
+                } else {
+                    Tile tile = level.getTile(x + xi, y + yi);
+                    if (tile.canBeEntered()) {
+                        currentLine += ".";
+                    } else {
+                        currentLine += "#";
+                    }
+                }
+            }
+            map[yi + 1] = currentLine;
+        }
+        return map;
+    }
+    
+    private boolean matchScenario(String[] location, String[][] scenarios) {
+        for (String[] scenario : scenarios) {
+            boolean match = true;
+            for (int i = 0; match && i < 3; i++) {
+                if (!location[i].equals(scenario[i])) {
+                    match = false;
+                }
+            }
+            if (match) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

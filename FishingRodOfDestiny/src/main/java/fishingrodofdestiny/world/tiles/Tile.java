@@ -5,7 +5,6 @@
  */
 package fishingrodofdestiny.world.tiles;
 
-import fishingrodofdestiny.resources.ImageCache;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.gameobjects.GameObject;
@@ -36,6 +35,10 @@ public abstract class Tile {
     
     public String getName() {
         return this.name;
+    }
+    
+    protected void setName(String name) {
+        this.name = name;
     }
     
     public TileGfx getGraphics() {
