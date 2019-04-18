@@ -69,5 +69,5 @@ Time used for the project.
   <tr><td>18.4.</td><td> 1.0</td><td>Content and game logic.</td></tr>
   <tr><td>     </td><td> 2.0</td><td>Documentation.</td></tr>
   <tr><td>     </td><td> 1.0</td><td>Tests.</td></tr>
-  <tr><th>Total</th><th>94.5</th><th></th></tr>
+  <tr><th>Total</th><th>95.5</th><th></th></tr>
 </table>
