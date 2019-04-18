@@ -15,12 +15,24 @@ import javafx.scene.paint.Color;
 
 /**
  * Singleton to load and cache images.
- *
+ * <p>
+ * Three types of images can be obtained:
+ * <ul>
+ *   <li>Complete image - The whole image with the given name.</li>
+ *   <li>Partial image - A rectangular portion of a source image.</li>
+ *   <li>Combined image - Two images combined together using alpha values.</li>
+ * </ul>
+ * 
  * @author joyr
  */
 public class ImageCache {
     private static ImageCache instance = null;
     
+    /**
+     * Returns the singleton instance for the ImageCache.
+     * 
+     * @return Singleton instance of ImageCache.
+     */
     public static ImageCache getInstance() {
         if (ImageCache.instance == null) {
             ImageCache.instance = new ImageCache();
@@ -39,6 +51,18 @@ public class ImageCache {
         this.combinedImages = new HashMap<>();
     }
     
+    /**
+     * Obtain image of the given name.
+     * <p>
+     * Returns the image associated to the given name. The image will be loaded if it is not yet in memory. There is a one-to-one mapping between names and image objects.
+     * Image loading is performed using getResource() from fishingrodofdestiny -package.
+     * 
+     * @see #getPartial(String, int, int, int, int)
+     * @see #getCombined(Image, Image)
+     * 
+     * @param name The name of the image.
+     * @return The image object, or null if the loading failed.
+     */
     public Image get(String name) {
         Image image = this.images.get(name);
         if (image != null) {
@@ -65,7 +89,21 @@ public class ImageCache {
         return image;
     }
     
-    
+    /**
+     * Return partial portion of an image.
+     * <p>
+     * A rectangular portion of the source image is returned. These partial portions are separately cached, thus calling getPartial() twice with same parameters returns the same image object.
+     * 
+     * @see #get(String)
+     * @see #getCombined(Image, Image)
+     * 
+     * @param name    The name of the image.
+     * @param offsetX The top left corner of the partial image, X coordinate in the source image.
+     * @param offsetY The top left corner of the partial image, Y coordinate in the source image.
+     * @param width   The width of the rectangle.
+     * @param height  The height of the rectangle.
+     * @return The image object, or null if the loading failed.
+     */
     public Image getPartial(String name, int offsetX, int offsetY, int width, int height) {
         String key = name + ":" + offsetX + "," + offsetY + "-" + width + "x" + height;
         Image partialImage = this.partialImages.get(key);
@@ -88,7 +126,23 @@ public class ImageCache {
         return partialImage;
     }
     
-    
+
+    /**
+     * Return the background and the foreground images combined as one image.
+     * <p>
+     * The given background and foreground images are combined together and returned.
+     * The foreground image is placed on top of the background image using the alpha values from the foreground image.
+     * For pixels with zero alpha, the background is completely visible. And for pixels with full alpha (1.0), the foreground is completely visible.
+     * <p>
+     * Assumes that the background has full alpha (1.0) for all pixels.
+     * 
+     * @see #get(String)
+     * @see #getPartial(String, int, int, int, int)
+     * 
+     * @param background The background image.
+     * @param foreground The foreground image.
+     * @return The combined image.
+     */
     public Image getCombined(Image background, Image foreground) {
         HashMap<Image, Image> combinedWithBackgrounds = this.combinedImages.get(background);
         if (combinedWithBackgrounds == null) {

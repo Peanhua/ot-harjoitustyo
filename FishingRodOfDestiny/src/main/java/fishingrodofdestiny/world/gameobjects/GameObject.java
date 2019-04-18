@@ -15,17 +15,23 @@ import javafx.scene.canvas.GraphicsContext;
 
 
 /**
+ * The base class for all movable objects in the game.
  *
  * @author joyr
  */
 public abstract class GameObject {
+    /**
+     * The observers notified upon change to this GameObject.
+     * Subclasses are expected to call onChange.notifyObservers() when changing their externally observable state.
+     */
+    protected Subject    onChange;
+    
     private   String     name;
     private   boolean    isAlive;
     private   int        maxHitpoints;
     private   int        currentHitpoints;
     private   int        weight;
     private   Location   location;
-    protected Subject    onChange;
     private   Inventory  inventory;
     private   Subject    onMessage;
     private   String     message;
@@ -33,7 +39,10 @@ public abstract class GameObject {
     private   int        drawingOrder;
     private   boolean    canBePickedUp;
     private   Random     random;
-    
+
+    /**
+     * Create a new GameObject with default values.
+     */
     public GameObject() {
         this.name             = null;
         this.isAlive          = true;
@@ -54,12 +63,22 @@ public abstract class GameObject {
             this.onChange.notifyObservers();
         });
     }
-    
+
+    /**
+     * Create a new GameObject with the given name.
+     *
+     * @param name The name of this GameObject.
+     */
     public GameObject(String name) {
         this();
         this.name = name;
     }
-    
+
+    /**
+     * This is used only for debugging purposes.
+     *
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "GameObject("
@@ -70,21 +89,40 @@ public abstract class GameObject {
                 + ")";
     }
     
-    
+
+    /**
+     * Return a random number generator.
+     * <p>
+     * Each GameObject has its own unique Random generator.
+     *
+     * @return Random number generator.
+     */
     public final Random getRandom() {
         return this.random;
     }
     
-    
+
+    /**
+     * Return the drawing order value for this GameObject.
+     * <p>
+     * GameObjects with lower drawing order number are drawn first on screen, using <a href="https://en.wikipedia.org/wiki/Painter%27s_algorithm">painters algorithm</a> .
+     *
+     * @return The drawing order value between, default is 0.
+     */
     public int getDrawingOrder() {
         return this.drawingOrder;
     }
     
-    
+
+    /**
+     * Returns whether this GameObject can be picked up.
+     *
+     * @return True if this GameObject can be picked up.
+     */
     public boolean getCanBePickedUp() {
         return this.canBePickedUp;
     }
-    
+
     protected final void setCanBePickedUp(boolean canBePickedUp) {
         this.canBePickedUp = canBePickedUp;
     }
@@ -100,16 +138,34 @@ public abstract class GameObject {
     }
         
     
-    
+    /**
+     * Register an observer to be called whenever this GameObject is changed.
+     * <p>
+     * Will also be called when the inventory of this GameObject is changed.
+     *
+     * @param observer The observer object to be called upon change.
+     */
     public void listenOnChange(Observer observer) {
         this.onChange.addObserver(observer);
     }
     
-    
+    /**
+     * Register an observer to be called whenever this GameObject receives a new message.
+     * <p>
+     * Messages are short textual information meant to be displayed on screen.
+     *
+     * @param observer The observer object to be called when a new message arrives.
+     */
     public void listenOnMessage(Observer observer) {
         this.onMessage.addObserver(observer);
     }
-    
+
+    /**
+     * Send a new message to this GameObject.
+     * Messages are short textual information meant to be displayed on screen.
+     *
+     * @param message The message string.
+     */
     public void addMessage(String message) {
         if (this.message.length() > 0) {
             this.message += " ";
@@ -117,14 +173,26 @@ public abstract class GameObject {
         this.message += message;
         this.onMessage.notifyObservers();
     }
-    
+
+    /**
+     * Returns the current messages added to this GameObject, and clears the messages.
+     *
+     * @return All the current messages sent to this GameObject.
+     */
     public String popMessage() {
         String rv = this.message;
         this.message = "";
         return rv;
     }
+
     
-    
+    /**
+     * Return the Location object.
+     * <p>
+     * There is a one-to-one mapping between Location and GameObject.
+     * 
+     * @return The Location object of this GameObject.
+     */
     public final Location getLocation() {
         return this.location;
     }
@@ -142,7 +210,7 @@ public abstract class GameObject {
         return this.currentHitpoints;
     }
     
-    public void setHitpoints(int hitpoints) {
+    public final void setHitpoints(int hitpoints) {
         if (hitpoints < 1) {
             return;
         }
@@ -153,8 +221,13 @@ public abstract class GameObject {
     public int getMaxHitpoints() {
         return this.maxHitpoints;
     }
-    
-    public String getCapitalizedName() {
+
+    /**
+     * Return the capitalized name of this GameObject, ie. the first letter is changed to upper case.
+     *
+     * @return The capitalized name.
+     */
+    public final String getCapitalizedName() {
         if (this.getName() == null) {
             return "";
         }
@@ -167,8 +240,19 @@ public abstract class GameObject {
         }
         return rv;
     }
-    
-    public void hit(GameObject instigator, int damage) {
+
+
+    /**
+     * Do damage to this GameObject.
+     * <p>
+     * Decreases the current hit points. If the hit points reach zero, the GameObject is destroyed.
+     *
+     * @see #destroy(GameObject)
+     *
+     * @param instigator The GameObject that causes the damage, can be null.
+     * @param damage     The amount of hit points to decrease.
+     */
+    public final void hit(GameObject instigator, int damage) {
         if (this.currentHitpoints > damage) {
             this.currentHitpoints -= damage;
             this.onChange.notifyObservers();
@@ -182,7 +266,16 @@ public abstract class GameObject {
             // TODO: make it "safe" to call notifyObservers() multiple times (asynchronously) within a timeframe so that the observers get notified only once
         }
     }
-    
+
+    /**
+     * Destroy this GameObject.
+     * <p>
+     * This GameObject is removed from its container, and the instigators onDestroyTarget is called.
+     *
+     * @see #onDestroyTarget(GameObject)
+     *
+     * @param instigator The GameObject who is responsible of destroying this GameObject, can be null.
+     */
     public void destroy(GameObject instigator) {
         // TODO: separate destroy() and onDestroyed() stuffs to their own methods, destroy() can then be final
         this.addMessage("You die!");
@@ -193,15 +286,31 @@ public abstract class GameObject {
         this.getLocation().moveTo((Tile) null);
         this.onChange.notifyObservers();
     }
-    
-    public boolean isAlive() {
+
+    /**
+     * Return whether this is alive or not.
+     * <p>
+     * The GameObject becomes not alive when it is destroyed via the destroy() method call.
+     * 
+     * @return True if this GameObject is alive.
+     */
+    public final boolean isAlive() {
         return this.isAlive;
     }
     
-    // Called when this destroys the given target:
+    /**
+     * This is cCalled when this GameObject destroys the given target.
+     *
+     * @param target The GameObject that was destroyed.
+     */
     public void onDestroyTarget(GameObject target) {
     }
-    
+
+    /**
+     * Set the maximum number of hit points, also sets the current hit points to the maximum.
+     * 
+     * @param amount The new maximum number of hit points.
+     */    
     public final void setMaxHitpoints(int amount) {
         if (amount <= 0) {
             throw new RuntimeException("Amount must be greater than 0.");
@@ -215,27 +324,55 @@ public abstract class GameObject {
         return this.inventory;
     }
     
-    
-    public int getWeight() {
+
+    /**
+     * Return the total weight of this GameObject, including the weight of the inventory.
+     *
+     * @return The total weight.
+     */
+    public final int getWeight() {
         return this.weight + this.inventory.getWeight();
     }
 
+    /**
+     * Set this GameObjects weight.
+     *
+     * @param weight The new weight value.
+     */
     protected final void setWeight(int weight) {
         this.weight = weight;
         this.onChange.notifyObservers();
     }
     
-    
+
+    /**
+     * Return a list of valid targets to attack at, the targets are searched from the given tile.
+     *
+     * @param tile The tile to search for the targets.
+     *
+     * @return List of GameObjects that this GameObject deem as valid targets for attacking.
+     */
     public List<GameObject> getValidAttackTargets(Tile tile) {
         return null;
     }
     
-
+    /**
+     * Draw this GameObjects visual representation into the given context.
+     *
+     * @param context The target GraphicsContext object to draw onto.
+     * @param x       The target X coordinate.
+     * @param y       The target Y coordinate.
+     * @param size    The target size (width and height).
+     */
     public void draw(GraphicsContext context, int x, int y, int size) {
         this.graphics.draw(context, x, y, size);
     }
     
-
+    /**
+     * This method is called periodically while this GameObject is alive.
+     * 
+     * @param deltaTime The time (in seconds) since last call.
+     */
     public void tick(double deltaTime) {
     }
 }

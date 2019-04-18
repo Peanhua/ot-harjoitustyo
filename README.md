@@ -49,6 +49,20 @@ Test coverage can be generated with:
 And the results can be seen by pointing browser to *target/site/jacoco/index.html*.
 
 
+### JavaDoc
+
+JavaDoc can be generated with:
+```mvn javadoc:javadoc```
+
+And the results can be seen by pointing browser to *target/site/apidocs/index.html*.
+Some important classes to look at:
+* fishingrodofdestiny.resources.ImageCache in *target/site/apidocs/fishingrodofdestiny/resources/ImageCache.html*
+* fishingrodofdestiny.ui.screens.Screen in *target/site/apidocs/fishingrodofdestiny/ui/screens/Screen.html*
+* fishingrodofdestiny.world.controllers.Controller in *target/site/apidocs/fishingrodofdestiny/world/controllers/Controller.html*
+* fishingrodofdestiny.world.gameobjects.GameObject in *target/site/apidocs/fishingrodofdestiny/world/gameobjects/GameObject.html*
+* fishingrodofdestiny.world.gameobjects.Location in *target/site/apidocs/fishingrodofdestiny/world/gameobjects/Location.html*
+
+
 ### Checkstyle
 
 Checkstyle can be run by:

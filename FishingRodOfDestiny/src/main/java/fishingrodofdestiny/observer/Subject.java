@@ -13,7 +13,7 @@ import java.util.List;
  * @author joyr
  */
 public class Subject {
-    private List<Observer> observers;
+    private final List<Observer> observers;
     
     public Subject() {
         this.observers = new ArrayList<>();

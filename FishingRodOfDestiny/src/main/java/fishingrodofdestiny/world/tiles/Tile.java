@@ -13,7 +13,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- *
+ * The base class for all tile classes.
+ * <p>
+ * Each tile represents a location on a level.
+ * 
  * @author joyr
  */
 public abstract class Tile {
@@ -23,7 +26,15 @@ public abstract class Tile {
     private Inventory inventory;
     private TileGfx   graphics;
     private String    name;
-    
+
+    /**
+     * Create a new tile bound to the given level and location.
+     * 
+     * @param level The level this tile is bound to.
+     * @param x     The X coordinate in the level.
+     * @param y     The Y coordinate in the level.
+     * @param name  The name of this tile.
+     */
     public Tile(Level level, int x, int y, String name) {
         this.level     = level;
         this.x         = x;
@@ -48,7 +59,12 @@ public abstract class Tile {
     protected final void setGraphics(TileGfx graphics) {
         this.graphics = graphics;
     }
-    
+
+    /**
+     * Change the background image for graphics.
+     * 
+     * @param background The new background graphics.
+     */
     protected final void setGraphicsBackground(Image background) {
         this.graphics.setBackground(background);
     }
@@ -69,8 +85,22 @@ public abstract class Tile {
         return this.inventory;
     }
     
+    /**
+     * Returns true if this tile be entered by a movable GameObject.
+     * 
+     * @return True if the tile can be entered.
+     */
     public abstract boolean canBeEntered();
-    
+
+    /**
+     * Draw the tile, and optionally its inventory.
+     * 
+     * @param context       The context which the tile is drawn onto.
+     * @param x             The X coordinate on the context to draw onto.
+     * @param y             The Y coordinate on the context to draw onto.
+     * @param size          The target size (width and height).
+     * @param drawInventory If true, the inventory is drawn on top of the tile.
+     */
     public final void draw(GraphicsContext context, int x, int y, int size, boolean drawInventory) {
         this.graphics.draw(context, x, y, size);
         if (drawInventory) {
@@ -78,18 +108,26 @@ public abstract class Tile {
         }
     }
     
-    private final void drawInventory(GraphicsContext context, int x, int y, int size) {
+    private void drawInventory(GraphicsContext context, int x, int y, int size) {
         this.inventory.getObjects().stream()
                 .sorted((a, b) -> a.getDrawingOrder() - b.getDrawingOrder())
                 .forEach(obj -> obj.draw(context, x, y, size));
     }
 
-    // Called when the given object moves into this tile:
+    /**
+     * Called when the given object moves into this tile:
+     * 
+     * @param object The GameObject that enters this tile.
+     */
     public void onEnter(GameObject object) {
     }
     
     
-    // Called when the given object wants to activate some tile specific special action in this tile:
+    /**
+     * Called when the given object wants to activate some tile specific special action in this tile:
+     * 
+     * @param object The GameObject that activates this tile.
+     */
     public void activate(GameObject object) {
     }
 }
