@@ -21,6 +21,7 @@ public abstract class StairsTile extends Tile {
         this.target = null;
     }
     
+    @Override
     public boolean canBeEntered() {
         return true;
     }
@@ -31,9 +32,15 @@ public abstract class StairsTile extends Tile {
     
     @Override
     public void activate(GameObject object) {
-        if (this.target != null) {
-            object.addMessage("You climb the stairs.");
-            object.getLocation().moveTo(this.target);
+        if (this.target == null) {
+            return;
         }
+        
+        if (object.getLocation().getContainerTile() != this) {
+            return;
+        }
+        
+        object.addMessage("You climb the stairs.");
+        object.getLocation().moveTo(this.target);
     }
 }

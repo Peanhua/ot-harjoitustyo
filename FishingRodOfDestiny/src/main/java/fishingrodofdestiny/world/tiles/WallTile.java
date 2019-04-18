@@ -19,6 +19,7 @@ public class WallTile extends Tile {
         this.setGraphics(new TileGfx("rltiles/tile", 320, 0, 32, 32));
     }
     
+    @Override
     public boolean canBeEntered() {
         return false;
     }

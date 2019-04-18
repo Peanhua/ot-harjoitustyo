@@ -253,6 +253,7 @@ public abstract class GameObject {
      * @param damage     The amount of hit points to decrease.
      */
     public final void hit(GameObject instigator, int damage) {
+        this.onHit(instigator, damage);
         if (this.currentHitpoints > damage) {
             this.currentHitpoints -= damage;
             this.onChange.notifyObservers();
@@ -265,6 +266,25 @@ public abstract class GameObject {
             // onChange.notifyObservers() is not called here because destroy() does that for us
             // TODO: make it "safe" to call notifyObservers() multiple times (asynchronously) within a timeframe so that the observers get notified only once
         }
+    }
+    
+    /**
+     * Called when this object is getting hit.
+     * 
+     * @param instigator The GameObject that causes the damage, can be null.
+     * @param damage     The amount of hit points decreased.
+     */
+    public void onHit(GameObject instigator, int damage) {
+    }
+    
+    /**
+     * Returns the damage caused by falling.
+     * 
+     * @param height From how high the object falls, in meters.
+     * @return The amount of damage done by the fall.
+     */
+    public int getFallDamage(int height) {
+        return 1;
     }
 
     /**
@@ -344,7 +364,7 @@ public abstract class GameObject {
         this.onChange.notifyObservers();
     }
     
-
+    
     /**
      * Return a list of valid targets to attack at, the targets are searched from the given tile.
      *

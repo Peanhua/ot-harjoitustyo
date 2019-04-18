@@ -70,4 +70,21 @@ public class ActionAttackTest {
         a.act(this.attacker);
         verify(targ, never()).hit(notNull(), anyInt());
     }
+    
+    @Test
+    public void onHitIsCalled() {
+        class TmpNPC extends NonPlayerCharacter {
+            public boolean wasCalled = false;
+            @Override
+            public void onHit(GameObject instigator, int damage) {
+                this.wasCalled = true;
+            }
+        }
+        TmpNPC targ = new TmpNPC();
+        this.attacker.getLocation().moveTo(this.container1);
+        targ.getLocation().moveTo(this.container1);
+        Action a = new ActionAttack(targ);
+        a.act(this.attacker);
+        assertTrue(targ.wasCalled);
+    }
 }

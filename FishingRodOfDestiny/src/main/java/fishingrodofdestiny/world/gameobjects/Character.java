@@ -260,4 +260,10 @@ public abstract class Character extends GameObject {
             nextAction.act(this);
         }
     }
+    
+    
+    @Override
+    public int getFallDamage(int height) {
+        return height / 2 + this.getWeight() / 10;
+    }
 }

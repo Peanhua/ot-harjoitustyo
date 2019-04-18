@@ -53,6 +53,10 @@ public class PitTrapTile extends Tile {
         }
         
         object.getLocation().moveTo(this.target);
-        object.hit(null, 1);
+        
+        int damage = object.getFallDamage(5);
+        if (damage > 0) {
+            object.hit(null, 1);
+        }
     }
 }

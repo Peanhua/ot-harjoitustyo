@@ -107,4 +107,23 @@ public class GameTest {
             assertTrue(differs);
         }
     }
+
+    @Test
+    public void plotFinishDifferBasedOnRescueTarget() {
+        Game game1 = new Game(0, this.player, Game.RescueTarget.PRINCESS);
+        Game game2 = new Game(0, this.player, Game.RescueTarget.PRINCE);
+        
+        List<String> plot1 = game1.getPlotFinish();
+        List<String> plot2 = game2.getPlotFinish();
+        if (plot1.size() == plot2.size()) {
+            boolean differs = false;
+            for (int i = 0; i < plot1.size(); i++) {
+                if (!plot1.get(i).equals(plot2.get(i))) {
+                    differs = true;
+                    break;
+                }
+            }
+            assertTrue(differs);
+        }
+    }
 }

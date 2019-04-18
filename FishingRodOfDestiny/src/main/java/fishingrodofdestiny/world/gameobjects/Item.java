@@ -14,4 +14,9 @@ public class Item extends GameObject {
         super(name);
         this.setCanBePickedUp(true);
     }
+    
+    @Override
+    public int getFallDamage(int height) {
+        return 0;
+    }
 }

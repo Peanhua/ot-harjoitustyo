@@ -20,12 +20,12 @@ import javafx.scene.image.Image;
  * @author joyr
  */
 public abstract class Tile {
-    private Level     level;
-    private int       x;
-    private int       y;
-    private Inventory inventory;
-    private TileGfx   graphics;
-    private String    name;
+    private final Level     level;
+    private final int       x;
+    private final int       y;
+    private final Inventory inventory;
+    private TileGfx         graphics;
+    private String          name;
 
     /**
      * Create a new tile bound to the given level and location.
