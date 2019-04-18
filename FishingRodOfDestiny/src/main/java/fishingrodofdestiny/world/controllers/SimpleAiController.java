@@ -20,9 +20,13 @@ import java.util.List;
  * @author joyr
  */
 public class SimpleAiController extends Controller {
+    private boolean isAggressive;
+    private int     automaticAggressionDistance; // How close enemies must be for this getting (sometimes) automatically aggressive.
 
     public SimpleAiController(Character owner) {
         super(owner);
+        this.isAggressive = false;
+        this.automaticAggressionDistance = 2;
     }
 
     @Override
@@ -32,10 +36,41 @@ public class SimpleAiController extends Controller {
             action = this.tryToAttack();
         }
         if (action == null) {
-            action = this.tryToFindPlayer();
+            if (this.isAggressive) {
+                action = this.tryToFindPlayer();
+            }
         }
+        if (action == null) {
+            if (!this.isAggressive) {
+                if (this.getOwner().getRandom().nextInt(100) < 30) {
+                    int distance = this.getDistanceToPlayer();
+                    if (distance >= 0 && distance <= this.automaticAggressionDistance) {
+                        this.isAggressive = true;
+                    }
+                }
+            }
+        }
+        
         return action;
     }
+    
+    
+    private int getDistanceToPlayer() {
+        Tile myTile = this.getOwner().getLocation().getContainerTile();
+        if (myTile == null) {
+            return -1;
+        }
+        Level level = myTile.getLevel();
+        List<GameObject> players = level.getObjects(Player.class);
+        for (GameObject player : players) {
+            Tile tile = player.getLocation().getContainerTile();
+            int deltaX = tile.getX() - myTile.getX();
+            int deltaY = tile.getY() - myTile.getY();
+            return (int) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        }
+        return -1;
+    }
+    
     
     protected Action tryToAttack() {
         Tile tile = this.getOwner().getLocation().getContainerTile();
