@@ -9,7 +9,6 @@ import fishingrodofdestiny.resources.ImageCache;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -32,9 +31,12 @@ import javafx.scene.text.TextAlignment;
 public class UserInterfaceFactory {
     
     public static Node createLogo() {
+        HBox hb = new HBox(10);
+        hb.setAlignment(Pos.CENTER);
         Image logo = ImageCache.getInstance().get("images/Logo");
         ImageView logov = new ImageView(logo);
-        return logov;
+        hb.getChildren().add(logov);
+        return hb;
     }
         
     
