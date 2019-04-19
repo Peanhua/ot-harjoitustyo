@@ -76,7 +76,7 @@ User interface is made of a number of *screens*, each defined in their own class
 
 During an active on-going game, the user interface handles updating the screen based on events from the game and by querying the current state of it.
 
-User interface flow diagram:
+The user interface flow diagram:
 <div><img src="user_interface_flow.svg" alt="User interface flow" width="400" /></div>
 
 
