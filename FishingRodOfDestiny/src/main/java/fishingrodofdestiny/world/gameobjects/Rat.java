@@ -17,6 +17,7 @@ public class Rat extends NonPlayerCharacter {
         super();
         this.setController(new SimpleAiController(this));
         this.setName("rat");
+        this.setLevel(1);
         this.setAttack(3);
         this.setDefence(20);
         this.setNaturalArmorClass(5);

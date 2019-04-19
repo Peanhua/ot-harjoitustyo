@@ -128,6 +128,10 @@ public abstract class Character extends GameObject {
         this.naturalArmorClass = ac;
     }
     
+    protected final void setLevel(int level) {
+        this.level = level;
+    }
+    
     public int getAttack() {
         int rv = this.attack;
         if (this.weapon != null) {
