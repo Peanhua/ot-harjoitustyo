@@ -41,7 +41,7 @@ public abstract class HighscoreDao {
     }    
 
     
-    private final void loadAll() {
+    private void loadAll() {
         if (this.loaded) {
             return;
         }

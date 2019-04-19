@@ -61,7 +61,7 @@ public class JdbcHighscoreDao extends HighscoreDao {
         }
     }
     
-    private final void initializeDatabase() {
+    private void initializeDatabase() {
         this.jdbc.update(
                 "CREATE TABLE IF NOT EXISTS Highscores ("
                 + "  highscore_id   INTEGER PRIMARY KEY AUTOINCREMENT,"
