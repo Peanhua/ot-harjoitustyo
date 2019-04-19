@@ -17,7 +17,6 @@ import static org.junit.Assert.*;
  */
 public class InventoryTest {
     
-    private JFXPanel  jfxPanel;
     private Inventory inventory;
     
     public InventoryTest() {
@@ -25,13 +24,11 @@ public class InventoryTest {
     
     @Before
     public void setUp() {
-        this.jfxPanel  = new JFXPanel();
         this.inventory = new Inventory(0);
     }
     
     @After
     public void tearDown() {
-        this.jfxPanel = null;
     }
     
     
@@ -64,5 +61,17 @@ public class InventoryTest {
         assertTrue(this.inventory.getWeightLimit() > 0);
         this.inventory.adjustWeightLimit(Integer.MAX_VALUE / 2 + 3);
         assertTrue(this.inventory.getWeightLimit() > 0);
+    }
+    
+    @Test
+    public void calculatingTotalWeightWorks() {
+        GameObject coin = new GoldCoin();
+        int startWeight = coin.getWeight();
+        int coinWeight = coin.getWeight();
+        for (int i = 0; i < 10; i++) {
+            GameObject c = new GoldCoin();
+            c.getLocation().moveTo(coin);
+        }
+        assertEquals(coinWeight * 10, coin.getInventory().getWeight());
     }
 }
