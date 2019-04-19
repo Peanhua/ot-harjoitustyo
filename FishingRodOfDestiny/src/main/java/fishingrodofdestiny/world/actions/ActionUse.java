@@ -5,10 +5,9 @@
  */
 package fishingrodofdestiny.world.actions;
 
-import fishingrodofdestiny.world.gameobjects.Armor;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.Weapon;
+import fishingrodofdestiny.world.gameobjects.Item;
 
 /**
  *
@@ -34,32 +33,10 @@ public class ActionUse extends Action {
             return;
         }
         
-        if (this.item instanceof Weapon) {
-            this.wieldWeapon(me, (Weapon) this.item);
-        } else if (this.item instanceof Armor) {
-            this.equipArmor(me, (Armor) this.item);
+        if (this.item instanceof Item) {
+            ((Item) this.item).useItem(me, me);
         } else {
             me.addMessage("You don't know what to do with " + this.item.getName() + ".");
         }
-    }
-    
-    private void wieldWeapon(Character me, Weapon weapon) {
-        Weapon current = me.getWeapon();
-        if (current != null) {
-            me.addMessage("You swap your " + current.getName() + " to " + weapon.getName() + ".");
-        } else {
-            me.addMessage("You wield " + weapon.getName() + ".");
-        }
-        me.setWeapon(weapon);
-    }
-    
-    private void equipArmor(Character me, Armor armor) {
-        Armor current = me.getArmor(armor.getSlot());
-        if (current != null) {
-            me.addMessage("You swap your " + current.getName() + " to " + armor.getName() + ".");
-        } else {
-            me.addMessage("You equip " + armor.getName() + ".");
-        }
-        me.setArmor(armor);
     }
 }

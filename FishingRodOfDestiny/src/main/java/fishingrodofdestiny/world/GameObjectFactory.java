@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.Apple;
 import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
@@ -28,6 +29,16 @@ public class GameObjectFactory {
     }
     
     private enum ObjectSwitch implements GameObjectCreator {
+        Apple() {
+            @Override
+            public GameObject create() {
+                return new Apple();
+            }
+            @Override
+            public Class getJavaClass() {
+                return Apple.class;
+            }
+        },
         BloodSplatter() {
             @Override
             public GameObject create() {
@@ -102,6 +113,7 @@ public class GameObjectFactory {
     
     // Note that Type and ObjectSwitch enums must be in same order.
     public enum Type {
+        Apple,
         BloodSplatter,
         FishingRod,
         GoldCoin,

@@ -49,4 +49,19 @@ public abstract class Armor extends Item {
     public int getDefenceBonus() {
         return 0;
     }
+    
+    @Override    
+    public void useItem(GameObject instigator, GameObject user) {
+        super.useItem(instigator, user);
+        if (user instanceof Character) {
+            Character me = (Character) user;
+            Armor current = me.getArmor(this.getSlot());
+            if (current != null) {
+                me.addMessage("You swap your " + current.getName() + " to " + this.getName() + ".");
+            } else {
+                me.addMessage("You equip " + this.getName() + ".");
+            }
+            me.setArmor(this);
+        }
+    }
 }

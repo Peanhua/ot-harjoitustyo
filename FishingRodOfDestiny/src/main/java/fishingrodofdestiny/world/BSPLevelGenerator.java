@@ -37,15 +37,21 @@ public class BSPLevelGenerator extends LevelGenerator {
         root.fillInCorridors(level);
         this.fillEmptySpace(level);
         
+        this.placeItems(this.getItemSettings(caveLevel), level);
+        
+        return level;
+    }
+    
+    private LevelSettings getItemSettings(int caveLevel) {
         LevelSettings itemSettings = new LevelSettings();
         itemSettings.addType(GameObjectFactory.Type.GoldCoin,      3 + caveLevel * 3,                  0.7);
         itemSettings.addType(GameObjectFactory.Type.KitchenKnife,  this.random.nextInt(1 + caveLevel), 0.3);
         itemSettings.addType(GameObjectFactory.Type.Hat,           this.random.nextInt(3),             0.3);
         itemSettings.addType(GameObjectFactory.Type.LeatherJacket, 1,                                  0.2);
-        this.placeItems(itemSettings, level);
-        
-        return level;
+        itemSettings.addType(GameObjectFactory.Type.Apple,         this.random.nextInt(5),             0.4);
+        return itemSettings;
     }
+    
     
     @Override
     public void connectStartEnd(Level level) {

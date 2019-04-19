@@ -28,4 +28,19 @@ public abstract class Weapon extends Item {
     public int getDefenceBonus() {
         return 0;
     }
+
+    @Override    
+    public void useItem(GameObject instigator, GameObject user) {
+        super.useItem(instigator, user);
+        if (user instanceof Character) {
+            Character me = (Character) user;
+            Weapon current = me.getWeapon();
+            if (current != null) {
+                me.addMessage("You swap your " + current.getName() + " to " + this.getName() + ".");
+            } else {
+                me.addMessage("You wield " + this.getName() + ".");
+            }
+            me.setWeapon(this);
+        }
+    }
 }

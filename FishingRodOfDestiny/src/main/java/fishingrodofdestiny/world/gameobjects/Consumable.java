@@ -9,17 +9,18 @@ package fishingrodofdestiny.world.gameobjects;
  *
  * @author joyr
  */
-public class Item extends GameObject {
-    public Item(String name) {
+public abstract class Consumable extends Item {
+    private final String useVerb;
+    
+    public Consumable(String name, String useVerb) {
         super(name);
-        this.setCanBePickedUp(true);
+        this.useVerb = useVerb;
     }
-    
+
     @Override
-    public int getFallDamage(int height) {
-        return 0;
-    }
-    
     public void useItem(GameObject instigator, GameObject user) {
+        super.useItem(instigator, user);
+        user.addMessage("You " + this.useVerb + " " + this.getName() + ".");
+        this.destroy(instigator);
     }
 }
