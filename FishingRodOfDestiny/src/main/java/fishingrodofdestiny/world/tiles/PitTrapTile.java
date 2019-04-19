@@ -42,12 +42,7 @@ public class PitTrapTile extends Tile {
         }
         if (!this.opened) {
             object.addMessage("The floor beneath you opens and you fall down!");
-            this.setName("pit");
-            this.opened = true;
-            TileGfx background = this.getGraphics();
-            TileGfx gfx = new TileGfx("rltiles/nh32", 384, 928, 32, 32);
-            gfx.setBackground(background.getNextFrame());
-            this.setGraphics(gfx);
+            this.openTrap();
         } else {
             object.addMessage("You fall down through the hole.");
         }
@@ -58,5 +53,14 @@ public class PitTrapTile extends Tile {
         if (damage > 0) {
             object.hit(null, 1);
         }
+    }
+    
+    private void openTrap() {
+        this.opened = true;
+        this.setName("pit");
+        TileGfx background = this.getGraphics();
+        TileGfx gfx = new TileGfx("rltiles/nh32", 384, 928, 32, 32);
+        gfx.setBackground(background.getNextFrame());
+        this.setGraphics(gfx);
     }
 }
