@@ -63,7 +63,7 @@ public class JdbcHighscoreDao extends HighscoreDao {
         this.jdbc.update(
                 "CREATE TABLE IF NOT EXISTS Highscores ("
                 + "  highscore_id   INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "  highscore_type VARCHAR(40) NOT NULl,"
+                + "  highscore_type VARCHAR(40) NOT NULL,"
                 + "  name           VARCHAR(80) NOT NULL,"
                 + "  points         INTEGER NOT NULL,"
                 + "  game_ended     DATETIME NOT NULL"
