@@ -44,15 +44,12 @@ public class JdbcStatisticsDao implements StatisticsDao {
     public void save(Statistics from) {
         this.initializeDatabase();
         this.jdbc.update("DELETE FROM Statistics");
-        this.jdbc.update(""
-                + "INSERT INTO Statistics ( games_played, games_completed, gold_collected, enemies_killed)"
-                + "                VALUES ( ?,            ?,               ?,              ?             )",
-                ((stmt) -> {
-                    stmt.setLong(1, from.getGamesPlayed());
-                    stmt.setLong(2, from.getGamesCompleted());
-                    stmt.setLong(3, from.getGoldCoinsCollected());
-                    stmt.setLong(4, from.getEnemiesKilled());
-                })
+        this.jdbc.update("INSERT INTO Statistics ( games_played, games_completed, gold_collected, enemies_killed) VALUES (?, ?, ?, ?)", ((stmt) -> {
+                stmt.setLong(1, from.getGamesPlayed());
+                stmt.setLong(2, from.getGamesCompleted());
+                stmt.setLong(3, from.getGoldCoinsCollected());
+                stmt.setLong(4, from.getEnemiesKilled());
+            })
         );
     }
 
