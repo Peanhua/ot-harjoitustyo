@@ -115,11 +115,15 @@ The following classes are used heavily by the game objects:
 
 Both the player character and non player characters are controlled by controllers. The controllers are attached to the characters, each having their own instance of a controller. Both the character and its controller know about each others.
 
+Controllers create actions which are utilized in the owner game objects' *tick()* methods in their turn.
+
+#### Player controller
+
 The player controller uses input from the user (through JavaFX events) to determine the next action. More complicated actions may cause the player controller to show additional user interface controls on screen. For example, when player presses the key to pick up item when there are multiple items on the ground, the controller opens up a item chooser requester for the user to choose which item to pick up. After the user chooses the item, the appropriate action is created.
 
-The non player characters uses artificial intelligence to determine the next action.
+#### Non player controllers
 
-Controllers create actions which are utilized in the owner game objects' *tick()* methods in their turn.
+The non player characters uses artificial intelligence to determine the next action.
 
 
 ### Actions
