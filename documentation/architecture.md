@@ -94,6 +94,23 @@ The game advances when player picks the next action to be performed by the playe
 The game is controlled by the player, and is thus not realtime; the game is not progressing when the player is choosing the next action. This means that triggering the game to progress is done from the user interface. Also the initialization of the game is triggered from the user interface, be it starting a new game or loading a saved game.
 
 
+### Game objects
+
+The abstract GameObject class is the base class for all movable objects in the game. There are also several different abstract subclasses defined to group certain types of objects together:
+
+* Character - a living creature (player and non player characters)
+* Item - something that can be picked up
+  * Armor - equippable items (for different slots)
+  * Consumable - item that is consumed (destroyed) when used
+  * Weapon - wieldable weapon
+
+The following classes are used heavily by the game objects:
+
+* Inventory - manages objects inside something (GameObject or Tile)
+* LevelMemory - used by Player to keep track of what areas of the map are explored
+* Location - manages moving objects between inventories
+
+
 ### Character controllers
 
 Both the player character and non player characters are controlled by controllers. The controllers are attached to the characters, each having their own instance of a controller. Both the character and its controller know about each others.
@@ -101,6 +118,13 @@ Both the player character and non player characters are controlled by controller
 The player controller uses input from the user (through JavaFX events) to determine the next action. More complicated actions may cause the player controller to show additional user interface controls on screen. For example, when player presses the key to pick up item when there are multiple items on the ground, the controller opens up a item chooser requester for the user to choose which item to pick up. After the user chooses the item, the appropriate action is created.
 
 The non player characters uses artificial intelligence to determine the next action.
+
+Controllers create actions which are utilized in the owner game objects' *tick()* methods in their turn.
+
+
+### Actions
+
+Actions are used to define an action a Character can perform. Each action is responsible of making sure the action is possible to perform, and alter the game state accordingly. Both the player and non player characters use the same actions.
 
 
 ### Monster hits player
