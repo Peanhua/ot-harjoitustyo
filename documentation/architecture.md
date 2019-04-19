@@ -164,7 +164,7 @@ The field *game_ended* is on local time.
 
 #### Highscores in files
 
-When using files to save highscores, each type of highscore are saved in their own file.
+When using files to save highscores, each type of highscore is saved in their own file.
 A highscore entry is split into 3 lines:
 ```
 name
