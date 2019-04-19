@@ -72,5 +72,6 @@ Time used for the project.
   <tr><td>19.4.</td><td>  4.0</td><td>Content and game logic.</td></tr>
   <tr><td>     </td><td>  0.5</td><td>Playtesting and balancing.</td></tr>
   <tr><td>     </td><td>  2.5</td><td>Tests and code cleanup.</td></tr>
-  <tr><th>Total</th><th>102.0</th><th></th></tr>
+  <tr><td>     </td><td>  0.5</td><td>Documentation.</td></tr>
+  <tr><th>Total</th><th>103.0</th><th></th></tr>
 </table>
