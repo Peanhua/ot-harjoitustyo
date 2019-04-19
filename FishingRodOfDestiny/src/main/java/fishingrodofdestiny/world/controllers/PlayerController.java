@@ -16,10 +16,12 @@ import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.actions.ActionPickUp;
 import fishingrodofdestiny.world.actions.ActionUse;
 import fishingrodofdestiny.world.actions.ActionWait;
+import fishingrodofdestiny.world.gameobjects.Armor;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.event.Event;
 import javafx.scene.input.KeyEvent;
@@ -128,7 +130,12 @@ public class PlayerController extends Controller {
     
     
     private boolean actionUse(Screen screen) {
-        List<GameObject> items = this.getOwner().getInventory().getObjects();
+        List<GameObject> items = new ArrayList<>();
+        this.getOwner().getInventory().getObjects().forEach(object -> {
+            if (!this.isObjectInUse(object)) {
+                items.add(object);
+            }
+        });
         ChooseItemRequester itemChooser = new ChooseItemRequester(screen, "Choose item to use", items, (chosenItems) -> {
             if (chosenItems.size() > 0) {
                 this.setNextAction(new ActionUse(chosenItems.get(0)));
@@ -136,5 +143,19 @@ public class PlayerController extends Controller {
         });
         itemChooser.show();
         return true;
+    }
+    
+    private boolean isObjectInUse(GameObject object) {
+        if (object == this.getOwner().getWeapon()) {
+            return true;
+        }
+        
+        for (Armor.Slot slot : Armor.Slot.values()) {
+            if (object == this.getOwner().getArmor(slot)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
