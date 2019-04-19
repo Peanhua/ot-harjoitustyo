@@ -7,6 +7,7 @@ package fishingrodofdestiny.world.actions;
 
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.gameobjects.Character;
+import fishingrodofdestiny.world.gameobjects.Inventory;
 import fishingrodofdestiny.world.tiles.Tile;
 
 
@@ -37,25 +38,37 @@ public class ActionMove extends Action {
 
     @Override
     public void act(Character me) {
-        Tile myTile = me.getLocation().getContainerTile();
-        if (myTile == null) {
-            return;
-        }
+        Tile targetTile = this.getTargetTile(me);
         
-        Level level = myTile.getLevel();
-        if (level == null) {
-            return;
-        }
-        
-        Tile targetTile = level.getTile(myTile.getX() + deltaX, myTile.getY() + deltaY);
-        if (targetTile == null) {
-            return;
-        }
-        
-        if (!targetTile.canBeEntered()) {
+        Inventory myInventory = me.getInventory();
+        if (myInventory.getWeight() > myInventory.getWeightLimit()) {
+            me.addMessage("You are carrying too much and unable to move!");
             return;
         }
         
         me.getLocation().moveTo(targetTile);
     }
+    
+    private Tile getTargetTile(Character me) {
+        Tile myTile = me.getLocation().getContainerTile();
+        if (myTile == null) {
+            return null;
+        }
+        
+        Level level = myTile.getLevel();
+        if (level == null) {
+            return null;
+        }
+        
+        Tile targetTile = level.getTile(myTile.getX() + this.deltaX, myTile.getY() + this.deltaY);
+        if (targetTile == null) {
+            return null;
+        }
+        
+        if (!targetTile.canBeEntered()) {
+            return null;
+        }
+        
+        return targetTile;
+    }        
 }
