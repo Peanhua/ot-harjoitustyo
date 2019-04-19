@@ -93,6 +93,18 @@ public abstract class Tile {
     public abstract boolean canBeEntered();
 
     /**
+     * Checks if the given object can move away from this tile.
+     * <p>
+     * This is only called when trying to move away from this tile, so it is safe to do things like object.addMessage().
+     * 
+     * @param object The object trying to leave this tile.
+     * @return True if the object can leave this tile.
+     */
+    public boolean canLeave(GameObject object) {
+        return true;
+    }
+    
+    /**
      * Draw the tile, and optionally its inventory.
      * 
      * @param context       The context which the tile is drawn onto.

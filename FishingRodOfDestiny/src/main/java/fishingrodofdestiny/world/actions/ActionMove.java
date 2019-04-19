@@ -49,6 +49,11 @@ public class ActionMove extends Action {
             return;
         }
         
+        Tile myTile = me.getLocation().getContainerTile();
+        if (!myTile.canLeave(me)) {
+            return;
+        }
+        
         me.getLocation().moveTo(targetTile);
     }
     

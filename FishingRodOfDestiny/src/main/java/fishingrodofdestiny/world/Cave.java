@@ -7,6 +7,7 @@ package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.tiles.BearTrapTile;
 import fishingrodofdestiny.world.tiles.ExitCaveTile;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.PitTrapTile;
@@ -191,6 +192,11 @@ public class Cave {
     
     
     private void addTraps(Random random) {
+        this.addPitTraps(random);
+        this.addBearTraps(random);
+    }
+    
+    private void addPitTraps(Random random) {
         for (int i = 1; i < this.levels.size(); i++) {
             Level prev = this.levels.get(i - 1);
             Level cur  = this.levels.get(i);
@@ -209,6 +215,20 @@ public class Cave {
             }
         }
     }
+    
+    private void addBearTraps(Random random) {
+        this.levels.forEach(level -> {
+            int count = random.nextInt(5);
+            for (int i = 0; i < count; i++) {
+                Tile floor = level.getRandomTileOfType(random, FloorTile.class);
+                if (floor != null) {
+                    BearTrapTile trap = new BearTrapTile(level, floor.getX(), floor.getY());
+                    level.setTile(floor.getX(), floor.getY(), trap);
+                }
+            }
+        });
+    }
+    
     
     private String[] getScenarioData(Level level, int x, int y) {
         String[] map = new String[3];
