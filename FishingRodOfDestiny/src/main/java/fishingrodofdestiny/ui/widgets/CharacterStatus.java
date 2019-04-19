@@ -21,20 +21,21 @@ import javafx.scene.text.Text;
 public class CharacterStatus extends Widget {
     
     private enum StatType {
-        LEVEL, XP, HP, ATTACK, DEFENCE, CARRY, AC, DAMAGE, INVENTORY;
+        LEVEL, XP, NEXTLEVELXP, HP, ATTACK, DEFENCE, CARRY, AC, DAMAGE, INVENTORY;
         
         public static String getName(StatType type) {
             switch (type) {
-                case LEVEL:     return "Level";
-                case XP:        return "XP";
-                case HP:        return "HP";
-                case ATTACK:    return "Attack";
-                case DEFENCE:   return "Defence";
-                case CARRY:     return "Carry";
-                case AC:        return "AC";
-                case DAMAGE:    return "Damage";
-                case INVENTORY: return "Inventory";
-                default:        throw new RuntimeException("Unknown type " + type + " for StatType.getName()");
+                case LEVEL:       return "Level";
+                case XP:          return "XP";
+                case NEXTLEVELXP: return "Next level";
+                case HP:          return "HP";
+                case ATTACK:      return "Attack";
+                case DEFENCE:     return "Defence";
+                case CARRY:       return "Carry";
+                case AC:          return "AC";
+                case DAMAGE:      return "Damage";
+                case INVENTORY:   return "Inventory";
+                default:          throw new RuntimeException("Unknown type " + type + " for StatType.getName()");
             }
         }
     };
@@ -162,14 +163,15 @@ public class CharacterStatus extends Widget {
     
     private String getValue(StatType type) {
         switch (type) {
-            case LEVEL:     return "" + this.character.getLevel();
-            case XP:        return "" + this.character.getExperiencePoints();
-            case HP:        return "" + this.character.getHitpoints() + "/" + this.character.getMaxHitpoints();
-            case ATTACK:    return "" + this.character.getAttack();
-            case DEFENCE:   return "" + this.character.getDefence();
-            case CARRY:     return "" + this.character.getInventory().getWeightLimit();
-            case AC:        return "" + this.character.getArmorClass();
-            case DAMAGE:    return "" + this.character.getDamage();
+            case LEVEL:       return "" + this.character.getCharacterLevel();
+            case XP:          return "" + this.character.getExperiencePoints();
+            case NEXTLEVELXP: return "" + this.character.getExperiencePointsForCharacterLevel(this.character.getCharacterLevel() + 1);
+            case HP:          return "" + this.character.getHitpoints() + "/" + this.character.getMaxHitpoints();
+            case ATTACK:      return "" + this.character.getAttack();
+            case DEFENCE:     return "" + this.character.getDefence();
+            case CARRY:       return "" + this.character.getInventory().getWeightLimit();
+            case AC:          return "" + this.character.getArmorClass();
+            case DAMAGE:      return "" + this.character.getDamage();
             case INVENTORY:
                 int weight = this.character.getInventory().getWeight();
                 int usage  = (int) (100.0 * (double) weight / (double) this.character.getInventory().getWeightLimit());

@@ -12,6 +12,7 @@ import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.actions.ActionAttack;
 import fishingrodofdestiny.world.actions.ActionDrop;
+import fishingrodofdestiny.world.actions.ActionLevelUp;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.actions.ActionPickUp;
 import fishingrodofdestiny.world.actions.ActionUse;
@@ -66,6 +67,7 @@ public class PlayerController extends Controller {
                 case PICK_UP:       return this.actionPickUp(screen);
                 case WAIT:          return this.actionWait();
                 case USE:           return this.actionUse(screen);
+                case LEVEL_UP:      return this.actionLevelUp();
             }
         }
         return false;
@@ -157,5 +159,11 @@ public class PlayerController extends Controller {
         }
         
         return false;
+    }
+    
+    
+    private boolean actionLevelUp() {
+        this.setNextAction(new ActionLevelUp());
+        return true;
     }
 }

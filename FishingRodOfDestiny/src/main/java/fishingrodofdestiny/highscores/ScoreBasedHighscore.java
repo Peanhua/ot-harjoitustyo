@@ -29,7 +29,7 @@ public class ScoreBasedHighscore extends Highscore {
         Player player = fromGame.getPlayer();
         int points = 0;
         points += player.getExperiencePoints();
-        points += player.getLevel() * 1000;
+        points += player.getCharacterLevel() * 1000;
         points += player.getGameCompleted() ? 10000 : 0;
         return  points;
     }

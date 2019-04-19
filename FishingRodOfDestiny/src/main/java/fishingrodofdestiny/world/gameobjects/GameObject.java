@@ -221,7 +221,7 @@ public abstract class GameObject {
     /**
      * Adjust the current hit points.
      * <p>
-     * Adds the amount to current hit points.
+     * Adds the amount to the current hit points.
      * 
      * @param amount The amount to add to the current hit points.
      */
@@ -229,6 +229,18 @@ public abstract class GameObject {
         this.setHitpoints(this.currentHitpoints + amount);
     }
 
+    /**
+     * Adjust the maximum hit points.
+     * <p>
+     * Adds the amount to the maximum hit points.
+     * 
+     * @param amount The amount to add to the maximum hit points.
+     */
+    public final void adjustMaxHitpoints(int amount) {
+        this.maxHitpoints += amount;
+        this.onChange.notifyObservers();
+    }
+    
     public int getMaxHitpoints() {
         return this.maxHitpoints;
     }

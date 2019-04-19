@@ -24,7 +24,8 @@ public abstract class Action {
         ATTACK,         // Attack whoever is in the same tile.
         PICK_UP,
         DROP,
-        USE
+        USE,
+        LEVEL_UP
     };
     
     private final Type type;

@@ -23,7 +23,7 @@ public abstract class Character extends GameObject {
     private int        defence;
     private int        naturalArmorClass;
     private double     naturalRegeneration;
-    private int        level;
+    private int        characterLevel;
     private int        experiencePoints;
     private Controller controller;
     private Weapon     weapon;
@@ -35,7 +35,7 @@ public abstract class Character extends GameObject {
         this.defence             = 0;
         this.naturalArmorClass   = 0;
         this.naturalRegeneration = 0.0;
-        this.level               = 0;
+        this.characterLevel      = 0;
         this.experiencePoints    = 0;
         this.controller          = null;
         this.weapon              = null;
@@ -49,7 +49,7 @@ public abstract class Character extends GameObject {
         return "Character(" + super.toString()
                 + ",attack=" + this.attack
                 + ",defence=" + this.defence
-                + ",level=" + this.level
+                + ",level=" + this.characterLevel
                 + ",xp=" + this.experiencePoints
                 + ")";
     }
@@ -70,7 +70,7 @@ public abstract class Character extends GameObject {
         
         if (target instanceof Character) {
             Character targetCharacter = (Character) target;
-            xp = 1 + targetCharacter.getLevel() * 3;
+            xp = 1 + targetCharacter.getCharacterLevel() * 3;
         }
         
         this.adjustExperiencePoints(xp);
@@ -151,9 +151,70 @@ public abstract class Character extends GameObject {
         this.naturalRegeneration = amount;
     }
     
-    protected final void setLevel(int level) {
-        this.level = level;
+    public final int getCharacterLevel() {
+        return this.characterLevel;
     }
+    
+    protected final void setCharacterLevel(int level) {
+        this.characterLevel = level;
+    }
+    
+    public int getExperiencePointsForCharacterLevel(int level) {
+        final double maxIncreasePerLevel = 20000.0;
+
+        double xp = 0.0;
+        for (int i = 1; i <= level; i++) {
+            double increase = (double) i * 25.0;
+            if (increase > maxIncreasePerLevel) {
+                increase = maxIncreasePerLevel;
+            }
+            xp += increase;
+        }
+        
+        return (int) xp;
+    }
+    
+    public String increaseCharacterLevel() {
+        this.characterLevel++;
+
+        String increased = this.getStatToIncrease();
+        int amount = Math.min(5, 1 + this.characterLevel / 2);
+        switch (increased) {
+            case "attack":
+                this.adjustAttack(amount);
+                break;
+            case "defence":
+                this.adjustDefence(amount);
+                break;
+            case "carrying capacity":
+                this.getInventory().adjustWeightLimit(amount);
+                break;
+            case "hit points":
+                this.adjustMaxHitpoints(amount);
+                break;
+        }
+        return increased + " +" + amount;
+    }
+    
+    private String getStatToIncrease() {
+        String increased;
+        int base = 20;
+        int attackChance  = this.getRandom().nextInt(base + this.attack);
+        int defenceChance = this.getRandom().nextInt(base + this.defence);
+        int carryChance   = this.getRandom().nextInt(base + this.getInventory().getWeightLimit() - 20); // Ignore the initial 20.
+        int hpChance      = this.getRandom().nextInt(base + super.getMaxHitpoints() - 1); // Ignore the initial 1. Using super here because later we will probably override getMaxHitpoints()
+        if (attackChance > defenceChance && attackChance > carryChance && attackChance > carryChance) {
+            increased = "attack";
+        } else if (defenceChance > carryChance && defenceChance > hpChance) {
+            increased = "defence";
+        } else if (carryChance > hpChance) {
+            increased = "carrying capacity";
+        } else {
+            increased = "hit points";
+        }
+        return increased;
+    }
+    
     
     public int getAttack() {
         int rv = this.attack;
@@ -175,10 +236,6 @@ public abstract class Character extends GameObject {
             }
         }
         return rv;
-    }
-    
-    public int getLevel() {
-        return this.level;
     }
     
     public int getExperiencePoints() {

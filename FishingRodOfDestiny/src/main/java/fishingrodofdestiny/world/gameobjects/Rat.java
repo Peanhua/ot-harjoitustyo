@@ -17,11 +17,12 @@ public class Rat extends NonPlayerCharacter {
         super();
         this.setController(new SimpleAiController(this));
         this.setName("rat");
-        this.setLevel(1);
-        this.setAttack(3);
-        this.setDefence(20);
-        this.setNaturalArmorClass(5);
-        this.setMaxHitpoints(5 + this.getRandom().nextInt(5));
+        int level = 1 + this.getRandom().nextInt(5);
+        this.setCharacterLevel(level);
+        this.setAttack(2 + level);
+        this.setDefence(20 + level);
+        this.setNaturalArmorClass(5 + level / 2);
+        this.setMaxHitpoints(5 + this.getRandom().nextInt(5 + level));
         this.setGraphics(new TileGfx("rltiles/nh32", 928, 64, 32, 32));
     }
 }

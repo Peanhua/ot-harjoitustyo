@@ -51,6 +51,7 @@ public class KeyboardSettings {
         this.actionsToKeys.put(Action.Type.PICK_UP,       KeyCode.P);
         this.actionsToKeys.put(Action.Type.DROP,          KeyCode.D);
         this.actionsToKeys.put(Action.Type.USE,           KeyCode.U);
+        this.actionsToKeys.put(Action.Type.LEVEL_UP,      KeyCode.L);
         
         // Clone to keysToActions: */
         this.keysToActions = new HashMap<>();

@@ -22,3 +22,4 @@ By default the highscores are saved in a SQLite database named *FishingRodOfDest
 * `p` to pick up items
 * `d` to drop items
 * `u` to use items
+* `l` to level up the character
