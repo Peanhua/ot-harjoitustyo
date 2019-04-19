@@ -10,10 +10,7 @@ import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Player;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,17 +23,6 @@ public class ExitCaveTileTest {
     private ExitCaveTile tile;
     private Player       player;
     
-    public ExitCaveTileTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.tile = new ExitCaveTile(null, 0, 0);
@@ -44,10 +30,6 @@ public class ExitCaveTileTest {
         this.player.getLocation().moveTo(tile);
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void canExitWithFishingRod() {
         GameObject rod = new FishingRod();

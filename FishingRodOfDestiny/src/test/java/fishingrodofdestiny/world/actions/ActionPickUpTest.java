@@ -10,10 +10,7 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -28,17 +25,6 @@ public class ActionPickUpTest {
     private GameObject item;
     private Character  character;
     
-    public ActionPickUpTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.container1 = new BloodSplatter();
@@ -47,10 +33,6 @@ public class ActionPickUpTest {
         this.character  = new NonPlayerCharacter();
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void itemCanBePickedUp() {
         int originalInventorySize = this.character.getInventory().getObjects().size();

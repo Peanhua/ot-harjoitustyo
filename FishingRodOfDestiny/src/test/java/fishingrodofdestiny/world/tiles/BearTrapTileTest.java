@@ -11,10 +11,7 @@ import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.Rat;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -28,17 +25,6 @@ public class BearTrapTileTest {
     private BearTrapTile trap;
     private Character character;
     
-    public BearTrapTileTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         Level level = new Level(null, 0, 2, 2);
@@ -47,10 +33,6 @@ public class BearTrapTileTest {
         level.setTile(0, 0, this.floor);
         level.setTile(1, 0, this.trap);
         this.character = new Rat();
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     @Test

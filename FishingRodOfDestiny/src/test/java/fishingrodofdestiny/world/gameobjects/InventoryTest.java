@@ -5,8 +5,6 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
-import javafx.embed.swing.JFXPanel;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,16 +17,10 @@ public class InventoryTest {
     
     private Inventory inventory;
     
-    public InventoryTest() {
-    }
     
     @Before
     public void setUp() {
         this.inventory = new Inventory(0);
-    }
-    
-    @After
-    public void tearDown() {
     }
     
     

@@ -7,10 +7,7 @@ package fishingrodofdestiny.dao;
 
 import java.sql.SQLException;
 import javax.sql.rowset.CachedRowSet;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,26 +19,11 @@ public class JdbcHelperTest {
     
     JdbcHelper helper;
     
-    public JdbcHelperTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         helper = new JdbcHelper("jdbc:sqlite:file::memory:?cache=shared");
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void connectionTest() {
          assertNotNull(helper);

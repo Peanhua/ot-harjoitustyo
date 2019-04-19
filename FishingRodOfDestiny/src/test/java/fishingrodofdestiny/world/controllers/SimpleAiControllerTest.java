@@ -17,11 +17,7 @@ import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.gameobjects.Rat;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -43,17 +39,6 @@ public class SimpleAiControllerTest {
     private Game   game;
     private MyController mockController;
 
-    public SimpleAiControllerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.player = new Player();
@@ -71,10 +56,6 @@ public class SimpleAiControllerTest {
         
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void npcAttacksPlayerWhenInSameTile() {
         NonPlayerCharacter npc = new Rat();

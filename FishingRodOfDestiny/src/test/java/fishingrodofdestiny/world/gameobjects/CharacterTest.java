@@ -5,11 +5,7 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
-import javafx.embed.swing.JFXPanel;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,23 +21,13 @@ public class CharacterTest {
         }
     };
     
-    private JFXPanel  jfxPanel;
     private Character character;
-    
-    public CharacterTest() {
-    }
     
     @Before
     public void setUp() {
-        this.jfxPanel  = new JFXPanel();
         this.character = new CharacterSubclass();
     }
 
-    @After
-    public void tearDown() {
-        this.jfxPanel = null;
-    }
-    
     @Test
     public void toStringContainsAttack() {
         assertTrue(this.character.toString().contains("attack"));

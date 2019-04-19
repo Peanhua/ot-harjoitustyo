@@ -9,9 +9,7 @@ import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.gameobjects.Player;
 import javafx.embed.swing.JFXPanel;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,17 +21,6 @@ public class ScoreBasedHighscoreTest {
 
     private JFXPanel jfxPanel;
         
-    public ScoreBasedHighscoreTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.jfxPanel = new JFXPanel();

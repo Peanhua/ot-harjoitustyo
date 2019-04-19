@@ -8,9 +8,7 @@ package fishingrodofdestiny.world.controllers;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,26 +29,11 @@ public class ControllerTest {
         
     private MyController controller;
     
-    public ControllerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.controller = new MyController(null);
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void nextActionWorks() {
         controller.setNextAction(null);

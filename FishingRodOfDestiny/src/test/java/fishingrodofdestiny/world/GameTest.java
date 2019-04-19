@@ -7,15 +7,11 @@ package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionMove;
-import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Location;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -27,9 +23,6 @@ public class GameTest {
     
     private Player player;
     private Game   game;
-    
-    public GameTest() {
-    }
     
     @Before
     public void setUp() {

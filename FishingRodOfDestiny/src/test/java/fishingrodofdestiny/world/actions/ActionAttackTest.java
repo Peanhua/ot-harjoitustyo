@@ -9,10 +9,7 @@ import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -28,17 +25,6 @@ public class ActionAttackTest {
     private Character attacker;
     private Character defender;
     
-    public ActionAttackTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.container1 = new BloodSplatter();
@@ -47,10 +33,6 @@ public class ActionAttackTest {
         this.defender = new NonPlayerCharacter();
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void attackingHitsTarget() {
         Character targ = spy(new NonPlayerCharacter());

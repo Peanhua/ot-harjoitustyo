@@ -9,10 +9,7 @@ import fishingrodofdestiny.dao.HighscoreDao;
 import fishingrodofdestiny.dao.MemoryHighscoreDao;
 import java.time.LocalDateTime;
 import java.util.Random;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,27 +22,12 @@ public class HighscoreListTest {
     private HighscoreList list;
     private HighscoreDao  dao;
     
-    public HighscoreListTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.dao  = new MemoryHighscoreDao();
         this.list = new HighscoreList(this.dao, Highscore.Type.SCORE);
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void listContainsAtMostMaximumNumberOfEntries() {
         Random r = new Random();

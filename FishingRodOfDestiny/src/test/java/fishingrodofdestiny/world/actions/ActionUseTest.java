@@ -8,10 +8,7 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.gameobjects.Item;
 import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.Player;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,26 +20,11 @@ public class ActionUseTest {
     
     private Player player;
     
-    public ActionUseTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.player = new Player();
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void usingWeaponWieldsIt() {
         Item weapon = new KitchenKnife();
