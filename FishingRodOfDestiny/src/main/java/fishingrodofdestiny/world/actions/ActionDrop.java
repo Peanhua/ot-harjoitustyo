@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world.actions;
 
+import fishingrodofdestiny.world.gameobjects.Armor;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.tiles.Tile;
@@ -33,6 +34,25 @@ public class ActionDrop extends Action {
             return;
         }
 
+        this.stopUsing(me);
+        this.dropItem(me);
+    }
+    
+    private void stopUsing(Character me) {
+        if (this.target == me.getWeapon()) {
+            me.addMessage("You unwield your " + this.target.getName() + ".");
+            me.setWeapon(null);
+        }
+        for (Armor.Slot slot : Armor.Slot.values()) {
+            GameObject armor = me.getArmor(slot);
+            if (armor == this.target) {
+                me.addMessage("You stop wearing " + this.target.getName() + ".");
+                me.removeArmor(slot);
+            }
+        }
+    }
+    
+    private void dropItem(Character me) {
         me.addMessage("You drop " + target.getName() + ".");
         Tile myTile = me.getLocation().getContainerTile();
         if (myTile != null) {

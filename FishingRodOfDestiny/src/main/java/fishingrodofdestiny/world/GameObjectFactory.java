@@ -9,7 +9,9 @@ import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.GoldCoin;
+import fishingrodofdestiny.world.gameobjects.Hat;
 import fishingrodofdestiny.world.gameobjects.KitchenKnife;
+import fishingrodofdestiny.world.gameobjects.LeatherJacket;
 import fishingrodofdestiny.world.gameobjects.Rat;
 
 /**
@@ -56,6 +58,16 @@ public class GameObjectFactory {
                 return GoldCoin.class;
             }
         },
+        Hat() {
+            @Override
+            public GameObject create() {
+                return new Hat();
+            }
+            @Override
+            public Class getJavaClass() {
+                return Hat.class;
+            }
+        },
         KitchenKnife() {
             @Override
             public GameObject create() {
@@ -64,6 +76,16 @@ public class GameObjectFactory {
             @Override
             public Class getJavaClass() {
                 return KitchenKnife.class;
+            }
+        },
+        LeatherJacket() {
+            @Override
+            public GameObject create() {
+                return new LeatherJacket();
+            }
+            @Override
+            public Class getJavaClass() {
+                return LeatherJacket.class;
             }
         },
         Rat() {
@@ -83,7 +105,9 @@ public class GameObjectFactory {
         BloodSplatter,
         FishingRod,
         GoldCoin,
+        Hat,
         KitchenKnife,
+        LeatherJacket,
         Rat
     }
     

@@ -26,7 +26,7 @@ public class BSPLevelGenerator extends LevelGenerator {
     @Override
     public Level generateLevel(int caveLevel) {
         LevelSettings enemySettings = new LevelSettings();
-        enemySettings.addType(GameObjectFactory.Type.Rat, 10 + this.width * this.height / 100, 1.0);
+        enemySettings.addType(GameObjectFactory.Type.Rat, this.random.nextInt(5) + this.width * this.height / 200, 1.0);
         
         Level level = new Level(enemySettings, caveLevel, this.width, this.height);
         
@@ -38,8 +38,10 @@ public class BSPLevelGenerator extends LevelGenerator {
         this.fillEmptySpace(level);
         
         LevelSettings itemSettings = new LevelSettings();
-        itemSettings.addType(GameObjectFactory.Type.GoldCoin,     3 + caveLevel * 3,                  0.7);
-        itemSettings.addType(GameObjectFactory.Type.KitchenKnife, this.random.nextInt(1 + caveLevel), 0.3);
+        itemSettings.addType(GameObjectFactory.Type.GoldCoin,      3 + caveLevel * 3,                  0.7);
+        itemSettings.addType(GameObjectFactory.Type.KitchenKnife,  this.random.nextInt(1 + caveLevel), 0.3);
+        itemSettings.addType(GameObjectFactory.Type.Hat,           this.random.nextInt(3),             0.3);
+        itemSettings.addType(GameObjectFactory.Type.LeatherJacket, 1,                                  0.2);
         this.placeItems(itemSettings, level);
         
         return level;

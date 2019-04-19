@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui.widgets;
 
+import fishingrodofdestiny.world.gameobjects.Armor;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
@@ -41,12 +42,17 @@ public class CharacterStatus extends Widget {
     private Character  character;
     private List<Text> texts;
     private Text       weaponText;
+    private List<Text> armorTexts;
 
     public CharacterStatus(Character character) {
         this.character = character;
         this.texts = new ArrayList<>();
         for (StatType t : StatType.values()) {
             this.texts.add(null);
+        }
+        this.armorTexts = new ArrayList<>();
+        for (int i = 0; i < Armor.Slot.values().length; i++) {
+            this.armorTexts.add(null);
         }
         
         this.character.listenOnChange(() -> {
@@ -71,6 +77,7 @@ public class CharacterStatus extends Widget {
 
         row = this.createStatControls(grid, row);
         row = this.createWeaponControls(grid, row);
+        row = this.createArmorControls(grid, row);
         
         this.refresh();
         
@@ -102,10 +109,29 @@ public class CharacterStatus extends Widget {
         GridPane.setConstraints(label, 1, row);
         row++;
         GridPane.setConstraints(this.weaponText, 1, row);
+        GridPane.setColumnSpan(this.weaponText, 2);
         row++;
 
         grid.getChildren().addAll(label, this.weaponText);
         
+        return row;
+    }
+    
+    
+    private int createArmorControls(GridPane grid, int row) {
+        for (Armor.Slot slot : Armor.Slot.values()) {
+            Text label = UserInterfaceFactory.createSmallText(slot.toString() + ":");
+            Text value = UserInterfaceFactory.createSmallText("");
+            this.armorTexts.set(slot.ordinal(), value);
+
+            GridPane.setConstraints(label, 1, row);
+            row++;
+            GridPane.setConstraints(value, 1, row);
+            GridPane.setColumnSpan(value, 2);
+            row++;
+
+            grid.getChildren().addAll(label, value);
+        }
         return row;
     }
     
@@ -121,6 +147,15 @@ public class CharacterStatus extends Widget {
             this.weaponText.setText(" " + weapon.getName());
         } else {
             this.weaponText.setText("");
+        }
+        
+        for (Armor.Slot slot : Armor.Slot.values()) {
+            Armor armor = this.character.getArmor(slot);
+            if (armor != null) {
+                this.armorTexts.get(slot.ordinal()).setText(" " + armor.getName());
+            } else {
+                this.armorTexts.get(slot.ordinal()).setText("");
+            }
         }
     }
     

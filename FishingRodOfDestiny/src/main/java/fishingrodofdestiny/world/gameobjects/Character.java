@@ -9,6 +9,7 @@ import fishingrodofdestiny.world.controllers.Controller;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -25,6 +26,7 @@ public abstract class Character extends GameObject {
     private int        experiencePoints;
     private Controller controller;
     private Weapon     weapon;
+    private final HashMap<Armor.Slot, Armor> equippedArmor;
 
     public Character() {
         super();
@@ -35,6 +37,7 @@ public abstract class Character extends GameObject {
         this.experiencePoints  = 0;
         this.controller        = null;
         this.weapon            = null;
+        this.equippedArmor     = new HashMap<>();
         this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
@@ -86,6 +89,20 @@ public abstract class Character extends GameObject {
     
     public Weapon getWeapon() {
         return this.weapon;
+    }
+    
+    public void setArmor(Armor armor) {
+        this.equippedArmor.put(armor.getSlot(), armor);
+        this.onChange.notifyObservers();
+    }
+    
+    public void removeArmor(Armor.Slot fromSlot) {
+        this.equippedArmor.put(fromSlot, null);
+        this.onChange.notifyObservers();
+    }
+    
+    public Armor getArmor(Armor.Slot slot) {
+        return this.equippedArmor.get(slot);
     }
     
     @Override
@@ -145,6 +162,12 @@ public abstract class Character extends GameObject {
         if (this.weapon != null) {
             rv += this.weapon.getDefenceBonus();
         }
+        for (Armor.Slot slot : Armor.Slot.values()) {
+            Armor armor = this.getArmor(slot);
+            if (armor != null) {
+                rv += armor.getDefenceBonus();
+            }
+        }
         return rv;
     }
     
@@ -157,7 +180,14 @@ public abstract class Character extends GameObject {
     }
     
     public int getArmorClass() {
-        return this.naturalArmorClass; // TODO: calculate from worn armor
+        int rv = this.naturalArmorClass;
+        for (Armor.Slot slot : Armor.Slot.values()) {
+            Armor armor = this.getArmor(slot);
+            if (armor != null) {
+                rv += armor.getArmorClassBonus();
+            }
+        }
+        return rv;
     }
     
     /**
