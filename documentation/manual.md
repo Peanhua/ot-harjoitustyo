@@ -10,6 +10,10 @@ By default the highscores are saved in a SQLite database named *FishingRodOfDest
 * Start with "file:" to define a filename base, for example "file:./highscores" will save the score based highscores to a file named *highscores-Score*. Each type of highscores are saved in their own file.
 * Start with anything else to use in memory highscores that are not saved anywhere.
 
+### Statistics
+
+Statistics are saved similarly to highscores. The controlling environment variable is named *FISHINGRODOFDESTINY_STATISTICS*.
+
 
 ## In game controls
 

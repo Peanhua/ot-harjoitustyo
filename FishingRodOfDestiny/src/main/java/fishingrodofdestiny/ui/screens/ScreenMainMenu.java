@@ -56,11 +56,14 @@ public class ScreenMainMenu extends Screen {
 
         Button highscores = new Button("Highscores");
         highscores.setOnAction(e -> this.showHighscores());
+        
+        Button stats = new Button("Statistics");
+        stats.setOnAction(e -> this.showStatistics());
 
         Button quit = new Button("Quit");
         quit.setOnAction(e-> this.close());
             
-        buttons.getChildren().addAll(newgame, loadgame, highscores, quit);
+        buttons.getChildren().addAll(newgame, loadgame, highscores, stats, quit);
 
         return buttons;
     }
@@ -84,6 +87,11 @@ public class ScreenMainMenu extends Screen {
     private void showHighscores() {
         Screen hs = new ScreenHighscores(this, this.getStage());
         hs.show();
+    }
+    
+    private void showStatistics() {
+        Screen s = new ScreenStatistics(this, this.getStage());
+        s.show();
     }
 
     @Override

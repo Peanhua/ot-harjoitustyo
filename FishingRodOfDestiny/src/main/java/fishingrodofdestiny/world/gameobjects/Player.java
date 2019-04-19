@@ -20,6 +20,7 @@ import rlforj.los.ShadowCasting;
  */
 public class Player extends Character {
     private boolean                 gameCompleted;
+    private long                    enemiesKilled;
     private final List<LevelMemory> levelMemories;
     private final IFovAlgorithm     fovAlgorithm;
 
@@ -27,6 +28,7 @@ public class Player extends Character {
     public Player() {
         super();
         this.gameCompleted = false;
+        this.enemiesKilled = 0;
         this.levelMemories = new ArrayList<>();
         this.fovAlgorithm  = new ShadowCasting();
         this.setNaturalRegeneration(0.1);
@@ -98,5 +100,17 @@ public class Player extends Character {
         LevelMemory memory = this.getLevelMemory(level);
         memory.setCurrentVisionCenter(tile.getX(), tile.getY());
         this.fovAlgorithm.visitFieldOfView(memory, tile.getX(), tile.getY(), this.getFovRadius());
+    }
+
+    @Override    
+    public void onDestroyTarget(GameObject target) {
+        super.onDestroyTarget(target);
+        if (target instanceof Character) {
+            this.enemiesKilled++;
+        }
+    }
+    
+    public final long getEnemiesKilled() {
+        return this.enemiesKilled;
     }
 }

@@ -38,6 +38,8 @@ public class JdbcHighscoreDao extends HighscoreDao {
     
     @Override
     protected void load(Highscore.Type type) {
+        this.initializeDatabase();
+        
         List<Highscore> list = this.getHighscores(type);
         list.clear();
         

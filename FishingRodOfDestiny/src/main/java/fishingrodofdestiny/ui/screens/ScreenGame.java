@@ -9,7 +9,9 @@ import fishingrodofdestiny.highscores.Highscore;
 import fishingrodofdestiny.highscores.HighscoreList;
 import fishingrodofdestiny.highscores.ScoreBasedHighscore;
 import fishingrodofdestiny.resources.HighscoreListCache;
+import fishingrodofdestiny.resources.StatisticsCache;
 import fishingrodofdestiny.settings.KeyboardSettings;
+import fishingrodofdestiny.statistics.Statistics;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
 import fishingrodofdestiny.ui.windows.ConfirmationRequester;
@@ -183,6 +185,11 @@ public class ScreenGame extends Screen {
         }
     }
     
+    private void recordStatistics() {
+        Statistics stats = StatisticsCache.getInstance().getStatistics();
+        stats.addFromGame(game);
+    }
+    
     private Highscore createHighscore() {
         Highscore hs = new ScoreBasedHighscore(this.game);
 
@@ -194,12 +201,15 @@ public class ScreenGame extends Screen {
     }
 
     private void endGame() {
-        this.createHighscore();
         this.close();
+        this.recordStatistics();
+        this.createHighscore();
     }
     
     private void gameCompleted() {
         this.close();
+        
+        this.recordStatistics();
         
         Highscore hs = this.createHighscore();
         Screen screen = new ScreenGameCompletion(this.game, this.getParent(), this.getStage());

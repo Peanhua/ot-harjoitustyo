@@ -141,7 +141,7 @@ The following sequence diagram describes what happens when a monster hits the pl
 
 [Data access objects](https://en.wikipedia.org/wiki/Data_access_object) are used to handle the details about saving and loading. There are three different choices for saving the data: database, files, or in memory.
 
-The default is to use a SQLite database named *FishingRodOfDestiny.db*. This can be changed for highscores by setting environment variable *FISHINGRODOFDESTINY_HIGHSCORES*, see the [manual](manual.md) for details.
+The default is to use a SQLite database named *FishingRodOfDestiny.db*. This can be changed via environment variables, see the [manual](manual.md) for details.
 
 Database operations use a *JdbcHelper* class which handles the low level database operations.
 
@@ -152,12 +152,12 @@ Database operations use a *JdbcHelper* class which handles the low level databas
 
 Highscores are saved on a table named *Highscores*:
 ```SQL
-CREATE TABLE IF NOT EXISTS Highscores (
+CREATE TABLE Highscores (
   highscore_id   INTEGER PRIMARY KEY AUTOINCREMENT,
   highscore_type VARCHAR(40) NOT NULL,
   name           VARCHAR(80) NOT NULL,
-  points         INTEGER NOT NULL,
-  game_ended     DATETIME NOT NULL
+  points         INTEGER     NOT NULL,
+  game_ended     DATETIME    NOT NULL
 );
 ```
 The field *game_ended* is on local time.
@@ -170,4 +170,29 @@ A highscore entry is split into 3 lines:
 name
 points
 game_ended
+```
+
+
+### Statistics
+
+#### Statistics in database
+
+Statistics are saved on a table named *Statistics*:
+```SQL
+CREATE TABLE IF NOT EXISTS Statistics (
+  games_played    INTEGER(8) NOT NULL,
+  games_completed INTEGER(8) NOT NULL,
+  gold_collected  INTEGER(8) NOT NULL,
+  enemies_killed  INTEGER(8) NOT NULL
+)
+```
+
+#### Statistics in a file
+
+Statistics are saved one value per line:
+```
+games_played
+games_completed
+gold_collected
+enemies_killed
 ```

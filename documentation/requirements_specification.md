@@ -54,6 +54,7 @@ As a single player game, there is just one user role: the player.
 * The player can start a new game
 * The player can load a saved game
 * The player can see the current highscore lists
+* The player can see statistics about games played in the past
 
 ### When a new game is started
 * The player creates a character
@@ -187,3 +188,11 @@ Square types:
   * The players position in the list is determined by the real time used
     * Entering this highscore list requires the game to be completed
 * Same game can grant position in all the highscore lists
+
+
+### Gameplay statistics
+The following statistics are recorded and available for the player to see:
+* Number of games played
+* Number of games completed
+* Number of gold coins collected (counted at the end of the game)
+* Number of enemies killed
