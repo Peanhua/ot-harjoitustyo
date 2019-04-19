@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MATH=$(for i in $(grep -E '^  <tr><td>' ../documentation/timesheet.md | cut --characters=25-28)
+MATH=$(for i in $(grep -E '^  <tr><td>' ../documentation/timesheet.md | cut --characters=25-29)
        do
            echo -n "${i}+"
        done

@@ -19,11 +19,13 @@ public class BearTrapTile extends Tile {
     private GameObject trappedObject;
     private TileGfx    activeGfx;
     private TileGfx    inactiveGfx;
+    private int        tryToLeaveCounter;
     
     public BearTrapTile(Level level, int x, int y) {
         super(level, x, y, "floor");
-        this.active        = true;
-        this.trappedObject = null;
+        this.active            = true;
+        this.trappedObject     = null;
+        this.tryToLeaveCounter = 0;
         
         Tile floor = new FloorTile(level, x, y);
 
@@ -35,6 +37,12 @@ public class BearTrapTile extends Tile {
 
         this.setGraphics(this.activeGfx);
     }
+    
+    
+    public GameObject getTrappedObject() {
+        return this.trappedObject;
+    }
+    
 
     @Override
     public boolean canBeEntered() {
@@ -46,12 +54,16 @@ public class BearTrapTile extends Tile {
         if (object != this.trappedObject) {
             return true;
         }
-        if (object.getRandom().nextInt(100) < 20) {
-            object.addMessage("You manage to free yourself from the bear trap.");
-            this.trappedObject = null;
-            return true;
+        
+        if (this.tryToLeaveCounter > 0) {
+            if (object.getRandom().nextInt(100 - this.tryToLeaveCounter * 10) < 20) {
+                object.addMessage("You manage to free yourself from the bear trap.");
+                this.trappedObject = null;
+                return true;
+            }
         }
         
+        this.tryToLeaveCounter++;
         object.addMessage("You're trapped in a bear trap and unable to move!");
         return false;
     }
@@ -69,8 +81,9 @@ public class BearTrapTile extends Tile {
         object.addMessage("You step into a bear trap!");
         object.hit(null, 3);
 
-        this.active        = false;
-        this.trappedObject = object;
+        this.active            = false;
+        this.trappedObject     = object;
+        this.tryToLeaveCounter = 0;
         this.setGraphics(this.inactiveGfx);
     }
     

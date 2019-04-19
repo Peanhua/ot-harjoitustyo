@@ -120,7 +120,7 @@ public class Level {
         List<GameObject> objects = new ArrayList<>();
         this.map.getTiles().forEach(tile ->
             tile.getInventory().getObjects().forEach(obj -> {
-                if (obj.getClass() == type) {
+                if (type == null || obj.getClass() == type) {
                     objects.add(obj);
                 }
             })

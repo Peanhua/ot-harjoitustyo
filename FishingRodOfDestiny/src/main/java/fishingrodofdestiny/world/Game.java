@@ -55,6 +55,11 @@ public class Game {
     }
     
     
+    public final Cave getCave() {
+        return this.cave;
+    }
+    
+    
     public List<String> getPlot() {
         List<String> rv = new ArrayList<>();
         

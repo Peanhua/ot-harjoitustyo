@@ -28,6 +28,15 @@ public class SimpleAiController extends Controller {
         this.isAggressive = false;
         this.automaticAggressionDistance = 2;
     }
+    
+    public void setAggressive(boolean aggressive) {
+        this.isAggressive = aggressive;
+    }
+    
+    public boolean isAggressive() {
+        return this.isAggressive;
+    }
+    
 
     @Override
     public Action getNextAction() {

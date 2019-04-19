@@ -92,6 +92,9 @@ public class Player extends Character {
             return;
         }
         Level level = tile.getLevel();
+        if (level == null) {
+            return;
+        }
         LevelMemory memory = this.getLevelMemory(level);
         memory.setCurrentVisionCenter(tile.getX(), tile.getY());
         this.fovAlgorithm.visitFieldOfView(memory, tile.getX(), tile.getY(), this.getFovRadius());
