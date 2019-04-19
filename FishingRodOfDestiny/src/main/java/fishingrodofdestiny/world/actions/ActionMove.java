@@ -39,6 +39,9 @@ public class ActionMove extends Action {
     @Override
     public void act(Character me) {
         Tile targetTile = this.getTargetTile(me);
+        if (targetTile == null) {
+            return;
+        }
         
         Inventory myInventory = me.getInventory();
         if (myInventory.getWeight() > myInventory.getWeightLimit()) {
