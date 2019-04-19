@@ -106,3 +106,38 @@ The non player characters uses artificial intelligence to determine the next act
 The following sequence diagram describes what happens when a monster hits the player, and the player dies. The possible event listeners for onChange events are not shown, for the player this would be the CharacterStatus widget showing the players current status. Also the internal works of Location objects are not shown (which again for the players Location object would contain a triggered event, causing the LevelView to update).
 <div><img src="monster_hit_player_sequence_diagram.svg" alt="Sequence diagram about monster hitting the player" width="900" /></div>
 
+
+## Saved data
+
+[Data access objects](https://en.wikipedia.org/wiki/Data_access_object) are used to handle the details about saving and loading. There are three different choices for saving the data: database, files, or in memory.
+
+The default is to use a SQLite database named *FishingRodOfDestiny.db*. This can be changed for highscores by setting environment variable *FISHINGRODOFDESTINY_HIGHSCORES*, see the [manual](manual.md) for details.
+
+Database operations use a *JdbcHelper* class which handles the low level database operations.
+
+
+### Highscores
+
+#### Highscores in database
+
+Highscores are saved on a table named *Highscores*:
+```SQL
+CREATE TABLE IF NOT EXISTS Highscores (
+  highscore_id   INTEGER PRIMARY KEY AUTOINCREMENT,
+  highscore_type VARCHAR(40) NOT NULL,
+  name           VARCHAR(80) NOT NULL,
+  points         INTEGER NOT NULL,
+  game_ended     DATETIME NOT NULL
+);
+```
+The field *game_ended* is on local time.
+
+#### Highscores in files
+
+When using files to save highscores, each type of highscores are saved in their own file.
+A highscore entry is split into 3 lines:
+```
+name
+points
+game_ended
+```

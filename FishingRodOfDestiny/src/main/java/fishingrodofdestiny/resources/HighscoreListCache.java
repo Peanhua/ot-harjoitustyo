@@ -8,6 +8,7 @@ package fishingrodofdestiny.resources;
 import fishingrodofdestiny.dao.FileHighscoreDao;
 import fishingrodofdestiny.dao.HighscoreDao;
 import fishingrodofdestiny.dao.JdbcHighscoreDao;
+import fishingrodofdestiny.dao.MemoryHighscoreDao;
 import fishingrodofdestiny.highscores.Highscore;
 import fishingrodofdestiny.highscores.HighscoreList;
 import java.util.HashMap;
@@ -27,13 +28,26 @@ public class HighscoreListCache {
     }
     
     
-    private HashMap<Highscore.Type, HighscoreList> highscoreLists;
-    private HighscoreDao dao;
+    private final HashMap<Highscore.Type, HighscoreList> highscoreLists;
+    private final HighscoreDao dao;
   
     private HighscoreListCache() {
         this.highscoreLists = new HashMap<>();
-        //this.dao = new FileHighscoreDao("./highscores");
-        this.dao = new JdbcHighscoreDao("jdbc:sqlite:FishingRodOfDestiny.db");
+        
+        String defaultUri = "jdbc:sqlite:FishingRodOfDestiny.db";
+        String uri = System.getenv("FISHINGRODOFDESTINY_HIGHSCORES");
+        if (uri == null) {
+            uri = defaultUri;
+        }
+        
+        String fileStart = "file:";
+        if (uri.startsWith("jdbc:")) {
+            this.dao = new JdbcHighscoreDao(uri);
+        } else if (uri.startsWith(fileStart)) {
+            this.dao = new FileHighscoreDao(uri.substring(fileStart.length()));
+        } else {
+            this.dao = new MemoryHighscoreDao();
+        }
     }
     
     public HighscoreList get(Highscore.Type type) {
