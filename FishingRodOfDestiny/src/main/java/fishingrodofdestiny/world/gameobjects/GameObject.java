@@ -217,6 +217,17 @@ public abstract class GameObject {
         this.currentHitpoints = Math.min(hitpoints, this.maxHitpoints);
         this.onChange.notifyObservers();
     }
+    
+    /**
+     * Adjust the current hit points.
+     * <p>
+     * Adds the amount to current hit points.
+     * 
+     * @param amount The amount to add to the current hit points.
+     */
+    public final void adjustHitpoints(int amount) {
+        this.setHitpoints(this.currentHitpoints + amount);
+    }
 
     public int getMaxHitpoints() {
         return this.maxHitpoints;

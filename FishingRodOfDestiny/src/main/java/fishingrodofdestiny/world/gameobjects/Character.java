@@ -22,6 +22,7 @@ public abstract class Character extends GameObject {
     private int        attack;
     private int        defence;
     private int        naturalArmorClass;
+    private double     naturalRegeneration;
     private int        level;
     private int        experiencePoints;
     private Controller controller;
@@ -30,14 +31,15 @@ public abstract class Character extends GameObject {
 
     public Character() {
         super();
-        this.attack            = 0;
-        this.defence           = 0;
-        this.naturalArmorClass = 0;
-        this.level             = 0;
-        this.experiencePoints  = 0;
-        this.controller        = null;
-        this.weapon            = null;
-        this.equippedArmor     = new HashMap<>();
+        this.attack              = 0;
+        this.defence             = 0;
+        this.naturalArmorClass   = 0;
+        this.naturalRegeneration = 0.0;
+        this.level               = 0;
+        this.experiencePoints    = 0;
+        this.controller          = null;
+        this.weapon              = null;
+        this.equippedArmor       = new HashMap<>();
         this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
@@ -143,6 +145,10 @@ public abstract class Character extends GameObject {
     
     protected final void setNaturalArmorClass(int ac) {
         this.naturalArmorClass = ac;
+    }
+    
+    protected final void setNaturalRegeneration(double amount) {
+        this.naturalRegeneration = amount;
     }
     
     protected final void setLevel(int level) {
@@ -281,6 +287,7 @@ public abstract class Character extends GameObject {
     @Override
     public void tick(double deltaTime) {
         super.tick(deltaTime);
+        this.regenerationTick(deltaTime);
         
         if (!this.isAlive()) {
             return;
@@ -295,9 +302,30 @@ public abstract class Character extends GameObject {
         }
     }
     
+    private double accumulatedRegeneration;
+    
+    private void regenerationTick(double deltaTime) {
+        this.accumulatedRegeneration += deltaTime * this.getRegenerationPerSecond();
+        int amount = (int) this.accumulatedRegeneration;
+        if (amount > 0) {
+            this.adjustHitpoints(amount);
+            this.accumulatedRegeneration -= amount;
+        }
+    }
+    
+    public final double getRegenerationPerSecond() {
+        return this.naturalRegeneration;
+    }
+    
     
     @Override
     public int getFallDamage(int height) {
         return height / 2 + this.getWeight() / 10;
+    }
+    
+    @Override
+    public void onHit(GameObject instigator, int damage) {
+        super.onHit(instigator, damage);
+        this.accumulatedRegeneration = 0.0;
     }
 }

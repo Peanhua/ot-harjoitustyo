@@ -29,6 +29,7 @@ public class Player extends Character {
         this.gameCompleted = false;
         this.levelMemories = new ArrayList<>();
         this.fovAlgorithm  = new ShadowCasting();
+        this.setNaturalRegeneration(0.1);
         this.setController(new PlayerController(this));
         this.setGraphics(new TileGfx("rltiles/nh32", 160, 352, 32, 32));
         this.getLocation().listenOnChange(() -> this.explore());
