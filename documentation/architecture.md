@@ -119,7 +119,7 @@ Controllers create actions which are utilized in the owner game objects' *tick()
 
 #### Player controller
 
-The player controller uses input from the user (through JavaFX events) to determine the next action. More complicated actions may cause the player controller to show additional user interface controls on screen. For example, when player presses the key to pick up item when there are multiple items on the ground, the controller opens up a item chooser requester for the user to choose which item to pick up. After the user chooses the item, the appropriate action is created.
+The player controller uses input from the user (through JavaFX events) to determine the next action. More complicated actions may cause the player controller to show additional user interface controls on screen. For example, when player presses the key to pick up item when there are multiple items on the ground, the controller opens up an item chooser requester for the user to choose which item to pick up. After the user chooses the item, the appropriate action is created.
 
 #### Non player controllers
 
@@ -164,7 +164,7 @@ The field *game_ended* is on local time.
 
 #### Highscores in files
 
-When using files to save highscores, each type of highscores are saved in their own file.
+When using files to save highscores, each type of highscore are saved in their own file.
 A highscore entry is split into 3 lines:
 ```
 name
