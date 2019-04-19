@@ -182,7 +182,7 @@ Square types:
 * Several types of highscore lists are provided:
   * The players position in the list is determined by player character level and experience points
     * Entering this highscore list does not require the game to be completed
-  * The players position in the list is determined by by the number of actions performed
+  * The players position in the list is determined by the number of actions performed
     * Entering this highscore list requires the game to be completed
   * The players position in the list is determined by the real time used
     * Entering this highscore list requires the game to be completed
