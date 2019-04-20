@@ -6,6 +6,7 @@
 package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.gameobjects.Armor;
+import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
@@ -170,12 +171,12 @@ public class CharacterStatus extends Widget {
             case HP:          return "" + this.character.getHitpoints() + "/" + this.character.getMaxHitpoints();
             case ATTACK:      return "" + this.character.getAttack();
             case DEFENCE:     return "" + this.character.getDefence();
-            case CARRY:       return "" + this.character.getInventory().getWeightLimit();
+            case CARRY:       return "" + this.character.getInventory().getWeightLimit() + this.character.getBuffBonuses(Buff.Type.CARRY);
             case AC:          return "" + this.character.getArmorClass();
             case DAMAGE:      return "" + this.character.getDamage();
             case INVENTORY:
                 int weight = this.character.getInventory().getWeight();
-                int usage  = (int) (100.0 * (double) weight / (double) this.character.getInventory().getWeightLimit());
+                int usage  = (int) (100.0 * (double) weight / (double) (this.character.getInventory().getWeightLimit() + this.character.getBuffBonuses(Buff.Type.CARRY)));
                 return "" + weight + " (" + usage + "%)";
             case ACTIONS:     return "" + this.character.getActionsTaken();
             default: throw new RuntimeException("Unkonwn StatType " + type + " for getValue()");

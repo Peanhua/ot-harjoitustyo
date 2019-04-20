@@ -42,14 +42,6 @@ public abstract class Armor extends Item {
         return this.slot;
     }
     
-    public int getArmorClassBonus() {
-        return 1;
-    }
-
-    public int getDefenceBonus() {
-        return 0;
-    }
-    
     @Override    
     public void useItem(GameObject instigator, GameObject user) {
         super.useItem(instigator, user);

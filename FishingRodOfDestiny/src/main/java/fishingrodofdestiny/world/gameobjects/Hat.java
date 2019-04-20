@@ -15,10 +15,6 @@ public class Hat extends Armor {
     public Hat() {
         super("hat", Slot.HEAD);
         this.setGraphics(new TileGfx("rltiles/nh32", 576, 480, 32, 32));
-    }
-    
-    @Override
-    public int getArmorClassBonus() {
-        return 2;
+        this.addBuff(new Buff(this, Buff.Type.ARMOR_CLASS, 2.0));
     }
 }

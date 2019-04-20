@@ -6,6 +6,7 @@
 package fishingrodofdestiny.world.actions;
 
 import fishingrodofdestiny.world.Level;
+import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.Inventory;
 import fishingrodofdestiny.world.tiles.Tile;
@@ -44,7 +45,7 @@ public class ActionMove extends Action {
         }
         
         Inventory myInventory = me.getInventory();
-        if (myInventory.getWeight() > myInventory.getWeightLimit()) {
+        if (myInventory.getWeight() > myInventory.getWeightLimit() + me.getBuffBonuses(Buff.Type.CARRY)) {
             me.addMessage("You are carrying too much and unable to move!");
             return;
         }

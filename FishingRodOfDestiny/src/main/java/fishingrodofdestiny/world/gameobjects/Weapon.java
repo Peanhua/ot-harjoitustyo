@@ -21,14 +21,6 @@ public abstract class Weapon extends Item {
         return 1.0;
     }
     
-    public int getAttackBonus() {
-        return 0;
-    }
-    
-    public int getDefenceBonus() {
-        return 0;
-    }
-
     @Override    
     public void useItem(GameObject instigator, GameObject user) {
         super.useItem(instigator, user);

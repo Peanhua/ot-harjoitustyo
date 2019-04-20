@@ -16,10 +16,6 @@ public class LeatherJacket extends Armor {
         super("leather jacket", Armor.Slot.CHEST);
         this.setGraphics(new TileGfx("rltiles/nh32", 0, 544, 32, 32));
         this.setWeight(7);
-    }
-    
-    @Override
-    public int getArmorClassBonus() {
-        return 20;
+        this.addBuff(new Buff(this, Buff.Type.ARMOR_CLASS, 20.0));
     }
 }

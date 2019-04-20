@@ -226,26 +226,35 @@ public abstract class Character extends GameObject {
     }
     
     
-    public int getAttack() {
-        int rv = this.attack;
+    public int getBuffBonuses(Buff.Type forType) {
+        int bonuses = 0;
+        
         if (this.weapon != null) {
-            rv += this.weapon.getAttackBonus();
-        }
-        return rv;
-    }
-    
-    public int getDefence() {
-        int rv = this.defence;
-        if (this.weapon != null) {
-            rv += this.weapon.getDefenceBonus();
+            bonuses += this.weapon.getBuffBonuses(forType);
         }
         for (Armor.Slot slot : Armor.Slot.values()) {
             Armor armor = this.getArmor(slot);
             if (armor != null) {
-                rv += armor.getDefenceBonus();
+                bonuses += armor.getBuffBonuses(forType);
             }
         }
-        return rv;
+        
+        return bonuses;
+    }
+    
+    
+    @Override
+    public int getMaxHitpoints() {
+        return super.getMaxHitpoints() + this.getBuffBonuses(Buff.Type.HITPOINT);
+    }
+    
+    
+    public int getAttack() {
+        return this.attack + this.getBuffBonuses(Buff.Type.ATTACK);
+    }
+    
+    public int getDefence() {
+        return this.defence + this.getBuffBonuses(Buff.Type.DEFENCE);
     }
     
     public int getExperiencePoints() {
@@ -253,14 +262,7 @@ public abstract class Character extends GameObject {
     }
     
     public int getArmorClass() {
-        int rv = this.naturalArmorClass;
-        for (Armor.Slot slot : Armor.Slot.values()) {
-            Armor armor = this.getArmor(slot);
-            if (armor != null) {
-                rv += armor.getArmorClassBonus();
-            }
-        }
-        return rv;
+        return this.naturalArmorClass + this.getBuffBonuses(Buff.Type.ARMOR_CLASS);
     }
     
     /**
@@ -382,7 +384,7 @@ public abstract class Character extends GameObject {
     }
     
     public final double getRegenerationPerSecond() {
-        return this.naturalRegeneration;
+        return this.naturalRegeneration + this.getBuffBonuses(Buff.Type.REGENERATION);
     }
     
     
