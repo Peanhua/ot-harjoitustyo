@@ -48,7 +48,7 @@ public class JdbcHighscoreDao extends HighscoreDao {
             while (rs != null && rs.next()) {
                 Integer highscoreId     = rs.getInt("highscore_id");
                 String  name            = rs.getString("name");
-                int     points          = rs.getInt("points");
+                long    points          = rs.getLong("points");
                 LocalDateTime gameEnded = LocalDateTime.parse(rs.getString("game_ended"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
                 Highscore hs = this.createFromData(highscoreId, type, name, points, gameEnded);
@@ -81,7 +81,7 @@ public class JdbcHighscoreDao extends HighscoreDao {
         Integer id = this.jdbc.insert("INSERT INTO Highscores ( highscore_type, name, points, game_ended ) VALUES ( ?, ?, ?, ? )", (stmt) -> {
             stmt.setString(1, type.toString());
             stmt.setString(2, highscore.getName());
-            stmt.setInt(3,    highscore.getPoints());
+            stmt.setLong(3,   highscore.getPoints());
             stmt.setString(4, highscore.getEndTimestamp().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         });
         highscore.setId(id);

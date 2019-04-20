@@ -40,7 +40,7 @@ public class HighscoreListView extends Widget {
         grid.setVgap(2);
 
         int row = 0;
-        String[] headers = { "#", "Name", "Points", "Date/time" };
+        String[] headers = { "#", "Name", this.highscoreList.getType().toString(), "Date/time" };
         for (int i = 0; i < headers.length; i++) {
             Text label = UserInterfaceFactory.createLargeText(headers[i]);
             label.setUnderline(true);

@@ -28,6 +28,8 @@ public abstract class Character extends GameObject {
     private Controller controller;
     private Weapon     weapon;
     private final HashMap<Armor.Slot, Armor> equippedArmor;
+    private double     accumulatedRegeneration;
+    private long       actionsTaken;
 
     public Character() {
         super();
@@ -40,6 +42,8 @@ public abstract class Character extends GameObject {
         this.controller          = null;
         this.weapon              = null;
         this.equippedArmor       = new HashMap<>();
+        this.accumulatedRegeneration = 0.0;
+        this.actionsTaken        = 0;
         this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
@@ -84,6 +88,11 @@ public abstract class Character extends GameObject {
         return target != this;
     }
 
+    
+    public long getActionsTaken() {
+        return this.actionsTaken;
+    }
+    
     
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
@@ -356,11 +365,12 @@ public abstract class Character extends GameObject {
         
         Action nextAction = this.controller.getNextAction();
         if (nextAction != null) {
+            this.actionsTaken++;
+            this.onChange.notifyObservers();
             nextAction.act(this);
         }
     }
     
-    private double accumulatedRegeneration;
     
     private void regenerationTick(double deltaTime) {
         this.accumulatedRegeneration += deltaTime * this.getRegenerationPerSecond();

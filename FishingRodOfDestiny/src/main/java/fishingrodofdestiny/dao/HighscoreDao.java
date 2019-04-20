@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.dao;
 
+import fishingrodofdestiny.savedata.highscores.ActionCountBasedHighscore;
 import fishingrodofdestiny.savedata.highscores.Highscore;
 import fishingrodofdestiny.savedata.highscores.ScoreBasedHighscore;
 import java.time.LocalDateTime;
@@ -30,11 +31,14 @@ public abstract class HighscoreDao {
     
     protected abstract void load(Highscore.Type type);
 
-    protected Highscore createFromData(Integer highscoreId, Highscore.Type type, String name, int points, LocalDateTime timestamp) {
+    protected Highscore createFromData(Integer highscoreId, Highscore.Type type, String name, long points, LocalDateTime timestamp) {
         Highscore hs = null;
         switch (type) {
             case SCORE:
                 hs = new ScoreBasedHighscore(highscoreId, name, points, timestamp);
+                break;
+            case ACTION_COUNT:
+                hs = new ActionCountBasedHighscore(highscoreId, name, points, timestamp);
                 break;
         }
         return hs;

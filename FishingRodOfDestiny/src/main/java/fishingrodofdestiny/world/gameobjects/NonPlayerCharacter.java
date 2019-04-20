@@ -15,7 +15,7 @@ import fishingrodofdestiny.world.TileGfx;
  * @author joyr
  */
 public abstract class NonPlayerCharacter extends Character {
-    private GameObjectSpawner gameObjectSpawner;
+    private final GameObjectSpawner gameObjectSpawner;
     
     public NonPlayerCharacter() {
         super();

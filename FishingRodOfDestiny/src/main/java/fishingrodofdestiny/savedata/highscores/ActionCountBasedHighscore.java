@@ -6,31 +6,39 @@
 package fishingrodofdestiny.savedata.highscores;
 
 import fishingrodofdestiny.world.Game;
-import fishingrodofdestiny.world.gameobjects.Player;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author joyr
  */
-public class ScoreBasedHighscore extends Highscore {
-    public ScoreBasedHighscore(Game fromGame) {
+public class ActionCountBasedHighscore extends Highscore {
+
+    public ActionCountBasedHighscore(Game fromGame) {
         super(fromGame);
         this.setPoints(this.calculatePoints(fromGame));
     }
     
-    public ScoreBasedHighscore(Integer highscoreId, String name, long points, LocalDateTime endTimestamp) {
+    public ActionCountBasedHighscore(Integer highscoreId, String name, long points, LocalDateTime endTimestamp) {
         super(highscoreId, name, points, endTimestamp);
     }
 
 
     @Override
     protected final long calculatePoints(Game fromGame) {
-        Player player = fromGame.getPlayer();
-        int points = 0;
-        points += player.getExperiencePoints();
-        points += player.getCharacterLevel() * 1000;
-        points += player.getGameCompleted() ? 10000 : 0;
-        return  points;
+        return fromGame.getPlayer().getActionsTaken();
     }
+    
+    @Override
+    public int compareTo(Highscore t) {
+        long diff = this.getPoints() - t.getPoints();
+        if (diff < 0) {
+            return -1;
+        } else if (diff > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }

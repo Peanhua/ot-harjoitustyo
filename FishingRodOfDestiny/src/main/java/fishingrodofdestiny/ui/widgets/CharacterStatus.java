@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
 public class CharacterStatus extends Widget {
     
     private enum StatType {
-        LEVEL, XP, NEXTLEVELXP, HP, ATTACK, DEFENCE, CARRY, AC, DAMAGE, INVENTORY;
+        LEVEL, XP, NEXTLEVELXP, HP, ATTACK, DEFENCE, CARRY, AC, DAMAGE, INVENTORY, ACTIONS;
         
         public static String getName(StatType type) {
             switch (type) {
@@ -35,6 +35,7 @@ public class CharacterStatus extends Widget {
                 case AC:          return "AC";
                 case DAMAGE:      return "Damage";
                 case INVENTORY:   return "Inventory";
+                case ACTIONS:     return "Actions";
                 default:          throw new RuntimeException("Unknown type " + type + " for StatType.getName()");
             }
         }
@@ -176,6 +177,7 @@ public class CharacterStatus extends Widget {
                 int weight = this.character.getInventory().getWeight();
                 int usage  = (int) (100.0 * (double) weight / (double) this.character.getInventory().getWeightLimit());
                 return "" + weight + " (" + usage + "%)";
+            case ACTIONS:     return "" + this.character.getActionsTaken();
             default: throw new RuntimeException("Unkonwn StatType " + type + " for getValue()");
         }
     }

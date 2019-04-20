@@ -6,6 +6,7 @@
 package fishingrodofdestiny.savedata.highscores;
 
 import fishingrodofdestiny.dao.HighscoreDao;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,6 +24,10 @@ public class HighscoreList {
         this.max  = 10;
     }
     
+    public Highscore.Type getType() {
+        return this.type;
+    }
+    
     public void add(Highscore highscore) {
         this.dao.create(this.type, highscore);
 
@@ -32,6 +37,7 @@ public class HighscoreList {
                 break;
             }
             // Too many highscores, remove the one with lowest score:
+            Collections.sort(list);
             Highscore hs = list.get(list.size() - 1);
             this.dao.delete(this.type, hs);
         }
@@ -39,6 +45,7 @@ public class HighscoreList {
     
     public Highscore get(int index) {
         List<Highscore> list = this.dao.getByType(this.type);
+        Collections.sort(list);
         if (index < 0 || index >= list.size()) {
             return null;
         }

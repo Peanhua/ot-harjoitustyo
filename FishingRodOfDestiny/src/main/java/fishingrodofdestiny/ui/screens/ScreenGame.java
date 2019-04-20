@@ -10,6 +10,7 @@ import fishingrodofdestiny.savedata.highscores.HighscoreList;
 import fishingrodofdestiny.savedata.highscores.ScoreBasedHighscore;
 import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.resources.StatisticsCache;
+import fishingrodofdestiny.savedata.highscores.ActionCountBasedHighscore;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.savedata.statistics.Statistics;
 import fishingrodofdestiny.ui.widgets.LevelView;
@@ -22,6 +23,8 @@ import fishingrodofdestiny.world.controllers.Controller;
 import fishingrodofdestiny.world.controllers.PlayerController;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
@@ -190,20 +193,26 @@ public class ScreenGame extends Screen {
         stats.addFromGame(game);
     }
     
-    private Highscore createHighscore() {
-        Highscore hs = new ScoreBasedHighscore(this.game);
-
+    private List<Highscore> createHighscores() {
         HighscoreListCache hc = HighscoreListCache.getInstance();
-        HighscoreList hslist = hc.get(Highscore.Type.SCORE);
-        hslist.add(hs);
 
-        return hs;
+        List<Highscore> scores = new ArrayList<>();
+        
+        scores.add(new ScoreBasedHighscore(this.game));
+        hc.get(Highscore.Type.SCORE).add(scores.get(scores.size() - 1));
+
+        if (this.game.getPlayer().getGameCompleted()) {
+            scores.add(new ActionCountBasedHighscore(this.game));
+            hc.get(Highscore.Type.ACTION_COUNT).add(scores.get(scores.size() - 1));
+        }
+
+        return scores;
     }
 
     private void endGame() {
         this.close();
         this.recordStatistics();
-        this.createHighscore();
+        this.createHighscores();
     }
     
     private void gameCompleted() {
@@ -211,7 +220,7 @@ public class ScreenGame extends Screen {
         
         this.recordStatistics();
         
-        Highscore hs = this.createHighscore();
+        this.createHighscores();
         Screen screen = new ScreenGameCompletion(this.game, this.getParent(), this.getStage());
         screen.show();
     }
