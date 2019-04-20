@@ -9,7 +9,7 @@ package fishingrodofdestiny.world.gameobjects;
  *
  * @author joyr
  */
-public abstract class Armor extends Item {
+public class Armor extends Item {
     
     public enum Slot {
         HEAD,
@@ -29,18 +29,34 @@ public abstract class Armor extends Item {
             }
             throw new RuntimeException("Unknown slot type: " + this);
         }
+        
+        public static Slot nameToSlot(String name) {
+            switch (name) {
+                case "HEAD":  return HEAD;
+                case "CHEST": return CHEST;
+                case "LEGS":  return LEGS;
+                case "HANDS": return HANDS;
+                case "RING":  return RING;
+                default:      throw new RuntimeException("Unknown name for armor slot '" + name + "'.");
+            }
+        }
     }
     
-    private final Slot slot;
+    private Slot slot;
     
-    public Armor(String name, Slot slot) {
+    public Armor(String name) {
         super(name);
-        this.slot = slot;
+        this.slot = null;
     }
     
     public final Slot getSlot() {
         return this.slot;
     }
+    
+    public final void setSlot(Slot slot) {
+        this.slot = slot;
+    }
+    
     
     @Override    
     public void useItem(GameObject instigator, GameObject user) {

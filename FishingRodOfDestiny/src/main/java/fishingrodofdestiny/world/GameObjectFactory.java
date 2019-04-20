@@ -5,12 +5,11 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.Armor;
 import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Consumable;
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.Hat;
 import fishingrodofdestiny.world.gameobjects.Item;
-import fishingrodofdestiny.world.gameobjects.LeatherJacket;
 import fishingrodofdestiny.world.gameobjects.Rat;
 import fishingrodofdestiny.world.gameobjects.Weapon;
 import java.net.URL;
@@ -31,26 +30,6 @@ public class GameObjectFactory {
     }
     
     private enum ObjectSwitch implements GameObjectCreator {
-        Hat() {
-            @Override
-            public GameObject create() {
-                return new Hat();
-            }
-            @Override
-            public Class getJavaClass() {
-                return Hat.class;
-            }
-        },
-        LeatherJacket() {
-            @Override
-            public GameObject create() {
-                return new LeatherJacket();
-            }
-            @Override
-            public Class getJavaClass() {
-                return LeatherJacket.class;
-            }
-        },
         Rat() {
             @Override
             public GameObject create() {
@@ -65,8 +44,6 @@ public class GameObjectFactory {
     
     // Note that Type and ObjectSwitch enums must be in same order.
     public enum Type {
-        Hat,
-        LeatherJacket,
         Rat
     }
     
@@ -121,6 +98,7 @@ public class GameObjectFactory {
                 case "ITEM":       return createItem(section, id);
                 case "CONSUMABLE": return createConsumable(section, id);
                 case "WEAPON":     return createWeapon(section, id);
+                case "ARMOR":      return createArmor(section, id);
                 default:           throw new RuntimeException("Uknown type: " + type);
             }
         } catch (Exception e) {
@@ -168,6 +146,7 @@ public class GameObjectFactory {
         Weapon weapon = new Weapon(id);
         loadBasics(section, weapon);
         loadGfx(section, weapon);
+        loadBuffs(section, weapon);
         Integer damage = section.get("Damage", Integer.class);
         if (damage != null) {
             weapon.setDamage(damage);
@@ -177,6 +156,20 @@ public class GameObjectFactory {
             weapon.setChanceToHitMultiplier(chanceToHitMultiplier);
         }
         return weapon;
+    }
+    
+    private static GameObject createArmor(Ini.Section section, String id) {
+        Armor armor = new Armor(id);
+        loadBasics(section, armor);
+        loadGfx(section, armor);
+        loadBuffs(section, armor);
+        String slot = section.get("Slot");
+        if (slot == null) {
+            throw new RuntimeException("Missing Slot.");
+        }
+        armor.setSlot(Armor.Slot.nameToSlot(slot));
+        
+        return armor;
     }
     
     private static void loadBasics(Ini.Section section, GameObject object) {
@@ -216,5 +209,16 @@ public class GameObjectFactory {
             }
             item.addUseBuff(new Buff(buffTime, Buff.Type.nameToType(buffType), buffAmount));
         }
-    }        
+    }
+    
+    private static void loadBuffs(Ini.Section section, Item item) {
+        String buffType = section.get("BuffType");
+        if (buffType != null) {
+            Double buffAmount = section.get("BuffAmount", Double.class);
+            if (buffAmount == null) {
+                throw new RuntimeException("Missing BuffAmount");
+            }
+            item.addUseBuff(new Buff(item, Buff.Type.nameToType(buffType), buffAmount));
+        }
+    }
 }
