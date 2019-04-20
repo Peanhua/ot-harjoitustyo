@@ -73,8 +73,9 @@ Time used for the project.
   <tr><td>     </td><td>  0.5</td><td>Playtesting and balancing.</td></tr>
   <tr><td>     </td><td>  2.5</td><td>Tests and code cleanup.</td></tr>
   <tr><td>     </td><td>  1.0</td><td>Documentation.</td></tr>
-  <tr><td>20.4.</td><td>  1.5</td><td>Content and game logic.</td></tr>
+  <tr><td>20.4.</td><td>  2.5</td><td>Content and game logic.</td></tr>
   <tr><td>     </td><td>  0.5</td><td>Documentation.</td></tr>
   <tr><td>     </td><td>  2.5</td><td>User interface and gfx.</td></tr>
-  <tr><th>Total</th><th>109.0</th><th></th></tr>
+  <tr><td>     </td><td>  0.5</td><td>Playtesting and balancing.</td></tr>
+  <tr><th>Total</th><th>110.5</th><th></th></tr>
 </table>

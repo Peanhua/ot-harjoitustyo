@@ -5,6 +5,8 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.GameObjectFactory;
+import fishingrodofdestiny.world.GameObjectSpawner;
 import fishingrodofdestiny.world.controllers.SimpleAiController;
 import fishingrodofdestiny.world.TileGfx;
 
@@ -12,12 +14,29 @@ import fishingrodofdestiny.world.TileGfx;
  *
  * @author joyr
  */
-public class NonPlayerCharacter extends Character {
+public abstract class NonPlayerCharacter extends Character {
+    private GameObjectSpawner gameObjectSpawner;
+    
     public NonPlayerCharacter() {
         super();
         this.setController(new SimpleAiController(this));
         this.setName("monster");
         this.setGraphics(new TileGfx("rltiles/nh32", 192, 0, 32, 32));
+        this.gameObjectSpawner = new GameObjectSpawner();
+    }
+    
+    protected final GameObjectSpawner getGameObjectSpawner() {
+        return this.gameObjectSpawner;
+    }
+    
+    protected final void spawnInventoryItems() {
+        while (true) {
+            GameObject item = GameObjectFactory.create(this.gameObjectSpawner.getNext(this.getRandom(), this));
+            if (item == null) {
+                break;
+            }
+            item.getLocation().moveTo(this);
+        }
     }
     
     @Override

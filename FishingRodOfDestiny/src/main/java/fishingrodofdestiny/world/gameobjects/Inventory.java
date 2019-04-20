@@ -7,6 +7,7 @@ package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
+import fishingrodofdestiny.world.GameObjectFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +80,26 @@ public class Inventory {
         return this.objects;
     }
 
-    
+    public int getObjectCount(Class type) {
+        if (type == null) {
+            return this.objects.size();
+        }
+        
+        int count = 0;
+        
+        for (GameObject object : this.objects) {
+            if (object.getClass() == type) {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+
+    public int getObjectCount(GameObjectFactory.Type type) {
+        return this.getObjectCount(GameObjectFactory.getJavaClass(type));
+    }
+
     public int getWeight() {
         int weight = 0;
         

@@ -24,7 +24,7 @@ import javafx.scene.paint.Color;
  */
 public class Level {
     
-    private final LevelSettings enemySettings;
+    private final GameObjectSpawner enemySettings;
     private final int           depth; // how low this is in the cave, top-most is 0
     private final int           width;
     private final int           height;
@@ -32,7 +32,7 @@ public class Level {
     private final Color         shadowColor;
 
     
-    public Level(LevelSettings enemySettings, int depth, int width, int height) {
+    public Level(GameObjectSpawner enemySettings, int depth, int width, int height) {
         this.enemySettings = enemySettings;
         this.depth         = depth;
         this.width         = width;
@@ -134,11 +134,7 @@ public class Level {
         int count = 0;
         
         for (Tile tile : this.map.getTiles()) {
-            for (GameObject object : tile.getInventory().getObjects()) {
-                if (object.getClass() == type) {
-                    count++;
-                }
-            }
+            count += tile.getInventory().getObjectCount(type);
         }
         
         return count;

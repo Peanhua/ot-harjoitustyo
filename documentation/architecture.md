@@ -85,7 +85,7 @@ The user interface flow diagram:
 
 Application logic is contained in the *fishingrodofdestiny.world* and its sub-packages. A single instance of a *Game* holds a single game and its state. A game contains a single cave (class *Cave*), and a reference to the player game object for ease of access / finding it.
 
-The cave contains levels, and is responsible of setting up them. Level generators are used to generate the actual level layout, and the cave ties them together and places traps, items, enemies and such. The placing of items and enemies is based on rules defined in the levels using *LevelSettings*. Traps and stairs are handled in cave because setting them up requires the knowledge of other levels.
+The cave contains levels, and is responsible of setting up them. Level generators are used to generate the actual level layout, and the cave ties them together and places traps, items, enemies and such. The placing of items and enemies is based on rules defined in the levels using *GameObjectSpawner*. Traps and stairs are handled in cave because setting them up requires the knowledge of other levels.
 
 A level defines (class *Level*) one section of the cave, and can be thought to be like a floor in a building, the player starts from the top floor and descends down to bottom floor (and then back up to the top floor). A level is made of 2d grid of adjacent tiles (class *Tile*), each tile having the exact same dimensions. The actual tile objects in the level are stored in a container class *LevelMap*.
 

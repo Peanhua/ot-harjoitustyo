@@ -21,7 +21,7 @@ public class EmptyLevelGenerator extends LevelGenerator {
     
     @Override
     public Level generateLevel(int caveLevel) {
-        LevelSettings settings = new LevelSettings();
+        GameObjectSpawner settings = new GameObjectSpawner();
         settings.addType(GameObjectFactory.Type.Rat, 1 + caveLevel * 5, 0.2);
         settings.addType(GameObjectFactory.Type.Rat, 1 + caveLevel * 5, 0.8);
         Level level = new Level(settings, caveLevel, this.width, this.height);
