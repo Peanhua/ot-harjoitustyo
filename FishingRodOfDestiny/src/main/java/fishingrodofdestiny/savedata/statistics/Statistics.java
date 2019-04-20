@@ -7,7 +7,6 @@ package fishingrodofdestiny.savedata.statistics;
 
 import fishingrodofdestiny.dao.StatisticsDao;
 import fishingrodofdestiny.world.Game;
-import fishingrodofdestiny.world.gameobjects.GoldCoin;
 
 /**
  *

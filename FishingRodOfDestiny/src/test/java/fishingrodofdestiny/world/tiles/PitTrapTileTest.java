@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.world.tiles;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,7 +22,7 @@ public class PitTrapTileTest {
         Tile target = new FloorTile(null, 0, 0);
         trap.setTarget(target);
         
-        GameObject obj = new GoldCoin();
+        GameObject obj = GameObjectFactory.create("gold coin");
         obj.getLocation().moveTo(trap);
         assertEquals(target, obj.getLocation().getContainerTile());
     }

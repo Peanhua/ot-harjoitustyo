@@ -5,10 +5,10 @@
  */
 package fishingrodofdestiny.world.actions;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import fishingrodofdestiny.world.gameobjects.Rat;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class ActionPickUpTest {
     public void setUp() {
         this.container1 = new BloodSplatter();
         this.container2 = new BloodSplatter();
-        this.item       = new GoldCoin();
+        this.item       = GameObjectFactory.create("gold coin");
         this.character  = new Rat();
     }
     

@@ -16,6 +16,7 @@ public class ShortSword extends Weapon {
     public ShortSword() {
         super("short sword");
         this.setGraphics(new TileGfx("rltiles/nh32", 160, 448, 32, 32));
+        this.setWeight(5);
     }
     
     @Override

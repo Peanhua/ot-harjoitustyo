@@ -122,7 +122,7 @@ public class Player extends Character {
     private void calculateGoldCollected() {
         this.goldCollected = 0;
         this.getInventory().getObjects().forEach(object -> {
-            if (object.getClass() == GoldCoin.class) {
+            if (object.getName().equals("gold coin")) {
                 this.goldCollected++;
             }
         });

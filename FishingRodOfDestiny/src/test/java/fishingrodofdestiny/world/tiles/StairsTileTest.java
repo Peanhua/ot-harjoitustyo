@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.world.tiles;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,7 +22,7 @@ public class StairsTileTest {
         StairsTile stairs2 = new StairsUpTile(null, 0, 0);
         stairs1.setTarget(stairs2);
         stairs2.setTarget(stairs1);
-        GameObject obj = new GoldCoin();
+        GameObject obj = GameObjectFactory.create("gold coin");
         obj.getLocation().moveTo(stairs1);
         stairs1.activate(obj);
         assertEquals(stairs2, obj.getLocation().getContainerTile());
@@ -35,7 +35,7 @@ public class StairsTileTest {
         FloorTile  floor   = new FloorTile(null, 0, 0);
         stairs1.setTarget(stairs2);
         stairs2.setTarget(stairs1);
-        GameObject obj = new GoldCoin();
+        GameObject obj = GameObjectFactory.create("gold coin");
         obj.getLocation().moveTo(floor);
         stairs1.activate(obj);
         assertEquals(floor, obj.getLocation().getContainerTile());

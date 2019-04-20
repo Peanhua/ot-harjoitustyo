@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -57,11 +58,11 @@ public class InventoryTest {
     
     @Test
     public void calculatingTotalWeightWorks() {
-        GameObject coin = new GoldCoin();
+        GameObject coin = GameObjectFactory.create("gold coin");
         int startWeight = coin.getWeight();
         int coinWeight = coin.getWeight();
         for (int i = 0; i < 10; i++) {
-            GameObject c = new GoldCoin();
+            GameObject c = GameObjectFactory.create("gold coin");
             c.getLocation().moveTo(coin);
         }
         assertEquals(coinWeight * 10, coin.getInventory().getWeight());

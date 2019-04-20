@@ -35,7 +35,13 @@
             <artifactId>rlforj</artifactId>
             <version>0.3</version>
         </dependency>
-    </dependencies>
+        <!-- https://mvnrepository.com/artifact/org.ini4j/ini4j -->
+        <dependency>
+            <groupId>org.ini4j</groupId>
+            <artifactId>ini4j</artifactId>
+            <version>0.5.4</version>
+        </dependency>
+      </dependencies>
     <build>
         <plugins>
             <plugin>

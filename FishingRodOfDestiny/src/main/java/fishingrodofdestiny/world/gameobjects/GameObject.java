@@ -134,7 +134,7 @@ public abstract class GameObject {
     }
     
     
-    protected final void setGraphics(TileGfx graphics) {
+    public final void setGraphics(TileGfx graphics) {
         this.graphics = graphics;
     }
         

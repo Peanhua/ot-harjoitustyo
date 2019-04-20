@@ -31,7 +31,16 @@ public abstract class NonPlayerCharacter extends Character {
     
     protected final void spawnInventoryItems() {
         while (true) {
-            GameObject item = GameObjectFactory.create(this.gameObjectSpawner.getNext(this.getRandom(), this));
+            GameObjectFactory.Type type = this.gameObjectSpawner.getNext(this.getRandom(), this);
+            GameObject item = null;
+            if (type != null) {
+                item = GameObjectFactory.create(type);
+            } else {
+                String objectId = this.gameObjectSpawner.getNextObjectId(this.getRandom(), this);
+                if (objectId != null) {
+                    item = GameObjectFactory.create(objectId);
+                }
+            }
             if (item == null) {
                 break;
             }

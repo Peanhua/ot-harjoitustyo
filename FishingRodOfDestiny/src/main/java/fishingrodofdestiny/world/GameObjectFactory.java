@@ -9,14 +9,16 @@ import fishingrodofdestiny.world.gameobjects.Apple;
 import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import fishingrodofdestiny.world.gameobjects.Hat;
+import fishingrodofdestiny.world.gameobjects.Item;
 import fishingrodofdestiny.world.gameobjects.PotionOfHealing;
 import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.LeatherJacket;
 import fishingrodofdestiny.world.gameobjects.PotionOfRegeneration;
 import fishingrodofdestiny.world.gameobjects.Rat;
 import fishingrodofdestiny.world.gameobjects.ShortSword;
+import java.net.URL;
+import org.ini4j.Ini;
 
 /**
  * Create new game objects.
@@ -61,16 +63,6 @@ public class GameObjectFactory {
             @Override
             public Class getJavaClass() {
                 return FishingRod.class;
-            }
-        },
-        GoldCoin() {
-            @Override
-            public GameObject create() {
-                return new GoldCoin();
-            }
-            @Override
-            public Class getJavaClass() {
-                return GoldCoin.class;
             }
         },
         Hat() {
@@ -150,7 +142,6 @@ public class GameObjectFactory {
         Apple,
         BloodSplatter,
         FishingRod,
-        GoldCoin,
         Hat,
         KitchenKnife,
         LeatherJacket,
@@ -174,5 +165,66 @@ public class GameObjectFactory {
             return null;
         }
         return OPTIONS[type.ordinal()].getJavaClass();
+    }
+    
+    
+    private static Ini ini = null;
+
+    private static void initialize() {
+        if (ini == null) {
+            ini = new Ini();
+            String fullname = "fishingrodofdestiny/items.ini";
+            URL url = GameObjectFactory.class.getClassLoader().getResource(fullname);
+            try {
+                ini.load(url);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to load items: " + e);
+            }
+        }
+    }
+    
+    public static GameObject create(String id) {
+        if (id == null) {
+            return null;
+        }
+        
+        initialize();
+        
+        Ini.Section section = ini.get(id);
+        String type = section.get("Type");
+        if (type == null) {
+            throw new RuntimeException("Error while loading '" + id + "': missing Type");
+        }
+        GameObject obj = null;
+        try {
+            if (type.equals("ITEM")) {
+                return createItem(section, id);
+            } else {
+                throw new RuntimeException("Uknown type: " + type);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error while loading '" + id + "': " + e);
+        }
+    }
+    
+    private static GameObject createItem(Ini.Section section, String id) {
+        Item item = new Item(id);
+        loadGfx(section, item);
+        return item;
+    }
+    
+    
+    private static void loadGfx(Ini.Section section, GameObject object) {
+        String  tileSet    = section.get("TileSet");
+        Integer tileX      = section.get("TileX", Integer.class);
+        Integer tileY      = section.get("TileY", Integer.class);
+        Integer tileWidth  = section.get("TileWidth", Integer.class);
+        Integer tileHeight = section.get("TileHeight", Integer.class);
+        
+        if (tileSet == null || tileX == null || tileY == null || tileWidth == null || tileHeight == null) {
+            throw new RuntimeException("Missing Gfx information.");
+        }
+        
+        object.setGraphics(new TileGfx(tileSet, tileX, tileY, tileWidth, tileHeight));
     }
 }
