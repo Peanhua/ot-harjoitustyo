@@ -34,7 +34,7 @@ public class Item extends GameObject {
     
     public final int getBuffBonuses(Buff.Type forType) {
         int bonuses = 0;
-        for(Buff buff : this.buffs) {
+        for (Buff buff : this.buffs) {
             bonuses += buff.getBonus(forType);
         }
         return bonuses;
