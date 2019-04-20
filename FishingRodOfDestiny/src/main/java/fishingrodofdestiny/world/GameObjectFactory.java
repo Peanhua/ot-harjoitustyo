@@ -10,7 +10,6 @@ import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Hat;
 import fishingrodofdestiny.world.gameobjects.Item;
-import fishingrodofdestiny.world.gameobjects.PotionOfHealing;
 import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.LeatherJacket;
 import fishingrodofdestiny.world.gameobjects.PotionOfRegeneration;
@@ -74,16 +73,6 @@ public class GameObjectFactory {
                 return LeatherJacket.class;
             }
         },
-        PotionOfHealing() {
-            @Override
-            public GameObject create() {
-                return new PotionOfHealing();
-            }
-            @Override
-            public Class getJavaClass() {
-                return PotionOfHealing.class;
-            }
-        },
         PotionOfRegeneration() {
             @Override
             public GameObject create() {
@@ -122,7 +111,6 @@ public class GameObjectFactory {
         Hat,
         KitchenKnife,
         LeatherJacket,
-        PotionOfHealing,
         PotionOfRegeneration,
         Rat,
         ShortSword
@@ -210,6 +198,11 @@ public class GameObjectFactory {
         Integer healOnUse = section.get("HealOnUse", Integer.class);
         if (healOnUse != null) {
             consumable.setHealOnUse(healOnUse);
+        }
+        Integer healPercentageOnUse = section.get("HealOnUse%", Integer.class);
+        if (healPercentageOnUse != null) {
+            consumable.setHealOnUse(healPercentageOnUse);
+            consumable.setHealOnUsePercentage(true);
         }
         return consumable;
     }
