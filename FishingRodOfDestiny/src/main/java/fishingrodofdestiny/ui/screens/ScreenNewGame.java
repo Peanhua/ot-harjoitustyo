@@ -12,6 +12,7 @@ import fishingrodofdestiny.world.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javafx.event.EventType;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -85,7 +86,7 @@ public class ScreenNewGame extends Screen {
         return field;
     }
     
-
+    
     private Node setupRescueTarget() {
         String[]            labels  = { "Rescue princess:",         "Rescue prince:"         };
         Game.RescueTarget[] targets = { Game.RescueTarget.PRINCESS, Game.RescueTarget.PRINCE };
@@ -124,8 +125,16 @@ public class ScreenNewGame extends Screen {
         this.close();
         
         Game.RescueTarget rtarget = (Game.RescueTarget) this.rescueToggleGroup.getSelectedToggle().getUserData();
-        Game game = new Game(Long.parseLong(this.randomSeed.getText()), player, rtarget);
+        Game game = new Game(this.parseRandomSeedNumber(), player, rtarget);
         Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
+    }
+    
+    private long parseRandomSeedNumber() {
+        try {
+            return Long.parseLong(this.randomSeed.getText());
+        } catch (Exception e) {
+            return this.randomSeed.getText().hashCode();
+        }
     }
 }
