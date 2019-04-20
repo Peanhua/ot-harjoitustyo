@@ -36,6 +36,7 @@ public class UserInterfaceFactory {
         Image logo = ImageCache.getInstance().get("images/Logo");
         ImageView logov = new ImageView(logo);
         hb.getChildren().add(logov);
+        hb.getStyleClass().add("logo");
         return hb;
     }
         

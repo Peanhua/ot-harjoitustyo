@@ -32,7 +32,7 @@ public class ScreenNewGame extends Screen {
     private ToggleGroup      rescueToggleGroup;
     private PointDistributor pointDistributor;
     private TextField        randomSeed;
-    private Random           random;
+    private final Random     random;
     private Button           startButton;
     
     public ScreenNewGame(Screen parent, Stage stage) {

@@ -5,12 +5,16 @@
  */
 package fishingrodofdestiny.ui.screens;
 
+import fishingrodofdestiny.resources.ImageCache;
 import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,19 +24,31 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public class ScreenMainMenu extends Screen {
-    private Starfield starfield;
+    private Starfield bubbles;
     
     public ScreenMainMenu(Screen parent, Stage stage) {
         super(parent, stage);
-        this.starfield = null;
+        this.bubbles = null;
     }
 
     @Override
     protected Node createUserInterface() {
         StackPane sp = new StackPane();
         
-        this.starfield = new Starfield();
-        sp.getChildren().add(this.starfield.createUserInterface());
+        Image layer0Image = ImageCache.getInstance().get("images/MainMenuBackground-layer0");
+        ImageView layer0 = new ImageView(layer0Image);
+        sp.getChildren().add(layer0);
+        
+        this.bubbles = new Starfield(Starfield.Direction.UP);
+        sp.getChildren().add(this.bubbles.createUserInterface());
+
+        Image layer1Image = ImageCache.getInstance().get("images/MainMenuBackground-layer1");
+        ImageView layer1 = new ImageView(layer1Image);
+        sp.getChildren().add(layer1);
+
+        Region bgOverlay = new Region();
+        bgOverlay.setOpacity(0.66);
+        sp.getChildren().add(bgOverlay);
         
         BorderPane pane = new BorderPane();
         sp.getChildren().add(pane);
@@ -69,33 +85,31 @@ public class ScreenMainMenu extends Screen {
     }
     
     private void startNewGame() {
-        this.starfield.disable();
+        this.bubbles.disable();
         Screen ng = new ScreenNewGame(this, this.getStage());
         ng.show();
     }
     
     
     private void loadGame() {
-        /*
-        Game game = new Game(new Player());
-        Screen g = new ScreenGame(game, this, this.getStage());
-        g.show();
-*/
+        this.bubbles.disable();
     }
     
     
     private void showHighscores() {
+        this.bubbles.disable();
         Screen hs = new ScreenHighscores(this, this.getStage());
         hs.show();
     }
     
     private void showStatistics() {
+        this.bubbles.disable();
         Screen s = new ScreenStatistics(this, this.getStage());
         s.show();
     }
 
     @Override
     public void onShow() {
-        this.starfield.enable();
+        this.bubbles.enable();
     }
 }

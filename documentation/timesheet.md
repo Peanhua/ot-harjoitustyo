@@ -75,5 +75,6 @@ Time used for the project.
   <tr><td>     </td><td>  1.0</td><td>Documentation.</td></tr>
   <tr><td>20.4.</td><td>  1.0</td><td>Content and game logic.</td></tr>
   <tr><td>     </td><td>  0.5</td><td>Documentation.</td></tr>
-  <tr><th>Total</th><th>106.0</th><th></th></tr>
+  <tr><td>     </td><td>  2.0</td><td>User interface and gfx.</td></tr>
+  <tr><th>Total</th><th>108.0</th><th></th></tr>
 </table>

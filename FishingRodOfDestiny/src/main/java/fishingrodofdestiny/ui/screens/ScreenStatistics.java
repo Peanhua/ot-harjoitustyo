@@ -7,6 +7,7 @@ package fishingrodofdestiny.ui.screens;
 
 import fishingrodofdestiny.resources.StatisticsCache;
 import fishingrodofdestiny.statistics.Statistics;
+import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 /**
@@ -25,25 +26,35 @@ import javafx.stage.Stage;
  * @author joyr
  */
 public class ScreenStatistics extends Screen {
+    private Starfield starfield;
 
     public ScreenStatistics(Screen parent, Stage stage) {
         super(parent, stage);
+        this.starfield = null;
     }
 
     @Override
     protected Node createUserInterface() {
-        BorderPane pane = new BorderPane();
+        StackPane sp = new StackPane();
 
+        this.starfield = new Starfield(Starfield.Direction.RIGHT);
+        sp.getChildren().add(this.starfield.createUserInterface());
+        
+        BorderPane pane = new BorderPane();
+        sp.getChildren().add(pane);
+        
         pane.setTop(UserInterfaceFactory.createLogo());
         
         pane.setCenter(this.createStatisticsDisplay());
 
         String[] labels = { "Close" };
         List<Button> buttons = new ArrayList<>();
-        pane.setBottom(UserInterfaceFactory.createButtonRow(labels, buttons));
+        Node buttonsNode = UserInterfaceFactory.createButtonRow(labels, buttons);
+        buttonsNode.getStyleClass().add("bottomButton");
+        pane.setBottom(buttonsNode);
         buttons.get(0).setOnAction(e -> this.close());
         
-        return pane;
+        return sp;
         
     }
     
@@ -77,5 +88,10 @@ public class ScreenStatistics extends Screen {
         GridPane.setConstraints(labelText, 0, row);
         GridPane.setConstraints(valueText, 1, row);
         grid.getChildren().addAll(labelText, valueText);
+    }
+    
+    @Override
+    public void onShow() {
+        this.starfield.enable();
     }
 }

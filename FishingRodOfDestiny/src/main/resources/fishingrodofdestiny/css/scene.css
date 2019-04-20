@@ -11,12 +11,21 @@ Region {
 /*  -fx-background-color: #800c80;*/
 }
 
+.logo {
+  -fx-padding: 10 0 50 0;
+}
+
 Button {
   -fx-text-fill: #ffffff;
 /*  -fx-background-color: #0068ff;*/
 /*  -fx-background-color: #e3a01e;*/
   -fx-background-color: #ff19ff;
 }
+
+.bottomButton {
+  -fx-padding: 0 0 50 0;
+}
+
 
 TextField {
   -fx-text-fill: #ffffff;
