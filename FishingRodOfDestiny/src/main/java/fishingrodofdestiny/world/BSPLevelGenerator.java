@@ -46,14 +46,14 @@ public class BSPLevelGenerator extends LevelGenerator {
         GameObjectSpawner itemSettings = new GameObjectSpawner();
         itemSettings.setMaximumTotalCount(caveLevel * 2 + this.random.nextInt(1 + caveLevel * 5));
         itemSettings.addType("gold coin",                                 3 + caveLevel * 3,                  0.7);
-        itemSettings.addType(GameObjectFactory.Type.KitchenKnife,         this.random.nextInt(1 + caveLevel), 0.3);
+        itemSettings.addType("kitchen knife",                             this.random.nextInt(1 + caveLevel), 0.3);
         itemSettings.addType(GameObjectFactory.Type.Hat,                  this.random.nextInt(3),             0.3);
         itemSettings.addType(GameObjectFactory.Type.LeatherJacket,        1,                                  0.2);
         itemSettings.addType("apple",                                     this.random.nextInt(5),             0.4);
         itemSettings.addType("potion of healing",                         this.random.nextInt(2),             0.1);
         itemSettings.addType("potion of regeneration",                    this.random.nextInt(2),             0.1);
         if (caveLevel > 1 && this.random.nextBoolean()) {
-            itemSettings.addType(GameObjectFactory.Type.ShortSword, 1, 0.1);
+            itemSettings.addType("short sword", 1, 0.1);
         }
         return itemSettings;
     }

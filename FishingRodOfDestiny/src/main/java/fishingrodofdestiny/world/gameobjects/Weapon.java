@@ -9,16 +9,30 @@ package fishingrodofdestiny.world.gameobjects;
  *
  * @author joyr
  */
-public abstract class Weapon extends Item {
+public class Weapon extends Item {
+    private int    damage;
+    private double chanceToHitMultiplier;
     
     public Weapon(String name) {
         super(name);
+        this.damage                = 1;
+        this.chanceToHitMultiplier = 1.0;
     }
     
-    public abstract int getDamage();
+    public final int getDamage() {
+        return this.damage;
+    }
     
-    public double getChanceToHitMultiplier() {
-        return 1.0;
+    public final void setDamage(int damage) {
+        this.damage = damage;
+    }
+    
+    public final double getChanceToHitMultiplier() {
+        return this.chanceToHitMultiplier;
+    }
+    
+    public final void setChanceToHitMultiplier(double multiplier) {
+        this.chanceToHitMultiplier = multiplier;
     }
     
     @Override    

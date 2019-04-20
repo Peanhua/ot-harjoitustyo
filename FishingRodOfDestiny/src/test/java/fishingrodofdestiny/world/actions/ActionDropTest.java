@@ -5,9 +5,9 @@
  */
 package fishingrodofdestiny.world.actions;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.Item;
-import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
@@ -30,7 +30,7 @@ public class ActionDropTest {
         this.tile = new FloorTile(null, 0, 0);
         this.character = new Player();
         this.character.getLocation().moveTo(this.tile);
-        this.weapon = new KitchenKnife();
+        this.weapon = (Item) GameObjectFactory.create("kitchen knife");
         this.weapon.getLocation().moveTo(this.character);
     }
     

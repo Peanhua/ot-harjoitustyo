@@ -5,7 +5,6 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
-import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.controllers.SimpleAiController;
 
@@ -35,10 +34,10 @@ public class Rat extends NonPlayerCharacter {
             return;
         }
         this.getGameObjectSpawner().setMaximumTotalCount(itemCount);
-        this.getGameObjectSpawner().addType("gold coin",                                 1, 0.2);
-        this.getGameObjectSpawner().addType(GameObjectFactory.Type.KitchenKnife,         1, 0.3);
-        this.getGameObjectSpawner().addType("apple",                                     3, 1.0);
-        this.getGameObjectSpawner().addType("potion of healing",                         1, 0.1);
-        this.getGameObjectSpawner().addType("potion of regeneration",                    1, 0.1);
+        this.getGameObjectSpawner().addType("gold coin",              1, 0.2);
+        this.getGameObjectSpawner().addType("kitchen knife",          1, 0.3);
+        this.getGameObjectSpawner().addType("apple",                  3, 1.0);
+        this.getGameObjectSpawner().addType("potion of healing",      1, 0.1);
+        this.getGameObjectSpawner().addType("potion of regeneration", 1, 0.1);
     }
 }

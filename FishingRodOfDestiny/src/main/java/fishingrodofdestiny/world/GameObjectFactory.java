@@ -10,10 +10,9 @@ import fishingrodofdestiny.world.gameobjects.Consumable;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Hat;
 import fishingrodofdestiny.world.gameobjects.Item;
-import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.LeatherJacket;
 import fishingrodofdestiny.world.gameobjects.Rat;
-import fishingrodofdestiny.world.gameobjects.ShortSword;
+import fishingrodofdestiny.world.gameobjects.Weapon;
 import java.net.URL;
 import org.ini4j.Ini;
 
@@ -42,16 +41,6 @@ public class GameObjectFactory {
                 return Hat.class;
             }
         },
-        KitchenKnife() {
-            @Override
-            public GameObject create() {
-                return new KitchenKnife();
-            }
-            @Override
-            public Class getJavaClass() {
-                return KitchenKnife.class;
-            }
-        },
         LeatherJacket() {
             @Override
             public GameObject create() {
@@ -71,26 +60,14 @@ public class GameObjectFactory {
             public Class getJavaClass() {
                 return Rat.class;
             }
-        },
-        ShortSword() {
-            @Override
-            public GameObject create() {
-                return new ShortSword();
-            }
-            @Override
-            public Class getJavaClass() {
-                return ShortSword.class;
-            }
         }
     }
     
     // Note that Type and ObjectSwitch enums must be in same order.
     public enum Type {
         Hat,
-        KitchenKnife,
         LeatherJacket,
-        Rat,
-        ShortSword
+        Rat
     }
     
     private final static ObjectSwitch[] OPTIONS = ObjectSwitch.values();
@@ -143,6 +120,7 @@ public class GameObjectFactory {
                 case "OBJECT":     return createObject(section, id);
                 case "ITEM":       return createItem(section, id);
                 case "CONSUMABLE": return createConsumable(section, id);
+                case "WEAPON":     return createWeapon(section, id);
                 default:           throw new RuntimeException("Uknown type: " + type);
             }
         } catch (Exception e) {
@@ -186,6 +164,21 @@ public class GameObjectFactory {
         return consumable;
     }
     
+    private static GameObject createWeapon(Ini.Section section, String id) {
+        Weapon weapon = new Weapon(id);
+        loadBasics(section, weapon);
+        loadGfx(section, weapon);
+        Integer damage = section.get("Damage", Integer.class);
+        if (damage != null) {
+            weapon.setDamage(damage);
+        }
+        Double chanceToHitMultiplier = section.get("ChanceToHitMultiplier", Double.class);
+        if (chanceToHitMultiplier != null) {
+            weapon.setChanceToHitMultiplier(chanceToHitMultiplier);
+        }
+        return weapon;
+    }
+    
     private static void loadBasics(Ini.Section section, GameObject object) {
         Integer hitpoints = section.get("Hitpoints", Integer.class);
         if (hitpoints != null) {
@@ -213,6 +206,7 @@ public class GameObjectFactory {
     }
     
     private static void loadUseBuffs(Ini.Section section, Item item) {
+        // TODO: support multiple buffs
         String buffType = section.get("BuffType");
         if (buffType != null) {
             Double buffTime = section.get("BuffTime", Double.class);

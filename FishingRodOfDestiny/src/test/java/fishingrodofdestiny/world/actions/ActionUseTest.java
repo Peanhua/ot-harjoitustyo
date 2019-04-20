@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.world.actions;
 
-import fishingrodofdestiny.world.gameobjects.Item;
-import fishingrodofdestiny.world.gameobjects.KitchenKnife;
+import fishingrodofdestiny.world.GameObjectFactory;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class ActionUseTest {
     
     @Test
     public void usingWeaponWieldsIt() {
-        Item weapon = new KitchenKnife();
+        GameObject weapon = GameObjectFactory.create("kitchen knife");
         weapon.getLocation().moveTo(this.player);
         Action action = new ActionUse(weapon);
         action.act(this.player);
@@ -36,7 +36,7 @@ public class ActionUseTest {
 
     @Test
     public void usingWeaponNotInInventoryDoesNotWieldIt() {
-        Item weapon = new KitchenKnife();
+        GameObject weapon = GameObjectFactory.create("kitchen knife");
         Action action = new ActionUse(weapon);
         action.act(this.player);
         assertNull(this.player.getWeapon());
