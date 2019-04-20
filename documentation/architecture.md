@@ -16,6 +16,14 @@ List of all packages:
     <td>Data access objects and their support classes.</td>
   </tr>
   <tr>
+    <td>fishingrodofdestiny.observer</td>
+    <td>Helper classes to implement observer pattern.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.resources</td>
+    <td>Resource loading and saving caches, all caches use the singleton pattern.</td>
+  </tr>
+  <tr>
     <td>fishingrodofdestiny.savedata</td>
     <td>Data that are saved&loaded.</td>
   </tr>
@@ -26,14 +34,6 @@ List of all packages:
   <tr>
     <td>fishingrodofdestiny.savedata.statistics</td>
     <td>Statistics about games played.</td>
-  </tr>
-  <tr>
-    <td>fishingrodofdestiny.observer</td>
-    <td>Helper classes to implement observer pattern.</td>
-  </tr>
-  <tr>
-    <td>fishingrodofdestiny.resources</td>
-    <td>Resource loading and saving caches, all caches use the singleton pattern.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.settings</td>
