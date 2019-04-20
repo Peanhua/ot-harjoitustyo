@@ -16,6 +16,7 @@ import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.LeatherJacket;
 import fishingrodofdestiny.world.gameobjects.PotionOfRegeneration;
 import fishingrodofdestiny.world.gameobjects.Rat;
+import fishingrodofdestiny.world.gameobjects.ShortSword;
 
 /**
  * Create new game objects.
@@ -25,6 +26,7 @@ import fishingrodofdestiny.world.gameobjects.Rat;
 public class GameObjectFactory {
     // The following enum trick is stolen from https://stackoverflow.com/a/548710
     // with the purpose of evading the maximum 20 line length checkstyle rule.
+    // TODO: read possible items from text file(s) and generate them using generic weapon, armor, potion, etc. classes
     private interface GameObjectCreator {
         public GameObject create();
         public Class      getJavaClass();
@@ -130,6 +132,16 @@ public class GameObjectFactory {
             public Class getJavaClass() {
                 return Rat.class;
             }
+        },
+        ShortSword() {
+            @Override
+            public GameObject create() {
+                return new ShortSword();
+            }
+            @Override
+            public Class getJavaClass() {
+                return ShortSword.class;
+            }
         }
     }
     
@@ -144,7 +156,8 @@ public class GameObjectFactory {
         LeatherJacket,
         PotionOfHealing,
         PotionOfRegeneration,
-        Rat
+        Rat,
+        ShortSword
     }
     
     private final static ObjectSwitch[] OPTIONS = ObjectSwitch.values();
