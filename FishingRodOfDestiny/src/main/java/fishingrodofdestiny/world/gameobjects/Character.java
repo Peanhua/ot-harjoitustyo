@@ -30,6 +30,7 @@ public abstract class Character extends GameObject {
     private final HashMap<Armor.Slot, Armor> equippedArmor;
     private double     accumulatedRegeneration;
     private long       actionsTaken;
+    private final List<Buff> buffs;
 
     public Character() {
         super();
@@ -44,6 +45,7 @@ public abstract class Character extends GameObject {
         this.equippedArmor       = new HashMap<>();
         this.accumulatedRegeneration = 0.0;
         this.actionsTaken        = 0;
+        this.buffs               = new ArrayList<>();
         this.setDrawingOrder(100);
         this.getInventory().setWeightLimit(20);
     }
@@ -226,6 +228,18 @@ public abstract class Character extends GameObject {
     }
     
     
+    public void addBuff(Buff buff) {
+        for (int i = 0; i < this.buffs.size(); i++) {
+            Buff b = this.buffs.get(i);
+            if (b == null || !b.isAlive()) {
+                this.buffs.set(i, buff);
+                return;
+            }
+        }
+        this.buffs.add(buff);
+    }
+    
+    
     public int getBuffBonuses(Buff.Type forType) {
         int bonuses = 0;
         
@@ -237,6 +251,9 @@ public abstract class Character extends GameObject {
             if (armor != null) {
                 bonuses += armor.getBuffBonuses(forType);
             }
+        }
+        for (Buff buff : this.buffs) {
+            bonuses += buff.getBonus(forType);
         }
         
         return bonuses;

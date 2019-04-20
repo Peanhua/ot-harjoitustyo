@@ -11,10 +11,10 @@ import fishingrodofdestiny.world.TileGfx;
  *
  * @author joyr
  */
-public class HealingPotion extends Consumable {
+public class PotionOfHealing extends Consumable {
     
-    public HealingPotion() {
-        super("healing potion", "drink");
+    public PotionOfHealing() {
+        super("potion of healing", "drink");
         this.setGraphics(new TileGfx("rltiles/nh32", 128, 704, 32, 32));
     }
     

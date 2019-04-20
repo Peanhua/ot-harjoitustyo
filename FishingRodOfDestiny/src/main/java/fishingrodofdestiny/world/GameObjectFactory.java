@@ -11,9 +11,10 @@ import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.GoldCoin;
 import fishingrodofdestiny.world.gameobjects.Hat;
-import fishingrodofdestiny.world.gameobjects.HealingPotion;
+import fishingrodofdestiny.world.gameobjects.PotionOfHealing;
 import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.LeatherJacket;
+import fishingrodofdestiny.world.gameobjects.PotionOfRegeneration;
 import fishingrodofdestiny.world.gameobjects.Rat;
 
 /**
@@ -80,16 +81,6 @@ public class GameObjectFactory {
                 return Hat.class;
             }
         },
-        HealingPotion() {
-            @Override
-            public GameObject create() {
-                return new HealingPotion();
-            }
-            @Override
-            public Class getJavaClass() {
-                return HealingPotion.class;
-            }
-        },
         KitchenKnife() {
             @Override
             public GameObject create() {
@@ -108,6 +99,26 @@ public class GameObjectFactory {
             @Override
             public Class getJavaClass() {
                 return LeatherJacket.class;
+            }
+        },
+        PotionOfHealing() {
+            @Override
+            public GameObject create() {
+                return new PotionOfHealing();
+            }
+            @Override
+            public Class getJavaClass() {
+                return PotionOfHealing.class;
+            }
+        },
+        PotionOfRegeneration() {
+            @Override
+            public GameObject create() {
+                return new PotionOfRegeneration();
+            }
+            @Override
+            public Class getJavaClass() {
+                return PotionOfRegeneration.class;
             }
         },
         Rat() {
@@ -129,9 +140,10 @@ public class GameObjectFactory {
         FishingRod,
         GoldCoin,
         Hat,
-        HealingPotion,
         KitchenKnife,
         LeatherJacket,
+        PotionOfHealing,
+        PotionOfRegeneration,
         Rat
     }
     
