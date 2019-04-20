@@ -9,6 +9,7 @@ import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.tiles.Tile;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
@@ -319,15 +320,35 @@ public abstract class GameObject {
      *
      * @param instigator The GameObject who is responsible of destroying this GameObject, can be null.
      */
-    public void destroy(GameObject instigator) {
-        // TODO: separate destroy() and onDestroyed() stuffs to their own methods, destroy() can then be final
-        this.addMessage("You die!");
+    public final void destroy(GameObject instigator) {
+        this.onDestroy(instigator);
         if (instigator != null) {
             instigator.onDestroyTarget(this);
         }
         this.isAlive = false;
         this.getLocation().moveTo((Tile) null);
         this.onChange.notifyObservers();
+    }
+    
+    /**
+     * This is called when this GameObject is destroyed.
+     * 
+     * @param instigator The GameObject responsible of destroying this GameObject, can be null.
+     */
+    protected void onDestroy(GameObject instigator) {
+        this.addMessage("You die!");
+        // Drop inventory:
+        List<GameObject> items = new ArrayList<>(this.getInventory().getObjects());
+        // TODO: if Location.moveTo() had a variant moveTo(Location) then this could be one line
+        Tile myTile = this.getLocation().getContainerTile();
+        if (myTile != null) {
+            items.forEach(obj -> obj.getLocation().moveTo(myTile));
+        } else {
+            GameObject myContainer = this.getLocation().getContainerObject();
+            if (myContainer != null) {
+                items.forEach(obj -> obj.getLocation().moveTo(myContainer));
+            }
+        }
     }
 
     /**
@@ -342,7 +363,7 @@ public abstract class GameObject {
     }
     
     /**
-     * This is cCalled when this GameObject destroys the given target.
+     * This is called when this GameObject destroys the given target.
      *
      * @param target The GameObject that was destroyed.
      */

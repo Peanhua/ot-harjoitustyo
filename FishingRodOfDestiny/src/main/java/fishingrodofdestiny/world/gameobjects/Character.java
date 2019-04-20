@@ -55,13 +55,13 @@ public abstract class Character extends GameObject {
     }
 
     @Override
-    public void destroy(GameObject instigator) {
+    protected void onDestroy(GameObject instigator) {
         Tile tile = this.getLocation().getContainerTile();
         if (tile != null) {
             GameObject splatter = new BloodSplatter();
             splatter.getLocation().moveTo(tile);
         }
-        super.destroy(instigator);
+        super.onDestroy(instigator);
     }
     
     @Override
