@@ -21,6 +21,7 @@ import rlforj.los.ShadowCasting;
 public class Player extends Character {
     private boolean                 gameCompleted;
     private long                    enemiesKilled;
+    private long                    goldCollected;
     private final List<LevelMemory> levelMemories;
     private final IFovAlgorithm     fovAlgorithm;
 
@@ -29,6 +30,7 @@ public class Player extends Character {
         super();
         this.gameCompleted = false;
         this.enemiesKilled = 0;
+        this.goldCollected = 0;
         this.levelMemories = new ArrayList<>();
         this.fovAlgorithm  = new ShadowCasting();
         this.setNaturalRegeneration(0.1);
@@ -110,7 +112,31 @@ public class Player extends Character {
         }
     }
     
+    @Override
+    protected void onDestroyed(GameObject instigator) {
+        // Need to save gold collected in here, because they are dropped on ground upon death.
+        this.calculateGoldCollected();
+        super.onDestroyed(instigator);
+    }
+    
+    private void calculateGoldCollected() {
+        this.goldCollected = 0;
+        this.getInventory().getObjects().forEach(object -> {
+            if (object.getClass() == GoldCoin.class) {
+                this.goldCollected++;
+            }
+        });
+    }
+
+    
     public final long getEnemiesKilled() {
         return this.enemiesKilled;
+    }
+    
+    public final long getGoldCollected() {
+        if (this.isAlive()) {
+            this.calculateGoldCollected();
+        }
+        return this.goldCollected;
     }
 }

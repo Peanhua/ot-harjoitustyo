@@ -6,7 +6,6 @@
 package fishingrodofdestiny.ui.screens;
 
 import fishingrodofdestiny.savedata.highscores.Highscore;
-import fishingrodofdestiny.savedata.highscores.HighscoreList;
 import fishingrodofdestiny.savedata.highscores.ScoreBasedHighscore;
 import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.resources.StatisticsCache;

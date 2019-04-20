@@ -74,11 +74,7 @@ public class Statistics {
         if (game.getPlayer().getGameCompleted()) {
             this.gamesCompleted++;
         }
-        game.getPlayer().getInventory().getObjects().forEach(object -> {
-            if (object.getClass() == GoldCoin.class) {
-                this.goldCoinsCollected++;
-            }
-        });
+        this.goldCoinsCollected += game.getPlayer().getGoldCollected();
         this.enemiesKilled += game.getPlayer().getEnemiesKilled();
         this.save();
     }
