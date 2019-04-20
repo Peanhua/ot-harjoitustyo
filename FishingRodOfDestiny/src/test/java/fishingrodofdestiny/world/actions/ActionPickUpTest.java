@@ -6,7 +6,6 @@
 package fishingrodofdestiny.world.actions;
 
 import fishingrodofdestiny.world.GameObjectFactory;
-import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.Rat;
@@ -27,8 +26,8 @@ public class ActionPickUpTest {
     
     @Before
     public void setUp() {
-        this.container1 = new BloodSplatter();
-        this.container2 = new BloodSplatter();
+        this.container1 = GameObjectFactory.create("pool of blood");
+        this.container2 = GameObjectFactory.create("pool of blood");
         this.item       = GameObjectFactory.create("gold coin");
         this.character  = new Rat();
     }

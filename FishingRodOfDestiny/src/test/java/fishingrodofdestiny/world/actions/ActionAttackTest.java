@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.world.actions;
 
-import fishingrodofdestiny.world.gameobjects.BloodSplatter;
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.Rat;
@@ -33,8 +33,8 @@ public class ActionAttackTest {
                 this.setAttack(99999);
             }
         }
-        this.container1 = new BloodSplatter();
-        this.container2 = new BloodSplatter();
+        this.container1 = GameObjectFactory.create("pool of blood");
+        this.container2 = GameObjectFactory.create("pool of blood");
         this.attacker = new MyAttacker();
         this.defender = new Rat();
     }

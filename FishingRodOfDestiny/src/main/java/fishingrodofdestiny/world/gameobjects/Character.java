@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.controllers.Controller;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.tiles.Tile;
@@ -65,7 +66,7 @@ public abstract class Character extends GameObject {
         this.addMessage("You die!");
         Tile tile = this.getLocation().getContainerTile();
         if (tile != null) {
-            GameObject splatter = new BloodSplatter();
+            GameObject splatter = GameObjectFactory.create("pool of blood");
             splatter.getLocation().moveTo(tile);
         }
         super.onDestroyed(instigator);

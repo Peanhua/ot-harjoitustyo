@@ -20,7 +20,7 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * @author joyr
  */
-public abstract class GameObject {
+public class GameObject {
     /**
      * The observers notified upon change to this GameObject.
      * Subclasses are expected to call onChange.notifyObservers() when changing their externally observable state.
@@ -40,6 +40,7 @@ public abstract class GameObject {
     private   int        drawingOrder;
     private   boolean    canBePickedUp;
     private   Random     random;
+    private   Double     timeToLive;
 
     /**
      * Create a new GameObject with default values.
@@ -59,6 +60,7 @@ public abstract class GameObject {
         this.drawingOrder     = 0;
         this.canBePickedUp    = false;
         this.random           = new Random(); // TODO: maybe use a global random object?
+        this.timeToLive       = -1.0;
         
         this.inventory.listenOnChange(() -> {
             this.onChange.notifyObservers();
@@ -435,10 +437,28 @@ public abstract class GameObject {
     }
     
     /**
+     * Set the time (in seconds) how long this object will stay alive.
+     * <p>
+     * After the time has passed, destroy() is called on this object.
+     * If the timeToLive is null, then this object will not automatically decay.
+     * 
+     * @param timeToLive The time to live in seconds, null disables.
+     */
+    public void setTimeToLive(Double timeToLive) {
+        this.timeToLive = timeToLive;
+    }
+    
+    /**
      * This method is called periodically while this GameObject is alive.
      * 
      * @param deltaTime The time (in seconds) since last call.
      */
     public void tick(double deltaTime) {
+        if (this.timeToLive != null) {
+            this.timeToLive -= deltaTime;
+            if (this.timeToLive <= 0.0) {
+                this.destroy(null);
+            }
+        }
     }
 }

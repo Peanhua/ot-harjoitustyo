@@ -6,7 +6,6 @@
 package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.Apple;
-import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Hat;
@@ -43,16 +42,6 @@ public class GameObjectFactory {
             @Override
             public Class getJavaClass() {
                 return Apple.class;
-            }
-        },
-        BloodSplatter() {
-            @Override
-            public GameObject create() {
-                return new BloodSplatter();
-            }
-            @Override
-            public Class getJavaClass() {
-                return BloodSplatter.class;
             }
         },
         FishingRod() {
@@ -140,7 +129,6 @@ public class GameObjectFactory {
     // Note that Type and ObjectSwitch enums must be in same order.
     public enum Type {
         Apple,
-        BloodSplatter,
         FishingRod,
         Hat,
         KitchenKnife,
@@ -197,22 +185,37 @@ public class GameObjectFactory {
         }
         GameObject obj = null;
         try {
-            if (type.equals("ITEM")) {
-                return createItem(section, id);
-            } else {
-                throw new RuntimeException("Uknown type: " + type);
+            switch (type) {
+                case "OBJECT": return createObject(section, id);
+                case "ITEM":   return createItem(section, id);
+                default:       throw new RuntimeException("Uknown type: " + type);
             }
         } catch (Exception e) {
             throw new RuntimeException("Error while loading '" + id + "': " + e);
         }
     }
     
+    private static GameObject createObject(Ini.Section section, String id) {
+        GameObject object = new GameObject(id);
+        loadBasics(section, object);
+        loadGfx(section, object);
+        return object;
+    }
+    
     private static GameObject createItem(Ini.Section section, String id) {
         Item item = new Item(id);
+        loadBasics(section, item);
         loadGfx(section, item);
         return item;
     }
     
+    private static void loadBasics(Ini.Section section, GameObject object) {
+        Integer hitpoints = section.get("Hitpoints", Integer.class);
+        if (hitpoints != null) {
+            object.setMaxHitpoints(hitpoints);
+        }
+        object.setTimeToLive(section.get("TimeToLive", Double.class));
+    }
     
     private static void loadGfx(Ini.Section section, GameObject object) {
         String  tileSet    = section.get("TileSet");
