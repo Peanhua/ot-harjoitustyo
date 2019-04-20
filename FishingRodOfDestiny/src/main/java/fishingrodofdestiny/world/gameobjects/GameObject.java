@@ -314,14 +314,16 @@ public abstract class GameObject {
     /**
      * Destroy this GameObject.
      * <p>
-     * This GameObject is removed from its container, and the instigators onDestroyTarget is called.
+     * This GameObject is removed from its container.
+     * Calls onDestroyed() of this object, and onDestroyTarget() of instigator object.
      *
+     * @see #onDestroyed(GameObject)
      * @see #onDestroyTarget(GameObject)
      *
      * @param instigator The GameObject who is responsible of destroying this GameObject, can be null.
      */
     public final void destroy(GameObject instigator) {
-        this.onDestroy(instigator);
+        this.onDestroyed(instigator);
         if (instigator != null) {
             instigator.onDestroyTarget(this);
         }
@@ -331,12 +333,12 @@ public abstract class GameObject {
     }
     
     /**
-     * This is called when this GameObject is destroyed.
+     * This is called by destroy() when this GameObject is destroyed.
      * 
+     * @see #destroy(GameObject)
      * @param instigator The GameObject responsible of destroying this GameObject, can be null.
      */
-    protected void onDestroy(GameObject instigator) {
-        this.addMessage("You die!");
+    protected void onDestroyed(GameObject instigator) {
         // Drop inventory:
         List<GameObject> items = new ArrayList<>(this.getInventory().getObjects());
         // TODO: if Location.moveTo() had a variant moveTo(Location) then this could be one line
