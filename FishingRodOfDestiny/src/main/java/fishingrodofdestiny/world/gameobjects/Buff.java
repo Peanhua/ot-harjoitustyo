@@ -20,7 +20,18 @@ public class Buff {
         CARRY,
         DEFENCE,
         HITPOINT,
-        REGENERATION
+        REGENERATION;
+        public static Type nameToType(String name) {
+            switch (name) {
+                case "ARMOR_CLASS":  return ARMOR_CLASS;
+                case "ATTACK":       return ATTACK;
+                case "CARRY":        return CARRY;
+                case "DEFENCE":      return DEFENCE;
+                case "HITPOINT":     return HITPOINT;
+                case "REGENERATION": return REGENERATION;
+                default:             throw new RuntimeException("Invalid buff type name '" + name + "'.");
+            }
+        }
     }
     private boolean           alive;
     private GameObject        linkedTo;
@@ -28,7 +39,7 @@ public class Buff {
     private Map<Type, Double> bonuses;
     
     private Buff() {
-        this.alive = true;
+        this.alive   = true;
         this.bonuses = new HashMap<>();
     }
     
@@ -54,6 +65,15 @@ public class Buff {
         this.setBonus(type, amount);
     }
     
+    public Buff(Buff source) {
+        this();
+        this.linkedTo   = source.linkedTo;
+        this.timeToLive = source.timeToLive;
+        source.bonuses.keySet().forEach(type -> {
+            this.setBonus(type, source.getBonus(type));
+        });
+    }
+
     
     public final boolean isAlive() {
         return this.alive;

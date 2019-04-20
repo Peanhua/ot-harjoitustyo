@@ -39,6 +39,6 @@ public class Rat extends NonPlayerCharacter {
         this.getGameObjectSpawner().addType(GameObjectFactory.Type.KitchenKnife,         1, 0.3);
         this.getGameObjectSpawner().addType("apple",                                     3, 1.0);
         this.getGameObjectSpawner().addType("potion of healing",                         1, 0.1);
-        this.getGameObjectSpawner().addType(GameObjectFactory.Type.PotionOfRegeneration, 1, 0.1);
+        this.getGameObjectSpawner().addType("potion of regeneration",                    1, 0.1);
     }
 }

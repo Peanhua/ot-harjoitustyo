@@ -14,10 +14,12 @@ import java.util.List;
  */
 public class Item extends GameObject {
     private final List<Buff> buffs;
+    private final List<Buff> useBuffs;
     
     public Item(String name) {
         super(name);
-        this.buffs = new ArrayList<>();
+        this.buffs    = new ArrayList<>();
+        this.useBuffs = new ArrayList<>();
         this.setCanBePickedUp(true);
     }
     
@@ -29,6 +31,11 @@ public class Item extends GameObject {
     
     protected final void addBuff(Buff buff) {
         this.buffs.add(buff);
+    }
+    
+    
+    public final void addUseBuff(Buff buff) {
+        this.useBuffs.add(buff);
     }
 
     
@@ -42,5 +49,9 @@ public class Item extends GameObject {
 
     
     public void useItem(GameObject instigator, GameObject user) {
+        if (user instanceof Character) {
+            Character userCharacter = (Character) user;
+            this.useBuffs.forEach(buff -> userCharacter.addBuff(new Buff(buff)));
+        }
     }
 }

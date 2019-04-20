@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Consumable;
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
@@ -12,7 +13,6 @@ import fishingrodofdestiny.world.gameobjects.Hat;
 import fishingrodofdestiny.world.gameobjects.Item;
 import fishingrodofdestiny.world.gameobjects.KitchenKnife;
 import fishingrodofdestiny.world.gameobjects.LeatherJacket;
-import fishingrodofdestiny.world.gameobjects.PotionOfRegeneration;
 import fishingrodofdestiny.world.gameobjects.Rat;
 import fishingrodofdestiny.world.gameobjects.ShortSword;
 import java.net.URL;
@@ -73,16 +73,6 @@ public class GameObjectFactory {
                 return LeatherJacket.class;
             }
         },
-        PotionOfRegeneration() {
-            @Override
-            public GameObject create() {
-                return new PotionOfRegeneration();
-            }
-            @Override
-            public Class getJavaClass() {
-                return PotionOfRegeneration.class;
-            }
-        },
         Rat() {
             @Override
             public GameObject create() {
@@ -111,7 +101,6 @@ public class GameObjectFactory {
         Hat,
         KitchenKnife,
         LeatherJacket,
-        PotionOfRegeneration,
         Rat,
         ShortSword
     }
@@ -184,6 +173,7 @@ public class GameObjectFactory {
         Item item = new Item(id);
         loadBasics(section, item);
         loadGfx(section, item);
+        loadUseBuffs(section, item);
         return item;
     }
     
@@ -191,6 +181,7 @@ public class GameObjectFactory {
         Consumable consumable = new Consumable(id);
         loadBasics(section, consumable);
         loadGfx(section, consumable);
+        loadUseBuffs(section, consumable);
         String useVerb = section.get("UseVerb");
         if (useVerb != null) {
             consumable.setUseVerb(useVerb);
@@ -228,4 +219,16 @@ public class GameObjectFactory {
         
         object.setGraphics(new TileGfx(tileSet, tileX, tileY, tileWidth, tileHeight));
     }
+    
+    private static void loadUseBuffs(Ini.Section section, Item item) {
+        String buffType = section.get("BuffType");
+        if (buffType != null) {
+            Double buffTime = section.get("BuffTime", Double.class);
+            Double buffAmount = section.get("BuffAmount", Double.class);
+            if (buffTime == null || buffAmount == null) {
+                throw new RuntimeException("Missing BuffTime or BuffAmount");
+            }
+            item.addUseBuff(new Buff(buffTime, Buff.Type.nameToType(buffType), buffAmount));
+        }
+    }        
 }
