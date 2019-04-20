@@ -32,6 +32,10 @@ List of all packages:
     <td>User settings (keyboard mapping etc).</td>
   </tr>
   <tr>
+    <td>fishingrodofdestiny.statistics</td>
+    <td>Statistics about games played.</td>
+  </tr>
+  <tr>
     <td>fishingrodofdestiny.ui</td>
     <td>The user interface base.</td>
   </tr>
