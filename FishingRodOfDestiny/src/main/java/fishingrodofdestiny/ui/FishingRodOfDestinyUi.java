@@ -7,7 +7,6 @@ package fishingrodofdestiny.ui;
 
 import fishingrodofdestiny.ui.screens.ScreenMainMenu;
 import fishingrodofdestiny.ui.screens.Screen;
-import fishingrodofdestiny.world.GameObjectFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -26,8 +25,6 @@ public class FishingRodOfDestinyUi extends Application {
         mainmenu.show();
         
         primaryStage.show();
-        
-        System.out.println("gold coin = " + GameObjectFactory.create("gold coin"));
     }
     
     public static void main(String[] args) {

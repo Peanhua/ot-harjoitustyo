@@ -14,7 +14,8 @@ import fishingrodofdestiny.world.TileGfx;
 public class PotionOfHealing extends Consumable {
     
     public PotionOfHealing() {
-        super("potion of healing", "drink");
+        super("potion of healing");
+        this.setUseVerb("drink");
         this.setGraphics(new TileGfx("rltiles/nh32", 128, 704, 32, 32));
     }
     

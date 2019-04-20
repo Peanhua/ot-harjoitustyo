@@ -9,18 +9,31 @@ package fishingrodofdestiny.world.gameobjects;
  *
  * @author joyr
  */
-public abstract class Consumable extends Item {
-    private final String useVerb;
+public class Consumable extends Item {
+    private String useVerb;
+    private int    healOnUse;
     
-    public Consumable(String name, String useVerb) {
+    public Consumable(String name) {
         super(name);
+        this.useVerb   = "use";
+        this.healOnUse = 0;
+    }
+    
+    public final void setUseVerb(String useVerb) {
         this.useVerb = useVerb;
+    }
+    
+    public final void setHealOnUse(int amount) {
+        this.healOnUse = amount;
     }
 
     @Override
     public void useItem(GameObject instigator, GameObject user) {
         super.useItem(instigator, user);
         user.addMessage("You " + this.useVerb + " " + this.getName() + ".");
+        if (this.healOnUse != 0) {
+            user.adjustHitpoints(this.healOnUse);
+        }
         this.destroy(instigator);
     }
 }

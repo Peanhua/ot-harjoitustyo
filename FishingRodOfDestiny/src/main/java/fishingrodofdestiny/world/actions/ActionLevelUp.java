@@ -5,9 +5,7 @@
  */
 package fishingrodofdestiny.world.actions;
 
-import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.GameObject;
 
 /**
  *
@@ -24,8 +22,6 @@ public class ActionLevelUp extends Action {
         int xpNeeded = me.getExperiencePointsForCharacterLevel(currentLevel + 1);
         if (me.getExperiencePoints() < xpNeeded) {
             me.addMessage("You don't have enough experience points to level up.");
-            GameObject obj = GameObjectFactory.create("gold coin");
-            obj.getLocation().moveTo(me);
             return;
         }
 

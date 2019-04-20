@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.gameobjects.Apple;
+import fishingrodofdestiny.world.gameobjects.Consumable;
 import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Hat;
@@ -34,16 +34,6 @@ public class GameObjectFactory {
     }
     
     private enum ObjectSwitch implements GameObjectCreator {
-        Apple() {
-            @Override
-            public GameObject create() {
-                return new Apple();
-            }
-            @Override
-            public Class getJavaClass() {
-                return Apple.class;
-            }
-        },
         FishingRod() {
             @Override
             public GameObject create() {
@@ -128,7 +118,6 @@ public class GameObjectFactory {
     
     // Note that Type and ObjectSwitch enums must be in same order.
     public enum Type {
-        Apple,
         FishingRod,
         Hat,
         KitchenKnife,
@@ -186,9 +175,10 @@ public class GameObjectFactory {
         GameObject obj = null;
         try {
             switch (type) {
-                case "OBJECT": return createObject(section, id);
-                case "ITEM":   return createItem(section, id);
-                default:       throw new RuntimeException("Uknown type: " + type);
+                case "OBJECT":     return createObject(section, id);
+                case "ITEM":       return createItem(section, id);
+                case "CONSUMABLE": return createConsumable(section, id);
+                default:           throw new RuntimeException("Uknown type: " + type);
             }
         } catch (Exception e) {
             throw new RuntimeException("Error while loading '" + id + "': " + e);
@@ -207,6 +197,21 @@ public class GameObjectFactory {
         loadBasics(section, item);
         loadGfx(section, item);
         return item;
+    }
+    
+    private static GameObject createConsumable(Ini.Section section, String id) {
+        Consumable consumable = new Consumable(id);
+        loadBasics(section, consumable);
+        loadGfx(section, consumable);
+        String useVerb = section.get("UseVerb");
+        if (useVerb != null) {
+            consumable.setUseVerb(useVerb);
+        }
+        Integer healOnUse = section.get("HealOnUse", Integer.class);
+        if (healOnUse != null) {
+            consumable.setHealOnUse(healOnUse);
+        }
+        return consumable;
     }
     
     private static void loadBasics(Ini.Section section, GameObject object) {

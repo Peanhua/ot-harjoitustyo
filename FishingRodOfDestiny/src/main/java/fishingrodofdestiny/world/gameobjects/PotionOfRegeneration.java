@@ -13,7 +13,8 @@ import fishingrodofdestiny.world.TileGfx;
  */
 public class PotionOfRegeneration extends Consumable {
     public PotionOfRegeneration() {
-        super("potion of regeneration", "drink");
+        super("potion of regeneration");
+        this.setUseVerb("drink");
         this.setGraphics(new TileGfx("rltiles/nh32", 224, 704, 32, 32));
     }
 

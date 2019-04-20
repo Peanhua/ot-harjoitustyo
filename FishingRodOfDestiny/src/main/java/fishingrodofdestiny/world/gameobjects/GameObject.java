@@ -60,7 +60,7 @@ public class GameObject {
         this.drawingOrder     = 0;
         this.canBePickedUp    = false;
         this.random           = new Random(); // TODO: maybe use a global random object?
-        this.timeToLive       = -1.0;
+        this.timeToLive       = null;
         
         this.inventory.listenOnChange(() -> {
             this.onChange.notifyObservers();

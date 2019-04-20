@@ -37,7 +37,7 @@ public class Rat extends NonPlayerCharacter {
         this.getGameObjectSpawner().setMaximumTotalCount(itemCount);
         this.getGameObjectSpawner().addType("gold coin",                                 1, 0.2);
         this.getGameObjectSpawner().addType(GameObjectFactory.Type.KitchenKnife,         1, 0.3);
-        this.getGameObjectSpawner().addType(GameObjectFactory.Type.Apple,                3, 1.0);
+        this.getGameObjectSpawner().addType("apple",                                     3, 1.0);
         this.getGameObjectSpawner().addType(GameObjectFactory.Type.PotionOfHealing,      1, 0.1);
         this.getGameObjectSpawner().addType(GameObjectFactory.Type.PotionOfRegeneration, 1, 0.1);
     }
