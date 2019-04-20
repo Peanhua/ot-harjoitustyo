@@ -5,7 +5,6 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.BearTrapTile;
 import fishingrodofdestiny.world.tiles.ExitCaveTile;
@@ -186,7 +185,7 @@ public class Cave {
         newTile = new FloorTile(level, tile.getX(), tile.getY());
         level.setTile(tile.getX(), tile.getY(), newTile);
         // And add the fishing rod in there:
-        FishingRod rod = new FishingRod();
+        GameObject rod = GameObjectFactory.create("fishing rod");
         rod.getLocation().moveTo(newTile);
     }
     

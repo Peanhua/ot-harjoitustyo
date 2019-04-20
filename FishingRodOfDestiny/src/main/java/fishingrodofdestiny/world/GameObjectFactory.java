@@ -7,7 +7,6 @@ package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Consumable;
-import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Hat;
 import fishingrodofdestiny.world.gameobjects.Item;
@@ -33,16 +32,6 @@ public class GameObjectFactory {
     }
     
     private enum ObjectSwitch implements GameObjectCreator {
-        FishingRod() {
-            @Override
-            public GameObject create() {
-                return new FishingRod();
-            }
-            @Override
-            public Class getJavaClass() {
-                return FishingRod.class;
-            }
-        },
         Hat() {
             @Override
             public GameObject create() {
@@ -97,7 +86,6 @@ public class GameObjectFactory {
     
     // Note that Type and ObjectSwitch enums must be in same order.
     public enum Type {
-        FishingRod,
         Hat,
         KitchenKnife,
         LeatherJacket,
@@ -204,6 +192,10 @@ public class GameObjectFactory {
             object.setMaxHitpoints(hitpoints);
         }
         object.setTimeToLive(section.get("TimeToLive", Double.class));
+        Integer weight = section.get("Weight", Integer.class);
+        if (weight != null) {
+            object.setWeight(weight);
+        }
     }
     
     private static void loadGfx(Ini.Section section, GameObject object) {

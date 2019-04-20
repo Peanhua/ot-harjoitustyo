@@ -5,9 +5,9 @@
  */
 package fishingrodofdestiny.world.tiles;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionActivateTile;
-import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Player;
 import org.junit.Before;
@@ -32,7 +32,7 @@ public class ExitCaveTileTest {
     
     @Test
     public void canExitWithFishingRod() {
-        GameObject rod = new FishingRod();
+        GameObject rod = GameObjectFactory.create("fishing rod");
         rod.getLocation().moveTo(player);
         Action action = new ActionActivateTile();
         action.act(player);

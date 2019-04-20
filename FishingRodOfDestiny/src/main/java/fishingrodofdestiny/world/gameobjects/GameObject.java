@@ -407,7 +407,7 @@ public class GameObject {
      *
      * @param weight The new weight value.
      */
-    protected final void setWeight(int weight) {
+    public final void setWeight(int weight) {
         this.weight = weight;
         this.onChange.notifyObservers();
     }

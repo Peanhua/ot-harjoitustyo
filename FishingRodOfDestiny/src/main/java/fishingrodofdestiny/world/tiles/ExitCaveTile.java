@@ -7,7 +7,6 @@ package fishingrodofdestiny.world.tiles;
 
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.TileGfx;
-import fishingrodofdestiny.world.gameobjects.FishingRod;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Player;
 
@@ -40,7 +39,7 @@ public class ExitCaveTile extends FloorTile {
     
     private boolean hasFishingRod(GameObject object) {
         for (GameObject item : object.getInventory().getObjects()) {
-            if (item instanceof FishingRod) {
+            if (item.getName().equals("fishing rod")) {
                 return true;
             }
         }
