@@ -5,13 +5,13 @@
  */
 package fishingrodofdestiny.ui.screens;
 
-import fishingrodofdestiny.highscores.Highscore;
-import fishingrodofdestiny.highscores.HighscoreList;
-import fishingrodofdestiny.highscores.ScoreBasedHighscore;
+import fishingrodofdestiny.savedata.highscores.Highscore;
+import fishingrodofdestiny.savedata.highscores.HighscoreList;
+import fishingrodofdestiny.savedata.highscores.ScoreBasedHighscore;
 import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.resources.StatisticsCache;
 import fishingrodofdestiny.settings.KeyboardSettings;
-import fishingrodofdestiny.statistics.Statistics;
+import fishingrodofdestiny.savedata.statistics.Statistics;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;
 import fishingrodofdestiny.ui.windows.ConfirmationRequester;

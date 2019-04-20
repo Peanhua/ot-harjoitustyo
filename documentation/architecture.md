@@ -16,8 +16,16 @@ List of all packages:
     <td>Data access objects and their support classes.</td>
   </tr>
   <tr>
-    <td>fishingrodofdestiny.highscores</td>
+    <td>fishingrodofdestiny.savedata</td>
+    <td>Data that are saved&loaded.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.savedata.highscores</td>
     <td>Highscore handling. Each type of highscore has its own class containing the method to calculate the points for that particular type of highscore.</td>
+  </tr>
+  <tr>
+    <td>fishingrodofdestiny.savedata.statistics</td>
+    <td>Statistics about games played.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.observer</td>
@@ -30,10 +38,6 @@ List of all packages:
   <tr>
     <td>fishingrodofdestiny.settings</td>
     <td>User settings (keyboard mapping etc).</td>
-  </tr>
-  <tr>
-    <td>fishingrodofdestiny.statistics</td>
-    <td>Statistics about games played.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.ui</td>

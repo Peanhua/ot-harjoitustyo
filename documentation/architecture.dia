@@ -28,7 +28,7 @@
           <dia:boolean val="false"/>
         </dia:attribute>
         <dia:attribute name="scaling">
-          <dia:real val="0.49010542035102844"/>
+          <dia:real val="0.49010539054870605"/>
         </dia:attribute>
         <dia:attribute name="fitto">
           <dia:boolean val="true"/>
@@ -182,7 +182,7 @@
         <dia:point val="13.7361,5.17279"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="13.3393,5.1227;14.0629,25.2118"/>
+        <dia:rectangle val="13.3394,5.11099;14.066,25.1618"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
         <dia:point val="13.7361,5.17279"/>
@@ -193,6 +193,15 @@
       </dia:attribute>
       <dia:attribute name="line_style">
         <dia:enum val="1"/>
+      </dia:attribute>
+      <dia:attribute name="start_arrow">
+        <dia:enum val="3"/>
+      </dia:attribute>
+      <dia:attribute name="start_arrow_length">
+        <dia:real val="0.5"/>
+      </dia:attribute>
+      <dia:attribute name="start_arrow_width">
+        <dia:real val="0.5"/>
       </dia:attribute>
       <dia:attribute name="end_arrow">
         <dia:enum val="22"/>
@@ -477,7 +486,7 @@
         <dia:point val="21.85,3.7225"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="21.8,2.7725;34.435,5.1725"/>
+        <dia:rectangle val="21.8,2.7725;33.665,5.1725"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -486,7 +495,7 @@
         <dia:point val="21.85,3.7225"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="12.534999999999998"/>
+        <dia:real val="11.765000000000001"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="1.3999999999999999"/>
@@ -506,7 +515,7 @@
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#fishingrodofdestiny.highscores #</dia:string>
+            <dia:string>#fishingrodofdestiny.savedata #</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
             <dia:font family="monospace" style="0" name="Courier"/>
@@ -528,16 +537,16 @@
     </dia:object>
     <dia:object type="UML - SmallPackage" version="0" id="O10">
       <dia:attribute name="obj_pos">
-        <dia:point val="22.15,16.6738"/>
+        <dia:point val="21.75,16.7238"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="22.1,15.7238;34.35,18.1238"/>
+        <dia:rectangle val="21.7,15.7738;33.95,18.1738"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="22.15,16.6738"/>
+        <dia:point val="21.75,16.7238"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="12.15"/>
@@ -569,7 +578,7 @@
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="22.45,17.5688"/>
+            <dia:point val="22.05,17.6188"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
@@ -624,14 +633,14 @@
     </dia:object>
     <dia:object type="Standard - Line" version="0" id="O12">
       <dia:attribute name="obj_pos">
-        <dia:point val="29.889,15.7352"/>
+        <dia:point val="29.5968,15.7737"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="29.8183,12.0953;33.5856,15.8059"/>
+        <dia:rectangle val="29.5262,12.098;33.5436,15.8443"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
-        <dia:point val="29.889,15.7352"/>
-        <dia:point val="33.5059,12.1737"/>
+        <dia:point val="29.5968,15.7737"/>
+        <dia:point val="33.4618,12.1742"/>
       </dia:attribute>
       <dia:attribute name="numcp">
         <dia:int val="1"/>
@@ -658,14 +667,14 @@
     </dia:object>
     <dia:object type="Standard - Line" version="0" id="O13">
       <dia:attribute name="obj_pos">
-        <dia:point val="14.5767,5.17267"/>
+        <dia:point val="14.55,5.17239"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="14.5061,5.10207;26.4656,15.8009"/>
+        <dia:rectangle val="14.4794,5.10174;26.1325,15.8618"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
-        <dia:point val="14.5767,5.17267"/>
-        <dia:point val="26.3822,15.7264"/>
+        <dia:point val="14.55,5.17239"/>
+        <dia:point val="26.0503,15.7859"/>
       </dia:attribute>
       <dia:attribute name="numcp">
         <dia:int val="1"/>
@@ -695,11 +704,11 @@
         <dia:point val="16.1425,25.195"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="16.0734,18.0541;27.161,25.2641"/>
+        <dia:rectangle val="16.0732,18.1044;26.7908,25.2643"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
         <dia:point val="16.1425,25.195"/>
-        <dia:point val="27.0672,18.1233"/>
+        <dia:point val="26.6977,18.1737"/>
       </dia:attribute>
       <dia:attribute name="numcp">
         <dia:int val="1"/>
@@ -726,14 +735,14 @@
     </dia:object>
     <dia:object type="Standard - Line" version="0" id="O15">
       <dia:attribute name="obj_pos">
-        <dia:point val="18.5139,4.4225"/>
+        <dia:point val="18.515,4.4225"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="18.4639,4.0607;21.9126,4.7843"/>
+        <dia:rectangle val="18.465,4.0607;21.912,4.7843"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
-        <dia:point val="18.5139,4.4225"/>
-        <dia:point val="21.8008,4.4225"/>
+        <dia:point val="18.515,4.4225"/>
+        <dia:point val="21.8002,4.4225"/>
       </dia:attribute>
       <dia:attribute name="numcp">
         <dia:int val="1"/>
@@ -760,14 +769,14 @@
     </dia:object>
     <dia:object type="Standard - Line" version="0" id="O16">
       <dia:attribute name="obj_pos">
-        <dia:point val="28.2113,15.7264"/>
+        <dia:point val="27.8133,15.7859"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="27.767,5.06087;28.4906,15.7768"/>
+        <dia:rectangle val="27.3804,5.06059;28.104,15.8363"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
-        <dia:point val="28.2113,15.7264"/>
-        <dia:point val="28.1237,5.17267"/>
+        <dia:point val="27.8133,15.7859"/>
+        <dia:point val="27.7378,5.17239"/>
       </dia:attribute>
       <dia:attribute name="numcp">
         <dia:int val="1"/>
@@ -794,13 +803,13 @@
     </dia:object>
     <dia:object type="Standard - Line" version="0" id="O17">
       <dia:attribute name="obj_pos">
-        <dia:point val="13.7375,5.1225"/>
+        <dia:point val="13.2349,5.1676"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="6.3677,5.0527;13.8073,15.3357"/>
+        <dia:rectangle val="6.36809,5.09819;13.3043,15.3377"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
-        <dia:point val="13.7375,5.1225"/>
+        <dia:point val="13.2349,5.1676"/>
         <dia:point val="6.4375,15.245"/>
       </dia:attribute>
       <dia:attribute name="numcp">
@@ -822,7 +831,7 @@
         <dia:real val="0.20000000000000001"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O0" connection="6"/>
+        <dia:connection handle="0" to="O0" connection="8"/>
         <dia:connection handle="1" to="O6" connection="1"/>
       </dia:connections>
     </dia:object>

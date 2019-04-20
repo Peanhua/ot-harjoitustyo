@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.dao;
 
-import fishingrodofdestiny.highscores.Highscore;
+import fishingrodofdestiny.savedata.highscores.Highscore;
 import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDateTime;

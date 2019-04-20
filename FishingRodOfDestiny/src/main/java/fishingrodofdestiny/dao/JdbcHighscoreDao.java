@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.dao;
 
-import fishingrodofdestiny.highscores.Highscore;
+import fishingrodofdestiny.savedata.highscores.Highscore;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;

@@ -9,7 +9,7 @@ import fishingrodofdestiny.dao.FileStatisticsDao;
 import fishingrodofdestiny.dao.JdbcStatisticsDao;
 import fishingrodofdestiny.dao.MemoryStatisticsDao;
 import fishingrodofdestiny.dao.StatisticsDao;
-import fishingrodofdestiny.statistics.Statistics;
+import fishingrodofdestiny.savedata.statistics.Statistics;
 
 /**
  *

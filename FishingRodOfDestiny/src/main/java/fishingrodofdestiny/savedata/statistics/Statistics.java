@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.statistics;
+package fishingrodofdestiny.savedata.statistics;
 
 import fishingrodofdestiny.dao.StatisticsDao;
 import fishingrodofdestiny.world.Game;

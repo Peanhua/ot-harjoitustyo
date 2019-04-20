@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.dao;
 
-import fishingrodofdestiny.statistics.Statistics;
+import fishingrodofdestiny.savedata.statistics.Statistics;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author joyr
  */
 public class FileStatisticsDao implements StatisticsDao {
-    private String filename;
+    private final String filename;
 
     public FileStatisticsDao(String filename) {
         this.filename = filename;

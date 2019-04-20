@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.dao;
 
-import fishingrodofdestiny.highscores.Highscore;
-import fishingrodofdestiny.highscores.ScoreBasedHighscore;
+import fishingrodofdestiny.savedata.highscores.Highscore;
+import fishingrodofdestiny.savedata.highscores.ScoreBasedHighscore;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import java.util.List;
  * @author joyr
  */
 public abstract class HighscoreDao {
-    private HashMap<Highscore.Type, List<Highscore>> highscores;
+    private final HashMap<Highscore.Type, List<Highscore>> highscores;
     private boolean loaded;
     
     

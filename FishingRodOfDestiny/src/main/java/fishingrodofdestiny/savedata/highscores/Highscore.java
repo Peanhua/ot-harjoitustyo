@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.highscores;
+package fishingrodofdestiny.savedata.highscores;
 
 import fishingrodofdestiny.world.Game;
 import java.time.LocalDateTime;
@@ -26,10 +26,10 @@ public abstract class Highscore implements Comparable<Highscore> {
         }
     };
     
-    private Integer       highscoreId;
-    private String        name;
-    private int           points;
-    private LocalDateTime endTimestamp;
+    private Integer             highscoreId;
+    private final String        name;
+    private int                 points;
+    private final LocalDateTime endTimestamp;
     
     public Highscore(Game fromGame) {
         this.highscoreId  = null;

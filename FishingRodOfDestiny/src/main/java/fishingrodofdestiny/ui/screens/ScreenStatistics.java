@@ -6,7 +6,7 @@
 package fishingrodofdestiny.ui.screens;
 
 import fishingrodofdestiny.resources.StatisticsCache;
-import fishingrodofdestiny.statistics.Statistics;
+import fishingrodofdestiny.savedata.statistics.Statistics;
 import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.dao;
 
-import fishingrodofdestiny.statistics.Statistics;
+import fishingrodofdestiny.savedata.statistics.Statistics;
 import javax.sql.rowset.CachedRowSet;
 
 /**

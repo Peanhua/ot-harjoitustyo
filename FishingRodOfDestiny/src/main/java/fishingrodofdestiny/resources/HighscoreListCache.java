@@ -9,8 +9,8 @@ import fishingrodofdestiny.dao.FileHighscoreDao;
 import fishingrodofdestiny.dao.HighscoreDao;
 import fishingrodofdestiny.dao.JdbcHighscoreDao;
 import fishingrodofdestiny.dao.MemoryHighscoreDao;
-import fishingrodofdestiny.highscores.Highscore;
-import fishingrodofdestiny.highscores.HighscoreList;
+import fishingrodofdestiny.savedata.highscores.Highscore;
+import fishingrodofdestiny.savedata.highscores.HighscoreList;
 import java.util.HashMap;
 
 /**

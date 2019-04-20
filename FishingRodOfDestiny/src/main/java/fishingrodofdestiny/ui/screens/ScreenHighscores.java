@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.ui.screens;
 
-import fishingrodofdestiny.highscores.Highscore;
-import fishingrodofdestiny.highscores.HighscoreList;
+import fishingrodofdestiny.savedata.highscores.Highscore;
+import fishingrodofdestiny.savedata.highscores.HighscoreList;
 import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.ui.widgets.HighscoreListView;
 import fishingrodofdestiny.ui.widgets.Starfield;

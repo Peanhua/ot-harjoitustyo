@@ -5,8 +5,8 @@
  */
 package fishingrodofdestiny.ui.widgets;
 
-import fishingrodofdestiny.highscores.Highscore;
-import fishingrodofdestiny.highscores.HighscoreList;
+import fishingrodofdestiny.savedata.highscores.Highscore;
+import fishingrodofdestiny.savedata.highscores.HighscoreList;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Pos;
