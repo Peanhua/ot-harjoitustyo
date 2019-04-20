@@ -8,7 +8,7 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
+import fishingrodofdestiny.world.gameobjects.Rat;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -27,15 +27,21 @@ public class ActionAttackTest {
     
     @Before
     public void setUp() {
+        class MyAttacker extends Rat {
+            public MyAttacker() {
+                super();
+                this.setAttack(99999);
+            }
+        }
         this.container1 = new BloodSplatter();
         this.container2 = new BloodSplatter();
-        this.attacker = new NonPlayerCharacter();
-        this.defender = new NonPlayerCharacter();
+        this.attacker = new MyAttacker();
+        this.defender = new Rat();
     }
     
     @Test
     public void attackingHitsTarget() {
-        Character targ = spy(new NonPlayerCharacter());
+        Character targ = spy(new Rat());
         this.attacker.getLocation().moveTo(this.container1);
         targ.getLocation().moveTo(this.container1);
         Action a = new ActionAttack(targ);
@@ -45,7 +51,7 @@ public class ActionAttackTest {
     
     @Test
     public void cantAttackTargetInDifferentContainer() {
-        Character targ = spy(new NonPlayerCharacter());
+        Character targ = spy(new Rat());
         this.attacker.getLocation().moveTo(this.container1);
         targ.getLocation().moveTo(this.container2);
         Action a = new ActionAttack(targ);
@@ -55,7 +61,7 @@ public class ActionAttackTest {
     
     @Test
     public void onHitIsCalled() {
-        class TmpNPC extends NonPlayerCharacter {
+        class TmpNPC extends Rat {
             public boolean wasCalled = false;
             @Override
             public void onHit(GameObject instigator, int damage) {

@@ -9,7 +9,7 @@ import fishingrodofdestiny.world.gameobjects.BloodSplatter;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GoldCoin;
-import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
+import fishingrodofdestiny.world.gameobjects.Rat;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -30,7 +30,7 @@ public class ActionPickUpTest {
         this.container1 = new BloodSplatter();
         this.container2 = new BloodSplatter();
         this.item       = new GoldCoin();
-        this.character  = new NonPlayerCharacter();
+        this.character  = new Rat();
     }
     
     @Test
