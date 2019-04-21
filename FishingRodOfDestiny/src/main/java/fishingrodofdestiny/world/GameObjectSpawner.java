@@ -5,7 +5,6 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

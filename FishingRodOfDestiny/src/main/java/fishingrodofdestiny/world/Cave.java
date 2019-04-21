@@ -81,8 +81,8 @@ public class Cave {
     
     public Cave(Random random) {
         this.levels = new ArrayList<>();
-        LevelGenerator lg = new BSPLevelGenerator(random, 30, 20);
-        for (int i = 0; i < 5; i++) {
+        LevelGenerator lg = new BSPLevelGenerator(random, 40, 30);
+        for (int i = 0; i < 10; i++) {
             this.addLevel(lg.generateLevel(i));
         }
         
@@ -92,6 +92,10 @@ public class Cave {
         this.connectStairs();
         this.setupGameCompletionObjects();
         this.addTraps(random);
+        for (int i = 0; i < this.levels.size(); i++) {
+            Level level = this.levels.get(i);
+            lg.placeItems(lg.getItemSettings(i), level);
+        }
         this.populateNPCs(random);
     }
 
@@ -188,6 +192,9 @@ public class Cave {
         // And add the fishing rod in there:
         GameObject rod = GameObjectFactory.create("fishing rod");
         rod.getLocation().moveTo(newTile);
+        // Also add a ghost at same location:
+        GameObject ghost = GameObjectFactory.create("ghost");
+        ghost.getLocation().moveTo(newTile);
     }
     
     
@@ -201,7 +208,7 @@ public class Cave {
             Level prev = this.levels.get(i - 1);
             Level cur  = this.levels.get(i);
             
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < 15; j++) {
                 Tile floor = prev.getRandomTileOfType(random, FloorTile.class);
                 Tile floorDownstairs = cur.getTile(floor.getX(), floor.getY());
                 if (floorDownstairs.getClass() == floor.getClass()) {

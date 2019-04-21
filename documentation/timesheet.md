@@ -80,7 +80,7 @@ Time used for the project.
   <tr><td>     </td><td>  1.5</td><td>Code refactoring.</td></tr>
   <tr><td>21.4.</td><td>  4.5</td><td>Code refactoring.</td></tr>
   <tr><td>     </td><td>  0.5</td><td>Documentation.</td></tr>
-  <tr><td>     </td><td>  0.5</td><td>Playtesting and balancing.</td></tr>
-  <tr><td>     </td><td>  0.5</td><td>Content and game logic.</td></tr>
-  <tr><th>Total</th><th>120.5</th><th></th></tr>
+  <tr><td>     </td><td>  2.5</td><td>Playtesting and balancing.</td></tr>
+  <tr><td>     </td><td>  1.0</td><td>Content and game logic.</td></tr>
+  <tr><th>Total</th><th>123.0</th><th></th></tr>
 </table>

@@ -61,7 +61,6 @@ public abstract class LevelGenerator {
     public void placeItems(GameObjectSpawner itemSettings, Level level) {
         while (true) {
             GameObject item = GameObjectFactory.create(itemSettings.getNextObjectType(random, level));
-
             if (item == null) {
                 break;
             }
@@ -77,6 +76,10 @@ public abstract class LevelGenerator {
     public abstract Level generateLevel(int caveLevel);
     public abstract void  connectStartEnd(Level level);
     
+    public GameObjectSpawner getItemSettings(int caveLevel) {
+        return new GameObjectSpawner();
+    }
+
     /**
      * Find out areas that can't be accessed and fill them with something.
      * 
