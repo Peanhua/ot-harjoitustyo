@@ -77,9 +77,9 @@ Time used for the project.
   <tr><td>     </td><td>  0.5</td><td>Documentation.</td></tr>
   <tr><td>     </td><td>  3.5</td><td>User interface and gfx.</td></tr>
   <tr><td>     </td><td>  0.5</td><td>Playtesting and balancing.</td></tr>
-  <tr><td>     </td><td>  0.5</td><td>Code refactoring.</td></tr>
   <tr><td>     </td><td>  1.5</td><td>Code refactoring.</td></tr>
   <tr><td>21.4.</td><td>  4.5</td><td>Code refactoring.</td></tr>
   <tr><td>     </td><td>  0.5</td><td>Documentation.</td></tr>
+  <tr><td>     </td><td>  0.5</td><td>Playtesting and balancing.</td></tr>
   <tr><th>Total</th><th>120.0</th><th></th></tr>
 </table>
