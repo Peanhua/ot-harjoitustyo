@@ -112,7 +112,7 @@ public abstract class Character extends GameObject {
     }
     
     public void removeArmor(Armor.Slot fromSlot) {
-        this.equippedArmor.put(fromSlot, null);
+        this.equippedArmor.remove(fromSlot);
         this.onChange.notifyObservers();
     }
     
@@ -254,7 +254,9 @@ public abstract class Character extends GameObject {
             }
         }
         for (Buff buff : this.buffs) {
-            bonuses += buff.getBonus(forType);
+            if (buff != null && buff.isAlive()) {
+                bonuses += buff.getBonus(forType);
+            }
         }
         
         return bonuses;
@@ -334,8 +336,7 @@ public abstract class Character extends GameObject {
     public int getDamageReduction(int damage) {
         int ac = Math.min(100, this.getArmorClass()); // clamp max ac
         double acModifier = (double) ac * 0.01;
-        double damageReduction = (double) damage * 0.75 * (1.0 - acModifier); // 75% of damage can be reduced by armor class
-
+        double damageReduction = (double) damage * 0.9 * acModifier; // not all damage can be reduced by armor class
         return (int) damageReduction;
     }
 
