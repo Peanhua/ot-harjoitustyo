@@ -148,19 +148,19 @@ public abstract class Character extends GameObject {
         return items;
     }
     
-    protected final void setAttack(int amount) {
+    public final void setAttack(int amount) {
         this.attack = amount;
     }
     
-    protected final void setDefence(int amount) {
+    public final void setDefence(int amount) {
         this.defence = amount;
     }
     
-    protected final void setNaturalArmorClass(int ac) {
+    public final void setNaturalArmorClass(int ac) {
         this.naturalArmorClass = ac;
     }
     
-    protected final void setNaturalRegeneration(double amount) {
+    public final void setNaturalRegeneration(double amount) {
         this.naturalRegeneration = amount;
     }
     
@@ -168,7 +168,7 @@ public abstract class Character extends GameObject {
         return this.characterLevel;
     }
     
-    protected final void setCharacterLevel(int level) {
+    public final void setCharacterLevel(int level) {
         this.characterLevel = level;
     }
     

@@ -5,12 +5,12 @@
  */
 package fishingrodofdestiny.world.tiles;
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.Rat;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -32,7 +32,7 @@ public class BearTrapTileTest {
         this.trap = new BearTrapTile(level, 1, 0);
         level.setTile(0, 0, this.floor);
         level.setTile(1, 0, this.trap);
-        this.character = new Rat();
+        this.character = (Character) GameObjectFactory.create("rat");
     }
 
     @Test

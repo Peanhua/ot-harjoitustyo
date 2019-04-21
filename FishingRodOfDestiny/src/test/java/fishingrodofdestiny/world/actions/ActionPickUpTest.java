@@ -8,7 +8,6 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.Rat;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -29,7 +28,7 @@ public class ActionPickUpTest {
         this.container1 = GameObjectFactory.create("pool of blood");
         this.container2 = GameObjectFactory.create("pool of blood");
         this.item       = GameObjectFactory.create("gold coin");
-        this.character  = new Rat();
+        this.character  = (Character) GameObjectFactory.create("rat");
     }
     
     @Test

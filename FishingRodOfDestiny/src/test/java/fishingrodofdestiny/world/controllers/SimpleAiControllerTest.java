@@ -7,6 +7,7 @@ package fishingrodofdestiny.world.controllers;
 
 import fishingrodofdestiny.world.Cave;
 import fishingrodofdestiny.world.Game;
+import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionAttack;
@@ -14,7 +15,6 @@ import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import fishingrodofdestiny.world.gameobjects.Player;
-import fishingrodofdestiny.world.gameobjects.Rat;
 import fishingrodofdestiny.world.tiles.FloorTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import org.junit.Before;
@@ -58,7 +58,7 @@ public class SimpleAiControllerTest {
     
     @Test
     public void npcAttacksPlayerWhenInSameTile() {
-        NonPlayerCharacter npc = new Rat();
+        Character npc = (Character) GameObjectFactory.create("rat");
         npc.getLocation().moveTo(player.getLocation().getContainerTile());
         Action action = npc.getController().getNextAction();
         assertTrue(action instanceof ActionAttack);
@@ -66,7 +66,7 @@ public class SimpleAiControllerTest {
     
     @Test
     public void npcMovesTowardsPlayer() {
-        NonPlayerCharacter npc = new Rat();
+        Character npc = (Character) GameObjectFactory.create("rat");
         npc.getLocation().moveTo(this.findNearbyFloorTile(this.player.getLocation().getContainerTile()));
         SimpleAiController controller = (SimpleAiController) npc.getController();
         controller.setAggressive(true);
@@ -76,7 +76,7 @@ public class SimpleAiControllerTest {
     
     @Test
     public void npcEventuallyGetsAggressiveNearPlayer() {
-        NonPlayerCharacter npc = new Rat();
+        Character npc = (Character) GameObjectFactory.create("rat");
         npc.getLocation().moveTo(this.findNearbyFloorTile(this.player.getLocation().getContainerTile()));
         SimpleAiController controller = (SimpleAiController) npc.getController();
         for (int i = 0; i < 100; i++) {

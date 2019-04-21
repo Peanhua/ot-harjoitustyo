@@ -96,8 +96,20 @@ public class Inventory {
         return count;
     }
 
-    public int getObjectCount(GameObjectFactory.Type type) {
-        return this.getObjectCount(GameObjectFactory.getJavaClass(type));
+    public int getObjectCount(String objectId) {
+        if (objectId == null) {
+            return this.objects.size();
+        }
+        
+        int count = 0;
+        
+        for (GameObject object : this.objects) {
+            if (object.getName().equals(objectId)) {
+                count++;
+            }
+        }
+        
+        return count;
     }
 
     public int getWeight() {

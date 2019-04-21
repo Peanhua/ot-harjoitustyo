@@ -26,7 +26,7 @@ public class BSPLevelGenerator extends LevelGenerator {
     @Override
     public Level generateLevel(int caveLevel) {
         GameObjectSpawner enemySettings = new GameObjectSpawner();
-        enemySettings.addType(GameObjectFactory.Type.Rat, this.random.nextInt(5) + this.width * this.height / 200, 1.0);
+        enemySettings.addType("rat", this.random.nextInt(5) + this.width * this.height / 200, 1.0);
         
         Level level = new Level(enemySettings, caveLevel, this.width, this.height);
         

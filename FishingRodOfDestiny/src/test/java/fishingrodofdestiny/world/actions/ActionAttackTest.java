@@ -8,7 +8,7 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.Rat;
+import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -27,21 +27,21 @@ public class ActionAttackTest {
     
     @Before
     public void setUp() {
-        class MyAttacker extends Rat {
+        class MyAttacker extends NonPlayerCharacter {
             public MyAttacker() {
-                super();
+                super("my attacker");
                 this.setAttack(99999);
             }
         }
         this.container1 = GameObjectFactory.create("pool of blood");
         this.container2 = GameObjectFactory.create("pool of blood");
         this.attacker = new MyAttacker();
-        this.defender = new Rat();
+        this.defender = (Character) GameObjectFactory.create("rat");
     }
     
     @Test
     public void attackingHitsTarget() {
-        Character targ = spy(new Rat());
+        Character targ = spy((Character) GameObjectFactory.create("rat"));
         this.attacker.getLocation().moveTo(this.container1);
         targ.getLocation().moveTo(this.container1);
         Action a = new ActionAttack(targ);
@@ -51,7 +51,7 @@ public class ActionAttackTest {
     
     @Test
     public void cantAttackTargetInDifferentContainer() {
-        Character targ = spy(new Rat());
+        Character targ = spy((Character) GameObjectFactory.create("rat"));
         this.attacker.getLocation().moveTo(this.container1);
         targ.getLocation().moveTo(this.container2);
         Action a = new ActionAttack(targ);
@@ -61,8 +61,11 @@ public class ActionAttackTest {
     
     @Test
     public void onHitIsCalled() {
-        class TmpNPC extends Rat {
+        class TmpNPC extends NonPlayerCharacter {
             public boolean wasCalled = false;
+            public TmpNPC() {
+                super("tmp npc");
+            }
             @Override
             public void onHit(GameObject instigator, int damage) {
                 this.wasCalled = true;

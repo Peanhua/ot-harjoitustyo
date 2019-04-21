@@ -28,37 +28,11 @@ public class GameObjectSpawner {
         this.maximumTotalCount = count;
     }
     
-    public final void addType(GameObjectFactory.Type type, int maximumCount, double weight) {
-        this.objects.add(new ObjectConfiguration(type, maximumCount, weight));
-    }
-
     public final void addType(String objectId, int maximumCount, double weight) {
         this.objects.add(new ObjectConfiguration(objectId, maximumCount, weight));
     }
     
     // TODO: GameObject and Level (and Tile) could implement the same interface to simplify this.
-    public final GameObjectFactory.Type getNext(Random random, Level level) {
-        return this.getNext(random, this.getPossible(level), level.getObjectCount((Class) null));
-    }
-
-    public final GameObjectFactory.Type getNext(Random random, GameObject object) {
-        return this.getNext(random, this.getPossible(object), object.getInventory().getObjectCount((Class) null));
-    }
-    
-    private GameObjectFactory.Type getNext(Random random, List<ObjectConfiguration> possibleChoices, int currentObjectCount) {
-        if (this.maximumTotalCount > 0 && currentObjectCount >= this.maximumTotalCount) {
-            return null;
-        }
-        if (possibleChoices.isEmpty()) {
-            return null;
-        }
-        
-        possibleChoices.forEach(conf -> conf.setProbabilityModifier(random.nextDouble()));
-        Collections.sort(possibleChoices);
-        
-        return possibleChoices.get(0).getType();
-    }
-    
     public final String getNextObjectId(Random random, Level level) {
         return this.getNextObjectId(random, this.getPossible(level), level.getObjectCount((Class) null));
     }
@@ -85,7 +59,7 @@ public class GameObjectSpawner {
     private List<ObjectConfiguration> getPossible(Level level) {
         List<ObjectConfiguration> possible = new ArrayList<>();
         this.objects.forEach(conf -> {
-            if (level.getObjectCount(conf.getType()) < conf.getMaxCount()) {
+            if (level.getObjectCount(conf.getObjectId()) < conf.getMaxCount()) {
                 possible.add(conf);
             }
         });
@@ -95,7 +69,7 @@ public class GameObjectSpawner {
     private List<ObjectConfiguration> getPossible(GameObject object) {
         List<ObjectConfiguration> possible = new ArrayList<>();
         this.objects.forEach(conf -> {
-            if (object.getInventory().getObjectCount(conf.getType()) < conf.getMaxCount()) {
+            if (object.getInventory().getObjectCount(conf.getObjectId()) < conf.getMaxCount()) {
                 possible.add(conf);
             }
         });
@@ -105,32 +79,18 @@ public class GameObjectSpawner {
 
 
 class ObjectConfiguration implements Comparable<ObjectConfiguration> {
-    private final GameObjectFactory.Type type;
     private final String                 objectId;
     private final double                 weight;
     private final int                    maxCount;
     private double                       currentProbability;
 
-    public ObjectConfiguration(GameObjectFactory.Type type, int maxCount, double weight) {
-        this.type               = type;
-        this.objectId           = null;
-        this.maxCount           = maxCount;
-        this.weight             = weight;
-        this.currentProbability = weight;
-    }
-
     public ObjectConfiguration(String objectId, int maxCount, double weight) {
-        this.type               = null;
         this.objectId           = objectId;
         this.maxCount           = maxCount;
         this.weight             = weight;
         this.currentProbability = weight;
     }
 
-    public GameObjectFactory.Type getType() {
-        return this.type;
-    }
-    
     public String getObjectId() {
         return this.objectId;
     }
