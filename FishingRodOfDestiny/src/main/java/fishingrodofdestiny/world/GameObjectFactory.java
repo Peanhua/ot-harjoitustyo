@@ -48,6 +48,10 @@ public class GameObjectFactory {
         if (type == null) {
             throw new RuntimeException("Error while loading '" + id + "': missing Type");
         }
+        return createByType(section, id, type);
+    }
+    
+    private static GameObject createByType(Ini.Section section, String id, String type) {
         GameObject obj = null;
         try {
             switch (type) {
@@ -63,6 +67,7 @@ public class GameObjectFactory {
             throw new RuntimeException("Error while loading '" + id + "': " + e);
         }
     }
+    
     
     private static GameObject createObject(Ini.Section section, String id) {
         GameObject object = new GameObject(id);
