@@ -7,8 +7,10 @@ package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.tiles.FloorTile;
+import fishingrodofdestiny.world.tiles.StairsTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import fishingrodofdestiny.world.tiles.WallTile;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -74,4 +76,33 @@ public abstract class LevelGenerator {
     
     public abstract Level generateLevel(int caveLevel);
     public abstract void  connectStartEnd(Level level);
+    
+    /**
+     * Find out areas that can't be accessed and fill them with something.
+     * 
+     * @param level Level to process.
+     */
+    public void fillUnusedSpace(Level level) {
+        Tile stairs = this.getStairsUpOrDown(level); // Doesn't matter which one.
+        
+        LevelMapConnectedTilesAlgorithm cta = new LevelMapConnectedTilesAlgorithm(level.getMap());
+        List<List<Tile>> connectedTileGroups = cta.getConnectedTileGroups();
+  
+        connectedTileGroups.forEach(group -> {
+            if (!group.contains(stairs)) {
+                group.forEach(tile -> level.setTile(tile.getX(), tile.getY(), new WallTile(level, tile.getX(), tile.getY())));
+            }
+        });
+    }
+    
+    private Tile getStairsUpOrDown(Level level) {
+        List<StairsTile> stairs = level.getStairsUp();
+        if (stairs.isEmpty()) {
+            stairs = level.getStairsDown();
+        }
+        if (stairs.isEmpty()) {
+            throw new RuntimeException("No stairs found for level " + level);
+        }
+        return stairs.get(0);
+    }
 }

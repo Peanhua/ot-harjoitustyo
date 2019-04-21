@@ -88,6 +88,7 @@ public class Cave {
         
         this.addStairs(random);
         this.levels.forEach(level -> lg.connectStartEnd(level));
+        this.levels.forEach(level -> lg.fillUnusedSpace(level));
         this.connectStairs();
         this.setupGameCompletionObjects();
         this.addTraps(random);
