@@ -374,7 +374,9 @@ public abstract class Character extends GameObject {
     @Override
     public void tick(double deltaTime) {
         super.tick(deltaTime);
+        
         this.regenerationTick(deltaTime);
+        this.buffTick(deltaTime);
         
         if (!this.isAlive()) {
             return;
@@ -403,6 +405,14 @@ public abstract class Character extends GameObject {
     
     public final double getRegenerationPerSecond() {
         return this.naturalRegeneration + this.getBuffBonuses(Buff.Type.REGENERATION);
+    }
+    
+    private void buffTick(double deltaTime) {
+        this.buffs.forEach(buff -> {
+            if (buff != null && buff.isAlive()) {
+                buff.tick(deltaTime);
+            }
+        });
     }
     
     
