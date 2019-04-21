@@ -149,6 +149,178 @@ The following sequence diagram describes what happens when a monster hits the pl
 <div><img src="monster_hit_player_sequence_diagram.svg" alt="Sequence diagram about monster hitting the player" width="900" /></div>
 
 
+## Datafiles
+
+All the objects (and non player characters) are created using GameObjectFactory, which uses a [INI-file](https://en.wikipedia.org/wiki/INI_file) from `src/main/resources/fishingrodofdestiny/items.ini` to define the properties of each object.
+
+Each object has its own section in the INI-file, the name of the section is used as an *object ID*. All object types share some common attributes, and some object types have additional attributes.
+
+Example section in the INI-file describing the gold coin object:
+```INI
+[gold coin]
+Type=ITEM
+TileSet=rltiles/nh32
+TileX=192
+TileY=832
+TileWidth=32
+TileHeight=32
+```
+
+Example section in the INI-file describing a non player character (rat):
+```INI
+[rat]
+Type=NPC
+TileSet=rltiles/nh32
+TileX=928
+TileY=64
+TileWidth=32
+TileHeight=32
+Controller=SimpleAiController
+LevelMin=1
+LevelMax=5
+Attack=2
+LevelAddAttack=1
+LevelMulAttack=1
+Defence=20
+LevelAddDefence=1
+LevelMulDefence=1
+ArmorClass=5
+LevelAddArmorClass=0.5
+LevelMulArmorClass=1
+Hitpoints=5
+LevelAddHitpoints=2
+LevelMulHitpoints=1
+Regeneration=0
+LevelAddRegeneration=0
+LevelMulRegeneration=1
+InventoryItemCountMax=0
+LevelAddInventoryItemCountMax=1
+LevelMulInventoryItemCountMax=1
+InventoryItem=gold coin
+InventoryItemMax=1
+InventoryItemWeight=0.2
+InventoryItem=kitchen knife
+InventoryItemMax=1
+InventoryItemWeight=0.3
+InventoryItem=apple
+InventoryItemMax=3
+InventoryItemWeight=1
+InventoryItem=potion of healing
+InventoryItemMax=1
+InventoryItemWeight=0.1
+InventoryItem=potion of regeneration
+InventoryItemMax=1
+InventoryItemWeight=0.1
+```
+
+Because this INI-file is an internal data file, it is assumed that it is flawless, and errors are reported by throwing exceptions.
+
+The next sections describes all the attribute groups.
+
+
+### Common attributes
+
+These attributes are used by all types of objects.
+
+* `Type` = type of the object, valid values are: ARMOR, CONSUMABLE, ITEM, NPC, OBJECT, WEAPON
+
+Object types and their additional attribute groups:
+<table>
+  <tr><th>Type</th>      <th>Attribute groups</th></tr>
+  <tr><td>ARMOR</td>     <td>Basic, Gfx, Buffs, Armor</td></tr>
+  <tr><td>CONSUMABLE</td><td>Basic, Gfx, UseBuffs, Consumable</td></tr>
+  <tr><td>ITEM</td>      <td>Basic, Gfx, UseBuffs</td></tr>
+  <tr><td>NPC</td>       <td>Basic, Gfx, Level, InventoryItems</td></tr>
+  <tr><td>OBJECT</td>    <td>Basic, Gfx</td></tr>
+  <tr><td>WEAPON</td>    <td>Basic, Gfx, Buffs, Weapon</td></tr>
+</table>
+
+
+### Basic attributes
+
+* `Hitpoints`
+* `TimeToLive`
+* `Weight`
+
+### Gfx attributes
+
+These define the visual representation of the object.
+
+* `TileSet` 
+* `TileX`
+* `TileY`
+* `TileWidth`
+* `TileHeight`
+
+### Buffs attributes
+
+These define the permanent buffs tied to the object.
+
+* `BuffType`
+* `BuffAmount`
+
+### UseBuffs attributes
+
+These define the buffs added to the user of the item.
+
+* `BuffType`
+* `BuffTime`
+* `BuffAmount`
+
+### Consumable attributes
+
+* `UseVerb`
+* `HealOnUse`
+* `HealOnUse%`
+
+### Weapon attributes
+
+* `Damage`
+* `ChanceToHitMultiplier`
+
+### Armor attributes
+
+* `Slot`
+
+### Level attributes
+
+These are for non player characters only, and define the character level and other Character only attributes.
+
+* `LevelMin`
+* `LevelMax`
+* `Hitpoints`
+* `LevelAddHitpoints`
+* `LevelMulHitpoints`
+* `Attack`
+* `LevelAddAttack`
+* `LevelMulAttack`
+* `Defence`
+* `LevelAddDefence`
+* `LevelMulDefence`
+* `ArmorClass`
+* `LevelAddArmorClass`
+* `LevelMulArmorClass`
+* `Regeneration`
+* `LevelAddRegeneration`
+* `LevelMulRegeneration`
+
+
+### InventoryItems attributes
+
+These define inventory items to be added using GameObjectSpawner.
+
+* `InventoryItemCountMax`
+* `LevelAddInventoryItemCountMax`
+* `LevelMulInventoryItemCountMax`
+
+The following group can be defined multiple times:
+
+* `InventoryItem`
+* `InventoryItemMax`
+* `InventoryItemWeight`
+
+
+
 ## Saved data
 
 [Data access objects](https://en.wikipedia.org/wiki/Data_access_object) are used to handle the details about saving and loading. There are three different choices for saving the data: database, files, or in memory.
