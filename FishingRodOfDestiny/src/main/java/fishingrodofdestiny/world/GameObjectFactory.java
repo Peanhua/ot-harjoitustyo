@@ -52,15 +52,14 @@ public class GameObjectFactory {
     }
     
     private static GameObject createByType(Ini.Section section, String id, String type) {
-        GameObject obj = null;
         try {
             switch (type) {
-                case "OBJECT":     return createObject(section, id);
-                case "ITEM":       return createItem(section, id);
-                case "CONSUMABLE": return createConsumable(section, id);
-                case "WEAPON":     return createWeapon(section, id);
                 case "ARMOR":      return createArmor(section, id);
+                case "CONSUMABLE": return createConsumable(section, id);
+                case "ITEM":       return createItem(section, id);
                 case "NPC":        return createNPC(section, id);
+                case "OBJECT":     return createObject(section, id);
+                case "WEAPON":     return createWeapon(section, id);
                 default:           throw new RuntimeException("Uknown type: " + type);
             }
         } catch (Exception e) {
