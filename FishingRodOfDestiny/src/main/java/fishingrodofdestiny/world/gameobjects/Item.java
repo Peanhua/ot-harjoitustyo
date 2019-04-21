@@ -29,7 +29,7 @@ public class Item extends GameObject {
     }
     
     
-    protected final void addBuff(Buff buff) {
+    public final void addBuff(Buff buff) {
         this.buffs.add(buff);
     }
     

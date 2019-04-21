@@ -189,7 +189,7 @@ public class GameObjectFactory {
             if (buffAmount == null) {
                 throw new RuntimeException("Missing BuffAmount");
             }
-            item.addUseBuff(new Buff(item, Buff.Type.nameToType(buffType), buffAmount));
+            item.addBuff(new Buff(item, Buff.Type.nameToType(buffType), buffAmount));
         }
     }
     
