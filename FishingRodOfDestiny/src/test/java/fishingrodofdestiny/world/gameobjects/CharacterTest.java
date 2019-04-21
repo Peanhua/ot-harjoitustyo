@@ -17,7 +17,7 @@ public class CharacterTest {
     
     class CharacterSubclass extends Character {
         public CharacterSubclass() {
-            super();
+            super("test character");
         }
     };
     

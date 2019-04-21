@@ -14,8 +14,8 @@ public class Consumable extends Item {
     private int     healOnUse;
     private boolean healOnUsePercentage;
     
-    public Consumable(String name) {
-        super(name);
+    public Consumable(String objectType) {
+        super(objectType);
         this.useVerb             = "use";
         this.healOnUse           = 0;
         this.healOnUsePercentage = false;

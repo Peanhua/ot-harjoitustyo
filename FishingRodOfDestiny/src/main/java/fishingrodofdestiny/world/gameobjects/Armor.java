@@ -44,8 +44,8 @@ public class Armor extends Item {
     
     private Slot slot;
     
-    public Armor(String name) {
-        super(name);
+    public Armor(String objectType) {
+        super(objectType);
         this.slot = null;
     }
     

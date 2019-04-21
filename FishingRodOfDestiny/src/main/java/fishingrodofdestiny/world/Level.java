@@ -129,17 +129,6 @@ public class Level {
     }
     
 
-    public int getObjectCount(Class type) {
-        // TODO: cache the most frequently queried types (all variations of NonPlayerCharacters)
-        int count = 0;
-        
-        for (Tile tile : this.map.getTiles()) {
-            count += tile.getInventory().getObjectCount(type);
-        }
-        
-        return count;
-    }
-
     public int getObjectCount(String objectId) {
         // TODO: cache the most frequently queried types (all variations of NonPlayerCharacters)
         int count = 0;
@@ -156,7 +145,7 @@ public class Level {
     */
     public GameObject spawnNPC(Random random) {
         // Generate the NPC:
-        GameObject npc = GameObjectFactory.create(this.enemySettings.getNextObjectId(random, this));
+        GameObject npc = GameObjectFactory.create(this.enemySettings.getNextObjectType(random, this));
         if (npc == null) {
             return null;
         }

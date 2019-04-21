@@ -58,7 +58,7 @@ public abstract class LevelGenerator {
     
     public void placeItems(GameObjectSpawner itemSettings, Level level) {
         while (true) {
-            GameObject item = GameObjectFactory.create(itemSettings.getNextObjectId(random, level));
+            GameObject item = GameObjectFactory.create(itemSettings.getNextObjectType(random, level));
 
             if (item == null) {
                 break;

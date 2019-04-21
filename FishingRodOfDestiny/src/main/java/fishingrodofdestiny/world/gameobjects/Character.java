@@ -33,8 +33,8 @@ public abstract class Character extends GameObject {
     private long       actionsTaken;
     private final List<Buff> buffs;
 
-    public Character() {
-        super();
+    public Character(String objectType) {
+        super(objectType);
         this.attack              = 0;
         this.defence             = 0;
         this.naturalArmorClass   = 0;

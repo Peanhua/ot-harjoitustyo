@@ -36,55 +36,55 @@ public class GameObjectFactory {
         }
     }
     
-    public static GameObject create(String id) {
-        if (id == null) {
+    public static GameObject create(String objectType) {
+        if (objectType == null) {
             return null;
         }
         
         initialize();
         
-        Ini.Section section = ini.get(id);
+        Ini.Section section = ini.get(objectType);
         String type = section.get("Type");
         if (type == null) {
-            throw new RuntimeException("Error while loading '" + id + "': missing Type");
+            throw new RuntimeException("Error while loading '" + objectType + "': missing Type");
         }
-        return createByType(section, id, type);
+        return createByType(section, objectType, type);
     }
     
-    private static GameObject createByType(Ini.Section section, String id, String type) {
+    private static GameObject createByType(Ini.Section section, String objectType, String type) {
         try {
             switch (type) {
-                case "ARMOR":      return createArmor(section, id);
-                case "CONSUMABLE": return createConsumable(section, id);
-                case "ITEM":       return createItem(section, id);
-                case "NPC":        return createNPC(section, id);
-                case "OBJECT":     return createObject(section, id);
-                case "WEAPON":     return createWeapon(section, id);
+                case "ARMOR":      return createArmor(section, objectType);
+                case "CONSUMABLE": return createConsumable(section, objectType);
+                case "ITEM":       return createItem(section, objectType);
+                case "NPC":        return createNPC(section, objectType);
+                case "OBJECT":     return createObject(section, objectType);
+                case "WEAPON":     return createWeapon(section, objectType);
                 default:           throw new RuntimeException("Uknown type: " + type);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error while loading '" + id + "': " + e);
+            throw new RuntimeException("Error while loading '" + objectType + "': " + e);
         }
     }
     
     
-    private static GameObject createObject(Ini.Section section, String id) {
-        GameObject object = new GameObject(id);
+    private static GameObject createObject(Ini.Section section, String objectType) {
+        GameObject object = new GameObject(objectType);
         loadBasics(section, object);
         loadGfx(section, object);
         return object;
     }
     
-    private static GameObject createItem(Ini.Section section, String id) {
-        Item item = new Item(id);
+    private static GameObject createItem(Ini.Section section, String objectType) {
+        Item item = new Item(objectType);
         loadBasics(section, item);
         loadGfx(section, item);
         loadUseBuffs(section, item);
         return item;
     }
     
-    private static GameObject createConsumable(Ini.Section section, String id) {
-        Consumable consumable = new Consumable(id);
+    private static GameObject createConsumable(Ini.Section section, String objectType) {
+        Consumable consumable = new Consumable(objectType);
         loadBasics(section, consumable);
         loadGfx(section, consumable);
         loadUseBuffs(section, consumable);
@@ -104,8 +104,8 @@ public class GameObjectFactory {
         return consumable;
     }
     
-    private static GameObject createWeapon(Ini.Section section, String id) {
-        Weapon weapon = new Weapon(id);
+    private static GameObject createWeapon(Ini.Section section, String objectType) {
+        Weapon weapon = new Weapon(objectType);
         loadBasics(section, weapon);
         loadGfx(section, weapon);
         loadBuffs(section, weapon);
@@ -120,8 +120,8 @@ public class GameObjectFactory {
         return weapon;
     }
     
-    private static GameObject createArmor(Ini.Section section, String id) {
-        Armor armor = new Armor(id);
+    private static GameObject createArmor(Ini.Section section, String objectType) {
+        Armor armor = new Armor(objectType);
         loadBasics(section, armor);
         loadGfx(section, armor);
         loadBuffs(section, armor);
@@ -134,8 +134,8 @@ public class GameObjectFactory {
         return armor;
     }
     
-    private static GameObject createNPC(Ini.Section section, String id) {
-        NonPlayerCharacter npc = new NonPlayerCharacter(id);
+    private static GameObject createNPC(Ini.Section section, String objectType) {
+        NonPlayerCharacter npc = new NonPlayerCharacter(objectType);
         loadBasics(section, npc);
         loadGfx(section, npc);
         loadLevel(section, npc);
@@ -246,7 +246,7 @@ public class GameObjectFactory {
         int count = object.getRandom().nextInt(max);
         
         for (int i = 0; i < count; i++) {
-            GameObject item = GameObjectFactory.create(gameObjectSpawner.getNextObjectId(object.getRandom(), object));
+            GameObject item = GameObjectFactory.create(gameObjectSpawner.getNextObjectType(object.getRandom(), object));
             if (item != null) {
                 item.getLocation().moveTo(object);
             }

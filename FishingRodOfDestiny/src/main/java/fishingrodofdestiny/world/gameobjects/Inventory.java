@@ -80,31 +80,15 @@ public class Inventory {
         return this.objects;
     }
 
-    public int getObjectCount(Class type) {
-        if (type == null) {
+    public int getObjectCount(String objectType) {
+        if (objectType == null) {
             return this.objects.size();
         }
         
         int count = 0;
         
         for (GameObject object : this.objects) {
-            if (object.getClass() == type) {
-                count++;
-            }
-        }
-        
-        return count;
-    }
-
-    public int getObjectCount(String objectId) {
-        if (objectId == null) {
-            return this.objects.size();
-        }
-        
-        int count = 0;
-        
-        for (GameObject object : this.objects) {
-            if (object.getName().equals(objectId)) {
+            if (object.getObjectType().equals(objectType)) {
                 count++;
             }
         }

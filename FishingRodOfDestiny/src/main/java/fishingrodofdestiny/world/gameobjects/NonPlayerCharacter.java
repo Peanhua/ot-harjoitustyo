@@ -17,10 +17,9 @@ import fishingrodofdestiny.world.TileGfx;
 public class NonPlayerCharacter extends Character {
     private final GameObjectSpawner gameObjectSpawner;
     
-    public NonPlayerCharacter(String name) {
-        super();
+    public NonPlayerCharacter(String objectType) {
+        super(objectType);
         this.setController(new SimpleAiController(this));
-        this.setName(name);
         this.setGraphics(new TileGfx("rltiles/nh32", 192, 0, 32, 32));
         this.gameObjectSpawner = new GameObjectSpawner();
     }
@@ -31,7 +30,7 @@ public class NonPlayerCharacter extends Character {
     
     protected final void spawnInventoryItems() {
         while (true) {
-            GameObject item = GameObjectFactory.create(this.gameObjectSpawner.getNextObjectId(this.getRandom(), this));
+            GameObject item = GameObjectFactory.create(this.gameObjectSpawner.getNextObjectType(this.getRandom(), this));
             if (item == null) {
                 break;
             }

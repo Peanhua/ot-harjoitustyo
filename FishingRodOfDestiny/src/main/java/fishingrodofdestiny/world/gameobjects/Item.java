@@ -16,8 +16,8 @@ public class Item extends GameObject {
     private final List<Buff> buffs;
     private final List<Buff> useBuffs;
     
-    public Item(String name) {
-        super(name);
+    public Item(String objectType) {
+        super(objectType);
         this.buffs    = new ArrayList<>();
         this.useBuffs = new ArrayList<>();
         this.setCanBePickedUp(true);

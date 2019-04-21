@@ -27,6 +27,7 @@ public class GameObject {
      */
     protected Subject    onChange;
     
+    private   String     objectType;
     private   String     name;
     private   boolean    isAlive;
     private   int        maxHitpoints;
@@ -44,9 +45,12 @@ public class GameObject {
 
     /**
      * Create a new GameObject with default values.
+     * 
+     * @param objectType The type of this object.
      */
-    public GameObject() {
-        this.name             = null;
+    public GameObject(String objectType) {
+        this.objectType       = objectType;
+        this.name             = objectType;
         this.isAlive          = true;
         this.maxHitpoints     = 1;
         this.currentHitpoints = 1;
@@ -68,13 +72,14 @@ public class GameObject {
     }
 
     /**
-     * Create a new GameObject with the given name.
-     *
-     * @param name The name of this GameObject.
+     * Return the type of this object, for example "player", or "apple".
+     * <p>
+     * While object types are unique, there can be multiple instances of each type in the game.
+     * 
+     * @return The type of this GameObject.
      */
-    public GameObject(String name) {
-        this();
-        this.name = name;
+    public final String getObjectType() {
+        return this.objectType;
     }
 
     /**
@@ -202,7 +207,6 @@ public class GameObject {
     
     public final void setName(String name) {
         this.name = name;
-        this.onChange.notifyObservers();
     }
     
     public String getName() {

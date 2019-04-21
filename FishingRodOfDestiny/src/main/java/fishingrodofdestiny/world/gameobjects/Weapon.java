@@ -13,8 +13,8 @@ public class Weapon extends Item {
     private int    damage;
     private double chanceToHitMultiplier;
     
-    public Weapon(String name) {
-        super(name);
+    public Weapon(String objectType) {
+        super(objectType);
         this.damage                = 1;
         this.chanceToHitMultiplier = 1.0;
     }

@@ -27,7 +27,7 @@ public class Player extends Character {
 
     
     public Player() {
-        super();
+        super("player");
         this.gameCompleted = false;
         this.enemiesKilled = 0;
         this.goldCollected = 0;
@@ -120,12 +120,7 @@ public class Player extends Character {
     }
     
     private void calculateGoldCollected() {
-        this.goldCollected = 0;
-        this.getInventory().getObjects().forEach(object -> {
-            if (object.getName().equals("gold coin")) {
-                this.goldCollected++;
-            }
-        });
+        this.goldCollected = this.getInventory().getObjectCount("gold coin");
     }
 
     
