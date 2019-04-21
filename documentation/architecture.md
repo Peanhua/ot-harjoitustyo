@@ -151,7 +151,7 @@ The following sequence diagram describes what happens when a monster hits the pl
 
 ## Datafiles
 
-All the objects (and non player characters) are created using GameObjectFactory, which uses a [INI-file](https://en.wikipedia.org/wiki/INI_file) from `src/main/resources/fishingrodofdestiny/items.ini` to define the properties of each object.
+All the objects (and non player characters) are created with GameObjectFactory, which uses an [INI-file](https://en.wikipedia.org/wiki/INI_file) from `src/main/resources/fishingrodofdestiny/items.ini` to define the properties of each object.
 
 Each object has its own section in the INI-file, the name of the section is used as an *object ID*. All object types share some common attributes, and some object types have additional attributes.
 
