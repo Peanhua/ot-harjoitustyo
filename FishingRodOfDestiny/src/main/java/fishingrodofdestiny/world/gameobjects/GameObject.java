@@ -7,6 +7,7 @@ package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
+import fishingrodofdestiny.world.GameObjectContainer;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * @author joyr
  */
-public class GameObject {
+public class GameObject implements GameObjectContainer {
     /**
      * The observers notified upon change to this GameObject.
      * Subclasses are expected to call onChange.notifyObservers() when changing their externally observable state.
@@ -464,5 +465,16 @@ public class GameObject {
                 this.destroy(null);
             }
         }
+    }
+
+    // Implement GameObjectContainer:
+    @Override
+    public List<GameObject> getObjects(String objectType) {
+        return this.getInventory().getObjects(objectType);
+    }
+
+    @Override
+    public int getObjectCount(String objectType) {
+        return this.getInventory().getObjectCount(objectType);
     }
 }

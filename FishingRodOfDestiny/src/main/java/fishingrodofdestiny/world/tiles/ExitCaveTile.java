@@ -38,6 +38,6 @@ public class ExitCaveTile extends FloorTile {
     }
     
     private boolean hasFishingRod(GameObject object) {
-        return object.getInventory().getObjectCount("fishing rod") > 0;
+        return object.getObjectCount("fishing rod") > 0;
     }
 }

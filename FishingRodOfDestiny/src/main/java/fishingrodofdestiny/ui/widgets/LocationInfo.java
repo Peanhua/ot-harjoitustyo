@@ -7,7 +7,6 @@ package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,9 +101,9 @@ public class LocationInfo extends Widget {
             
             List<Character>  characters = new ArrayList<>();
             List<GameObject> items      = new ArrayList<>();
-            for (GameObject object : this.currentTile.getInventory().getObjects()) {
+            for (GameObject object : this.currentTile.getObjects(null)) {
                 if (object instanceof Character) {
-                    if (!(object instanceof Player)) {
+                    if (!object.getObjectType().equals("player")) {
                         characters.add((Character) object);
                     }
                 } else {

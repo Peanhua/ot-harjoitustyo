@@ -75,7 +75,7 @@ public class SimpleAiController extends Controller {
             return -1;
         }
         Level level = myTile.getLevel();
-        List<GameObject> players = level.getObjects(Player.class);
+        List<GameObject> players = level.getObjects("player");
         for (GameObject player : players) {
             Tile tile = player.getLocation().getContainerTile();
             int deltaX = tile.getX() - myTile.getX();
@@ -89,13 +89,10 @@ public class SimpleAiController extends Controller {
     protected Action tryToAttack() {
         Tile tile = this.getOwner().getLocation().getContainerTile();
         List<GameObject> targets = this.getOwner().getValidAttackTargets(tile);
-        for (GameObject object : tile.getInventory().getObjects()) {
-            if (object instanceof Player) {
-                return new ActionAttack(object);
-            }
+        if (targets == null) {
+            return null;
         }
-        
-        return null;
+        return new ActionAttack(targets.get(0));
     }
     
     protected Action tryToFindPlayer() {
@@ -104,7 +101,7 @@ public class SimpleAiController extends Controller {
             return null;
         }
         Level level = myTile.getLevel();
-        List<GameObject> players = level.getObjects(Player.class);
+        List<GameObject> players = level.getObjects("player"); // TODO: this is not using the valid target matching system, fix it
         for (GameObject player : players) {
             Tile tile = player.getLocation().getContainerTile();
             int deltaX = tile.getX() - myTile.getX();

@@ -22,7 +22,7 @@ import javafx.scene.paint.Color;
  *
  * @author joyr
  */
-public class Level {
+public class Level implements GameObjectContainer {
     
     private final GameObjectSpawner enemySettings;
     private final int           depth; // how low this is in the cave, top-most is 0
@@ -116,19 +116,17 @@ public class Level {
     }
 
     
-    public List<GameObject> getObjects(Class type) {
+    // GameObjectContainer implementation:
+    @Override
+    public List<GameObject> getObjects(String objectType) {
         List<GameObject> objects = new ArrayList<>();
         this.map.getTiles().forEach(tile ->
-            tile.getInventory().getObjects().forEach(obj -> {
-                if (type == null || obj.getClass() == type) {
-                    objects.add(obj);
-                }
-            })
+            tile.getInventory().getObjects(objectType).forEach(obj -> objects.add(obj))
         );
         return objects;
     }
     
-
+    @Override
     public int getObjectCount(String objectId) {
         // TODO: cache the most frequently queried types (all variations of NonPlayerCharacters)
         int count = 0;
@@ -139,6 +137,7 @@ public class Level {
         
         return count;
     }
+    
     
     /*
     * Spawn a new NPC based on settings for this level.

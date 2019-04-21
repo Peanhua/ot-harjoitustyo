@@ -5,10 +5,12 @@
  */
 package fishingrodofdestiny.world.tiles;
 
+import fishingrodofdestiny.world.GameObjectContainer;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Inventory;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -19,7 +21,7 @@ import javafx.scene.image.Image;
  * 
  * @author joyr
  */
-public abstract class Tile {
+public abstract class Tile implements GameObjectContainer {
     private final Level     level;
     private final int       x;
     private final int       y;
@@ -141,5 +143,17 @@ public abstract class Tile {
      * @param object The GameObject that activates this tile.
      */
     public void activate(GameObject object) {
+    }
+
+
+    // Implement GameObjectContainer:
+    @Override
+    public List<GameObject> getObjects(String objectType) {
+        return this.getInventory().getObjects(objectType);
+    }
+
+    @Override
+    public int getObjectCount(String objectType) {
+        return this.getInventory().getObjectCount(objectType);
     }
 }

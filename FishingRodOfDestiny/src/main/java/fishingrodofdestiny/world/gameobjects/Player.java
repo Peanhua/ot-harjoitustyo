@@ -120,7 +120,7 @@ public class Player extends Character {
     }
     
     private void calculateGoldCollected() {
-        this.goldCollected = this.getInventory().getObjectCount("gold coin");
+        this.goldCollected = this.getObjectCount("gold coin");
     }
 
     

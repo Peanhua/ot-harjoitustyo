@@ -7,7 +7,7 @@ package fishingrodofdestiny.world.gameobjects;
 
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
-import fishingrodofdestiny.world.GameObjectFactory;
+import fishingrodofdestiny.world.GameObjectContainer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author joyr
  */
-public class Inventory {
+public class Inventory implements GameObjectContainer {
     private final List<GameObject> objects;
     private int                    weightLimit;
     private final Subject          onChange;
@@ -80,6 +80,36 @@ public class Inventory {
         return this.objects;
     }
 
+    
+
+    public int getWeight() {
+        int weight = 0;
+        
+        for (GameObject obj : this.objects) {
+            weight += obj.getWeight();
+        }
+        
+        return weight;
+    }
+
+
+    // GameObjectContainer implementation:
+    @Override
+    public List<GameObject> getObjects(String objectType) {
+        if (objectType == null) {
+            return this.objects;
+        }
+        
+        List<GameObject> rv = new ArrayList<>();
+        this.objects.forEach(object -> {
+            if (object.getObjectType().equals(objectType)) {
+                rv.add(object);
+            }
+        });
+        return rv;
+    }
+
+    @Override
     public int getObjectCount(String objectType) {
         if (objectType == null) {
             return this.objects.size();
@@ -94,15 +124,5 @@ public class Inventory {
         }
         
         return count;
-    }
-
-    public int getWeight() {
-        int weight = 0;
-        
-        for (GameObject obj : this.objects) {
-            weight += obj.getWeight();
-        }
-        
-        return weight;
     }
 }

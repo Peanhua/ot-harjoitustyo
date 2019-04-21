@@ -32,19 +32,13 @@ public class GameObjectSpawner {
         this.objects.add(new ObjectConfiguration(objectId, maximumCount, weight));
     }
     
-    // TODO: GameObject and Level (and Tile) could implement the same interface to simplify this.
-    public final String getNextObjectType(Random random, Level level) {
-        return this.getNextObjectType(random, this.getPossible(level), level.getObjectCount(null));
-    }
-
-    public final String getNextObjectType(Random random, GameObject object) {
-        return this.getNextObjectType(random, this.getPossible(object), object.getInventory().getObjectCount(null));
-    }
-    
-    private String getNextObjectType(Random random, List<ObjectConfiguration> possibleChoices, int currentObjectCount) {
+    public final String getNextObjectType(Random random, GameObjectContainer container) {
+        int currentObjectCount = container.getObjectCount(null);
         if (this.maximumTotalCount > 0 && currentObjectCount >= this.maximumTotalCount) {
             return null;
         }
+        
+        List<ObjectConfiguration> possibleChoices = this.getPossible(container);
         if (possibleChoices.isEmpty()) {
             return null;
         }
@@ -56,20 +50,10 @@ public class GameObjectSpawner {
     }
 
     
-    private List<ObjectConfiguration> getPossible(Level level) {
+    private List<ObjectConfiguration> getPossible(GameObjectContainer container) {
         List<ObjectConfiguration> possible = new ArrayList<>();
         this.objects.forEach(conf -> {
-            if (level.getObjectCount(conf.getObjectType()) < conf.getMaxCount()) {
-                possible.add(conf);
-            }
-        });
-        return possible;
-    }
-    
-    private List<ObjectConfiguration> getPossible(GameObject object) {
-        List<ObjectConfiguration> possible = new ArrayList<>();
-        this.objects.forEach(conf -> {
-            if (object.getInventory().getObjectCount(conf.getObjectType()) < conf.getMaxCount()) {
+            if (container.getObjectCount(conf.getObjectType()) < conf.getMaxCount()) {
                 possible.add(conf);
             }
         });
