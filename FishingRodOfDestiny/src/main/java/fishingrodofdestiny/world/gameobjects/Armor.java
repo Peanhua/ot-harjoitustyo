@@ -13,30 +13,30 @@ public class Armor extends Item {
     
     public enum Slot {
         HEAD,
-        CHEST,
-        LEGS,
+        ARMOR,
         HANDS,
-        RING;
+        RING,
+        FEET;
         
         @Override
         public String toString() {
             switch (this) {
                 case HEAD:  return "Head";
-                case CHEST: return "Chest";
-                case LEGS:  return "Legs";
+                case ARMOR: return "Armor";
                 case HANDS: return "Hands";
                 case RING:  return "Ring";
+                case FEET:  return "Feet";
+                default:    throw new RuntimeException("Unknown slot type: " + this);
             }
-            throw new RuntimeException("Unknown slot type: " + this);
         }
         
         public static Slot nameToSlot(String name) {
             switch (name) {
                 case "HEAD":  return HEAD;
-                case "CHEST": return CHEST;
-                case "LEGS":  return LEGS;
+                case "ARMOR": return ARMOR;
                 case "HANDS": return HANDS;
                 case "RING":  return RING;
+                case "FEET":  return FEET;
                 default:      throw new RuntimeException("Unknown name for armor slot '" + name + "'.");
             }
         }

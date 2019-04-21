@@ -48,12 +48,17 @@ public class BSPLevelGenerator extends LevelGenerator {
         itemSettings.addType("gold coin",              3 + caveLevel * 3,                  0.7);
         itemSettings.addType("kitchen knife",          this.random.nextInt(1 + caveLevel), 0.3);
         itemSettings.addType("hat",                    this.random.nextInt(3),             0.3);
-        itemSettings.addType("leather jacket",         1,                                  0.2);
+        itemSettings.addType("leather clothing",       1,                                  0.2);
         itemSettings.addType("apple",                  this.random.nextInt(5),             0.4);
-        itemSettings.addType("potion of healing",      this.random.nextInt(2),             0.1);
-        itemSettings.addType("potion of regeneration", this.random.nextInt(2),             0.1);
-        if (caveLevel > 1 && this.random.nextBoolean()) {
-            itemSettings.addType("short sword", 1, 0.1);
+        itemSettings.addType("leather boots",          this.random.nextInt(1),             0.1);
+        if (caveLevel > 1) {
+            itemSettings.addType("short sword",            this.random.nextInt(1), 0.1);
+            itemSettings.addType("leather armor",          this.random.nextInt(1), 0.1);
+            itemSettings.addType("potion of healing",      this.random.nextInt(2),             0.1);
+            itemSettings.addType("potion of regeneration", this.random.nextInt(2),             0.1);
+        }
+        if (caveLevel > 2) {
+            itemSettings.addType("ring of regeneration", this.random.nextInt(1), 0.1);
         }
         return itemSettings;
     }
