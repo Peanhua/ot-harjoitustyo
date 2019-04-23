@@ -9,6 +9,7 @@ import fishingrodofdestiny.resources.StatisticsCache;
 import fishingrodofdestiny.savedata.statistics.Statistics;
 import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Pos;
@@ -73,13 +74,18 @@ public class ScreenStatistics extends Screen {
         grid.setHgap(4);
         grid.setVgap(2);
         pane.setCenter(grid);
-        int row = 0;
-        this.addStatisticsRow(grid, row++, "Games played:",         "" + stats.getGamesPlayed());
-        this.addStatisticsRow(grid, row++, "Games completed:",      "" + stats.getGamesCompleted());
-        this.addStatisticsRow(grid, row++, "Gold coins collected:", "" + stats.getGoldCoinsCollected());
-        this.addStatisticsRow(grid, row++, "Enemies killed:",       "" + stats.getEnemiesKilled());
+        this.addStatistics(stats, grid, 0);
         
         return pane;
+    }
+    
+    private int addStatistics(Statistics stats, GridPane grid, int row) {
+        double completionPercentage = (double) stats.getGamesCompleted() * 100.0 / (double) stats.getGamesPlayed();
+        this.addStatisticsRow(grid, row++, "Games played:",         "" + stats.getGamesPlayed());
+        this.addStatisticsRow(grid, row++, "Games completed:",      "" + stats.getGamesCompleted() + " (" + String.format("%.2f", completionPercentage) + "%)");
+        this.addStatisticsRow(grid, row++, "Gold coins collected:", "" + stats.getGoldCoinsCollected());
+        this.addStatisticsRow(grid, row++, "Enemies killed:",       "" + stats.getEnemiesKilled());
+        return row;
     }
     
     private void addStatisticsRow(GridPane grid, int row, String label, String value) {
@@ -89,6 +95,7 @@ public class ScreenStatistics extends Screen {
         GridPane.setConstraints(valueText, 1, row);
         grid.getChildren().addAll(labelText, valueText);
     }
+    
     
     @Override
     public void onShow() {
