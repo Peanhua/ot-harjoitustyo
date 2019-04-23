@@ -21,7 +21,7 @@ public class EmptyLevelGeneratorTest {
     @Before
     public void setUp() {
         Random random = new Random(42);
-        this.generator = new EmptyLevelGenerator(random, 100, 100);
+        this.generator = new EmptyLevelGenerator(new CaveSettings(random));
     }
     
     @Test

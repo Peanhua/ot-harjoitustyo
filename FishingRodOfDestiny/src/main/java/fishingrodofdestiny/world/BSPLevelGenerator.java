@@ -18,19 +18,19 @@ import java.util.Random;
  */
 public class BSPLevelGenerator extends LevelGenerator {
     
-    public BSPLevelGenerator(Random random, int width, int height) {
-        super(random, width, height);
+    public BSPLevelGenerator(CaveSettings settings) {
+        super(settings);
     }
 
     
     @Override
     public Level generateLevel(int caveLevel) {
-        GameObjectSpawner enemySettings = new GameObjectSpawner();
-        enemySettings.addType("rat", this.random.nextInt(10) + this.width * this.height / 175, 1.0);
+        final int width  = this.getSettings().getLevelWidth(caveLevel);
+        final int height = this.getSettings().getLevelHeight(caveLevel);
         
-        Level level = new Level(enemySettings, caveLevel, this.width, this.height);
+        final Level level = new Level(this.getSettings().getEnemySpawner(caveLevel), caveLevel, width, height);
         
-        Node root = new Node(this.random, 12, null, 1, 1, this.width - 2, this.height - 2);
+        final Node root = new Node(this.getSettings().getRandom(), 12, null, 1, 1, width - 2, height - 2);
         root.split(false);
         root.setupRooms();
         root.fillInRooms(level);
@@ -40,29 +40,7 @@ public class BSPLevelGenerator extends LevelGenerator {
         return level;
     }
     
-    @Override
-    public GameObjectSpawner getItemSettings(int caveLevel) {
-        GameObjectSpawner itemSettings = new GameObjectSpawner();
-        itemSettings.setMaximumTotalCount(5 + caveLevel * 2 + this.random.nextInt(1 + caveLevel * 5));
-        itemSettings.addType("gold coin",        3 + caveLevel * 3,                  0.7);
-        itemSettings.addType("kitchen knife",    this.random.nextInt(1 + caveLevel), 0.3);
-        itemSettings.addType("hat",              this.random.nextInt(3),             0.3);
-        itemSettings.addType("leather clothing", 1,                                  0.2);
-        itemSettings.addType("apple",            this.random.nextInt(5),             0.4);
-        itemSettings.addType("leather boots",    1,                                  0.05 * caveLevel);
-        itemSettings.addType("short sword",      1,                                  0.05 * caveLevel);
-        itemSettings.addType("leather armor",    1,                                  0.05 * caveLevel);
-        if (caveLevel > 1) {
-            itemSettings.addType("potion of healing",      1, 0.1);
-            itemSettings.addType("potion of regeneration", 1, 0.1);
-        }
-        if (caveLevel > 2) {
-            itemSettings.addType("ring of regeneration", this.random.nextInt(1), 0.1 * caveLevel);
-        }
-        return itemSettings;
-    }
-    
-    
+
     @Override
     public void connectStartEnd(Level level) {
         LevelMapConnectedTilesAlgorithm cta = new LevelMapConnectedTilesAlgorithm(level.getMap());
@@ -103,8 +81,8 @@ public class BSPLevelGenerator extends LevelGenerator {
             }
         }
         
-        Node startNode = new Node(this.random, 1, null, srcClosest.getX(), srcClosest.getY(), 1, 1);
-        Node endNode   = new Node(this.random, 1, null, dstClosest.getX(), dstClosest.getY(), 1, 1);
+        Node startNode = new Node(this.getSettings().getRandom(), 1, null, srcClosest.getX(), srcClosest.getY(), 1, 1);
+        Node endNode   = new Node(this.getSettings().getRandom(), 1, null, dstClosest.getX(), dstClosest.getY(), 1, 1);
         startNode.createCorridor(level, endNode);
     }
 }

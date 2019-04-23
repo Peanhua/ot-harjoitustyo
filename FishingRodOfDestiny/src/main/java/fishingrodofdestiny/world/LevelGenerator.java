@@ -18,29 +18,30 @@ import java.util.Random;
  * @author joyr
  */
 public abstract class LevelGenerator {
-    protected Random random;
-    protected int    width;
-    protected int    height;
+    CaveSettings settings;
     
-    public LevelGenerator(Random random, int width, int height) {
-        this.random = random;
-        this.width  = width;
-        this.height = height;
+    public LevelGenerator(CaveSettings settings) {
+        this.settings = settings;
+    }
+    
+    
+    protected final CaveSettings getSettings() {
+        return this.settings;
     }
     
 
     protected void createLevelBorders(Level level) {
-        for (int x = 0; x < this.width; x++) {
+        for (int x = 0; x < level.getWidth(); x++) {
             int y = 0;
             level.setTile(x, y, new WallTile(level, x, y));
-            y = this.height - 1;
+            y = level.getHeight() - 1;
             level.setTile(x, y, new WallTile(level, x, y));
         }
         
-        for (int y = 1; y < this.height - 1; y++) {
+        for (int y = 1; y < level.getHeight() - 1; y++) {
             int x = 0;
             level.setTile(x, y, new WallTile(level, x, y));
-            x = this.width - 1;
+            x = level.getWidth() - 1;
             level.setTile(x, y, new WallTile(level, x, y));
         }
     }
@@ -58,28 +59,11 @@ public abstract class LevelGenerator {
     }
     
     
-    public void placeItems(GameObjectSpawner itemSettings, Level level) {
-        while (true) {
-            GameObject item = GameObjectFactory.create(itemSettings.getNextObjectType(random, level));
-            if (item == null) {
-                break;
-            }
-
-            Tile tile = level.getRandomTileOfType(random, FloorTile.class);
-            if (tile != null) {
-                item.getLocation().moveTo(tile);
-            }
-        }
-    }
 
     
     public abstract Level generateLevel(int caveLevel);
     public abstract void  connectStartEnd(Level level);
     
-    public GameObjectSpawner getItemSettings(int caveLevel) {
-        return new GameObjectSpawner();
-    }
-
     /**
      * Find out areas that can't be accessed and fill them with something.
      * 

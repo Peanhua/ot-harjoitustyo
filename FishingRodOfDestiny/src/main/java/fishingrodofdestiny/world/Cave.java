@@ -79,29 +79,22 @@ public class Cave {
         }
     };
     
-    public Cave(Random random) {
+    public Cave(CaveSettings settings) {
         this.levels = new ArrayList<>();
-        LevelGenerator lg = new BSPLevelGenerator(random, 40, 30);
-        for (int i = 0; i < 10; i++) {
-            this.addLevel(lg.generateLevel(i));
-        }
-        
-        this.addStairs(random);
-        this.levels.forEach(level -> lg.connectStartEnd(level));
-        this.levels.forEach(level -> lg.fillUnusedSpace(level));
-        this.connectStairs();
+        this.addLevels(settings);
+        this.addStairs(settings);
+        this.removeInaccessibleLocations(settings);
         this.setupGameCompletionObjects();
-        this.addTraps(random);
-        for (int i = 0; i < this.levels.size(); i++) {
-            Level level = this.levels.get(i);
-            lg.placeItems(lg.getItemSettings(i), level);
-        }
-        this.populateNPCs(random);
+        this.addTraps(settings);
+        this.addItems(settings);
+        this.addNPCs(settings);
     }
 
     
-    private void addLevel(Level level) {
-        this.levels.add(level);
+    private void addLevels(CaveSettings settings) {
+        for (int caveLevel = 0; caveLevel < settings.getNumberOfLevels(); caveLevel++) {
+            this.levels.add(settings.getLevelGenerator(caveLevel).generateLevel(caveLevel));
+        }
     }
 
     
@@ -111,22 +104,31 @@ public class Cave {
 
     
     // Add stairs, alternating between "topleft = stairs up and bottomright = stairs down" with the opposite "bottomright = stairs up and topleft = stairs down".
-    private void addStairs(Random random) {
+    private void addStairs(CaveSettings settings) {
         boolean topLeftIsUp = true;
-        for (Level level : this.levels) {
-            Tile up   = this.findFloorFromTopLeft(random, level);
-            Tile down = this.findFloorFromBottomRight(random, level);
+        for (int caveLevel = 0; caveLevel < this.levels.size(); caveLevel++) {
+            final Level level = this.levels.get(caveLevel);
+            Tile up   = this.findFloorFromTopLeft(settings.getRandom(), level);
+            Tile down = this.findFloorFromBottomRight(settings.getRandom(), level);
             if (!topLeftIsUp) {
-                Tile tmp = up;
+                final Tile tmp = up;
                 up = down;
                 down = tmp;
             }
             level.setTile(up.getX(),   up.getY(),   new StairsUpTile(level,   up.getX(),   up.getY()));
             level.setTile(down.getX(), down.getY(), new StairsDownTile(level, down.getX(), down.getY()));
+            settings.getLevelGenerator(caveLevel).connectStartEnd(level);
             topLeftIsUp = !topLeftIsUp;
         }
+        this.connectStairs();
     }
     
+    
+    private void removeInaccessibleLocations(CaveSettings settings) {
+        for (int caveLevel = 0; caveLevel < settings.getNumberOfLevels(); caveLevel++) {
+            settings.getLevelGenerator(caveLevel).fillUnusedSpace(this.levels.get(caveLevel));
+        }
+    }    
     
     private Tile findFloorFromTopLeft(Random random, Level level) {
         for (int i = 0; i < Math.max(level.getWidth(), level.getHeight()); i++) {
@@ -164,10 +166,28 @@ public class Cave {
     }
     
     
-    private void populateNPCs(Random random) {
+    private void addItems(CaveSettings settings) {
+        for (int i = 0; i < this.levels.size(); i++) {
+            final Level level = this.levels.get(i);
+            final GameObjectSpawner spawner = settings.getItemSpawner(i);
+            while (true) {
+                final GameObject item = GameObjectFactory.create(spawner.getNextObjectType(settings.getRandom(), level));
+                if (item == null) {
+                    break;
+                }
+                final Tile tile = level.getRandomTileOfType(settings.getRandom(), FloorTile.class);
+                if (tile != null) {
+                    item.getLocation().moveTo(tile);
+                }
+            }
+        }
+    }
+
+    
+    private void addNPCs(CaveSettings settings) {
         this.levels.forEach(level -> {
             while (true) {
-                GameObject npc = level.spawnNPC(random);
+                GameObject npc = level.spawnNPC(settings.getRandom());
                 if (npc == null) {
                     break;
                 }
@@ -198,18 +218,18 @@ public class Cave {
     }
     
     
-    private void addTraps(Random random) {
-        this.addPitTraps(random);
-        this.addBearTraps(random);
+    private void addTraps(CaveSettings settings) {
+        this.addPitTraps(settings);
+        this.addBearTraps(settings);
     }
     
-    private void addPitTraps(Random random) {
+    private void addPitTraps(CaveSettings settings) {
         for (int i = 1; i < this.levels.size(); i++) {
             Level prev = this.levels.get(i - 1);
             Level cur  = this.levels.get(i);
             
-            for (int j = 0; j < 15; j++) {
-                Tile floor = prev.getRandomTileOfType(random, FloorTile.class);
+            for (int j = 0; j < settings.getMaxPitTraps(i); j++) {
+                Tile floor = prev.getRandomTileOfType(settings.getRandom(), FloorTile.class);
                 Tile floorDownstairs = cur.getTile(floor.getX(), floor.getY());
                 if (floorDownstairs.getClass() == floor.getClass()) {
                     String[] thisLocation = this.getScenarioData(prev, floor.getX(), floor.getY());
@@ -223,17 +243,18 @@ public class Cave {
         }
     }
     
-    private void addBearTraps(Random random) {
-        this.levels.forEach(level -> {
-            int count = random.nextInt(5);
-            for (int i = 0; i < count; i++) {
-                Tile floor = level.getRandomTileOfType(random, FloorTile.class);
+    private void addBearTraps(CaveSettings settings) {
+        for (int caveLevel = 0; caveLevel < this.levels.size(); caveLevel++) {
+            final Level level = this.levels.get(caveLevel);
+            final int count = settings.getRandom().nextInt(settings.getMaxBearTraps(caveLevel));
+            for (int j = 0; j < count; j++) {
+                Tile floor = level.getRandomTileOfType(settings.getRandom(), FloorTile.class);
                 if (floor != null) {
                     BearTrapTile trap = new BearTrapTile(level, floor.getX(), floor.getY());
                     level.setTile(floor.getX(), floor.getY(), trap);
                 }
             }
-        });
+        }
     }
     
     

@@ -47,7 +47,7 @@ public class Game {
         this.player       = player;
         this.rescueTarget = rescueTarget;
         this.random       = new Random(randomSeed);
-        this.cave         = new Cave(this.random);
+        this.cave         = new Cave(new CaveSettings(this.random));
         
         List<Tile> exits = this.cave.getLevel(0).getMap().getTiles(ExitCaveTile.class);
         player.setHitpoints(player.getMaxHitpoints());
