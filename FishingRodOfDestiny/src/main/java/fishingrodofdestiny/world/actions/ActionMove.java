@@ -8,7 +8,7 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Character;
-import fishingrodofdestiny.world.gameobjects.Inventory;
+import fishingrodofdestiny.world.Inventory;
 import fishingrodofdestiny.world.tiles.Tile;
 
 

@@ -9,7 +9,7 @@ import fishingrodofdestiny.world.GameObjectContainer;
 import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.Inventory;
+import fishingrodofdestiny.world.Inventory;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;

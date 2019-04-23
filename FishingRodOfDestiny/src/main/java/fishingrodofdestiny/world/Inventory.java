@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.world.gameobjects;
+package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.GameObjectContainer;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
 import java.util.List;
 

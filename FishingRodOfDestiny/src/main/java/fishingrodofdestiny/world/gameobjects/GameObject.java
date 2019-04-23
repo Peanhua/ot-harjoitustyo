@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.Inventory;
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.GameObjectContainer;

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.world.gameobjects;
+package fishingrodofdestiny.world;
 
+import fishingrodofdestiny.world.Inventory;
 import fishingrodofdestiny.world.GameObjectFactory;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
