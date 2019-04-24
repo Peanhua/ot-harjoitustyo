@@ -34,6 +34,7 @@ Actions:
 * DROP          - Drop an item to the floor.
 * USE           - Use an item from the inventory.
 * LEVEL_UP      - Level up the player character (if the player has enough experience points).
+
 Commands:
 * ZOOM_IN       - Zoom the level map view in (make things look bigger).
 * ZOOM_OUT      - Zoom the level map view out (make things look smaller).
