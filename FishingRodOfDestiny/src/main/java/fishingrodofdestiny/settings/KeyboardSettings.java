@@ -78,13 +78,34 @@ public class KeyboardSettings {
         return keys;
     }
 
-    public void setActionKeyMapping(Action.Type action, KeyCode keyCode) {
+    public void addKeybinding(String key, String value) {
+        KeyCode keyCode = KeyCode.valueOf(key);
+        if (keyCode == null) {
+            throw new RuntimeException("Unknown key: " + key);
+        }
+
+        Action.Type action = Action.Type.fromString(value);
+        if (action != null) {
+            this.setActionKeyMapping(action, keyCode);
+            return;
+        }
+        
+        KeyboardSettings.Command command = KeyboardSettings.Command.fromString(value);
+        if (command != null) {
+            this.setCommandKeyMapping(command, keyCode);
+            return;
+        }
+        
+        throw new RuntimeException("Unknown value '" + value + "' for key '" + key + "'");
+    }
+
+    private void setActionKeyMapping(Action.Type action, KeyCode keyCode) {
         this.actionsToKeys.put(action, keyCode);
         this.keysToActions.put(keyCode, action);
         this.dirty = true;
     }
     
-    public void setCommandKeyMapping(Command command, KeyCode keyCode) {
+    private void setCommandKeyMapping(Command command, KeyCode keyCode) {
         this.keysToCommands.put(keyCode, command);
         this.dirty = true;
     }

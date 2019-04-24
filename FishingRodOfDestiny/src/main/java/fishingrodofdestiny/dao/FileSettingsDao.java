@@ -43,26 +43,15 @@ public class FileSettingsDao extends SettingsDao {
         if (section == null) {
             return;
         }
-        for (String key : section.keySet()) {
-            KeyCode keyCode = KeyCode.valueOf(key);
-            if (keyCode == null) {
-                System.out.println("Error while loading keyboard settings: Unknown key: " + key);
-                continue;
+        section.keySet().forEach(key -> {
+            try {
+                to.addKeybinding(key, section.get(key));
+            } catch (Exception e) {
+                System.out.println("Error while loading keyboard settings: " + e);
             }
-
-            String value = section.get(key);
-            Action.Type action = Action.Type.fromString(value);
-            if (action != null) {
-                to.setActionKeyMapping(action, keyCode);
-                
-            } else {
-                KeyboardSettings.Command command = KeyboardSettings.Command.fromString(value);
-                if (command != null) {
-                    to.setCommandKeyMapping(command, keyCode);
-                }
-            }
-        }
+        });
     }
+    
     
 
     @Override
