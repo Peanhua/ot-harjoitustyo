@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world.controllers;
 
+import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.screens.Screen;
 import fishingrodofdestiny.ui.windows.ChooseItemRequester;
@@ -44,7 +45,7 @@ public class PlayerController extends Controller {
         
         if (event.getEventType() == KeyEvent.KEY_PRESSED) {
             KeyEvent ke = (KeyEvent) event;
-            KeyboardSettings settings = KeyboardSettings.getInstance();
+            KeyboardSettings settings = SettingsCache.getInstance().getKeyboardSettings();
             actionType = settings.getAction(ke.getCode());
         }
         

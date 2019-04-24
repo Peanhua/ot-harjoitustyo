@@ -380,3 +380,14 @@ games_completed
 gold_collected
 enemies_killed
 ```
+
+
+
+### User settings
+
+User settings are currently always loaded from and saved to "settings.ini". If user settings is not readable, the default settings are read from `src/main/resources/fishingrodofdestiny/defaultSettings.ini`.
+
+
+#### User settings in a file
+
+The file is in the form of an [INI-file](https://en.wikipedia.org/wiki/INI_file), see the [manual](manual.md) for details.

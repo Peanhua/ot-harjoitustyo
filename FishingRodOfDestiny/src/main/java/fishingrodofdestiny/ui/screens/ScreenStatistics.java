@@ -9,7 +9,6 @@ import fishingrodofdestiny.resources.StatisticsCache;
 import fishingrodofdestiny.savedata.statistics.Statistics;
 import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Pos;

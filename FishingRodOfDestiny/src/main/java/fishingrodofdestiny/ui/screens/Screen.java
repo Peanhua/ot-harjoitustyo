@@ -87,6 +87,7 @@ public abstract class Screen {
      * When the last screen is closed (ie. when the parent screen is null), the application is exited.
      */
     public final void close() {
+        this.onClose();
         if (this.parentScreen == null) {
             Platform.exit();
         } else {
@@ -127,5 +128,13 @@ public abstract class Screen {
      * @see #show()
      */
     public void onShow() {
+    }
+    
+    /**
+     * This method is called when this screens <a href="#close--">close()</a> is called.
+     * 
+     * @see #close()
+     */
+    public void onClose() {
     }
 }

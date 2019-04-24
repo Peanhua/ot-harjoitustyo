@@ -5,9 +5,11 @@
  */
 package fishingrodofdestiny.settings;
 
+import fishingrodofdestiny.dao.SettingsDao;
 import fishingrodofdestiny.world.actions.Action;
-import fishingrodofdestiny.world.gameobjects.GameObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import javafx.scene.input.KeyCode;
 
 /**
@@ -16,53 +18,45 @@ import javafx.scene.input.KeyCode;
  * @author joyr
  */
 public class KeyboardSettings {
-    private static KeyboardSettings instance = null;
-    
-    public static KeyboardSettings getInstance() {
-        if (KeyboardSettings.instance == null) {
-            KeyboardSettings.instance = new KeyboardSettings();
-        }
-        return KeyboardSettings.instance;
-    }
-    
-    
     public enum Command {
         ZOOM_IN,
         ZOOM_OUT,
-        EXIT
+        EXIT;
+        
+        public static Command fromString(String value) {
+            for (Command c : Command.values()) {
+                if (value.equals(c.toString())) {
+                    return c;
+                }
+            }
+            return null;
+        }
     };
     
-    
-    private HashMap<Action.Type, KeyCode> actionsToKeys;
-    private HashMap<KeyCode, Action.Type> keysToActions;
-    private HashMap<KeyCode, Command>     keysToCommands;
+    private final HashMap<Action.Type, KeyCode> actionsToKeys;
+    private final HashMap<KeyCode, Action.Type> keysToActions;
+    private final HashMap<KeyCode, Command>     keysToCommands;
+    private final SettingsDao                   dao;
+    private boolean                             dirty;
   
-    private KeyboardSettings() {
-        this.actionsToKeys = new HashMap<>();
-        
-        // Setup default keymapping, hard-coded for now:
-        this.actionsToKeys.put(Action.Type.MOVE_NORTH,    KeyCode.UP);
-        this.actionsToKeys.put(Action.Type.MOVE_SOUTH,    KeyCode.DOWN);
-        this.actionsToKeys.put(Action.Type.MOVE_WEST,     KeyCode.LEFT);
-        this.actionsToKeys.put(Action.Type.MOVE_EAST,     KeyCode.RIGHT);
-        this.actionsToKeys.put(Action.Type.ACTIVATE_TILE, KeyCode.E);
-        this.actionsToKeys.put(Action.Type.ATTACK,        KeyCode.A);
-        this.actionsToKeys.put(Action.Type.WAIT,          KeyCode.W);
-        this.actionsToKeys.put(Action.Type.PICK_UP,       KeyCode.P);
-        this.actionsToKeys.put(Action.Type.DROP,          KeyCode.D);
-        this.actionsToKeys.put(Action.Type.USE,           KeyCode.U);
-        this.actionsToKeys.put(Action.Type.LEVEL_UP,      KeyCode.L);
-        
-        // Clone to keysToActions: */
-        this.keysToActions = new HashMap<>();
-        for (Action.Type action : this.actionsToKeys.keySet()) {
-            this.keysToActions.put(this.actionsToKeys.get(action), action);
-        }
-
+    public KeyboardSettings(SettingsDao dao) {
+        this.actionsToKeys  = new HashMap<>();
+        this.keysToActions  = new HashMap<>();
         this.keysToCommands = new HashMap<>();
-        this.keysToCommands.put(KeyCode.PAGE_DOWN, Command.ZOOM_IN);
-        this.keysToCommands.put(KeyCode.PAGE_UP,   Command.ZOOM_OUT);
-        this.keysToCommands.put(KeyCode.ESCAPE,    Command.EXIT);
+        this.dao            = dao;
+        this.dirty          = false;
+    }
+    
+    public void load() {
+        this.dao.loadKeyboardSettings(this);
+        this.dirty = false;
+    }
+    
+    public void save() {
+        if (!this.dirty) {
+            return;
+        }
+        this.dao.saveKeyboardSettings(this);
     }
     
     public KeyCode getKey(Action.Type action) {
@@ -75,5 +69,23 @@ public class KeyboardSettings {
     
     public Command getCommand(KeyCode keyCode) {
         return this.keysToCommands.get(keyCode);
+    }
+    
+    public List<KeyCode> getConfiguredKeys() {
+        List<KeyCode> keys = new ArrayList<>();
+        keys.addAll(this.keysToActions.keySet());
+        keys.addAll(this.keysToCommands.keySet());
+        return keys;
+    }
+
+    public void setActionKeyMapping(Action.Type action, KeyCode keyCode) {
+        this.actionsToKeys.put(action, keyCode);
+        this.keysToActions.put(keyCode, action);
+        this.dirty = true;
+    }
+    
+    public void setCommandKeyMapping(Command command, KeyCode keyCode) {
+        this.keysToCommands.put(keyCode, command);
+        this.dirty = true;
     }
 }

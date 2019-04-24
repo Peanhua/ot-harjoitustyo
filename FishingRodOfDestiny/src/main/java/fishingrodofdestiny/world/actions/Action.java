@@ -5,7 +5,6 @@
  */
 package fishingrodofdestiny.world.actions;
 
-import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 
 /**
@@ -25,7 +24,16 @@ public abstract class Action {
         PICK_UP,
         DROP,
         USE,
-        LEVEL_UP
+        LEVEL_UP;
+        
+        public static Type fromString(String value) {
+            for (Type t : Type.values()) {
+                if (value.equals(t.toString())) {
+                    return t;
+                }
+            }
+            return null;
+        }
     };
     
     private final Type type;

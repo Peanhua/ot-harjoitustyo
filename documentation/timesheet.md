@@ -83,5 +83,6 @@ Time used for the project.
   <tr><td>     </td><td>  2.5</td><td>Playtesting and balancing.</td></tr>
   <tr><td>     </td><td>  1.0</td><td>Content and game logic.</td></tr>
   <tr><td>23.4.</td><td>  1.0</td><td>Code refactoring.</td></tr>
-  <tr><th>Total</th><th>124.0</th><th></th></tr>
+  <tr><td>24.4.</td><td>  3.0</td><td>User interface.</td></tr>
+  <tr><th>Total</th><th>127.0</th><th></th></tr>
 </table>

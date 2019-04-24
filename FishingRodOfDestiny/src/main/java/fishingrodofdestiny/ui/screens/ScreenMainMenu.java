@@ -6,6 +6,7 @@
 package fishingrodofdestiny.ui.screens;
 
 import fishingrodofdestiny.resources.ImageCache;
+import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import javafx.geometry.Pos;
@@ -29,6 +30,8 @@ public class ScreenMainMenu extends Screen {
     public ScreenMainMenu(Screen parent, Stage stage) {
         super(parent, stage);
         this.bubbles = null;
+        // Load settings, not really necessary, but it's nicer for the user to see possible errors in the settings as soon as possible.
+        SettingsCache.getInstance();
     }
 
     @Override
@@ -112,4 +115,9 @@ public class ScreenMainMenu extends Screen {
     public void onShow() {
         this.bubbles.enable();
     }
+    
+    @Override
+    public void onClose() {
+        SettingsCache.getInstance().save();
+    }        
 }

@@ -8,6 +8,7 @@ package fishingrodofdestiny.ui.screens;
 import fishingrodofdestiny.savedata.highscores.Highscore;
 import fishingrodofdestiny.savedata.highscores.ScoreBasedHighscore;
 import fishingrodofdestiny.resources.HighscoreListCache;
+import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.resources.StatisticsCache;
 import fishingrodofdestiny.savedata.highscores.ActionCountBasedHighscore;
 import fishingrodofdestiny.settings.KeyboardSettings;
@@ -150,7 +151,7 @@ public class ScreenGame extends Screen {
     
     private void setKeyboardHandlers() {
         this.gameView.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            KeyboardSettings settings = KeyboardSettings.getInstance();
+            KeyboardSettings settings = SettingsCache.getInstance().getKeyboardSettings();
             
             KeyboardSettings.Command command = settings.getCommand(event.getCode());
             if (command != null) {
