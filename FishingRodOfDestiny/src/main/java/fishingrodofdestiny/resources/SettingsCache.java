@@ -46,8 +46,13 @@ public class SettingsCache {
     
     private URL getUserSettingsURL() {
         URL url = null;
-        try { // TODO: use environment variables like the other caches
-            url = new URL("file:settings.ini");
+        try {
+            String filename = System.getenv("FISHINGRODOFDESTINY_SETTINGS");
+            if (filename == null || filename.length() == 0) {
+                filename = "settings.ini";
+            }
+            url = new URL("file:" + filename);
+            
         } catch (Exception e) {
             // This is never executed.
         }

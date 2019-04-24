@@ -17,7 +17,7 @@ Statistics are saved similarly to highscores. The controlling environment variab
 
 ### Settings
 
-Settings are loaded from and saved to a [INI-file](https://en.wikipedia.org/wiki/INI_file) named "settings.ini".
+Settings are loaded from and saved to a [INI-file](https://en.wikipedia.org/wiki/INI_file) named "settings.ini". The filename can be changed with the environment variable *FISHINGRODOFDESTINY_SETTINGS*.
 
 For keyboard settings, the file contains section named "keyboard", with mappings from keys to action/command.
 The keys are named after [JavaFX enum KeyCode](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyCode.html), and the actions/commands are listed below:

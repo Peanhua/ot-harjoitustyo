@@ -40,6 +40,9 @@ public class FileSettingsDao extends SettingsDao {
     @Override
     public void loadKeyboardSettings(KeyboardSettings to) {
         Ini.Section section = this.ini.get("keyboard");
+        if (section == null) {
+            return;
+        }
         for (String key : section.keySet()) {
             KeyCode keyCode = KeyCode.valueOf(key);
             if (keyCode == null) {
