@@ -178,7 +178,7 @@ public class GameObjectFactory {
             if (buffTime == null || buffAmount == null) {
                 throw new RuntimeException("Missing BuffTime or BuffAmount");
             }
-            item.addUseBuff(new Buff(buffTime, Buff.Type.nameToType(buffType), buffAmount));
+            item.addUseBuff(new Buff(buffTime, Buff.Type.valueOf(buffType), buffAmount));
         }
     }
     
@@ -189,7 +189,7 @@ public class GameObjectFactory {
             if (buffAmount == null) {
                 throw new RuntimeException("Missing BuffAmount");
             }
-            item.addBuff(new Buff(item, Buff.Type.nameToType(buffType), buffAmount));
+            item.addBuff(new Buff(item, Buff.Type.valueOf(buffType), buffAmount));
         }
     }
     

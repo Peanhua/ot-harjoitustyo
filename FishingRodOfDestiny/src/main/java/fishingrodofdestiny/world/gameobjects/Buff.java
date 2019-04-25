@@ -21,17 +21,6 @@ public class Buff {
         DEFENCE,
         HITPOINT,
         REGENERATION;
-        public static Type nameToType(String name) {
-            switch (name) {
-                case "ARMOR_CLASS":  return ARMOR_CLASS;
-                case "ATTACK":       return ATTACK;
-                case "CARRY":        return CARRY;
-                case "DEFENCE":      return DEFENCE;
-                case "HITPOINT":     return HITPOINT;
-                case "REGENERATION": return REGENERATION;
-                default:             throw new RuntimeException("Invalid buff type name '" + name + "'.");
-            }
-        }
     }
     private boolean           alive;
     private GameObject        linkedTo;
