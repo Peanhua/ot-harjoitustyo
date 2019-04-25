@@ -30,7 +30,7 @@ public class ActionDrop extends Action {
         }
         
         if (!target.isAlive() || target.getLocation().getContainerObject() != me) {
-            me.addMessage("You are unable to pick up " + target.getName() + " because you don't have it!");
+            me.addMessage("You are unable to drop " + target.getName() + " because you don't have it!");
             return;
         }
 
