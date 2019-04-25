@@ -22,15 +22,6 @@ public class KeyboardSettings {
         ZOOM_IN,
         ZOOM_OUT,
         EXIT;
-        
-        public static Command fromString(String value) {
-            for (Command c : Command.values()) {
-                if (value.equals(c.toString())) {
-                    return c;
-                }
-            }
-            return null;
-        }
     };
     
     private final HashMap<Action.Type, KeyCode> actionsToKeys;
@@ -81,18 +72,20 @@ public class KeyboardSettings {
     public void addKeybinding(String key, String value) {
         KeyCode keyCode = KeyCode.valueOf(key);
 
-        Action.Type action = Action.Type.valueOf(value);
-        if (action != null) {
+        try {
+            Action.Type action = Action.Type.valueOf(value);
             this.setActionKeyMapping(action, keyCode);
             return;
+        } catch (Exception e) {
         }
-        
-        KeyboardSettings.Command command = KeyboardSettings.Command.fromString(value);
-        if (command != null) {
+
+        try {
+            KeyboardSettings.Command command = KeyboardSettings.Command.valueOf(value);
             this.setCommandKeyMapping(command, keyCode);
             return;
+        } catch (Exception e) {
         }
-        
+
         throw new RuntimeException("Unknown value '" + value + "' for key '" + key + "'");
     }
 
