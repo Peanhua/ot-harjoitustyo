@@ -123,7 +123,7 @@ public class CharacterStatus extends Widget {
     
     private int createArmorControls(GridPane grid, int row) {
         for (Armor.Slot slot : Armor.Slot.values()) {
-            Text label = UserInterfaceFactory.createSmallText(slot.toString() + ":");
+            Text label = UserInterfaceFactory.createSmallText(slot.getDisplayName() + ":");
             Text value = UserInterfaceFactory.createSmallText("");
             this.armorTexts.set(slot.ordinal(), value);
 

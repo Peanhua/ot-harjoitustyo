@@ -17,9 +17,8 @@ public class Armor extends Item {
         HANDS,
         RING,
         FEET;
-        
-        @Override
-        public String toString() {
+
+        public String getDisplayName() {
             switch (this) {
                 case HEAD:  return "Head";
                 case ARMOR: return "Armor";
