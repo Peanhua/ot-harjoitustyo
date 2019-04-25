@@ -6,6 +6,7 @@
 package fishingrodofdestiny.world.actions;
 
 import fishingrodofdestiny.world.GameObjectFactory;
+import fishingrodofdestiny.world.gameobjects.Armor;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.Item;
 import fishingrodofdestiny.world.gameobjects.Player;
@@ -24,6 +25,7 @@ public class ActionDropTest {
     private Tile       tile;
     private Character  character;
     private Item       weapon;
+    private Armor      armor;
     
     @Before
     public void setUp() {
@@ -32,6 +34,8 @@ public class ActionDropTest {
         this.character.getLocation().moveTo(this.tile);
         this.weapon = (Item) GameObjectFactory.create("kitchen knife");
         this.weapon.getLocation().moveTo(this.character);
+        this.armor = (Armor) GameObjectFactory.create("hat");
+        this.armor.getLocation().moveTo(this.character);
     }
     
     @Test
@@ -50,10 +54,39 @@ public class ActionDropTest {
     }
 
     @Test
-    public void droppingWieldedWeaponPutsUnwieldsTheWeapon() {
+    public void droppingWieldedWeaponUnwieldsTheWeapon() {
         this.weapon.useItem(this.character, this.character);
         Action action = new ActionDrop(this.weapon);
         action.act(this.character);
         assertNull(this.character.getWeapon());
+    }
+
+    @Test
+    public void droppingEquippedArmorUnequipsTheArmor() {
+        this.armor.useItem(this.character, this.character);
+        Action action = new ActionDrop(this.armor);
+        action.act(this.character);
+        assertNull(this.character.getArmor(this.armor.getSlot()));
+    }
+    
+    @Test
+    public void droppingItemThatIsNotInInventoryDoesNotMoveTheItem() {
+        Tile somewhereElse = new FloorTile(null, 0, 0);
+        this.armor.getLocation().moveTo(somewhereElse);
+        Action action = new ActionDrop(this.armor);
+        action.act(this.character);
+        assertEquals(somewhereElse, this.armor.getLocation().getContainerTile());
+    }
+    
+    @Test
+    public void droppingNullDoesntCrash() {
+        boolean exceptionWasThrown = false;
+        Action action = new ActionDrop(null);
+        try {
+            action.act(this.character);
+        } catch (Exception e) {
+            exceptionWasThrown = true;
+        }
+        assertFalse(exceptionWasThrown);
     }
 }
