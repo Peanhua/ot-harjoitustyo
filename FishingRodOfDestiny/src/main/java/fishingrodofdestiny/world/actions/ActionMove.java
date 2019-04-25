@@ -44,8 +44,7 @@ public class ActionMove extends Action {
             return;
         }
         
-        Inventory myInventory = me.getInventory();
-        if (myInventory.getWeight() > myInventory.getWeightLimit() + me.getBuffBonuses(Buff.Type.CARRY)) {
+        if (me.getInventory().getWeight() > me.getCarryingCapacity()) {
             me.addMessage("You are carrying too much and unable to move!");
             return;
         }

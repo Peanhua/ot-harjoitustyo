@@ -5,8 +5,6 @@
  */
 package fishingrodofdestiny.world;
 
-import fishingrodofdestiny.world.Inventory;
-import fishingrodofdestiny.world.GameObjectFactory;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,40 +21,9 @@ public class InventoryTest {
     
     @Before
     public void setUp() {
-        this.inventory = new Inventory(0);
+        this.inventory = new Inventory();
     }
     
-    
-    @Test
-    public void adjustingWeightLimitWorks() {
-        assertEquals(0, this.inventory.getWeightLimit());
-        int n = 42;
-        for(int i = 0; i < n; i++) {
-            this.inventory.adjustWeightLimit(1);
-            assertEquals(i + 1, this.inventory.getWeightLimit());
-        }
-        this.inventory.adjustWeightLimit(10);
-        assertEquals(n + 10, this.inventory.getWeightLimit());
-        this.inventory.adjustWeightLimit(-5);
-        assertEquals(n + 10 - 5, this.inventory.getWeightLimit());
-    }
-        
-
-    @Test
-    public void weightLimitDoesntGoBelowZero() {
-        assertEquals(0, this.inventory.getWeightLimit());
-        this.inventory.adjustWeightLimit(-4);
-        assertEquals(0, this.inventory.getWeightLimit());
-    }
-    
-    @Test
-    public void weightLimitDoesntOverflow() {
-        assertEquals(0, this.inventory.getWeightLimit());
-        this.inventory.adjustWeightLimit(Integer.MAX_VALUE / 2 + 3);
-        assertTrue(this.inventory.getWeightLimit() > 0);
-        this.inventory.adjustWeightLimit(Integer.MAX_VALUE / 2 + 3);
-        assertTrue(this.inventory.getWeightLimit() > 0);
-    }
     
     @Test
     public void calculatingTotalWeightWorks() {

@@ -39,11 +39,6 @@ public class NonPlayerCharacter extends Character {
     }
     
     @Override
-    public String toString() {
-        return "NonPlayerCharacter(" + super.toString() + ")";
-    }
-
-    @Override
     public boolean isValidAttackTarget(GameObject target) {
         if (!super.isValidAttackTarget(target)) {
             return false;

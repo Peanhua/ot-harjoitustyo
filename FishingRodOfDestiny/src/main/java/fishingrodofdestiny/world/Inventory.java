@@ -18,15 +18,11 @@ import java.util.List;
  */
 public class Inventory implements GameObjectContainer {
     private final List<GameObject> objects;
-    private int                    weightLimit;
     private final Subject          onChange;
     
-    public Inventory(int weightLimit) {
+    public Inventory() {
         this.objects  = new ArrayList<>();
         this.onChange = new Subject();
-
-        this.checkWeightLimit(weightLimit);
-        this.weightLimit = weightLimit;
     }
     
     
@@ -47,36 +43,6 @@ public class Inventory implements GameObjectContainer {
     }
     
     
-    public int getWeightLimit() {
-        return this.weightLimit;
-    }
-
-    
-    private void checkWeightLimit(int limit) {
-        if (limit < 0) {
-            throw new RuntimeException("Illegal inventory weight limit " + limit + " given to Inventory.setWeightLimit().");
-        }
-    }
-    
-    public final void setWeightLimit(int limit) {
-        this.checkWeightLimit(limit);
-        this.weightLimit = limit;
-        this.onChange.notifyObservers();
-    }
-
-    
-    public void adjustWeightLimit(int amount) {
-        if (amount <= 0 || this.weightLimit < Integer.MAX_VALUE - amount) {
-            this.weightLimit += amount;
-            if (this.weightLimit < 0) {
-                this.weightLimit = 0;
-            }
-        } else {
-            this.weightLimit = Integer.MAX_VALUE;
-        }
-        this.onChange.notifyObservers();
-    }
-
     public List<GameObject> getObjects() {
         return this.objects;
     }

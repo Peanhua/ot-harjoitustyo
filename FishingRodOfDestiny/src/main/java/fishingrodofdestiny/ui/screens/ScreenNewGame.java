@@ -12,7 +12,6 @@ import fishingrodofdestiny.world.gameobjects.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import javafx.event.EventType;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -119,7 +118,7 @@ public class ScreenNewGame extends Screen {
                 this.pointDistributor.getPoints(PointDistributor.PointType.ATTACK)            + defaultPlayer.getAttack(),
                 this.pointDistributor.getPoints(PointDistributor.PointType.DEFENCE)           + defaultPlayer.getDefence(),
                 this.pointDistributor.getPoints(PointDistributor.PointType.HITPOINTS)         + defaultPlayer.getMaxHitpoints(),
-                this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY) + defaultPlayer.getInventory().getWeightLimit()
+                this.pointDistributor.getPoints(PointDistributor.PointType.CARRYING_CAPACITY) + defaultPlayer.getCarryingCapacity()
         );
         
         this.close();

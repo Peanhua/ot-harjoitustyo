@@ -39,19 +39,13 @@ public class Player extends Character {
         this.getLocation().listenOnChange(() -> this.explore());
     }
     
-    public Player(String name, int attack, int defence, int maxHitpoints, int weightLimit) {
+    public Player(String name, int attack, int defence, int maxHitpoints, int carryingCapacity) {
         this();
         this.setName(name);
         this.setAttack(attack);
         this.setDefence(defence);
         this.setMaxHitpoints(maxHitpoints);
-        this.getInventory().setWeightLimit(weightLimit);
-    }
-    
-    @Override
-    public String toString() {
-        return "Player(" + super.toString()
-                + ")";
+        this.setCarryingCapacity(carryingCapacity);
     }
     
     @Override

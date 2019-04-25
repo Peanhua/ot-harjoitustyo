@@ -37,19 +37,6 @@ public class GameObjectTest {
     }
     
     @Test
-    public void toStringWorks() {
-        this.object.setName("abc");
-        String s1 = this.object.toString();
-        assertTrue(s1.getClass() == String.class);
-        this.object.setName("def");
-        String s2 = this.object.toString();
-        assertTrue(!s1.equals(s2));
-        this.object.getInventory().adjustWeightLimit(1);
-        String s3 = this.object.toString();
-        assertTrue(!s2.equals(s3));
-    }
-    
-    @Test
     public void getCapitalizedNameWorksWithEmptyName() {
         this.object.setName("");
         assertTrue(this.object.getCapitalizedName().equals(""));

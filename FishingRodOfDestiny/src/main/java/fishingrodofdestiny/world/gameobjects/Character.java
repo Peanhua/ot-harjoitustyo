@@ -20,8 +20,11 @@ import java.util.List;
  */
 public abstract class Character extends GameObject {
     
+    private final static int INITIAL_CARRYING_CAPACITY = 20;
+    
     private int        attack;
     private int        defence;
+    private int        carryingCapacity;
     private int        naturalArmorClass;
     private double     naturalRegeneration;
     private int        characterLevel;
@@ -37,6 +40,7 @@ public abstract class Character extends GameObject {
         super(objectType);
         this.attack              = 0;
         this.defence             = 0;
+        this.carryingCapacity    = Character.INITIAL_CARRYING_CAPACITY;
         this.naturalArmorClass   = 0;
         this.naturalRegeneration = 0.0;
         this.characterLevel      = 0;
@@ -48,19 +52,8 @@ public abstract class Character extends GameObject {
         this.actionsTaken        = 0;
         this.buffs               = new ArrayList<>();
         this.setDrawingOrder(100);
-        this.getInventory().setWeightLimit(20);
     }
     
-    @Override
-    public String toString() {
-        return "Character(" + super.toString()
-                + ",attack=" + this.attack
-                + ",defence=" + this.defence
-                + ",level=" + this.characterLevel
-                + ",xp=" + this.experiencePoints
-                + ")";
-    }
-
     @Override
     protected void onDestroyed(GameObject instigator) {
         this.addMessage("You die!");
@@ -156,6 +149,10 @@ public abstract class Character extends GameObject {
         this.defence = amount;
     }
     
+    public final void setCarryingCapacity(int amount) {
+        this.carryingCapacity = amount;
+    }
+    
     public final void setNaturalArmorClass(int ac) {
         this.naturalArmorClass = ac;
     }
@@ -200,7 +197,7 @@ public abstract class Character extends GameObject {
                 this.adjustDefence(amount);
                 break;
             case "carrying capacity":
-                this.getInventory().adjustWeightLimit(amount);
+                this.adjustCarryingCapacity(amount);
                 break;
             case "hit points":
                 this.adjustMaxHitpoints(amount);
@@ -214,8 +211,8 @@ public abstract class Character extends GameObject {
         int base = 20;
         int attackChance  = this.getRandom().nextInt(base + this.attack);
         int defenceChance = this.getRandom().nextInt(base + this.defence);
-        int carryChance   = this.getRandom().nextInt(base + this.getInventory().getWeightLimit() - 20); // Ignore the initial 20.
-        int hpChance      = this.getRandom().nextInt(base + super.getMaxHitpoints() - 1); // Ignore the initial 1. Using super here because later we will probably override getMaxHitpoints()
+        int carryChance   = this.getRandom().nextInt(base + this.carryingCapacity - Character.INITIAL_CARRYING_CAPACITY); // Ignore the initial 20.
+        int hpChance      = this.getRandom().nextInt(base + super.getMaxHitpoints() - 1); // Ignore the initial 1.
         if (attackChance > defenceChance && attackChance > carryChance && attackChance > carryChance) {
             increased = "attack";
         } else if (defenceChance > carryChance && defenceChance > hpChance) {
@@ -275,6 +272,10 @@ public abstract class Character extends GameObject {
     
     public int getDefence() {
         return this.defence + this.getBuffBonuses(Buff.Type.DEFENCE);
+    }
+    
+    public int getCarryingCapacity() {
+        return this.carryingCapacity + this.getBuffBonuses(Buff.Type.CARRY);
     }
     
     public int getExperiencePoints() {
@@ -353,6 +354,14 @@ public abstract class Character extends GameObject {
         this.defence += amount;
         if (this.defence < 0) {
             this.defence = 0;
+        }
+        this.onChange.notifyObservers();
+    }
+    
+    public void adjustCarryingCapacity(int amount) {
+        this.carryingCapacity += amount;
+        if (this.carryingCapacity < 0) {
+            this.carryingCapacity = 0;
         }
         this.onChange.notifyObservers();
     }

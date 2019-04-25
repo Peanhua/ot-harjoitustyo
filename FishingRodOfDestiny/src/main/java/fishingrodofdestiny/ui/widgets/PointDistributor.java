@@ -123,7 +123,7 @@ public class PointDistributor extends Widget {
             case ATTACK:            return this.character.getAttack();
             case DEFENCE:           return this.character.getDefence();
             case HITPOINTS:         return this.character.getMaxHitpoints();
-            case CARRYING_CAPACITY: return this.character.getInventory().getWeightLimit();
+            case CARRYING_CAPACITY: return this.character.getCarryingCapacity();
             default:                throw new RuntimeException("Unknown PointType " + pointType + " for getExistingPoints()");
         }
     }

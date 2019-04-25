@@ -41,7 +41,7 @@ public abstract class Tile implements GameObjectContainer {
         this.level     = level;
         this.x         = x;
         this.y         = y;
-        this.inventory = new Inventory(0);
+        this.inventory = new Inventory();
         this.graphics  = null;
         this.name      = name;
     }

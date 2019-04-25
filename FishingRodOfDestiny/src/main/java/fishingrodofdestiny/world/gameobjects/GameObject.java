@@ -57,7 +57,7 @@ public class GameObject implements GameObjectContainer {
         this.maxHitpoints     = 1;
         this.currentHitpoints = 1;
         this.weight           = 1;
-        this.inventory        = new Inventory(0);
+        this.inventory        = new Inventory();
         this.onChange         = new Subject();
         this.location         = new Location(this);
         this.onMessage        = new Subject();
@@ -91,12 +91,7 @@ public class GameObject implements GameObjectContainer {
      */
     @Override
     public String toString() {
-        return "GameObject("
-                + "name='" + this.name + "'"
-                + ",hp=" + this.currentHitpoints + "/" + this.maxHitpoints
-                + ",inventoryWLimit=" + this.inventory.getWeightLimit()
-                + ",inventorySize=" + this.inventory.getObjects().size()
-                + ")";
+        return "GameObject(type=" + objectType + ",name='" + this.name + "')";
     }
     
 

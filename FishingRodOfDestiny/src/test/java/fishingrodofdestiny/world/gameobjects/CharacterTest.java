@@ -29,7 +29,25 @@ public class CharacterTest {
     }
 
     @Test
-    public void toStringContainsAttack() {
-        assertTrue(this.character.toString().contains("attack"));
+    public void adjustingCarryingCapacityWorks() {
+        int initialCapacity = this.character.getCarryingCapacity();
+        int n = 42;
+        for(int i = 0; i < n; i++) {
+            this.character.adjustCarryingCapacity(1);
+            assertEquals(initialCapacity + i + 1, this.character.getCarryingCapacity());
+        }
+        this.character.adjustCarryingCapacity(10);
+        assertEquals(initialCapacity + n + 10, this.character.getCarryingCapacity());
+        this.character.adjustCarryingCapacity(-5);
+        assertEquals(initialCapacity + n + 10 - 5, this.character.getCarryingCapacity());
     }
+        
+
+    @Test
+    public void carryingCapacityDoesntGoBelowZero() {
+        int initialCapacity = this.character.getCarryingCapacity();
+        this.character.adjustCarryingCapacity(-initialCapacity - 4);
+        assertEquals(0, this.character.getCarryingCapacity());
+    }
+    
 }
