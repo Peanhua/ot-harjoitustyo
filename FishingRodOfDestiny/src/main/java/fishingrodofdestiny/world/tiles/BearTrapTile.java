@@ -15,11 +15,11 @@ import fishingrodofdestiny.world.gameobjects.Character;
  * @author joyr
  */
 public class BearTrapTile extends Tile {
-    private boolean    active;
-    private GameObject trappedObject;
-    private TileGfx    activeGfx;
-    private TileGfx    inactiveGfx;
-    private int        tryToLeaveCounter;
+    private boolean       active;
+    private GameObject    trappedObject;
+    private final TileGfx activeGfx;
+    private final TileGfx inactiveGfx;
+    private int           tryToLeaveCounter;
     
     public BearTrapTile(Level level, int x, int y) {
         super(level, x, y, "floor");
