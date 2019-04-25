@@ -80,9 +80,6 @@ public class KeyboardSettings {
 
     public void addKeybinding(String key, String value) {
         KeyCode keyCode = KeyCode.valueOf(key);
-        if (keyCode == null) {
-            throw new RuntimeException("Unknown key: " + key);
-        }
 
         Action.Type action = Action.Type.fromString(value);
         if (action != null) {
