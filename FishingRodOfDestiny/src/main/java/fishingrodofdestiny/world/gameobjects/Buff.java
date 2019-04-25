@@ -5,7 +5,6 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
-import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.HashMap;
 import java.util.Map;
 
