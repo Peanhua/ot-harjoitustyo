@@ -129,7 +129,7 @@ public class GameObjectFactory {
         if (slot == null) {
             throw new RuntimeException("Missing Slot.");
         }
-        armor.setSlot(Armor.Slot.nameToSlot(slot));
+        armor.setSlot(Armor.Slot.valueOf(slot));
         
         return armor;
     }

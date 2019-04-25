@@ -29,17 +29,6 @@ public class Armor extends Item {
                 default:    throw new RuntimeException("Unknown slot type: " + this);
             }
         }
-        
-        public static Slot nameToSlot(String name) {
-            switch (name) {
-                case "HEAD":  return HEAD;
-                case "ARMOR": return ARMOR;
-                case "HANDS": return HANDS;
-                case "RING":  return RING;
-                case "FEET":  return FEET;
-                default:      throw new RuntimeException("Unknown name for armor slot '" + name + "'.");
-            }
-        }
     }
     
     private Slot slot;
