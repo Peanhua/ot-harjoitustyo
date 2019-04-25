@@ -86,5 +86,6 @@ Time used for the project.
   <tr><td>24.4.</td><td>  3.0</td><td>User interface.</td></tr>
   <tr><td>25.4.</td><td>  0.5</td><td>Code refactoring.</td></tr>
   <tr><td>     </td><td>  1.5</td><td>Tests and code cleanup.</td></tr>
-  <tr><th>Total</th><th>129.0</th><th></th></tr>
+  <tr><td>     </td><td>  0.5</td><td>User settings code.</td></tr>
+  <tr><th>Total</th><th>129.5</th><th></th></tr>
 </table>

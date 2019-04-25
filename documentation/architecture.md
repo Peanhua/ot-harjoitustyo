@@ -363,7 +363,7 @@ game_ended
 
 Statistics are saved on a table named *Statistics*:
 ```SQL
-CREATE TABLE IF NOT EXISTS Statistics (
+CREATE TABLE Statistics (
   games_played    INTEGER(8) NOT NULL,
   games_completed INTEGER(8) NOT NULL,
   gold_collected  INTEGER(8) NOT NULL,
@@ -385,6 +385,19 @@ enemies_killed
 
 ### User settings
 
-User settings are currently always loaded from and saved to a file. If user settings is not readable, the default settings are read from `src/main/resources/fishingrodofdestiny/defaultSettings.ini`.
+If user settings is not readable, the default settings are read from `src/main/resources/fishingrodofdestiny/defaultSettings.ini`.
+
+#### User settings in database
+
+Keybindings are saved on a table named *Keybindings*:
+```SQL
+CREATE TABLE Keybindings (
+  key    VARCHAR(32) NOT NULL,
+  action VARCHAR(64) NOT NULL
+)
+```
+Despite the name of the field `action`, it can be either action or command.
+
+#### User settings in a file
 
 The file is in the form of an [INI-file](https://en.wikipedia.org/wiki/INI_file), see the [manual](manual.md) for details.

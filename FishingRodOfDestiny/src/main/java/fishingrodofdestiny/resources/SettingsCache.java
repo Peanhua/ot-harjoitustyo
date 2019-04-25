@@ -6,6 +6,8 @@
 package fishingrodofdestiny.resources;
 
 import fishingrodofdestiny.dao.FileSettingsDao;
+import fishingrodofdestiny.dao.JdbcSettingsDao;
+import fishingrodofdestiny.dao.MemorySettingsDao;
 import fishingrodofdestiny.dao.SettingsDao;
 import fishingrodofdestiny.settings.KeyboardSettings;
 import java.net.URL;
@@ -28,8 +30,8 @@ public class SettingsCache {
     private final KeyboardSettings keyboardSettings;
   
     private SettingsCache() {
-        SettingsDao dao = new FileSettingsDao(this.getUserSettingsURL());
-        if (dao.isLoadable()) {
+        SettingsDao dao = this.getDao("jdbc:sqlite:FishingRodOfDestiny.db", System.getenv("FISHINGRODOFDESTINY_SETTINGS"));
+        if (dao != null && dao.isLoadable()) {
             this.keyboardSettings = new KeyboardSettings(dao);
             
         } else {
@@ -44,21 +46,26 @@ public class SettingsCache {
         this.keyboardSettings.load();
     }
     
-    private URL getUserSettingsURL() {
-        URL url = null;
-        try {
-            String filename = System.getenv("FISHINGRODOFDESTINY_SETTINGS");
-            if (filename == null || filename.length() == 0) {
-                filename = "settings.ini";
-            }
-            url = new URL("file:" + filename);
-            
-        } catch (Exception e) {
-            // This is never executed.
+    private SettingsDao getDao(String defaultUri, String uri) {
+        if (uri == null) {
+            uri = defaultUri;
         }
-        return url;
-    }
         
+        SettingsDao dao;
+        if (uri.startsWith("jdbc:")) {
+            dao = new JdbcSettingsDao(uri);
+        } else if (uri.startsWith("file:")) {
+            try {
+                dao = new FileSettingsDao(new URL(uri));
+            } catch (Exception e) {
+                System.out.println(e);
+                dao = null;
+            }
+        } else {
+            dao = new MemorySettingsDao();
+        }
+        return dao;
+    }
     
     public KeyboardSettings getKeyboardSettings() {
         return this.keyboardSettings;
