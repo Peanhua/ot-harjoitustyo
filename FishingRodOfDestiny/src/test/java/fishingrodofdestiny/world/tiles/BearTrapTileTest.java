@@ -11,6 +11,7 @@ import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -75,5 +76,26 @@ public class BearTrapTileTest {
             action.act(this.character);
         }
         assertEquals(this.floor, this.character.getLocation().getContainerTile());
+    }
+    
+    @Test
+    public void secondCharacterEnteringDoesNotGetTrapped() {
+        Character second = (Character) GameObjectFactory.create("rat");
+        this.character.getLocation().moveTo(this.floor);
+        second.getLocation().moveTo(this.floor);
+        Action action = new ActionMove(1, 0);
+        action.act(this.character);
+        action.act(second);
+        action = new ActionMove(-1, 0);
+        action.act(second);
+        assertEquals(this.floor, second.getLocation().getContainerTile());
+    }
+    
+    @Test
+    public void nonCharacterObjectIsNotTrapped() {
+        GameObject coin = GameObjectFactory.create("gold coin");
+        coin.getLocation().moveTo(this.floor);
+        coin.getLocation().moveTo(this.trap);
+        assertNotEquals(coin, this.trap.getTrappedObject());
     }
 }
