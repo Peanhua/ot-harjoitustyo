@@ -81,7 +81,7 @@ public class KeyboardSettings {
     public void addKeybinding(String key, String value) {
         KeyCode keyCode = KeyCode.valueOf(key);
 
-        Action.Type action = Action.Type.fromString(value);
+        Action.Type action = Action.Type.valueOf(value);
         if (action != null) {
             this.setActionKeyMapping(action, keyCode);
             return;

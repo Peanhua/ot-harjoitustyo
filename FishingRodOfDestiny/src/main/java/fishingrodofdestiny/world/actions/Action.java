@@ -25,15 +25,6 @@ public abstract class Action {
         DROP,
         USE,
         LEVEL_UP;
-        
-        public static Type fromString(String value) {
-            for (Type t : Type.values()) {
-                if (value.equals(t.toString())) {
-                    return t;
-                }
-            }
-            return null;
-        }
     };
     
     private final Type type;
