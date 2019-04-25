@@ -136,8 +136,7 @@ Extra attributes for armor items:
 * Armor class value representing how much incoming damage the armor absorbs if worn
 * Armor slot, only one armor item per slot is allowed
   * Head (helmets, hats, etc)
-  * Chest (shirts etc)
-  * Legs (pants etc)
+  * Armor (chest&legs)
   * Hands (gloves)
   * Feet (boots)
   * Finger (rings)
