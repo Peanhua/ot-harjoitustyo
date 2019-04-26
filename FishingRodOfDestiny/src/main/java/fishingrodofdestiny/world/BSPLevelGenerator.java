@@ -111,11 +111,6 @@ class Room {
             }
         }
     }
-
-    @Override
-    public String toString() {
-        return "Room(@" + this.topleftX + "," + this.topleftY + " size=" + this.width + "x" + this.height + ")";
-    }
 }
 
 
@@ -307,24 +302,5 @@ class Node {
                 src.y += deltaY / Math.abs(deltaY);
             }
         }
-    }
-
-
-    public void dump() {
-        if (this.childA != null) {
-            this.childA.dump();
-        }
-        if (this.childB != null) {
-            this.childB.dump();
-        }
-
-        if (this.childA == null && this.childB == null) {
-            System.out.println(this);
-        }            
-    }
-
-    @Override
-    public String toString() {
-        return "Node(topleft=" + this.topleftX + "," + this.topleftY + ": size=" + this.width + "," + this.height + ": room=" + this.room + ")";
     }
 }

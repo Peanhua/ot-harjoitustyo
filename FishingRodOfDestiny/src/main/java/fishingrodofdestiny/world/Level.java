@@ -184,24 +184,4 @@ public class Level implements GameObjectContainer {
         
         objects.forEach(obj -> obj.tick(deltaTime));
     }
-    
-    
-    @Override
-    public String toString() {
-        String rv = "";
-        for (int y = 0; y < this.height; y++) {
-            for (int x = 0; x < this.width; x++) {
-                Tile t = this.getTile(x, y);
-                if (t == null) {
-                    rv += "X";
-                } else if (t.getClass() == FloorTile.class) {
-                    rv += ".";
-                } else {
-                    rv += " ";
-                }
-            }
-            rv += "\n";
-        }
-        return rv;
-    }
 }

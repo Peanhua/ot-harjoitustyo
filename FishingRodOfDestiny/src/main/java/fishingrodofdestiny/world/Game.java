@@ -92,11 +92,6 @@ public class Game {
     }
 
     
-    
-    public RescueTarget getRescueTarget() {
-        return this.rescueTarget;
-    }
-    
     public Player getPlayer() {
         return this.player;
     }
