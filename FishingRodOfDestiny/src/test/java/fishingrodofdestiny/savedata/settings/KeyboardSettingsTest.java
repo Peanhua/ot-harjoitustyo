@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.settings;
+package fishingrodofdestiny.savedata.settings;
 
-import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.world.actions.Action;
 import java.util.List;
