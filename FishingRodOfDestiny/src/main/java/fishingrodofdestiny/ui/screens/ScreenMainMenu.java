@@ -27,6 +27,7 @@ import javafx.stage.Stage;
  */
 public class ScreenMainMenu extends Screen {
     private Starfield bubbles;
+    private VBox      buttons;
     
     public ScreenMainMenu(Screen parent, Stage stage) {
         super(parent, stage);
@@ -64,8 +65,8 @@ public class ScreenMainMenu extends Screen {
     }
 
     private Node setupButtons() {
-        VBox buttons = new VBox(2);
-        buttons.setAlignment(Pos.CENTER);
+        this.buttons = new VBox(2);
+        this.buttons.setAlignment(Pos.CENTER);
             
         Button newgame = new Button("New Game");
         newgame.setOnAction(e -> this.startNewGame());
@@ -118,6 +119,16 @@ public class ScreenMainMenu extends Screen {
     private void showSettings() {
         SettingsEditor editor = new SettingsEditor(this);
         editor.show();
+    }
+    
+    @Override
+    public void enableInputHandlers() {
+        this.buttons.setDisable(false);
+    }
+    
+    @Override
+    public void disableInputHandlers() {
+        this.buttons.setDisable(true);
     }
 
     @Override
