@@ -24,4 +24,16 @@ public class BuffTest {
         }
         assertTrue(b.isAlive());
     }
+    
+    @Test
+    public void regenerationBuffHeals() {
+        Buff b = new Buff(100, Buff.Type.REGENERATION, 1);
+        Character rat = (Character) GameObjectFactory.create("rat");
+        rat.setHitpoints(1);
+        rat.addBuff(b);
+        for (int i = 0; i < 100; i++) {
+            rat.tick(1.0);
+        }
+        assertTrue(rat.getHitpoints() > 1);
+    }
 }
