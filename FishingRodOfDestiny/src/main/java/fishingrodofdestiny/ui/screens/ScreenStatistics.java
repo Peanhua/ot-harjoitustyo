@@ -79,7 +79,10 @@ public class ScreenStatistics extends Screen {
     }
     
     private int addStatistics(Statistics stats, GridPane grid, int row) {
-        double completionPercentage = (double) stats.getGamesCompleted() * 100.0 / (double) stats.getGamesPlayed();
+        double completionPercentage = 0.0;
+        if (stats.getGamesPlayed() > 0) {
+            completionPercentage = (double) stats.getGamesCompleted() * 100.0 / (double) stats.getGamesPlayed();
+        }
         this.addStatisticsRow(grid, row++, "Games played:",         "" + stats.getGamesPlayed());
         this.addStatisticsRow(grid, row++, "Games completed:",      "" + stats.getGamesCompleted() + " (" + String.format("%.2f", completionPercentage) + "%)");
         this.addStatisticsRow(grid, row++, "Gold coins collected:", "" + stats.getGoldCoinsCollected());
