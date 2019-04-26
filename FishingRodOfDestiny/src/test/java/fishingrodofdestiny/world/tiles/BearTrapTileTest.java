@@ -12,6 +12,7 @@ import fishingrodofdestiny.world.actions.ActionActivateTile;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
+import fishingrodofdestiny.world.gameobjects.Player;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -54,6 +55,43 @@ public class BearTrapTileTest {
         action = new ActionMove(-1, 0);
         action.act(this.character);
         assertEquals(this.floor, this.character.getLocation().getContainerTile());
+    }
+
+    @Test
+    public void canLeaveAfterReactivatedBySomeoneElse() {
+        this.character.getLocation().moveTo(this.floor);
+        Action action = new ActionMove(1, 0);
+        action.act(this.character);
+        
+        Character someoneElse = (Character) GameObjectFactory.create("rat");
+        someoneElse.getLocation().moveTo(this.trap);
+        action = new ActionActivateTile();
+        action.act(someoneElse);
+        
+        action = new ActionMove(-1, 0);
+        action.act(this.character);
+        
+        assertEquals(this.floor, this.character.getLocation().getContainerTile());
+    }
+    
+    @Test
+    public void reactivatingMoreThanOnceGivesDifferentMessage() {
+        Player player = new Player();
+        player.setMaxHitpoints(999);
+        player.getLocation().moveTo(this.floor);
+        Action action = new ActionMove(1, 0);
+        action.act(player);
+        
+        player.popMessage();
+        action = new ActionActivateTile();
+        action.act(player);
+        String firstMessage = player.popMessage();
+        
+        action = new ActionActivateTile();
+        action.act(player);
+        String secondMessage = player.popMessage();
+        
+        assertFalse(firstMessage.equals(secondMessage));
     }
     
     @Test

@@ -5,6 +5,12 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.world.GameObjectFactory;
+import fishingrodofdestiny.world.actions.Action;
+import fishingrodofdestiny.world.actions.ActionUse;
+import fishingrodofdestiny.world.tiles.FloorTile;
+import fishingrodofdestiny.world.tiles.Tile;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -118,4 +124,64 @@ public class CharacterTest {
         
         assertEquals(initialDefence + 10, this.character.getDefence());
     }
+    
+    @Test
+    public void attackBuffIsGivenRandomlyWhenChanceIsBelow1() {
+        // Assumes cobra's attack buff has chance below 1.0
+        Character cobra = (Character) GameObjectFactory.create("cobra");
+        int buffCount = 0;
+        int noBuffCount = 0;
+        int n = 1000;
+        for (int i = 0; i < n; i++) {
+            if (cobra.getRandomAttackBuff() == null) {
+                noBuffCount++;
+            } else {
+                buffCount++;
+            }
+        }
+        
+        assertNotEquals(0, buffCount);
+        assertNotEquals(0, noBuffCount);
+    }
+    
+    @Test
+    public void validPickupTargetsDontContainCharacters() {
+        Tile floor = new FloorTile(null, 0, 0);
+        
+        this.character.getLocation().moveTo(floor);
+        
+        GameObject rat = GameObjectFactory.create("rat");
+        rat.getLocation().moveTo(floor);
+        
+        GameObject coin = GameObjectFactory.create("gold coin");
+        coin.getLocation().moveTo(floor);
+        
+        List<GameObject> objects = this.character.getValidPickUpTargets();
+        assertTrue(objects.contains(coin));
+        assertFalse(objects.contains(rat));
+    }
+    
+    @Test
+    public void getBuffsDoesNotReturnDeadBuffs() {
+        Buff buff = new Buff(1, Buff.Type.ATTACK, 1);
+        this.character.addBuff(buff);
+        for (int i = 0; i < 10; i++) {
+            buff.tick(1.0);
+        }
+        List<Buff> buffs = this.character.getBuffs();
+        assertFalse(buffs.contains(buff));
+    }
+    
+    @Test
+    public void wieldWeaponIncreasesDamage() {
+        int damageAtStart = this.character.getDamage();
+        
+        GameObject weapon = GameObjectFactory.create("short sword");
+        weapon.getLocation().moveTo(this.character);
+        Action action = new ActionUse(weapon);
+        action.act(this.character);
+        
+        assertTrue(this.character.getDamage() > damageAtStart);
+    }
+    
 }
