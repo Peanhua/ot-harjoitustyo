@@ -27,11 +27,6 @@ public class Statistics {
         this.dao                = dao;
     }
     
-    @Override
-    public String toString() {
-        return "games=" + this.gamesPlayed + ", completed=" + this.gamesCompleted + ", gold=" + this.goldCoinsCollected + ", enemies=" + this.enemiesKilled;
-    }
-    
     public final long getGamesPlayed() {
         return this.gamesPlayed;
     }

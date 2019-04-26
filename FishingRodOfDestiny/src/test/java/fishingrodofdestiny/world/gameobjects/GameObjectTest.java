@@ -6,6 +6,7 @@ package fishingrodofdestiny.world.gameobjects;
  * and open the template in the editor.
  */
 
+import fishingrodofdestiny.world.GameObjectFactory;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -76,5 +77,21 @@ public class GameObjectTest {
     public void getCapitalizedNameWorks() {
         this.object.setName("abc");
         assertTrue(this.object.getCapitalizedName().equals("Abc"));
+    }
+    
+    @Test
+    public void objectIsDestroyedAfterTimeToLiveExpires() {
+        this.object.setTimeToLive(1.0);
+        for (int i = 0; i < 10; i++) {
+            this.object.tick(1.0);
+        }
+        assertFalse(this.object.isAlive());
+    }
+    
+    @Test
+    public void charactersAreDrawnOnTopOfOtherObjects() {
+        GameObject rat = GameObjectFactory.create("rat");
+        GameObject coin = GameObjectFactory.create("gold coin");
+        assertTrue(rat.getDrawingOrder() > coin.getDrawingOrder());
     }
 }
