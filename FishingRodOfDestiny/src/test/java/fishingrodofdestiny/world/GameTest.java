@@ -7,6 +7,7 @@ package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionMove;
+import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Location;
 import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
@@ -118,5 +119,31 @@ public class GameTest {
             }
             assertTrue(differs);
         }
+    }
+    
+    @Test
+    public void playerEventuallyDiesIfThereAreRatsNearby() {
+        int[][] positions = { { -1, -1 }, { 1, -1 }, {-1, 1 }, { 1, 1 }, { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+        Level level = this.game.getPlayer().getLocation().getContainerTile().getLevel();
+        int x = this.game.getPlayer().getLocation().getContainerTile().getX();
+        int y = this.game.getPlayer().getLocation().getContainerTile().getY();
+        
+        int ratcount = 0;
+        for (int distance = 1; distance < 5; distance++) {
+            for (int i = 0; i < positions.length; i++) {
+                Tile floor = level.getTile(x + positions[i][0] * distance, y * positions[i][1] * distance);
+                if (floor != null && floor.canBeEntered()) {
+                    GameObject rat = GameObjectFactory.create("rat");
+                    rat.getLocation().moveTo(floor);
+                    ratcount++;
+                }
+            }
+        }
+        assertTrue(ratcount > 0); // This is actually an error in this test, but should be caught nevertheless.
+        
+        for (int i = 0; this.game.getPlayer().isAlive() && i < 10000; i++) {
+            this.game.tick();
+        }
+        assertFalse(this.game.getPlayer().isAlive());
     }
 }

@@ -59,6 +59,18 @@ public class JdbcHelperTest {
     }
     
     @Test
+    public void insertPreparerWorks() throws SQLException {
+        helper.update("CREATE TABLE insertPreparerWorks ( bar INTEGER PRIMARY KEY AUTOINCREMENT, kek VARCHAR(40) )");
+        helper.insert("INSERT INTO insertPreparerWorks ( kek ) VALUES ( ? )", (stmt) -> {
+                stmt.setString(1, "kak");
+        });
+        CachedRowSet rs = helper.query("SELECT kek FROM insertPreparerWorks");
+        rs.next();
+        String result = rs.getString(1);
+        assertTrue(result.equals("kak"));
+    }
+    
+    @Test
     public void erroneousQuery() {
         assertNull(helper.query("this is illegal sql and does not work"));
     }
