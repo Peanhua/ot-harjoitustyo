@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.ui;
 
+import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.ui.screens.ScreenMainMenu;
 import fishingrodofdestiny.ui.screens.Screen;
 import javafx.application.Application;
@@ -29,5 +30,7 @@ public class FishingRodOfDestinyUi extends Application {
     
     public static void main(String[] args) {
         launch(args);
+    
+        SettingsCache.getInstance().save();
     }
 }

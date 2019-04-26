@@ -124,9 +124,4 @@ public class ScreenMainMenu extends Screen {
     public void onShow() {
         this.bubbles.enable();
     }
-    
-    @Override
-    public void onClose() {
-        SettingsCache.getInstance().save();
-    }        
 }
