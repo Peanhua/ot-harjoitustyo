@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.world.actions;
 
+import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 
@@ -51,5 +52,12 @@ public class ActionAttack extends Action {
         me.addMessage("You hit " + target.getName() + " for " + damage + "!");
         target.addMessage(me.getCapitalizedName() + " hits you for " + damage + "!");
         target.hit(me, damage);
+        
+        if (target instanceof Character) {
+            Buff buff = me.getRandomAttackBuff();
+            if (buff != null) {
+                ((Character) target).addBuff(new Buff(buff));
+            }
+        }
     }
 }

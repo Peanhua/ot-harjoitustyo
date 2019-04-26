@@ -19,6 +19,7 @@ public class Buff {
         CARRY,
         DEFENCE,
         HITPOINT,
+        POISON,
         REGENERATION;
     }
     private boolean           alive;
@@ -82,5 +83,13 @@ public class Buff {
     
     protected final void setBonus(Type forType, double bonus) {
         this.bonuses.put(forType, bonus);
+    }
+    
+    public final String getName() {
+        String name = this.bonuses.keySet().stream().map(b -> b.toString()).reduce(null, (a, b) -> (a != null ? a + "+" : "") + b);
+        if (name == null) {
+            name = "unknown";
+        }
+        return name;
     }
 }

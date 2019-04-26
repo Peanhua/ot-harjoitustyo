@@ -8,6 +8,7 @@ package fishingrodofdestiny.world;
 import fishingrodofdestiny.world.gameobjects.Armor;
 import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Consumable;
+import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Item;
 import fishingrodofdestiny.world.gameobjects.NonPlayerCharacter;
@@ -140,6 +141,7 @@ public class GameObjectFactory {
         loadGfx(section, npc);
         loadLevel(section, npc);
         loadInventoryItems(section, npc.getCharacterLevel(), npc);
+        loadAttackBuffs(section, npc);
         return npc;
     }
     
@@ -179,6 +181,21 @@ public class GameObjectFactory {
                 throw new RuntimeException("Missing BuffTime or BuffAmount");
             }
             item.addUseBuff(new Buff(buffTime, Buff.Type.valueOf(buffType), buffAmount));
+        }
+    }
+    
+    private static void loadAttackBuffs(Ini.Section section, Character character) {
+        // TODO: support multiple buffs
+        // TODO: utilize same code for loadUseBuffs(), loadBuffs(), and loadAttackBuffs()
+        String buffType = section.get("AttackBuffType");
+        if (buffType != null) {
+            Double buffTime = section.get("AttackBuffTime", Double.class);
+            Double buffAmount = section.get("AttackBuffAmount", Double.class);
+            Double buffChance = section.get("AttackBuffChance", Double.class);
+            if (buffTime == null || buffAmount == null || buffChance == null) {
+                throw new RuntimeException("Missing AttackBuffTime, AttackBuffAmount, or AttackBuffChance");
+            }
+            character.addAttackBuff(buffChance, new Buff(buffTime, Buff.Type.valueOf(buffType), buffAmount));
         }
     }
     

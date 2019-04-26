@@ -34,7 +34,9 @@ public abstract class Character extends GameObject {
     private final HashMap<Armor.Slot, Armor> equippedArmor;
     private double     accumulatedRegeneration;
     private long       actionsTaken;
-    private final List<Buff> buffs;
+    private final List<Buff>   buffs;
+    private final List<Double> attackBuffChances;
+    private final List<Buff>   attackBuffs;
 
     public Character(String objectType) {
         super(objectType);
@@ -51,6 +53,8 @@ public abstract class Character extends GameObject {
         this.accumulatedRegeneration = 0.0;
         this.actionsTaken        = 0;
         this.buffs               = new ArrayList<>();
+        this.attackBuffChances   = new ArrayList<>();
+        this.attackBuffs         = new ArrayList<>();
         this.setDrawingOrder(100);
     }
     
@@ -235,11 +239,23 @@ public abstract class Character extends GameObject {
             }
         }
         this.buffs.add(buff);
+        this.onChange.notifyObservers();
     }
     
     
-    public int getBuffBonuses(Buff.Type forType) {
-        int bonuses = 0;
+    public List<Buff> getBuffs() {
+        List<Buff> rv = new ArrayList<>();
+        this.buffs.forEach(b -> {
+            if (b != null && b.isAlive()) {
+                rv.add(b);
+            }
+        });
+        return rv;
+    }
+    
+    
+    public double getBuffBonuses(Buff.Type forType) {
+        double bonuses = 0;
         
         if (this.weapon != null) {
             bonuses += this.weapon.getBuffBonuses(forType);
@@ -260,22 +276,37 @@ public abstract class Character extends GameObject {
     }
     
     
+    public void addAttackBuff(double chance, Buff buff) {
+        this.attackBuffChances.add(chance);
+        this.attackBuffs.add(buff);
+    }
+    
+    public Buff getRandomAttackBuff() {
+        for (int i = 0; i < this.attackBuffs.size(); i++) {
+            if (this.getRandom().nextDouble() < this.attackBuffChances.get(i)) {
+                return this.attackBuffs.get(i);
+            }
+        }
+        return null;
+    }
+    
+    
     @Override
     public int getMaxHitpoints() {
-        return super.getMaxHitpoints() + this.getBuffBonuses(Buff.Type.HITPOINT);
+        return super.getMaxHitpoints() + (int) this.getBuffBonuses(Buff.Type.HITPOINT);
     }
     
     
     public int getAttack() {
-        return this.attack + this.getBuffBonuses(Buff.Type.ATTACK);
+        return this.attack + (int) this.getBuffBonuses(Buff.Type.ATTACK);
     }
     
     public int getDefence() {
-        return this.defence + this.getBuffBonuses(Buff.Type.DEFENCE);
+        return this.defence + (int) this.getBuffBonuses(Buff.Type.DEFENCE);
     }
     
     public int getCarryingCapacity() {
-        return this.carryingCapacity + this.getBuffBonuses(Buff.Type.CARRY);
+        return this.carryingCapacity + (int) this.getBuffBonuses(Buff.Type.CARRY);
     }
     
     public int getExperiencePoints() {
@@ -283,7 +314,7 @@ public abstract class Character extends GameObject {
     }
     
     public int getArmorClass() {
-        return this.naturalArmorClass + this.getBuffBonuses(Buff.Type.ARMOR_CLASS);
+        return this.naturalArmorClass + (int) this.getBuffBonuses(Buff.Type.ARMOR_CLASS);
     }
     
     /**
@@ -407,14 +438,14 @@ public abstract class Character extends GameObject {
     private void regenerationTick(double deltaTime) {
         this.accumulatedRegeneration += deltaTime * this.getRegenerationPerSecond();
         int amount = (int) this.accumulatedRegeneration;
-        if (amount > 0) {
+        if (amount != 0) {
             this.adjustHitpoints(amount);
             this.accumulatedRegeneration -= amount;
         }
     }
     
     public final double getRegenerationPerSecond() {
-        return this.naturalRegeneration + this.getBuffBonuses(Buff.Type.REGENERATION);
+        return this.naturalRegeneration + this.getBuffBonuses(Buff.Type.REGENERATION) - this.getBuffBonuses(Buff.Type.POISON);
     }
     
     private void buffTick(double deltaTime) {

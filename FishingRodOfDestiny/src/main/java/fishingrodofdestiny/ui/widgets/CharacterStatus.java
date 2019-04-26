@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 public class CharacterStatus extends Widget {
     
     private enum StatType {
-        LEVEL, XP, NEXTLEVELXP, HP, ATTACK, DEFENCE, CARRY, AC, DAMAGE, INVENTORY, ACTIONS;
+        LEVEL, XP, NEXTLEVELXP, HP, ATTACK, DEFENCE, CARRY, AC, DAMAGE, INVENTORY, BUFFS, ACTIONS;
         
         public static String getName(StatType type) {
             switch (type) {
@@ -36,6 +36,7 @@ public class CharacterStatus extends Widget {
                 case AC:          return "AC";
                 case DAMAGE:      return "Damage";
                 case INVENTORY:   return "Inventory";
+                case BUFFS:       return "Buffs";
                 case ACTIONS:     return "Actions";
                 default:          throw new RuntimeException("Unknown type " + type + " for StatType.getName()");
             }
@@ -95,6 +96,7 @@ public class CharacterStatus extends Widget {
             
             GridPane.setConstraints(label, 1, row);
             GridPane.setConstraints(value, 2, row);
+            value.setWrappingWidth(100);
 
             grid.getChildren().addAll(label, value);
             this.texts.set(type.ordinal(), value);
@@ -179,6 +181,12 @@ public class CharacterStatus extends Widget {
                 int usage  = (int) (100.0 * (double) weight / (double) this.character.getCarryingCapacity());
                 return "" + weight + " (" + usage + "%)";
             case ACTIONS:     return "" + this.character.getActionsTaken();
+            case BUFFS:
+                String buffs = this.character.getBuffs().stream().map(b -> b.getName()).reduce(null, (a, b) -> (a != null ? a + ", " : "") + b);
+                if (buffs == null) {
+                    buffs = "";
+                }
+                return buffs;
             default: throw new RuntimeException("Unkonwn StatType " + type + " for getValue()");
         }
     }

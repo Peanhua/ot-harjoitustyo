@@ -230,7 +230,12 @@ public class GameObject implements GameObjectContainer {
      * @param amount The amount to add to the current hit points.
      */
     public final void adjustHitpoints(int amount) {
-        this.setHitpoints(this.currentHitpoints + amount);
+        int hitpoints = this.currentHitpoints + amount;
+        this.currentHitpoints = Math.min(hitpoints, this.maxHitpoints);
+        if (this.currentHitpoints < 1) {
+            this.destroy(null);
+        }
+        this.onChange.notifyObservers();
     }
 
     /**

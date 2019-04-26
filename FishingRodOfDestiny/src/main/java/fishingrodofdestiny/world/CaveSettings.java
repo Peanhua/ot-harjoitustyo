@@ -72,6 +72,9 @@ public class CaveSettings {
     public GameObjectSpawner getEnemySpawner(int caveLevel) {
         GameObjectSpawner enemySpawner = new GameObjectSpawner();
         enemySpawner.addType("rat", this.random.nextInt(10) + this.getLevelWidth(caveLevel) * this.getLevelHeight(caveLevel) / 175, 1.0);
+        if (caveLevel > 2) {
+            enemySpawner.addType("cobra", this.random.nextInt(10 + caveLevel), 1.0);
+        }
         return enemySpawner;
     }        
 }
