@@ -48,6 +48,13 @@ public class CaveSettings {
         return 5;
     }
     
+    public int getStatues(int caveLevel) {
+        if (caveLevel > 0 && caveLevel % 5 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+    
     public GameObjectSpawner getItemSpawner(int caveLevel) {
         GameObjectSpawner itemSettings = new GameObjectSpawner();
         itemSettings.setMaximumTotalCount(5 + caveLevel * 2 + this.random.nextInt(1 + caveLevel * 5));

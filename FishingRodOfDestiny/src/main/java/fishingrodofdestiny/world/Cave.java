@@ -13,6 +13,7 @@ import fishingrodofdestiny.world.tiles.PitTrapTile;
 import fishingrodofdestiny.world.tiles.StairsDownTile;
 import fishingrodofdestiny.world.tiles.StairsTile;
 import fishingrodofdestiny.world.tiles.StairsUpTile;
+import fishingrodofdestiny.world.tiles.StatueTile;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +86,7 @@ public class Cave {
         this.addStairs(settings);
         this.removeInaccessibleLocations(settings);
         this.setupGameCompletionObjects();
+        this.addStatues(settings);
         this.addTraps(settings);
         this.addItems(settings);
         this.addNPCs(settings);
@@ -215,6 +217,21 @@ public class Cave {
         // Also add a ghost at same location:
         GameObject ghost = GameObjectFactory.create("ghost");
         ghost.getLocation().moveTo(newTile);
+    }
+    
+    
+    private void addStatues(CaveSettings settings) {
+        for (int i = 0; i < this.levels.size(); i++) {
+            final Level level = this.levels.get(i);
+            int count = settings.getStatues(i);
+            while (count > 0) {
+                Tile target = level.getRandomTileOfType(settings.getRandom(), FloorTile.class);
+                if (target != null) {
+                    level.setTile(target.getX(), target.getY(), new StatueTile(level, target.getX(), target.getY()));
+                    count--;
+                }
+            }
+        }
     }
     
     
