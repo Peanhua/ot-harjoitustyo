@@ -18,6 +18,7 @@ import fishingrodofdestiny.ui.widgets.CharacterStatus;
 import fishingrodofdestiny.ui.windows.ConfirmationRequester;
 import fishingrodofdestiny.ui.widgets.LocationInfo;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
+import fishingrodofdestiny.ui.windows.SettingsEditor;
 import fishingrodofdestiny.world.Game;
 import fishingrodofdestiny.world.controllers.Controller;
 import fishingrodofdestiny.world.controllers.PlayerController;
@@ -68,11 +69,16 @@ public class ScreenGame extends Screen {
         this.locationInfo = new LocationInfo();
         leftbox.getChildren().add(this.locationInfo.createUserInterface());
 
+        Button settings = new Button("Settings");
+        settings.setFocusTraversable(false);
+        settings.setOnAction(e-> this.showSettings());
+        leftbox.getChildren().add(settings);
+
         Button quit = new Button("Quit");
         quit.setFocusTraversable(false);
         quit.setOnAction(e-> this.onEndGameClicked());
         leftbox.getChildren().add(quit);
-
+        
         this.levelView = new LevelView(this.game.getPlayer());
         Node lv = this.levelView.createUserInterface();
         main.setCenter(lv);
@@ -224,4 +230,10 @@ public class ScreenGame extends Screen {
         Screen screen = new ScreenGameCompletion(this.game, this.getParent(), this.getStage());
         screen.show();
     }
+    
+    
+    private void showSettings() {
+        SettingsEditor editor = new SettingsEditor(this);
+        editor.show();
+    }        
 }
