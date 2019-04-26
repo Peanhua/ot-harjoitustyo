@@ -5,6 +5,7 @@
  */
 package fishingrodofdestiny.settings;
 
+import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.world.actions.Action;
 import java.util.List;

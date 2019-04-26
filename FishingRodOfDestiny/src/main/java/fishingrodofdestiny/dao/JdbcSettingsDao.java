@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.dao;
 
-import fishingrodofdestiny.settings.KeyboardSettings;
+import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import java.util.List;
 import javafx.scene.input.KeyCode;
 import javax.sql.rowset.CachedRowSet;

@@ -6,7 +6,7 @@
 package fishingrodofdestiny.ui.windows;
 
 import fishingrodofdestiny.resources.SettingsCache;
-import fishingrodofdestiny.settings.KeyboardSettings;
+import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.screens.Screen;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import fishingrodofdestiny.world.actions.Action;

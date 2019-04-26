@@ -11,7 +11,7 @@ import fishingrodofdestiny.resources.HighscoreListCache;
 import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.resources.StatisticsCache;
 import fishingrodofdestiny.savedata.highscores.ActionCountBasedHighscore;
-import fishingrodofdestiny.settings.KeyboardSettings;
+import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import fishingrodofdestiny.savedata.statistics.Statistics;
 import fishingrodofdestiny.ui.widgets.LevelView;
 import fishingrodofdestiny.ui.widgets.CharacterStatus;

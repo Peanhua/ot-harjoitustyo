@@ -5,7 +5,7 @@
  */
 package fishingrodofdestiny.dao;
 
-import fishingrodofdestiny.settings.KeyboardSettings;
+import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import java.io.File;
 import javafx.scene.input.KeyCode;
 import org.junit.Before;

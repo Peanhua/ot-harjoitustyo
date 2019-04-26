@@ -32,12 +32,12 @@ List of all packages:
     <td>Highscore handling. Each type of highscore has its own class containing the method to calculate the points for that particular type of highscore.</td>
   </tr>
   <tr>
-    <td>fishingrodofdestiny.savedata.statistics</td>
-    <td>Statistics about games played.</td>
+    <td>fishingrodofdestiny.savedata.settings</td>
+    <td>User settings (keyboard mapping etc).</td>
   </tr>
   <tr>
-    <td>fishingrodofdestiny.settings</td>
-    <td>User settings (keyboard mapping etc).</td>
+    <td>fishingrodofdestiny.savedata.statistics</td>
+    <td>Statistics about games played.</td>
   </tr>
   <tr>
     <td>fishingrodofdestiny.ui</td>

@@ -9,7 +9,7 @@ import fishingrodofdestiny.dao.FileSettingsDao;
 import fishingrodofdestiny.dao.JdbcSettingsDao;
 import fishingrodofdestiny.dao.MemorySettingsDao;
 import fishingrodofdestiny.dao.SettingsDao;
-import fishingrodofdestiny.settings.KeyboardSettings;
+import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import java.net.URL;
 
 /**

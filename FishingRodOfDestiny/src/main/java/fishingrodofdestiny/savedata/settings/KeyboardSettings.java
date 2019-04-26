@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishingrodofdestiny.settings;
+package fishingrodofdestiny.savedata.settings;
 
 import fishingrodofdestiny.dao.SettingsDao;
 import fishingrodofdestiny.observer.Observer;

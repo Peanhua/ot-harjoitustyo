@@ -6,7 +6,7 @@
 package fishingrodofdestiny.world.controllers;
 
 import fishingrodofdestiny.resources.SettingsCache;
-import fishingrodofdestiny.settings.KeyboardSettings;
+import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import fishingrodofdestiny.ui.screens.Screen;
 import fishingrodofdestiny.ui.windows.ChooseItemRequester;
 import fishingrodofdestiny.world.actions.Action;
