@@ -60,7 +60,10 @@ public class KeyboardSettings {
         if (!this.dirty) {
             return;
         }
+        System.out.print("Saving keyboard settings...");
+        System.out.flush();
         this.dao.saveKeyboardSettings(this);
+        System.out.println("done.");
     }
     
     public List<KeyCode> getKeys(Action.Type forAction) {
