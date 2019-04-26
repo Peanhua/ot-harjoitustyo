@@ -45,8 +45,7 @@ TextField {
 
 
 ListView {
-  -fx-background-color: #000000;
-  -fx-border-color: #000000;
+  -fx-padding: 2 2 2 2;
 }
 
 .list-cell {
