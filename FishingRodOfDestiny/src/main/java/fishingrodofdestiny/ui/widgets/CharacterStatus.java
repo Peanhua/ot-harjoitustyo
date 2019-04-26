@@ -176,19 +176,25 @@ public class CharacterStatus extends Widget {
             case CARRY:       return "" + this.character.getCarryingCapacity();
             case AC:          return "" + this.character.getArmorClass();
             case DAMAGE:      return "" + this.character.getDamage();
-            case INVENTORY:
-                int weight = this.character.getInventory().getWeight();
-                int usage  = (int) (100.0 * (double) weight / (double) this.character.getCarryingCapacity());
-                return "" + weight + " (" + usage + "%)";
+            case INVENTORY:   return this.getValueForInventory();
             case ACTIONS:     return "" + this.character.getActionsTaken();
-            case BUFFS:
-                String buffs = this.character.getBuffs().stream().map(b -> b.getName()).reduce(null, (a, b) -> (a != null ? a + ", " : "") + b);
-                if (buffs == null) {
-                    buffs = "";
-                }
-                return buffs;
+            case BUFFS:       return this.getValueForBuffs();
             default: throw new RuntimeException("Unkonwn StatType " + type + " for getValue()");
         }
+    }
+    
+    private String getValueForInventory() {
+        int weight = this.character.getInventory().getWeight();
+        int usage  = (int) (100.0 * (double) weight / (double) this.character.getCarryingCapacity());
+        return "" + weight + " (" + usage + "%)";
+    }
+    
+    private String getValueForBuffs() {
+        String buffs = this.character.getBuffs().stream().map(b -> b.getName()).reduce(null, (a, b) -> (a != null ? a + ", " : "") + b);
+        if (buffs == null) {
+            buffs = "";
+        }
+        return buffs;
     }
     
 }
