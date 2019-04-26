@@ -28,7 +28,9 @@ All commands are supposed to be run in the project directory *FishingRodOfDestin
 
 ### Running
 
-The game can be run from commandline with the following command:
+Fishing Rod of Destiny requires Java 8.
+
+Assuming that the default Java is of proper version, the game can be run from commandline with the following command:
 ```mvn compile exec:java -Dexec.mainClass=fishingrodofdestiny.ui.FishingRodOfDestinyUi```
 
 
