@@ -16,7 +16,6 @@ import rlforj.los.ILosBoard;
 public class LevelMemory implements ILosBoard {
     private final boolean[] explored;
     private final Level     level;
-    private final int       levelDepth;
     private final int       width;
     private final int       height;
     private final int       maxFovRadius;
@@ -27,7 +26,6 @@ public class LevelMemory implements ILosBoard {
     
     public LevelMemory(Level level) {
         this.level         = level;
-        this.levelDepth    = level.getDepth();
         this.width         = level.getWidth();
         this.height        = level.getHeight();
         this.explored      = new boolean[this.width * this.height];
