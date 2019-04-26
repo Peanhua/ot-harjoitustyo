@@ -123,4 +123,9 @@
     <polygon style="fill: #000000" points="130,303.046 131.447,291.96 134.194,296.828 139.738,297.552 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="130,303.046 131.447,291.96 134.194,296.828 139.738,297.552 "/>
   </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="39.4" y1="236.476" x2="121.02" y2="298.981"/>
+    <polygon style="fill: #000000" points="126.975,303.54 115.995,301.43 121.02,298.981 122.075,293.491 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="126.975,303.54 115.995,301.43 121.02,298.981 122.075,293.491 "/>
+  </g>
 </svg>

@@ -25,10 +25,18 @@ public class KeyboardSettingsTest {
             if (action == Action.Type.MOVE) { // Ignore MOVE as it alone is not currently a useful command for the player to issue.
                 continue;
             }
-            assertNotNull(settings.getKey(action));
+            assertTrue(settings.getKeys(action).size() > 0);
         }
     }
 
+    @Test
+    public void makeSureAllCommandsHaveDefaultKeySetting() {
+        KeyboardSettings settings = SettingsCache.getInstance().getKeyboardSettings();
+        for (KeyboardSettings.Command command : KeyboardSettings.Command.values()) {
+            assertTrue(settings.getKeys(command).size() > 0);
+        }
+    }
+    
     @Test
     public void addingKeybindingWithInvalidActionOrCommandThrowsRuntimeException() {
         KeyboardSettings settings = new KeyboardSettings(null);

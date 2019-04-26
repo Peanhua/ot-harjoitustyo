@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="25cm" height="21cm" viewBox="28 106 500 412" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="32cm" height="21cm" viewBox="-110 106 637 412" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="89.45" y="267" width="89.1" height="38"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="89.45" y="267" width="89.1" height="38"/>
@@ -37,8 +37,8 @@
       <tspan x="496" y="362.9">Game</tspan>
     </text>
   </g>
-  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="28" y="325">
-    <tspan x="28" y="325">Highscores</tspan>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="16" y="366">
+    <tspan x="16" y="366">Highscores</tspan>
   </text>
   <g>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 148.125,436 A 117.671,117.671 0 0 0 161.366,314.71"/>
@@ -140,5 +140,28 @@
   </g>
   <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="30" y="173.1">
     <tspan x="30" y="173.1">Close</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="-108.25" y="266" width="74.5" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-108.25" y="266" width="74.5" height="38"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-71" y="288.9">
+      <tspan x="-71" y="288.9">Settings</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 89.45,276.5 A 104.87,104.87 0 0 0 -24.5122,269.612"/>
+    <polygon style="fill: #000000" points="-27.6998,265.041 -32.936,274.919 -21.8916,273.181 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-27.6998,265.041 -32.936,274.919 -21.8916,273.181 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M -33.75,294.5 A 104.87,104.87 0 0 0 80.2122,301.388"/>
+    <polygon style="fill: #000000" points="83.3998,305.959 88.636,296.081 77.5916,297.819 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="83.3998,305.959 88.636,296.081 77.5916,297.819 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="0" y="253">
+    <tspan x="0" y="253">Settings</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="10" y="308.1">
+    <tspan x="10" y="308.1">Close</tspan>
   </text>
 </svg>

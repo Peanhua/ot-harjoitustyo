@@ -9,6 +9,7 @@ import fishingrodofdestiny.resources.ImageCache;
 import fishingrodofdestiny.resources.SettingsCache;
 import fishingrodofdestiny.ui.widgets.Starfield;
 import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
+import fishingrodofdestiny.ui.windows.SettingsEditor;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -78,11 +79,14 @@ public class ScreenMainMenu extends Screen {
         
         Button stats = new Button("Statistics");
         stats.setOnAction(e -> this.showStatistics());
+        
+        Button settings = new Button("Settings");
+        settings.setOnAction(e -> this.showSettings());
 
         Button quit = new Button("Quit");
         quit.setOnAction(e-> this.close());
             
-        buttons.getChildren().addAll(newgame, loadgame, highscores, stats, quit);
+        buttons.getChildren().addAll(newgame, loadgame, highscores, stats, settings, quit);
 
         return buttons;
     }
@@ -109,6 +113,11 @@ public class ScreenMainMenu extends Screen {
         this.bubbles.disable();
         Screen s = new ScreenStatistics(this, this.getStage());
         s.show();
+    }
+    
+    private void showSettings() {
+        SettingsEditor editor = new SettingsEditor(this);
+        editor.show();
     }
 
     @Override

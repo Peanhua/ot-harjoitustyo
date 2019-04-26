@@ -6,6 +6,8 @@
 package fishingrodofdestiny.settings;
 
 import fishingrodofdestiny.dao.SettingsDao;
+import fishingrodofdestiny.observer.Observer;
+import fishingrodofdestiny.observer.Subject;
 import fishingrodofdestiny.world.actions.Action;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,22 +26,33 @@ public class KeyboardSettings {
         EXIT;
     };
     
-    private final HashMap<Action.Type, KeyCode> actionsToKeys;
     private final HashMap<KeyCode, Action.Type> keysToActions;
     private final HashMap<KeyCode, Command>     keysToCommands;
     private final SettingsDao                   dao;
     private boolean                             dirty;
+    private final Subject                       onChange;
   
     public KeyboardSettings(SettingsDao dao) {
-        this.actionsToKeys  = new HashMap<>();
         this.keysToActions  = new HashMap<>();
         this.keysToCommands = new HashMap<>();
         this.dao            = dao;
         this.dirty          = false;
+        this.onChange       = new Subject();
+    }
+    
+    public KeyboardSettings(SettingsDao dao, KeyboardSettings copyFrom) {
+        this(dao);
+        copyFrom.keysToActions.forEach((k, v) -> this.keysToActions.put(k, v));
+        copyFrom.keysToCommands.forEach((k, v) -> this.keysToCommands.put(k, v));
+    }
+    
+    public void listenOnChange(Observer observer) {
+        this.onChange.addObserver(observer);
     }
     
     public void load() {
         this.dao.loadKeyboardSettings(this);
+        this.onChange.notifyObservers();
         this.dirty = false;
     }
     
@@ -50,8 +63,24 @@ public class KeyboardSettings {
         this.dao.saveKeyboardSettings(this);
     }
     
-    public KeyCode getKey(Action.Type action) {
-        return this.actionsToKeys.get(action);
+    public List<KeyCode> getKeys(Action.Type forAction) {
+        List<KeyCode> rv = new ArrayList<>();
+        this.keysToActions.forEach((key, action) -> {
+            if (action == forAction) {
+                rv.add(key);
+            }
+        });
+        return rv;
+    }
+    
+    public List<KeyCode> getKeys(Command forCommand) {
+        List<KeyCode> rv = new ArrayList<>();
+        this.keysToCommands.forEach((key, command) -> {
+            if (command == forCommand) {
+                rv.add(key);
+            }
+        });
+        return rv;
     }
     
     public Action.Type getAction(KeyCode keyCode) {
@@ -69,9 +98,25 @@ public class KeyboardSettings {
         return keys;
     }
 
+    public String getActionStringForKey(KeyCode key) {
+        String actionStr = null;
+        Action.Type action = this.getAction(key);
+        if (action != null) {
+            actionStr = action.toString();
+        } else {
+            KeyboardSettings.Command command = this.getCommand(key);
+            if (command != null) {
+                actionStr = command.toString();
+            }
+        }
+        return actionStr;
+    }
+    
     public void addKeybinding(String key, String value) {
-        KeyCode keyCode = KeyCode.valueOf(key);
-
+        this.addKeybinding(KeyCode.valueOf(key), value);
+    }
+    
+    public void addKeybinding(KeyCode keyCode, String value) {
         try {
             Action.Type action = Action.Type.valueOf(value);
             this.setActionKeyMapping(action, keyCode);
@@ -86,17 +131,62 @@ public class KeyboardSettings {
         } catch (Exception e) {
         }
 
-        throw new RuntimeException("Unknown value '" + value + "' for key '" + key + "'");
+        throw new RuntimeException("Unknown value '" + value + "' for key '" + keyCode.toString() + "'");
     }
 
     private void setActionKeyMapping(Action.Type action, KeyCode keyCode) {
-        this.actionsToKeys.put(action, keyCode);
         this.keysToActions.put(keyCode, action);
+        this.onChange.notifyObservers();
         this.dirty = true;
     }
     
     private void setCommandKeyMapping(Command command, KeyCode keyCode) {
         this.keysToCommands.put(keyCode, command);
+        this.onChange.notifyObservers();
+        this.dirty = true;
+    }
+    
+    public void removeKeyMappings(String actionCommand) {
+        try {
+            Action.Type action = Action.Type.valueOf(actionCommand);
+            this.removeActionKeyMappings(action);
+            return;
+        } catch (Exception e) {
+        }
+
+        try {
+            KeyboardSettings.Command command = KeyboardSettings.Command.valueOf(actionCommand);
+            this.removeCommandKeyMappings(command);
+            return;
+        } catch (Exception e) {
+        }
+
+        throw new RuntimeException("Unknown actionCommand '" + actionCommand + "'");
+    }
+    
+    public void removeActionKeyMappings(Action.Type action) {
+        List<KeyCode> keysToRemove = new ArrayList<>();
+        this.keysToActions.forEach((k, a) -> {
+            if (a == action) {
+                keysToRemove.add(k);
+            }
+        });
+        keysToRemove.forEach(k -> this.keysToActions.remove(k));
+        
+        this.onChange.notifyObservers();
+        this.dirty = true;
+    }
+    
+    public void removeCommandKeyMappings(Command command) {
+        List<KeyCode> keysToRemove = new ArrayList<>();
+        this.keysToCommands.forEach((k, c) -> {
+            if (c == command) {
+                keysToRemove.add(k);
+            }
+        });
+        keysToRemove.forEach(k -> this.keysToCommands.remove(k));
+
+        this.onChange.notifyObservers();
         this.dirty = true;
     }
 }

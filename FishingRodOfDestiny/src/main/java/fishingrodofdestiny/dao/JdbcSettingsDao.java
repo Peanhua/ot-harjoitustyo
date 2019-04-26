@@ -6,7 +6,6 @@
 package fishingrodofdestiny.dao;
 
 import fishingrodofdestiny.settings.KeyboardSettings;
-import fishingrodofdestiny.world.actions.Action;
 import java.util.List;
 import javafx.scene.input.KeyCode;
 import javax.sql.rowset.CachedRowSet;
@@ -46,7 +45,7 @@ public class JdbcSettingsDao extends SettingsDao {
         this.jdbc.update("DELETE FROM Keybindings");
         List<KeyCode> keys = from.getConfiguredKeys();
         keys.forEach(key -> {
-            final String actionStr = this.getActionStringForKey(from, key);
+            final String actionStr = from.getActionStringForKey(key);
             if (actionStr != null) {
                 jdbc.update("INSERT INTO Keybindings ( key, action ) VALUES (?, ?)", ((stmt) -> {
                     stmt.setString(1, key.toString());
@@ -56,20 +55,6 @@ public class JdbcSettingsDao extends SettingsDao {
         });
     }
     
-    private String getActionStringForKey(KeyboardSettings keyboardSettings, KeyCode key) {
-        String actionStr = null;
-        Action.Type action = keyboardSettings.getAction(key);
-        if (action != null) {
-            actionStr = action.toString();
-        } else {
-            KeyboardSettings.Command command = keyboardSettings.getCommand(key);
-            if (command != null) {
-                actionStr = command.toString();
-            }
-        }
-        return actionStr;
-    }
-
     @Override
     public boolean isLoadable() {
         CachedRowSet rs = this.jdbc.query("SELECT COUNT(*) AS bindingcount FROM Keybindings");

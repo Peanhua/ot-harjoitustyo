@@ -47,7 +47,7 @@ public class ConfirmationRequester extends Window {
         Text content = UserInterfaceFactory.createText(this.messageText);
         content.setWrappingWidth(250);
         content.setTextAlignment(TextAlignment.CENTER);
-        pane.getStyleClass().add("windowTitle");
+        content.getStyleClass().add("windowTitle");
         pane.setCenter(content);
         
         String[] labels = { this.cancelText, this.confirmText };

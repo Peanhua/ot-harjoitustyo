@@ -48,7 +48,7 @@ public class ChooseItemRequester extends Window {
         
         Text titleText = UserInterfaceFactory.createText(this.title);
         titleText.setTextAlignment(TextAlignment.CENTER);
-        pane.getStyleClass().add("windowTitle");
+        titleText.getStyleClass().add("windowTitle");
         pane.setTop(titleText);
         
         ObservableList<GameObject> listItems = FXCollections.observableArrayList(this.items);

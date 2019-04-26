@@ -68,3 +68,9 @@ ListView {
 .list-cell:filled:hover { 
   -fx-background-color: #a810a8;
 }
+
+
+GridPane.settings {
+  -fx-hgap: 10;
+  -fx-padding: 10 10 10 10;
+}

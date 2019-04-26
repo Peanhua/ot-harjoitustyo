@@ -30,27 +30,43 @@ public class SettingsCache {
     private final KeyboardSettings keyboardSettings;
   
     private SettingsCache() {
-        SettingsDao dao = this.getDao("jdbc:sqlite:FishingRodOfDestiny.db", System.getenv("FISHINGRODOFDESTINY_SETTINGS"));
-        if (dao != null && dao.isLoadable()) {
-            this.keyboardSettings = new KeyboardSettings(dao);
+        SettingsDao dao = this.getDao(this.getUri());
+        if (dao != null) {
+            if (dao.isLoadable()) {
+                this.keyboardSettings = new KeyboardSettings(dao);
+            } else {
+                System.out.println("No user settings available, loading defaults.");
+                this.keyboardSettings = new KeyboardSettings(dao, this.getDefaultKeyboardSettings());
+            }
+            this.keyboardSettings.load();
             
         } else {
-            // Load defaults:
-            System.out.println("No user settings available, loading defaults.");
-            String fullname = "fishingrodofdestiny/defaultSettings.ini";
-            URL url = this.getClass().getClassLoader().getResource(fullname);
-            dao = new FileSettingsDao(url);
-            dao.setReadOnly(true);
-            this.keyboardSettings = new KeyboardSettings(dao);
+            // Load and use read-only defaults:
+            System.out.println("Warning! Unable to save settings to " + this.getUri());
+            this.keyboardSettings = this.getDefaultKeyboardSettings();
         }
-        this.keyboardSettings.load();
     }
     
-    private SettingsDao getDao(String defaultUri, String uri) {
+    private KeyboardSettings getDefaultKeyboardSettings() {
+        String fullname = "fishingrodofdestiny/defaultSettings.ini";
+        URL url = this.getClass().getClassLoader().getResource(fullname);
+        SettingsDao dao = new FileSettingsDao(url);
+        dao.setReadOnly(true);
+        KeyboardSettings ks = new KeyboardSettings(dao);
+        ks.load();
+        return ks;
+    }
+    
+    private String getUri() {
+        String uri = System.getenv("FISHINGRODOFDESTINY_SETTINGS");
         if (uri == null) {
-            uri = defaultUri;
+            uri = "jdbc:sqlite:FishingRodOfDestiny.db";
         }
+        return uri;
+    }        
         
+    
+    private SettingsDao getDao(String uri) {
         SettingsDao dao;
         if (uri.startsWith("jdbc:")) {
             dao = new JdbcSettingsDao(uri);
