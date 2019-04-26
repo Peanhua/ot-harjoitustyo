@@ -294,7 +294,7 @@ public abstract class Character extends GameObject {
     public int getDamage() {
         int damage = 1;
         
-        damage += this.getAttack();
+        damage += this.getAttack() / 3;
         
         if (this.weapon != null) {
             damage += this.weapon.getDamage();
