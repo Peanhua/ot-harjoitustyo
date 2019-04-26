@@ -416,12 +416,13 @@ public abstract class Character extends GameObject {
     public void tick(double deltaTime) {
         super.tick(deltaTime);
         
-        this.regenerationTick(deltaTime);
-        this.buffTick(deltaTime);
-        
         if (!this.isAlive()) {
             return;
         }
+        
+        this.regenerationTick(deltaTime);
+        this.buffTick(deltaTime);
+        
         if (this.controller == null) {
             return;
         }
