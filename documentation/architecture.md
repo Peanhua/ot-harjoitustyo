@@ -135,7 +135,7 @@ The player controller uses input from the user (through JavaFX events) to determ
 
 #### Non player controllers
 
-The non player characters uses artificial intelligence to determine the next action.
+The non player characters use artificial intelligence to determine the next action.
 
 
 ### Actions
