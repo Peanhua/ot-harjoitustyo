@@ -230,7 +230,7 @@ Object types and their additional attribute groups:
   <tr><td>ARMOR</td>     <td>Basic, Gfx, Buffs, Armor</td></tr>
   <tr><td>CONSUMABLE</td><td>Basic, Gfx, UseBuffs, Consumable</td></tr>
   <tr><td>ITEM</td>      <td>Basic, Gfx, UseBuffs</td></tr>
-  <tr><td>NPC</td>       <td>Basic, Gfx, Level, InventoryItems</td></tr>
+  <tr><td>NPC</td>       <td>Basic, Gfx, AttackBuffs, Level, InventoryItems</td></tr>
   <tr><td>OBJECT</td>    <td>Basic, Gfx</td></tr>
   <tr><td>WEAPON</td>    <td>Basic, Gfx, Buffs, Weapon</td></tr>
 </table>
