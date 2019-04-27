@@ -6,10 +6,13 @@
 package fishingrodofdestiny.ui.windows;
 
 import fishingrodofdestiny.ui.screens.Screen;
+import fishingrodofdestiny.ui.widgets.UserInterfaceFactory;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 /**
  *
@@ -64,4 +67,16 @@ public abstract class Window {
     }
 
     protected abstract Node createUserInterface();
+    
+    protected final Node createWindowTitle(String title) {
+        StackPane pane = new StackPane();
+        pane.getStyleClass().add("windowTitle");
+        
+        Text titleText = UserInterfaceFactory.createText(title);
+        pane.getChildren().add(titleText);
+        titleText.setTextAlignment(TextAlignment.CENTER);
+        titleText.getStyleClass().add("windowTitle");
+        
+        return pane;
+    }
 }

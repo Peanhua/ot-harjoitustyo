@@ -20,7 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 /**
  *
@@ -64,21 +63,13 @@ public class SettingsEditor extends Window {
         pane.getStyleClass().add("window");
         pane.setMaxSize(600, 500);
 
-        pane.setTop(this.createTitle());
+        pane.setTop(this.createWindowTitle("SETTINGS"));
         pane.setCenter(this.createKeybindingControls());
         pane.setBottom(this.createCloseButton());
 
         this.setFocusDefault(defaultFocus);
         
         return pane;
-    }
-    
-    
-    private Node createTitle() {
-        Text titleText = UserInterfaceFactory.createText("SETTINGS");
-        titleText.setTextAlignment(TextAlignment.CENTER);
-        titleText.getStyleClass().add("windowTitle");
-        return titleText;
     }
     
     

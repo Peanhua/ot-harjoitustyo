@@ -17,8 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 /**
  *
@@ -46,10 +44,7 @@ public class ChooseItemRequester extends Window {
         pane.getStyleClass().add("window");
         pane.setMaxSize(300, 300);
         
-        Text titleText = UserInterfaceFactory.createText(this.title);
-        titleText.setTextAlignment(TextAlignment.CENTER);
-        titleText.getStyleClass().add("windowTitle");
-        pane.setTop(titleText);
+        pane.setTop(this.createWindowTitle(this.title));
         
         ObservableList<GameObject> listItems = FXCollections.observableArrayList(this.items);
         ListView<GameObject> lview = new ListView<>(listItems);
