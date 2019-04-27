@@ -267,6 +267,15 @@ These define the buffs added to the user of the item.
 * `BuffTime`
 * `BuffAmount`
 
+### AttackBuffs attributes
+
+These define the buffs that are given to the target when attacking something. For example cobras attack randomly causes poisoning.
+
+* `AttackBuffType`
+* `AttackBuffAmount`
+* `AttackBuffTime` in seconds
+* `AttackBuffChance` in the range of [0..1]
+
 ### Consumable attributes
 
 * `UseVerb`

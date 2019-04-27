@@ -114,9 +114,9 @@
     <tspan x="278" y="445">Complete game</tspan>
   </text>
   <g>
-    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 176.243,464.721 A 82.9708,82.9708 0 0 0 246.25,505"/>
-    <polygon style="fill: #000000" points="180.209,463.108 171.647,455.918 171.032,467.081 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="180.209,463.108 171.647,455.918 171.032,467.081 "/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 133.847,480.501 A 153.77,153.77 0 0 0 246.25,505"/>
+    <polygon style="fill: #000000" points="136.729,476.905 125.784,474.621 130.523,484.747 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="136.729,476.905 125.784,474.621 130.523,484.747 "/>
   </g>
   <g>
     <rect style="fill: #ffffff" x="54.775" y="107" width="80.45" height="38"/>
