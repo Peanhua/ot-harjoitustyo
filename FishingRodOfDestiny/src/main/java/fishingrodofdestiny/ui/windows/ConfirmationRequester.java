@@ -45,17 +45,24 @@ public class ConfirmationRequester extends Window {
         pane.setMaxSize(300, 200);
         
         pane.setTop(this.createWindowTitle("CONFIRM"));
-        
+        pane.setCenter(this.createContent());
+        pane.setBottom(this.createButtons());
+
+        return pane;
+    }
+    
+    private Node createContent() {
         Text content = UserInterfaceFactory.createText(this.messageText);
         content.setWrappingWidth(250);
         content.setTextAlignment(TextAlignment.CENTER);
-        pane.setCenter(content);
-        
+        return content;
+    }
+    
+    private Node createButtons() {
         String[] labels = { this.cancelText, this.confirmText };
         List<Button> buttons = new ArrayList<>();
         Node brow = UserInterfaceFactory.createButtonRow(labels, buttons);
         brow.getStyleClass().add("windowButtonRow");
-        pane.setBottom(brow);
         
         buttons.get(0).setOnAction(e -> {
             this.close();
@@ -67,7 +74,7 @@ public class ConfirmationRequester extends Window {
         });
         
         this.setFocusDefault(buttons.get(0));
-
-        return pane;
+        
+        return brow;
     }
 }

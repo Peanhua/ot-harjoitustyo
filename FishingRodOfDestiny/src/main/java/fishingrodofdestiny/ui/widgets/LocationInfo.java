@@ -42,17 +42,25 @@ public class LocationInfo extends Widget {
     @Override
     public Node createUserInterface() {
         GridPane grid = new GridPane();
-        Text label;
         
-        int row = 0;
+        int row = this.createTileName(grid, 0);
+        row = this.createCreatures(grid, row);
+        row = this.createItems(grid, row);
+
+        grid.getChildren().addAll(this.allFields);
         
+        return grid;
+    }
+    
+    private int createTileName(GridPane grid, int row) {
         this.tileName = UserInterfaceFactory.createSmallText("");
         GridPane.setConstraints(this.tileName, 0, row);
         this.allFields.add(this.tileName);
-
-        row++;
-        
-        label = UserInterfaceFactory.createSmallText("Creatures:");
+        return row + 1;
+    }
+    
+    private int createCreatures(GridPane grid, int row) {
+        Text label = UserInterfaceFactory.createSmallText("Creatures:");
         GridPane.setConstraints(label, 0, row);
         grid.getChildren().add(label);
 
@@ -68,9 +76,11 @@ public class LocationInfo extends Widget {
         GridPane.setColumnSpan(this.characterList, 2);
         this.allFields.add(this.characterList);
 
-        row++;
-        
-        label = UserInterfaceFactory.createSmallText("Items:");
+        return row + 1;
+    }        
+
+    private int createItems(GridPane grid, int row) {
+        Text label = UserInterfaceFactory.createSmallText("Items:");
         GridPane.setConstraints(label, 0, row);
         grid.getChildren().add(label);
 
@@ -86,19 +96,12 @@ public class LocationInfo extends Widget {
         GridPane.setColumnSpan(this.itemList, 2);
         this.allFields.add(this.itemList);
 
-        row++;
-
-        grid.getChildren().addAll(this.allFields);
-        
-        return grid;
-    }
+        return row + 1;
+    }        
 
     @Override
     public void refresh() {
         if (this.currentTile != null) {
-            int row = 0;
-            this.tileName.setText(this.currentTile.getName());
-            
             List<Character>  characters = new ArrayList<>();
             List<GameObject> items      = new ArrayList<>();
             for (GameObject object : this.currentTile.getObjects(null)) {
@@ -110,19 +113,31 @@ public class LocationInfo extends Widget {
                     items.add(object);
                 }
             }
-            
-            this.characterCount.setText("" + characters.size());
-            this.characterList.setText(" " + characters.stream().map(Character::getName).collect(Collectors.joining(", ")));
-            row++;
-            
-            this.itemCount.setText("" + items.size());
-            this.itemList.setText(" " + items.stream().map(GameObject::getName).collect(Collectors.joining(", ")));
-            row++;
+
+            this.refreshTileName();
+            int row = this.refreshCreatures(0, characters);
+            row = this.refreshItems(row, items);
             
         } else {
             this.allFields.forEach(field -> field.setText(""));
         }
     }
+
+    private void refreshTileName() {
+        this.tileName.setText(this.currentTile.getName());
+    }        
+    
+    private int refreshCreatures(int row, List<Character> creatures) {
+        this.characterCount.setText("" + creatures.size());
+        this.characterList.setText(" " + creatures.stream().map(Character::getName).collect(Collectors.joining(", ")));
+        return row + 1;
+    }
+    
+    private int refreshItems(int row, List<GameObject> items) {
+        this.itemCount.setText("" + items.size());
+        this.itemList.setText(" " + items.stream().map(GameObject::getName).collect(Collectors.joining(", ")));
+        return row + 1;
+    }        
     
 
     public void setTile(Tile tile) {

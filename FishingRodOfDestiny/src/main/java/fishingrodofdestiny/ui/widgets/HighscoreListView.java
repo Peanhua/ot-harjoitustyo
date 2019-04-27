@@ -39,7 +39,14 @@ public class HighscoreListView extends Widget {
         grid.setHgap(4);
         grid.setVgap(2);
 
-        int row = 0;
+        int row = this.createHeaders(grid, 0);
+        row = this.createEntryList(grid, row);
+
+        this.refresh();
+        return grid;
+    }
+    
+    private int createHeaders(GridPane grid, int row) {
         String[] headers = { "#", "Name", this.highscoreList.getType().toString(), "Date/time" };
         for (int i = 0; i < headers.length; i++) {
             Text label = UserInterfaceFactory.createLargeText(headers[i]);
@@ -48,11 +55,14 @@ public class HighscoreListView extends Widget {
             grid.getChildren().add(label);
         }
         row++;
-        
+        return row;
+    }
+
+    private int createEntryList(GridPane grid, int row) {
         for (int i = 0; i < this.highscoreList.getMaximumNumberOfEntries(); i++) {
             Text pos = UserInterfaceFactory.createText("" + (i + 1));
             GridPane.setConstraints(pos, 0, row);
-            
+
             Text nam = UserInterfaceFactory.createText("");
             GridPane.setConstraints(nam, 1, row);
             this.names.add(nam);
@@ -64,15 +74,14 @@ public class HighscoreListView extends Widget {
             Text tst = UserInterfaceFactory.createText("");
             GridPane.setConstraints(tst, 3, row);
             this.timestamps.add(tst);
-            
+
             grid.getChildren().addAll(pos, nam, pnt, tst);
-            
+
             row++;
         }
-        this.refresh();
-        return grid;
+        return row;
     }
-
+    
     @Override
     public void refresh() {
         for (int i = 0; i < this.highscoreList.getMaximumNumberOfEntries(); i++) {

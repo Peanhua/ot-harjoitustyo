@@ -30,12 +30,14 @@ public class ChooseItemRequester extends Window {
     private final String              title;
     private final List<GameObject>    items;
     private final ConfirmationHandler handler;
+    private ListView<GameObject>      itemListView;
 
     public ChooseItemRequester(Screen screen, String title, List<GameObject> items, ConfirmationHandler handler) {
         super(screen);
-        this.title   = title;
-        this.items   = items;
-        this.handler = handler;
+        this.title        = title;
+        this.items        = items;
+        this.handler      = handler;
+        this.itemListView = null;
     }
 
     @Override
@@ -45,10 +47,16 @@ public class ChooseItemRequester extends Window {
         pane.setMaxSize(300, 300);
         
         pane.setTop(this.createWindowTitle(this.title));
+        pane.setCenter(this.createItemList());
+        pane.setBottom(this.createButtons());
         
+        return pane;
+    }
+    
+    private Node createItemList() {
         ObservableList<GameObject> listItems = FXCollections.observableArrayList(this.items);
-        ListView<GameObject> lview = new ListView<>(listItems);
-        lview.setCellFactory(param -> new ListCell<GameObject>() {
+        this.itemListView = new ListView<>(listItems);
+        this.itemListView.setCellFactory(param -> new ListCell<GameObject>() {
             @Override
             protected void updateItem(GameObject item, boolean empty) {
                 super.updateItem(item, empty);
@@ -60,14 +68,16 @@ public class ChooseItemRequester extends Window {
                 }
             }
         });
-        lview.setEditable(false);
-        pane.setCenter(lview);
+        this.itemListView.setEditable(false);
         
+        return this.itemListView;
+    }
+    
+    private Node createButtons() {
         String[] labels = { "Cancel", "Ok" };
         List<Button> buttons = new ArrayList<>();
         Node brow = UserInterfaceFactory.createButtonRow(labels, buttons);
         brow.getStyleClass().add("windowButtonRow");
-        pane.setBottom(brow);
         
         buttons.get(0).setOnAction(e -> {
             this.close();
@@ -76,14 +86,11 @@ public class ChooseItemRequester extends Window {
         buttons.get(1).setOnAction(e -> {
             this.close();
             List<GameObject> selectedItems = new ArrayList<>();
-            lview.getSelectionModel().getSelectedItems().forEach(obj -> selectedItems.add(obj));
+            this.itemListView.getSelectionModel().getSelectedItems().forEach(obj -> selectedItems.add(obj));
             this.handler.confirmed(selectedItems);
         });
         
         this.setFocusDefault(buttons.get(0));
-
-        return pane;
-        
+        return brow;
     }
-    
 }

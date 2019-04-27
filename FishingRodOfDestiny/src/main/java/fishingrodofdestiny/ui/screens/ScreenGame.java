@@ -40,7 +40,7 @@ import javafx.stage.Stage;
  */
 public class ScreenGame extends Screen {
     private final Game   game;
-    private Node         gameView;
+    private BorderPane   gameView;
     private LevelView    levelView;
     private Text         message;
     private LocationInfo locationInfo;
@@ -56,50 +56,24 @@ public class ScreenGame extends Screen {
 
     @Override
     protected Node createUserInterface() {
-        
-        BorderPane main = new BorderPane();
-        this.gameView = main;
+        this.gameView = new BorderPane();
         
         VBox leftbox = new VBox(20);
-        main.setLeft(leftbox);
+        this.gameView.setLeft(leftbox);
 
-        CharacterStatus status = new CharacterStatus(this.game.getPlayer());
-        leftbox.getChildren().add(status.createUserInterface());
-        
+        Player player = this.game.getPlayer();
+        CharacterStatus status = new CharacterStatus(player);
         this.locationInfo = new LocationInfo();
-        leftbox.getChildren().add(this.locationInfo.createUserInterface());
-
-        Button settings = new Button("Settings");
-        settings.setFocusTraversable(false);
-        settings.setOnAction(e-> this.showSettings());
-        leftbox.getChildren().add(settings);
-
-        Button quit = new Button("Quit");
-        quit.setFocusTraversable(false);
-        quit.setOnAction(e-> this.onEndGameClicked());
-        leftbox.getChildren().add(quit);
+        leftbox.getChildren().addAll(status.createUserInterface(), this.locationInfo.createUserInterface(), this.createSettingsButton(), this.createQuitButton());
         
-        this.levelView = new LevelView(this.game.getPlayer());
-        Node lv = this.levelView.createUserInterface();
-        main.setCenter(lv);
+        this.levelView = new LevelView(player);
+        this.gameView.setCenter(this.levelView.createUserInterface());
 
         this.message = UserInterfaceFactory.createText("Welcome to The Fishing Rod of Destiny!");
-        main.setBottom(this.message);
+        this.gameView.setBottom(this.message);
         
-        Player player = this.game.getPlayer();
-        player.getLocation().listenOnChange(() -> {
-            this.onPlayerMoved();
-        });
-        player.getController().listenOnNewAction(() -> {
-            this.game.tick();
-            this.message.setText(player.popMessage());
-            this.locationInfo.refresh();
-            this.levelView.refresh();
-            
-            if (player.getGameCompleted()) {
-                this.gameCompleted();
-            }
-        });
+        player.getLocation().listenOnChange(() -> this.onPlayerMoved());
+        player.getController().listenOnNewAction(() -> this.onPlayerAction(player));
         
         this.setKeyboardHandlers();
         this.enableInputHandlers();
@@ -108,7 +82,32 @@ public class ScreenGame extends Screen {
         this.locationInfo.refresh();
         // The levelView doesn't need to be refresh()'d here because it will receive a resize event which will cause the refresh() to happen.
         
-        return main;
+        return this.gameView;
+    }
+    
+    private void onPlayerAction(Player player) {
+        this.game.tick();
+        this.message.setText(player.popMessage());
+        this.locationInfo.refresh();
+        this.levelView.refresh();
+
+        if (player.getGameCompleted()) {
+            this.gameCompleted();
+        }
+    }
+    
+    private Node createSettingsButton() {
+        Button button = new Button("Settings");
+        button.setFocusTraversable(false);
+        button.setOnAction(e-> this.showSettings());
+        return button;
+    }
+    
+    private Node createQuitButton() {
+        Button button = new Button("Quit");
+        button.setFocusTraversable(false);
+        button.setOnAction(e-> this.onEndGameClicked());
+        return button;
     }
     
     
