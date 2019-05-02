@@ -472,40 +472,6 @@
     </dia:object>
     <dia:object type="Standard - Line" version="0" id="O8">
       <dia:attribute name="obj_pos">
-        <dia:point val="18.4462,13.1744"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="18.3781,9.35212;25.1905,13.2426"/>
-      </dia:attribute>
-      <dia:attribute name="conn_endpoints">
-        <dia:point val="18.4462,13.1744"/>
-        <dia:point val="25.0932,9.42153"/>
-      </dia:attribute>
-      <dia:attribute name="numcp">
-        <dia:int val="1"/>
-      </dia:attribute>
-      <dia:attribute name="line_style">
-        <dia:enum val="1"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow">
-        <dia:enum val="22"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow_length">
-        <dia:real val="0.5"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow_width">
-        <dia:real val="0.5"/>
-      </dia:attribute>
-      <dia:attribute name="dashlength">
-        <dia:real val="0.20000000000000001"/>
-      </dia:attribute>
-      <dia:connections>
-        <dia:connection handle="0" to="O6" connection="8"/>
-        <dia:connection handle="1" to="O4" connection="8"/>
-      </dia:connections>
-    </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O9">
-      <dia:attribute name="obj_pos">
         <dia:point val="11.4157,6.67279"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
@@ -538,41 +504,7 @@
         <dia:connection handle="1" to="O6" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O10">
-      <dia:attribute name="obj_pos">
-        <dia:point val="7.29452,19.1949"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="7.22691,15.5041;14.2114,19.2625"/>
-      </dia:attribute>
-      <dia:attribute name="conn_endpoints">
-        <dia:point val="7.29452,19.1949"/>
-        <dia:point val="14.1127,15.5739"/>
-      </dia:attribute>
-      <dia:attribute name="numcp">
-        <dia:int val="1"/>
-      </dia:attribute>
-      <dia:attribute name="line_style">
-        <dia:enum val="1"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow">
-        <dia:enum val="22"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow_length">
-        <dia:real val="0.5"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow_width">
-        <dia:real val="0.5"/>
-      </dia:attribute>
-      <dia:attribute name="dashlength">
-        <dia:real val="0.20000000000000001"/>
-      </dia:attribute>
-      <dia:connections>
-        <dia:connection handle="0" to="O1" connection="8"/>
-        <dia:connection handle="1" to="O6" connection="8"/>
-      </dia:connections>
-    </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O11">
+    <dia:object type="Standard - Line" version="0" id="O9">
       <dia:attribute name="obj_pos">
         <dia:point val="15.6908,4.27211"/>
       </dia:attribute>
@@ -606,7 +538,7 @@
         <dia:connection handle="1" to="O5" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O12">
+    <dia:object type="Standard - Line" version="0" id="O10">
       <dia:attribute name="obj_pos">
         <dia:point val="23.1498,-0.517285"/>
       </dia:attribute>
@@ -640,7 +572,7 @@
         <dia:connection handle="1" to="O2" connection="4"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Arc" version="0" id="O13">
+    <dia:object type="Standard - Arc" version="0" id="O11">
       <dia:attribute name="obj_pos">
         <dia:point val="11.0375,5.9225"/>
       </dia:attribute>
@@ -686,19 +618,19 @@
         <dia:connection handle="1" to="O1" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Arc" version="0" id="O14">
+    <dia:object type="Standard - Arc" version="0" id="O12">
       <dia:attribute name="obj_pos">
-        <dia:point val="34.965,-0.4775"/>
+        <dia:point val="34.965,0.2225"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="9.42207,-0.547934;35.0354,21.2413"/>
+        <dia:rectangle val="9.42218,0.152178;35.0353,21.2451"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
-        <dia:point val="34.965,-0.4775"/>
+        <dia:point val="34.965,0.2225"/>
         <dia:point val="9.4925,20.845"/>
       </dia:attribute>
       <dia:attribute name="curve_distance">
-        <dia:real val="-7.1175580121236424"/>
+        <dia:real val="-6.928734169881877"/>
       </dia:attribute>
       <dia:attribute name="line_width">
         <dia:real val="0.10000000149011612"/>
@@ -719,11 +651,11 @@
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O5" connection="4"/>
+        <dia:connection handle="0" to="O5" connection="7"/>
         <dia:connection handle="1" to="O1" connection="4"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Arc" version="0" id="O15">
+    <dia:object type="Standard - Arc" version="0" id="O13">
       <dia:attribute name="obj_pos">
         <dia:point val="11.0375,5.9225"/>
       </dia:attribute>
@@ -760,7 +692,7 @@
         <dia:connection handle="1" to="O2" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Arc" version="0" id="O16">
+    <dia:object type="Standard - Arc" version="0" id="O14">
       <dia:attribute name="obj_pos">
         <dia:point val="15.525,14.8238"/>
       </dia:attribute>
@@ -795,6 +727,80 @@
       <dia:connections>
         <dia:connection handle="0" to="O6" connection="8"/>
         <dia:connection handle="1" to="O5" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="Standard - Arc" version="0" id="O15">
+      <dia:attribute name="obj_pos">
+        <dia:point val="15.525,14.8238"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="15.4569,8.60568;26.4856,14.8919"/>
+      </dia:attribute>
+      <dia:attribute name="conn_endpoints">
+        <dia:point val="15.525,14.8238"/>
+        <dia:point val="26.4175,8.6738"/>
+      </dia:attribute>
+      <dia:attribute name="curve_distance">
+        <dia:real val="0.67475785390234155"/>
+      </dia:attribute>
+      <dia:attribute name="line_width">
+        <dia:real val="0.10000000149011612"/>
+      </dia:attribute>
+      <dia:attribute name="line_style">
+        <dia:enum val="1"/>
+      </dia:attribute>
+      <dia:attribute name="dashlength">
+        <dia:real val="0.20000000000000001"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow">
+        <dia:enum val="3"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow_length">
+        <dia:real val="0.5"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow_width">
+        <dia:real val="0.5"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O6" connection="8"/>
+        <dia:connection handle="1" to="O4" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="Standard - Arc" version="0" id="O16">
+      <dia:attribute name="obj_pos">
+        <dia:point val="4.1875,20.845"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="4.11989,14.7562;15.5926,20.9126"/>
+      </dia:attribute>
+      <dia:attribute name="conn_endpoints">
+        <dia:point val="4.1875,20.845"/>
+        <dia:point val="15.525,14.8238"/>
+      </dia:attribute>
+      <dia:attribute name="curve_distance">
+        <dia:real val="0.67475785390234155"/>
+      </dia:attribute>
+      <dia:attribute name="line_width">
+        <dia:real val="0.10000000149011612"/>
+      </dia:attribute>
+      <dia:attribute name="line_style">
+        <dia:enum val="1"/>
+      </dia:attribute>
+      <dia:attribute name="dashlength">
+        <dia:real val="0.20000000000000001"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow">
+        <dia:enum val="3"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow_length">
+        <dia:real val="0.5"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow_width">
+        <dia:real val="0.5"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O1" connection="8"/>
+        <dia:connection handle="1" to="O6" connection="8"/>
       </dia:connections>
     </dia:object>
   </dia:layer>
