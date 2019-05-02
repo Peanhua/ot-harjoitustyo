@@ -10,7 +10,8 @@ import fishingrodofdestiny.world.tiles.Tile;
 import rlforj.los.ILosBoard;
 
 /**
- *
+ * Keep track of what parts of the level have been explored, and what parts are currently visible.
+ * 
  * @author joyr
  */
 public class LevelMemory implements ILosBoard {
@@ -19,6 +20,10 @@ public class LevelMemory implements ILosBoard {
     private final int       width;
     private final int       height;
     private final int       maxFovRadius;
+    /**
+     * currentVision holds a rectangle that can fit a circle with radius of maxFovRadius
+     * This is done so that we don't have to clear the size of the level amount of booleans every time player moves.
+     */
     private final boolean[] currentVision;
     private int             currentVisionCenterX;
     private int             currentVisionCenterY;
@@ -39,6 +44,13 @@ public class LevelMemory implements ILosBoard {
         return x >= 0 && x < this.width && y >= 0 && y < this.height;
     }
     
+    /**
+     * Return whether the given location has been explored.
+     * 
+     * @param x X coordinate in level
+     * @param y Y coordinate in level
+     * @return True if the location has been explored
+     */
     public boolean isExplored(int x, int y) {
         if (this.isValidLocation(x, y)) {
             return this.explored[x + y * this.width];
@@ -46,6 +58,13 @@ public class LevelMemory implements ILosBoard {
         return false;
     }
     
+    /**
+     * Return index into currentVision using level coordinates.
+     * 
+     * @param x X coordinate in level
+     * @param y Y coordinate in level
+     * @return Index into currentVision
+     */
     private int getCurrentVisionIndex(int x, int y) {
         x = x - this.currentVisionCenterX + this.maxFovRadius;
         y = y - this.currentVisionCenterY + this.maxFovRadius;
@@ -55,6 +74,12 @@ public class LevelMemory implements ILosBoard {
         return x + y * 2 * this.maxFovRadius;
     }
     
+    /**
+     * Move the center of currentVision. Also clears the currentVision buffer.
+     * 
+     * @param x X coordinate in level
+     * @param y Y coordinate in level
+     */
     public void setCurrentVisionCenter(int x, int y) {
         this.currentVisionCenterX = x;
         this.currentVisionCenterY = y;
@@ -63,6 +88,13 @@ public class LevelMemory implements ILosBoard {
         }
     }
     
+    /**
+     * Returns true if the location pointed by x and y level coordinates can be seen.
+     * 
+     * @param x X coordinate in level
+     * @param y Y coordinate in level
+     * @return True if the location can be seen
+     */
     public boolean isSeen(int x, int y) {
         if (!this.isValidLocation(x, y)) {
             return false;
@@ -84,13 +116,25 @@ public class LevelMemory implements ILosBoard {
         }
     }
 
-    
+
+    /**
+     * Mark a location to be explored.
+     * 
+     * @param x X coordinate in level
+     * @param y Y coordinate in level
+     */
     public void remember(int x, int y) {
         if (this.isValidLocation(x, y)) {
             this.explored[x + y * this.width] = true;
         }
     }
     
+    /**
+     * Remove a location from being explored.
+     * 
+     * @param x X coordinate in level
+     * @param y Y coordinate in level
+     */
     public void forget(int x, int y) {
         if (this.isValidLocation(x, y)) {
             this.explored[x + y * this.width] = false;

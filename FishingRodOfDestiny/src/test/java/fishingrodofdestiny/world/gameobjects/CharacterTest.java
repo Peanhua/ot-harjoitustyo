@@ -184,4 +184,43 @@ public class CharacterTest {
         assertTrue(this.character.getDamage() > damageAtStart);
     }
     
+    @Test
+    public void armorGivesArmorClassBonus() {
+        int acAtStart = this.character.getArmorClass();
+        Armor armor = (Armor) GameObjectFactory.create("leather armor");
+        armor.getLocation().moveTo(this.character);
+        armor.useItem(this.character, this.character);
+        int acWithArmor = this.character.getArmorClass();
+        assertTrue(acWithArmor > acAtStart);
+    }
+    
+    @Test
+    public void adjustMethodsCallsOnChangeObservers() {
+        class MyCharacter extends Character {
+            public int onChangeCallCount;
+            public MyCharacter() {
+                super("myTestCharacter");
+                this.onChangeCallCount = 0;
+                
+            }
+        }
+        
+        MyCharacter mc = new MyCharacter();
+        mc.listenOnChange(() -> {
+            mc.onChangeCallCount++;
+        });
+        
+        mc.adjustAttack(1);
+        mc.adjustDefence(1);
+        mc.adjustCarryingCapacity(1);
+        mc.adjustExperiencePoints(1);
+        assertEquals(4, mc.onChangeCallCount);
+    }
+    
+    @Test
+    public void fallingFromHigherCausesMoreDamage() {
+        int damageFromLow = this.character.getFallDamage(3);
+        int damageFromHigh = this.character.getFallDamage(30);
+        assertTrue(damageFromHigh > damageFromLow);
+    }
 }
