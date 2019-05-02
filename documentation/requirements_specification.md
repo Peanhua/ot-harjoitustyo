@@ -52,7 +52,6 @@ As a single player game, there is just one user role: the player.
 
 ### Before a game is started
 * The player can start a new game
-* The player can load a saved game
 * The player can see the current highscore lists
 * The player can see statistics about games played in the past
 
@@ -65,7 +64,6 @@ As a single player game, there is just one user role: the player.
     * Defence
     * Carrying capacity
   * The player chooses whether the player wants to try to save a princess or a prince
-  * The random name is generated for the princess/prince
 * The player can select the random seed used for all the content generation
 * The player is presented with the plot/quest
 
@@ -129,7 +127,6 @@ Every character (both the player and enemies) have the following attributes:
 Common attributes for all items:
 * Type: armor, weapon, potion, or the magical fishing rod
 * Weight
-* Durability, this is decreased when the item is used, the item is destroyed if the durability reaches 0
 
 #### Armor items
 Extra attributes for armor items:
@@ -145,12 +142,9 @@ Extra attributes for armor items:
 #### Weapon items
 Extra attributes for weapon items:
 * Damage value, used to calculate the amount of damage during combat
-* Negative buff given to the target
+* Buff given to the target (usually something negative)
   * Type of buff and its attributes
   * The random chance (percentage value) for the negative buff to be given
-  * Governing attacker attack attribute amount used to adjust the random chance, two values:
-    * The minimum required attack value for greater than zero random chance
-    * The maximum attack value at which the random chance reaches its peak value    
 
 #### Potion items
 Potions are consumables that can be used only once, and when used gives the character a buff:
@@ -171,20 +165,16 @@ Square types:
 * Trap
   * Bear trap, does damage once and is then deactivated
     * Can be re-activated
-    * A negative buff for the triggering character can be given
   * Trapdoor, character falls down to the level below
     * Falling causes damage to the player
 * Wall
 * Stairs up and down
-* Door
 
 ### Highscore lists
 * Several types of highscore lists are provided:
   * The players position in the list is determined by player character level and experience points
     * Entering this highscore list does not require the game to be completed
   * The players position in the list is determined by the number of actions performed
-    * Entering this highscore list requires the game to be completed
-  * The players position in the list is determined by the real time used
     * Entering this highscore list requires the game to be completed
 * Same game can grant position in all the highscore lists
 
