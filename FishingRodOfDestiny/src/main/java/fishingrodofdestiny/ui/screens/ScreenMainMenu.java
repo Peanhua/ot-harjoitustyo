@@ -71,10 +71,6 @@ public class ScreenMainMenu extends Screen {
         Button newgame = new Button("New Game");
         newgame.setOnAction(e -> this.startNewGame());
 
-        Button loadgame = new Button("Load Saved Game");
-        loadgame.setOnAction(e -> this.loadGame());
-        loadgame.setDisable(true);
-
         Button highscores = new Button("Highscores");
         highscores.setOnAction(e -> this.showHighscores());
         
@@ -87,7 +83,7 @@ public class ScreenMainMenu extends Screen {
         Button quit = new Button("Quit");
         quit.setOnAction(e-> this.close());
             
-        buttons.getChildren().addAll(newgame, loadgame, highscores, stats, settings, quit);
+        buttons.getChildren().addAll(newgame, highscores, stats, settings, quit);
 
         return buttons;
     }
@@ -96,11 +92,6 @@ public class ScreenMainMenu extends Screen {
         this.bubbles.disable();
         Screen ng = new ScreenNewGame(this, this.getStage());
         ng.show();
-    }
-    
-    
-    private void loadGame() {
-        this.bubbles.disable();
     }
     
     
