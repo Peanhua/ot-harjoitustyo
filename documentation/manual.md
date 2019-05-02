@@ -1,5 +1,47 @@
 # The Fishing Rod of Destiny user manual
 
+## Starting the game
+
+The game can be run by executing the release package with
+```java -jar release.jar```
+Or straight from the source distribution with
+```mvn compile exec:java -Dexec.mainClass=fishingrodofdestiny.ui.FishingRodOfDestinyUi```
+
+## Playing
+
+From the main menu, player can start a new game, see highscores, see statistics, change settings, or quit the game. In additin to using the mouse, also the cursor keys and tabulator can be used to move between the buttons, and spacebar can be used to select.
+
+### New game
+
+Player must input a name for player character, and additionally make other choices that affect the game, only the name is mandatory.
+
+The player is given certain number of points to distribute among the player character attributes, the choice of either rescuing a princess or a prince.
+
+A seed number can be given to the random game generator, same seed number will always give the same game experience (levels, locations of creatures, traps, and other things). The generator is often changed between different versions of the game, and thus the guarantee of getting same experience with a seed number does not work between different versions of the game.
+
+### In game
+
+The game is split in three major parts. On the left side are shown player statistics and other information, on the right side is the view of the level, and at the bottom is a one line message. On the left side there are also two buttons, one to summon the settings window and another to quit the game, these buttons are only accessible with the mouse.
+
+The game waits for the player to take an action, and then proceeds to simulate the environment, including the players character which will execute the issued action.
+
+The goal of the game is to reach the bottom of the cave, obtain a fishing rod, and get back up and take the stairs leading out.
+
+## Character attributes
+
+The player and non-player characters have the following attributes:
+
+* hit points - the health of the character, once hit points reach 0, the character dies
+* maximum hit points - the maximum number of the hit points
+* attack - adjusts the damage done per attack, and the chance to hit
+* defence - adjusts the chance to avoid getting hit
+* carrying capacity - the maximum weight of items that can be carried before movement is restricted
+* armor class - adjusts the damage received per attack
+* damage - calculated maximum damage that can be done with an attack
+* experience points - experience points gained, after gaining enough experience points, the next level can be unlocked
+* level - the level of the character, every increase in level gives additional bonuses to some character attribute
+
+
 ## Configuration
 
 ### Highscores
