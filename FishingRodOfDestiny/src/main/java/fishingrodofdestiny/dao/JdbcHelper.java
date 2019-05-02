@@ -28,17 +28,22 @@ public class JdbcHelper {
     private String        databaseUrl;
     private RowSetFactory rowSetFactory;
     private Connection    connection;
+    private boolean       debugging;
 
     public JdbcHelper(String databaseUrl) {
-        this.databaseUrl   = databaseUrl;
+        this.databaseUrl = databaseUrl;
         try {
             this.rowSetFactory = RowSetProvider.newFactory();
         } catch (Exception e) {
             this.rowSetFactory = null;
         }
         this.connection = null;
+        this.debugging = false;
     }
     
+    public void setDebugging(boolean debugging) {
+        this.debugging = debugging;
+    }
     
     private void openConnection() throws SQLException {
         if (this.connection != null) {
@@ -78,7 +83,9 @@ public class JdbcHelper {
             return rv;
             
         } catch (Exception e) {
-            System.out.println("JdbcHelper.query(" + sql + "): " + e);
+            if (this.debugging) {
+                System.out.println("JdbcHelper.query(" + sql + "): " + e);
+            }
             return null;
         }
     }
@@ -101,7 +108,9 @@ public class JdbcHelper {
             return true;
             
         } catch (Exception e) {
-            System.out.println("JdbcHelper.update(" + sql + "): " + e);
+            if (this.debugging) {
+                System.out.println("JdbcHelper.update(" + sql + "): " + e);
+            }
             return false;
         }
     }
@@ -126,7 +135,9 @@ public class JdbcHelper {
             return id;
             
         } catch (Exception e) {
-            System.out.println("JdbcHelper.insert(" + sql + "): " + e);
+            if (this.debugging) {
+                System.out.println("JdbcHelper.insert(" + sql + "): " + e);
+            }
             return null;
         }
     }
@@ -137,7 +148,9 @@ public class JdbcHelper {
             try {
                 preparer.prepare(stmt);
             } catch (Exception e) {
-                System.out.println("JdbcHelper.applyPreparer(): " + e);
+                if (this.debugging) {
+                    System.out.println("JdbcHelper.applyPreparer(): " + e);
+                }
             }
         }
     }
@@ -152,7 +165,9 @@ public class JdbcHelper {
             }
             generatedKeys.close();
         } catch (Exception e) {
-            System.out.println("JdbcHelper.getGeneratedKey(): " + e);
+            if (this.debugging) {
+                System.out.println("JdbcHelper.getGeneratedKey(): " + e);
+            }
             return null;
         }
 
