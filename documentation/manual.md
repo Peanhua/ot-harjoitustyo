@@ -17,7 +17,7 @@ Player must input a name for player character, and additionally make other choic
 
 The player is given certain number of points to distribute among the player character attributes, the choice of either rescuing a princess or a prince.
 
-A seed number can be given to the random game generator, same seed number will always give the same game experience (levels, locations of creatures, traps, and other things). The generator is often changed between different versions of the game, and thus the guarantee of getting same experience with a seed number does not work between different versions of the game.
+A seed number can be given to the random game generator, same seed number will always give the same game experience (cave levels, locations of creatures, traps, and other things). The generator is often changed between different versions of the game, and thus the guarantee of getting same experience with a certain seed number does not necessarily work between different versions of the game.
 
 ### In game
 
@@ -26,6 +26,42 @@ The game is split in three major parts. On the left side are shown player statis
 The game waits for the player to take an action, and then proceeds to simulate the environment, including the players character which will execute the issued action.
 
 The goal of the game is to reach the bottom of the cave, obtain a fishing rod, and get back up and take the stairs leading out.
+
+In addition to actions, player can adjust settings (keybindings), and zoom in/out the level view.
+
+
+#### Actions
+
+Each turn, player and other characters decide the action they are going to take. The possible actions are listed below:
+* wait          - Skip turn.
+* move          - Move one step to north, south, west or east.
+* activate tile - Perform a tile specific action. These include: using stairs, reactivating traps, and sacrificing gold on an altar.
+* attack        - Attack whoever is in the same tile.
+* pick up       - Pick an item from the floor.
+* drop          - Drop an item to the floor. Can also be used as a "view inventory" if cancelled (doesn't consume the turn).
+* use           - Use an item from the inventory. Each item has only one possible use. For example eat an apple, wear armor, wield weapon.
+* level up      - Level up the player character (if the player has enough experience points).
+
+
+#### Healing
+
+Player, and some non-player characters, regenerate hit points over time. In addition to the regeneration system, certain consumables and actions heal the character.
+
+
+#### Combat
+
+Combat is possible only within same tile. To attack a monster, move to their tile (or wait for them to move to your tile), and press the *attack* key.
+
+
+#### Experience points and levelling the character up
+
+The player character gains experience points from every kill. Once the player character has gained enough experience points, the player character can level up. This must be manually performed and it consumes a turn.
+
+The amount of experience points required for the next level is displayed below the experience points in the player statistics portion of the screen.
+
+Levelling up the character gives a random bonus to one of the attributes. The bonus amount is based on the character level number. The attribute type is chosen with a weighted randomizer, where the attributes that have been allocated more points are favored. For example, if the player puts all the points in the character creation screen into hit points the player character is more likely to level up hit points.
+
+
 
 ## Character attributes
 
@@ -110,7 +146,7 @@ ESCAPE=EXIT
 
 * `up/down/left/right` to move
 * `a` to attack enemies in same tile
-* `e` to climb ladders up/down
+* `e` to activate tile
 * `page up` to zoom out
 * `page down` to zoom in
 * `w` to wait
