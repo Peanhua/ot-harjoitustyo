@@ -83,10 +83,15 @@ public class JdbcHelper {
             return rv;
             
         } catch (Exception e) {
-            if (this.debugging) {
-                System.out.println("JdbcHelper.query(" + sql + "): " + e);
-            }
+            this.debugMessage("JdbcHelper.query(" + sql + "): " + e);
             return null;
+        }
+    }
+    
+    
+    private void debugMessage(String message) {
+        if (this.debugging) {
+            System.out.println(message);
         }
     }
     
@@ -108,9 +113,7 @@ public class JdbcHelper {
             return true;
             
         } catch (Exception e) {
-            if (this.debugging) {
-                System.out.println("JdbcHelper.update(" + sql + "): " + e);
-            }
+            this.debugMessage("JdbcHelper.update(" + sql + "): " + e);
             return false;
         }
     }
@@ -135,9 +138,7 @@ public class JdbcHelper {
             return id;
             
         } catch (Exception e) {
-            if (this.debugging) {
-                System.out.println("JdbcHelper.insert(" + sql + "): " + e);
-            }
+            this.debugMessage("JdbcHelper.insert(" + sql + "): " + e);
             return null;
         }
     }
@@ -148,9 +149,7 @@ public class JdbcHelper {
             try {
                 preparer.prepare(stmt);
             } catch (Exception e) {
-                if (this.debugging) {
-                    System.out.println("JdbcHelper.applyPreparer(): " + e);
-                }
+                this.debugMessage("JdbcHelper.applyPreparer(): " + e);
             }
         }
     }
@@ -165,9 +164,7 @@ public class JdbcHelper {
             }
             generatedKeys.close();
         } catch (Exception e) {
-            if (this.debugging) {
-                System.out.println("JdbcHelper.getGeneratedKey(): " + e);
-            }
+            this.debugMessage("JdbcHelper.getGeneratedKey(): " + e);
             return null;
         }
 

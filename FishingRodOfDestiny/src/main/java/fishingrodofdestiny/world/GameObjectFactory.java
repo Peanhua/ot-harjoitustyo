@@ -89,19 +89,7 @@ public class GameObjectFactory {
         loadBasics(section, consumable);
         loadGfx(section, consumable);
         loadUseBuffs(section, consumable);
-        String useVerb = section.get("UseVerb");
-        if (useVerb != null) {
-            consumable.setUseVerb(useVerb);
-        }
-        Integer healOnUse = section.get("HealOnUse", Integer.class);
-        if (healOnUse != null) {
-            consumable.setHealOnUse(healOnUse);
-        }
-        Integer healPercentageOnUse = section.get("HealOnUse%", Integer.class);
-        if (healPercentageOnUse != null) {
-            consumable.setHealOnUse(healPercentageOnUse);
-            consumable.setHealOnUsePercentage(true);
-        }
+        loadConsumableBasics(section, consumable);
         loadConsumableSpecials(section, consumable);
         return consumable;
     }
@@ -286,6 +274,22 @@ public class GameObjectFactory {
         }
         
         return gameObjectSpawner;
+    }
+
+    private static void loadConsumableBasics(Ini.Section section, Consumable consumable) {
+        String useVerb = section.get("UseVerb");
+        if (useVerb != null) {
+            consumable.setUseVerb(useVerb);
+        }
+        Integer healOnUse = section.get("HealOnUse", Integer.class);
+        if (healOnUse != null) {
+            consumable.setHealOnUse(healOnUse);
+        }
+        Integer healPercentageOnUse = section.get("HealOnUse%", Integer.class);
+        if (healPercentageOnUse != null) {
+            consumable.setHealOnUse(healPercentageOnUse);
+            consumable.setHealOnUsePercentage(true);
+        }
     }
     
     private static void loadConsumableSpecials(Ini.Section section, Consumable consumable) {
