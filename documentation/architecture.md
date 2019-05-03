@@ -239,94 +239,103 @@ Object types and their additional attribute groups:
 ### Basic attributes
 
 * `Hitpoints`
-* `TimeToLive`
+* `TimeToLive` how many seconds/ticks until the object automatically destroys itself, 0 to disable
 * `Weight`
 
 ### Gfx attributes
 
 These define the visual representation of the object.
 
-* `TileSet` 
-* `TileX`
-* `TileY`
-* `TileWidth`
-* `TileHeight`
+* `TileSet` the name of the resource file containing the graphics, for example: rltiles/nh32
+* `TileX` the top-left corner X pixel coordinate in the resource file
+* `TileY` the top-left corner Y pixel coordinate in the resource file
+* `TileWidth` the width (X-axis) of the tile, usually 32
+* `TileHeight` the height (Y-axis) of the tile, usually 32
 
 ### Buffs attributes
 
 These define the permanent buffs tied to the object.
 
-* `BuffType`
-* `BuffAmount`
+* `BuffType` valid values are from Buff.Type: ARMOR_CLASS, ATTACK, CARRY, DEFENCE, HITPOINT, POISON, REGENERATION
+* `BuffAmount` absolute value
 
 ### UseBuffs attributes
 
 These define the buffs added to the user of the item.
 
-* `BuffType`
-* `BuffTime`
-* `BuffAmount`
+* `BuffType` valid values are from Buff.Type: ARMOR_CLASS, ATTACK, CARRY, DEFENCE, HITPOINT, POISON, REGENERATION
+* `BuffTime` in seconds
+* `BuffAmount` absolute value
 
 ### AttackBuffs attributes
 
 These define the buffs that are given to the target when attacking something. For example cobras attack randomly causes poisoning.
 
-* `AttackBuffType`
-* `AttackBuffAmount`
+* `AttackBuffType` valid values are from Buff.Type: ARMOR_CLASS, ATTACK, CARRY, DEFENCE, HITPOINT, POISON, REGENERATION
+* `AttackBuffAmount` absolute value
 * `AttackBuffTime` in seconds
 * `AttackBuffChance` in the range of [0..1]
 
 ### Consumable attributes
 
-* `UseVerb`
-* `HealOnUse`
-* `HealOnUse%`
+* `UseVerb` used when displaying the "You *verb* the item." when the item is used
+* `HealOnUse` defines healing based on absolute value
+* `HealOnUse%` defines healing based on maximum hit points, 0 == 0%, 0.5 == 50%, 1 == 100%, etc.
+* `Special` can be specified multiple times, valid values are: REVEAL_MAP
 
 ### Weapon attributes
 
-* `Damage`
-* `ChanceToHitMultiplier`
+* `Damage` extra damage (absolute value) added when attacking with this weapon
+* `ChanceToHitMultiplier` the attackers chance to hit is multiplied with this value after other calculations, 1.0 means no change, 2.0 is 100% increase
 
 ### Armor attributes
 
-* `Slot`
+* `Slot` valid values are from Armor.Slot: HEAD, ARMOR, HANDS, RING, FEET
 
 ### Level attributes
 
 These are for non player characters only, and define the character level and other Character only attributes.
 
-* `LevelMin`
+* `LevelMin` the characters level is randomized between LevelMin and LevelMax
 * `LevelMax`
-* `Hitpoints`
-* `LevelAddHitpoints`
-* `LevelMulHitpoints`
-* `Attack`
+* `Hitpoints` the maximum number of hit points at character level 0
+* `LevelAddHitpoints` defines how many hit points each character level adds
+* `LevelMulHitpoints` defines how much the hit points are multiplied by each character level
+* `Attack` the attack attribute at character level 0
 * `LevelAddAttack`
 * `LevelMulAttack`
-* `Defence`
+* `Defence` the defence attribute at character level 0
 * `LevelAddDefence`
 * `LevelMulDefence`
-* `ArmorClass`
+* `ArmorClass` the armor class attribute at character level 0
 * `LevelAddArmorClass`
 * `LevelMulArmorClass`
-* `Regeneration`
+* `Regeneration` regeneration (per second/tick) of hit points at character level 0
 * `LevelAddRegeneration`
 * `LevelMulRegeneration`
 
+The total value of an attribute based on characters level is calculated using a loop similar to the following pseudocode:
+```Java
+value = characterLevel0Value
+for (i = 1; i <= level; i++) {
+    value += add;
+    value *= mul;
+}
+```
 
 ### InventoryItems attributes
 
 These define inventory items to be added using GameObjectSpawner.
 
-* `InventoryItemCountMax`
-* `LevelAddInventoryItemCountMax`
-* `LevelMulInventoryItemCountMax`
+* `InventoryItemCountMax` the maximum number of items the GameObjectSpawner spawns in
+* `LevelAddInventoryItemCountMax` how much each character level increase the maximum number of items
+* `LevelMulInventoryItemCountMax` how much each character level multiplies the maximum number of items
 
 The following group can be defined multiple times:
 
-* `InventoryItem`
-* `InventoryItemMax`
-* `InventoryItemWeight`
+* `InventoryItem` the name of the item to spawn
+* `InventoryItemMax` the maximum number of this item type to spawn
+* `InventoryItemWeight` value for weighted randomizer
 
 
 
