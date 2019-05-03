@@ -9,7 +9,7 @@ Or straight from the source distribution with
 
 ## Playing
 
-From the main menu, player can start a new game, see highscores, see statistics, change settings, or quit the game. In additin to using the mouse, also the cursor keys and tabulator can be used to move between the buttons, and spacebar can be used to select.
+From the main menu, player can start a new game, see highscores, see statistics, change settings, or quit the game. In addition to using the mouse, also the cursor keys and tabulator key can be used to move between the buttons, and spacebar can be used to select.
 
 ### New game
 
@@ -21,13 +21,13 @@ A seed number can be given to the random game generator, same seed number will a
 
 ### In game
 
-The game is split in three major parts. On the left side are shown player statistics and other information, on the right side is the view of the level, and at the bottom is a one line message. On the left side there are also two buttons, one to summon the settings window and another to quit the game, these buttons are only accessible with the mouse.
+The game is split in three major parts. On the left side are shown player statistics and other information, on the right side is the view of the current level, and at the bottom is a one line message. On the left side there are also two buttons, one to summon the settings window and another to quit the game, these buttons are only accessible with the mouse.
 
 The game waits for the player to take an action, and then proceeds to simulate the environment, including the players character which will execute the issued action.
 
 The goal of the game is to reach the bottom of the cave, obtain a fishing rod, and get back up and take the stairs leading out.
 
-In addition to actions, player can adjust settings (keybindings), and zoom in/out the level view.
+In addition to actions, player can adjust settings (keybindings), and zoom in/out the level view during the game.
 
 
 #### Actions
@@ -45,7 +45,7 @@ Each turn, player and other characters decide the action they are going to take.
 
 #### Healing
 
-Player, and some non-player characters, regenerate hit points over time. In addition to the regeneration system, certain consumables and actions heal the character.
+Player, and some non-player characters, regenerate hit points over time. In addition to the regeneration system certain consumables and actions heal the character.
 
 
 #### Combat
