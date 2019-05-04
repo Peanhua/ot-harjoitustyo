@@ -43,7 +43,7 @@ public class HighscoreList {
         this.dao.create(this.type, highscore);
 
         while (true) {
-            List<Highscore> list = this.dao.getByType(this.type);
+            List<Highscore> list = this.dao.getHighscores(this.type);
             if (list.size() <= this.max) {
                 break;
             }
@@ -55,7 +55,7 @@ public class HighscoreList {
     }
     
     public Highscore get(int index) {
-        List<Highscore> list = this.dao.getByType(this.type);
+        List<Highscore> list = this.dao.getHighscores(this.type);
         Collections.sort(list);
         if (index < 0 || index >= list.size()) {
             return null;

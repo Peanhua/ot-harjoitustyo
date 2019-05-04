@@ -40,9 +40,24 @@ public abstract class HighscoreDao {
     }
 
     
+    /**
+     * Load highscores of the given type.
+     * 
+     * @param type The type of highscores to load
+     */
     protected abstract void load(Highscore.Type type);
 
-    protected Highscore createFromData(Integer highscoreId, Highscore.Type type, String name, long points, LocalDateTime timestamp) {
+    /**
+     * Add a new highscore from the given parameters.
+     * 
+     * @param highscoreId Unique id, or null it not applicable
+     * @param type        The highscore type
+     * @param name        Name of the player
+     * @param points      Points accumulated
+     * @param timestamp   Game ended time
+     * @return 
+     */
+    protected final Highscore createFromData(Integer highscoreId, Highscore.Type type, String name, long points, LocalDateTime timestamp) {
         Highscore hs = null;
         switch (type) {
             case SCORE:
@@ -55,7 +70,6 @@ public abstract class HighscoreDao {
         return hs;
     }    
 
-    
     private void loadAll() {
         if (this.loaded) {
             return;
@@ -67,7 +81,13 @@ public abstract class HighscoreDao {
     }
     
 
-    protected final List<Highscore> getHighscores(Highscore.Type type) {
+    /**
+     * Return all highscores of the given type.
+     * 
+     * @param type The type of highscores to return
+     * @return All highscores of the given type
+     */
+    public final List<Highscore> getHighscores(Highscore.Type type) {
         this.loadAll();
         List<Highscore> list = this.highscores.get(type);
         if (list == null) {
@@ -77,7 +97,13 @@ public abstract class HighscoreDao {
         return list;
     }
     
-
+    /**
+     * Create (add) a new highscore.
+     * 
+     * @param type      The highscore type
+     * @param highscore The highscore to add
+     * @return The given highscore
+     */
     public Highscore create(Highscore.Type type, Highscore highscore) {
         this.loadAll();
         List<Highscore> list = this.getHighscores(type);
@@ -86,13 +112,12 @@ public abstract class HighscoreDao {
         return highscore;
     }
     
-    
-    public final List<Highscore> getByType(Highscore.Type type) {
-        this.loadAll();
-        return this.getHighscores(type);
-    }
-    
-    
+    /**
+     * Remove a highscore.
+     * 
+     * @param type      The type of the highscore to remove
+     * @param highscore The highscore to remove
+     */
     public void delete(Highscore.Type type, Highscore highscore) {
         List<Highscore> list = this.getHighscores(type);
         list.remove(highscore);

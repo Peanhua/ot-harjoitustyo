@@ -79,6 +79,6 @@ public class JdbcHighscoreDaoTest {
         this.fillRandomScores(id, n);
         
         HighscoreDao dao = new JdbcHighscoreDao(this.getURL(id));
-        assertTrue(dao.getByType(Highscore.Type.SCORE).size() < n);
+        assertTrue(dao.getHighscores(Highscore.Type.SCORE).size() < n);
     }
 }

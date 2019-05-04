@@ -79,6 +79,6 @@ public class FileHighscoreDaoTest {
         this.fillRandomScores(id, n);
         
         HighscoreDao dao = new FileHighscoreDao(this.getFilename(id));
-        assertTrue(dao.getByType(Highscore.Type.SCORE).size() < n);
+        assertTrue(dao.getHighscores(Highscore.Type.SCORE).size() < n);
     }
 }
