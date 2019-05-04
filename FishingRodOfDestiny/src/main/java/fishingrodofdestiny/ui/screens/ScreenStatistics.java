@@ -33,7 +33,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- *
+ * The screen responsible of displaying the statistics of all played games.
+ * 
  * @author joyr
  */
 public class ScreenStatistics extends Screen {

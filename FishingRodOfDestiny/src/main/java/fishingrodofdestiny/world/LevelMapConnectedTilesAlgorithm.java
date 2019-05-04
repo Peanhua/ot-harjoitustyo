@@ -27,8 +27,8 @@ import java.util.List;
  */
 public class LevelMapConnectedTilesAlgorithm {
     private final LevelMap   map;
-    private List<List<Tile>> connectedTileGroups;
-    private boolean[]        visitedTiles;
+    private final List<List<Tile>> connectedTileGroups;
+    private final boolean[]        visitedTiles;
     
 
     public LevelMapConnectedTilesAlgorithm(LevelMap map) {
@@ -37,7 +37,13 @@ public class LevelMapConnectedTilesAlgorithm {
         this.visitedTiles        = new boolean[this.map.getWidth() * this.map.getHeight()];
     }
     
-
+    /**
+     * Returns all the connected tile groups.
+     * <p>
+     * A connected group of tiles is a list of tiles that have paths between all the tiles in the group.
+     * 
+     * @return List of connected groups
+     */
     public List<List<Tile>> getConnectedTileGroups() {
         for (int y = 0; y < this.map.getHeight(); y++) {
             for (int x = 0; x < this.map.getWidth(); x++) {
@@ -51,6 +57,13 @@ public class LevelMapConnectedTilesAlgorithm {
         return this.connectedTileGroups;
     }
     
+    /**
+     * Get connected group for the given location.
+     * 
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @return List of tiles belonging to the group
+     */
     private List<Tile> getConnectedTiles(int x, int y) {
         if (this.visitedTiles[x + y * this.map.getWidth()]) {
             return null;
@@ -64,6 +77,13 @@ public class LevelMapConnectedTilesAlgorithm {
         return group;
     }
     
+    /**
+     * Recursive depth first search function for getConnectedTiles().
+     * 
+     * @param group The current group
+     * @param x     The current X coordinate
+     * @param y     The current Y coordinate
+     */
     private void getConnectedTilesDFS(List<Tile> group, int x, int y) {
         if (x < 0 || x >= this.map.getWidth() || y < 0 || y >= this.map.getHeight()) {
             return;

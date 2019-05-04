@@ -20,7 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * A temporary bonus of some attribute(s) to a Character.
+ * <p>
+ * There are two variants.
+ * One is linked to an GameObject, and will be active only when the linked GameObject is being used by the Character.
+ * The other variant is timed, and will die once the timer has run out.
+ * 
  * @author joyr
  */
 public class Buff {
@@ -75,14 +80,27 @@ public class Buff {
     }
 
     
+    /**
+     * Returns whether this buff is active or not.
+     * 
+     * @return True if this buff is active
+     */
     public final boolean isAlive() {
         return this.alive;
     }
     
+    /**
+     * Kill this buff, making it inactive.
+     */
     public final void destroy() {
         this.alive = false;
     }
     
+    /**
+     * Advance the time on this buff.
+     * 
+     * @param deltaTime Seconds since last advance
+     */
     public final void tick(double deltaTime) {
         if (this.linkedTo == null) {
             this.timeToLive -= deltaTime;
@@ -92,14 +110,31 @@ public class Buff {
         }
     }
     
+    /**
+     * Returns the bonus amount this buff gives for the given type.
+     * 
+     * @param forType The attribute type
+     * @return The bonus amount
+     */
     public final double getBonus(Type forType) {
         return this.bonuses.getOrDefault(forType, 0.0);
     }
     
+    /**
+     * Set the amount of bonus for the given type.
+     * 
+     * @param forType The attribute type
+     * @param bonus The bonus amount
+     */
     protected final void setBonus(Type forType, double bonus) {
         this.bonuses.put(forType, bonus);
     }
     
+    /**
+     * Returns a displayable name for this buff.
+     * 
+     * @return A displayable name
+     */
     public final String getName() {
         String name = this.bonuses.keySet().stream().map(b -> b.toString()).reduce(null, (a, b) -> (a != null ? a + "+" : "") + b);
         if (name == null) {

@@ -21,7 +21,8 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 
 /**
- *
+ * Action to attack the given target.
+ * 
  * @author joyr
  */
 public class ActionAttack extends Action {

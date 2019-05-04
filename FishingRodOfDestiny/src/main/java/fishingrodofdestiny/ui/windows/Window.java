@@ -26,7 +26,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
- *
+ * User interface control: a modal requester window.
+ * 
  * @author joyr
  */
 public abstract class Window {
@@ -40,6 +41,9 @@ public abstract class Window {
         this.focusDefault = null;
     }
     
+    /**
+     * Adds this window to the screen, so that it is shown to the user.
+     */
     public final void show() {
         if (this.window != null) {
             return;
@@ -61,6 +65,9 @@ public abstract class Window {
         }
     }
     
+    /**
+     * Remove this window from the screen.
+     */
     public final void close() {
         if (this.window != null) {
             screen.getRoot().getChildren().remove(this.window);
@@ -69,16 +76,39 @@ public abstract class Window {
         }
     }
     
+    /**
+     * Return the screen this window is part of.
+     * 
+     * @return The screen
+     */
     public final Screen getScreen() {
         return this.screen;
     }
     
+    /**
+     * Set the Node to receive focus when this window is shown.
+     * 
+     * @param node The node to receive focus when this window is shown
+     */
     protected final void setFocusDefault(Node node) {
         this.focusDefault = node;
     }
 
+    /**
+     * Create the user interface elements to represent this window.
+     * 
+     * @return A node containing all the user interface elements
+     */
     protected abstract Node createUserInterface();
     
+    /**
+     * Helper method to create the window title portion of the user interface elements.
+     * <p>
+     * Usually the window is a BorderPane, and the title is set as its top element.
+     * 
+     * @param title The window title text
+     * @return A node containing the window title
+     */
     protected final Node createWindowTitle(String title) {
         StackPane pane = new StackPane();
         pane.getStyleClass().add("windowTitle");

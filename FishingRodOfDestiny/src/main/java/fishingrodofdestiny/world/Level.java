@@ -30,7 +30,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
- *
+ * A single level (or "floor") of a cave.
+ * 
  * @author joyr
  */
 public class Level implements GameObjectContainer {
@@ -52,24 +53,55 @@ public class Level implements GameObjectContainer {
         this.shadowColor   = new Color(0, 0, 0, 0.5);
     }
     
+    /**
+     * Returns the depth of this level, ie. how deep into the ground this level is vertically. The top-most levels depth is 0.
+     * 
+     * @return The depth of this level
+     */
     public int getDepth() {
         return this.depth;
     }
     
+    /**
+     * Returns the number of tiles in X-axis.
+     * 
+     * @return Number of tiles in X-axis
+     */
     public int getWidth() {
         return this.width;
     }
     
+    /**
+     * Returns the number of tiles in Y-axis.
+     * 
+     * @return Number of tiles in Y-axis
+     */
     public int getHeight() {
         return this.height;
     }
     
     
+    /**
+     * Returns the LevelMap containing the tiles.
+     * 
+     * @return LevelMap
+     */
     public LevelMap getMap() {
         return this.map;
     }
     
     
+    /**
+     * Draw onto a context, using the given memory to mask out parts of the level.
+     * 
+     * @param memory    The memory used to mask out parts of the level
+     * @param context   The target GraphicsContext to draw onto
+     * @param tileSize  The size of each tile, in pixels, usually 32
+     * @param topLeftX  The X coordinate of the top-left tile of drawn area
+     * @param topLeftY  The Y coordinate of the top-left tile of drawn area
+     * @param maxWidth  The maximum number of tiles in X-axis to draw
+     * @param maxHeight The maximum number of tiles in Y-axis to draw
+     */
     public void draw(LevelMemory memory, GraphicsContext context, int tileSize, int topLeftX, int topLeftY, int maxWidth, int maxHeight) {
         // TODO: test with slower hardware and maybe optimize a bit
         //       first draw shadowed, shadow them with one call, then draw the normally lit tiles
@@ -94,15 +126,40 @@ public class Level implements GameObjectContainer {
         }
     }
     
+    /**
+     * Return tile at the given coordinates.
+     * 
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @return Tile at the given coordinates
+     */
     public Tile getTile(int x, int y) {
         return this.map.getTile(x, y);
     }
     
 
+    /**
+     * Returns a random tile whose type is the given.
+     * 
+     * @param random Random number generator to use
+     * @param type   The type of tile to look for
+     * @return A random tile, or null if can't be found
+     */
     public Tile getRandomTileOfType(Random random, Class type) {
         return this.getRandomTileOfTypeInArea(random, type, 0, 0, this.width, this.height);
     }
     
+    /**
+     * Returns a random tile whose type is given from a rectangular area of the level.
+     * 
+     * @param random     Random number generator to use
+     * @param type       The type of tile to look for
+     * @param topleftX   The X coordinate of the top-left corner of the rectangular area
+     * @param topleftY   The Y coordinate of the top-left corner of the rectangular area
+     * @param areaWidth  The width of the rectangular area
+     * @param areaHeight The height of the rectangular area
+     * @return A random tile, or null if can't be found
+     */
     public Tile getRandomTileOfTypeInArea(Random random, Class type, int topleftX, int topleftY, int areaWidth, int areaHeight) {
         areaWidth  = Math.min(areaWidth,  this.width - topleftX);
         areaHeight = Math.min(areaHeight, this.height - topleftY);
@@ -121,7 +178,13 @@ public class Level implements GameObjectContainer {
     }
 
     
-    
+    /**
+     * Set/change a tile in the level.
+     * 
+     * @param x    X coordinate
+     * @param y    Y coordinate
+     * @param tile The new tile at the coordinates
+     */
     public void setTile(int x, int y, Tile tile) {
         this.map.setTile(x, y, tile);
     }
@@ -150,9 +213,11 @@ public class Level implements GameObjectContainer {
     }
     
     
-    /*
-    * Spawn a new NPC based on settings for this level.
-    */
+    /**
+     * Spawn a new NPC based on settings for this level.
+     * 
+     * @param random Random number generator
+     */
     public GameObject spawnNPC(Random random) {
         // Generate the NPC:
         GameObject npc = GameObjectFactory.create(this.enemySettings.getNextObjectType(random, this));
@@ -169,6 +234,11 @@ public class Level implements GameObjectContainer {
     }
 
     
+    /**
+     * Return all the stair tiles leading up on this level.
+     * 
+     * @return All stair tiles leading up
+     */
     public List<StairsTile> getStairsUp() {
         // TODO: optimize a bit: keep a list of stairs going up
         List<StairsTile> stairs = new ArrayList<>();
@@ -177,6 +247,11 @@ public class Level implements GameObjectContainer {
     }
 
     
+    /**
+     * Return all the stair tiles leading down on this level.
+     * 
+     * @return All stair tiles leading down
+     */
     public List<StairsTile> getStairsDown() {
         List<StairsTile> stairs = new ArrayList<>();
         this.map.getTiles(StairsDownTile.class).forEach((tile) -> stairs.add((StairsTile) tile));
@@ -184,6 +259,11 @@ public class Level implements GameObjectContainer {
     }
     
     
+    /**
+     * Advance the level, and all the GameObjects located in it, "one step".
+     * 
+     * @param deltaTime The number of seconds passed since last update
+     */
     public void tick(double deltaTime) {
         // TODO: cache game objects in this level
         List<GameObject> objects = new ArrayList<>();

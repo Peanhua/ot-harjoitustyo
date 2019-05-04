@@ -34,7 +34,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- *
+ * The screen responsible of the players character creation and starting a new game.
+ * 
  * @author joyr
  */
 public class ScreenNewGame extends Screen {

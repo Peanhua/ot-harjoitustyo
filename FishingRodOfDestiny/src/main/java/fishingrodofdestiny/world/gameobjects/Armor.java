@@ -17,7 +17,8 @@
 package fishingrodofdestiny.world.gameobjects;
 
 /**
- *
+ * Wearable, and usually protective, armor.
+ * 
  * @author joyr
  */
 public class Armor extends Item {
@@ -29,6 +30,11 @@ public class Armor extends Item {
         RING,
         FEET;
 
+        /**
+         * Returns a displayable name for this slot.
+         * 
+         * @return A displayable name
+         */
         public String getDisplayName() {
             switch (this) {
                 case HEAD:  return "Head";

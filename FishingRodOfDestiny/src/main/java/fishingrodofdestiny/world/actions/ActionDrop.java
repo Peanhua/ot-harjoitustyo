@@ -22,7 +22,8 @@ import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.tiles.Tile;
 
 /**
- *
+ * Action to drop the given item.
+ * 
  * @author joyr
  */
 public class ActionDrop extends Action {

@@ -69,10 +69,18 @@ public class Player extends Character {
     }
 
     
+    /**
+     * Called when the game is completed (ie. finished successfully).
+     */
     public void setGameCompleted() {
         this.gameCompleted = true;
     }
     
+    /**
+     * Returns whether the game has been completed.
+     * 
+     * @return True if the game has been completed successfully
+     */
     public boolean getGameCompleted() {
         return this.gameCompleted;
     }
@@ -82,7 +90,13 @@ public class Player extends Character {
         return 5;
     }
     
-    
+
+    /**
+     * Return the memory for the given Level.
+     * 
+     * @param level The level
+     * @return LevelMemory for the given level
+     */
     public LevelMemory getLevelMemory(Level level) {
         while (this.levelMemories.size() <= level.getDepth()) {
             this.levelMemories.add(null);
@@ -132,7 +146,12 @@ public class Player extends Character {
     public final long getEnemiesKilled() {
         return this.enemiesKilled;
     }
-    
+
+    /**
+     * Return the number of gold coins in inventory.
+     * 
+     * @return Number of gold coins
+     */
     public final long getGoldCollected() {
         if (this.isAlive()) {
             this.calculateGoldCollected();

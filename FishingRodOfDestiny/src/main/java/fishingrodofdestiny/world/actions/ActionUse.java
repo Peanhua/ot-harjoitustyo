@@ -21,7 +21,8 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Item;
 
 /**
- *
+ * Action to use an item from inventory.
+ * 
  * @author joyr
  */
 public class ActionUse extends Action {

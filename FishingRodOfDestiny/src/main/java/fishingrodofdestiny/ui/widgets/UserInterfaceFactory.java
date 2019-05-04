@@ -35,7 +35,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
- * Helper methods to create common UI elements:
+ * Helper methods to create common UI elements.
  *
  * @author joyr
  */

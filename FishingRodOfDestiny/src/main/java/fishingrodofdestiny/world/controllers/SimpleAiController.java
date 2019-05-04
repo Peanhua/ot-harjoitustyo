@@ -22,12 +22,12 @@ import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.actions.ActionMove;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
-import fishingrodofdestiny.world.gameobjects.Player;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.List;
 
 /**
- *
+ * A simple computer controlled controller for non-player characters.
+ * 
  * @author joyr
  */
 public class SimpleAiController extends Controller {
@@ -39,7 +39,14 @@ public class SimpleAiController extends Controller {
         this.isAggressive = false;
         this.automaticAggressionDistance = 2;
     }
-    
+   
+    /**
+     * Set aggression status.
+     * <p>
+     * When aggressive, actively seek the player.
+     * 
+     * @param aggressive New aggression status
+     */
     public void setAggressive(boolean aggressive) {
         this.isAggressive = aggressive;
     }

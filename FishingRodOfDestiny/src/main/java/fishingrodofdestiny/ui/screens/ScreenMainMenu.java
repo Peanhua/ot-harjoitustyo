@@ -33,7 +33,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- *
+ * The main menu screen, first screen opened when the software starts.
+ * 
  * @author joyr
  */
 public class ScreenMainMenu extends Screen {

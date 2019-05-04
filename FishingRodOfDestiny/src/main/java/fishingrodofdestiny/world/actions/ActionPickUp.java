@@ -20,7 +20,8 @@ import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 
 /**
- *
+ * Action to pick up the given target item.
+ * 
  * @author joyr
  */
 public class ActionPickUp extends Action {

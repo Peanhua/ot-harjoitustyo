@@ -34,7 +34,15 @@ import javax.sql.rowset.RowSetProvider;
 public class JdbcHelper {
     
     public interface StatementPreparer {
-        void prepare(PreparedStatement stmt) throws SQLException;
+        /**
+         * Called after the SQL statement has been prepared.
+         * <p>
+         * Can be used for example to set query parameters.
+         * 
+         * @param stmt The statement that is prepared.
+         * @throws SQLException 
+         */
+        public void prepare(PreparedStatement stmt) throws SQLException;
     }
     
     private String        databaseUrl;

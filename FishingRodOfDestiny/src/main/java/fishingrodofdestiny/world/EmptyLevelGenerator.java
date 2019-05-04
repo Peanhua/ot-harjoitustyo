@@ -19,7 +19,8 @@ package fishingrodofdestiny.world;
 import fishingrodofdestiny.world.tiles.FloorTile;
 
 /**
- *
+ * Simple level generator, creates an empty level with borders.
+ * 
  * @author joyr
  */
 public class EmptyLevelGenerator extends LevelGenerator {

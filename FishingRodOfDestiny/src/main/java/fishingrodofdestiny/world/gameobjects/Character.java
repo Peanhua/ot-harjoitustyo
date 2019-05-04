@@ -26,7 +26,8 @@ import java.util.List;
 
 
 /**
- *
+ * A "living" GameObject, controlled by a Controller.
+ * 
  * @author joyr
  */
 public abstract class Character extends GameObject {
@@ -94,36 +95,72 @@ public abstract class Character extends GameObject {
         super.onDestroyTarget(target);
     }
     
-    
+    /**
+     * Checks whether the given GameObject is a valid target for attacking.
+     * 
+     * @param target The checked GameObject
+     * @return True if the target is a valid target
+     */
     public boolean isValidAttackTarget(GameObject target) {
         return target != this;
     }
 
     
+    /**
+     * Return the number of actions this Character has performed.
+     * 
+     * @return Number of actions
+     */
     public long getActionsTaken() {
         return this.actionsTaken;
     }
     
     
+    /**
+     * Set the currently wield weapon.
+     * 
+     * @param weapon The weapon to wield
+     */
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
         this.onChange.notifyObservers();
     }
     
+    /**
+     * Return the currently wield weapon.
+     * 
+     * @return The currently wield weapon
+     */
     public Weapon getWeapon() {
         return this.weapon;
     }
     
+    /**
+     * Equip the given armor.
+     * 
+     * @param armor The armor to equip
+     */
     public void setArmor(Armor armor) {
         this.equippedArmor.put(armor.getSlot(), armor);
         this.onChange.notifyObservers();
     }
     
+    /**
+     * Un-equip armor from the given slot.
+     * 
+     * @param fromSlot The slot from where to remove the armor
+     */
     public void removeArmor(Armor.Slot fromSlot) {
         this.equippedArmor.remove(fromSlot);
         this.onChange.notifyObservers();
     }
     
+    /**
+     * Return the armor worn at the given slot.
+     * 
+     * @param slot The slot to check
+     * @return Armor in the slot, or null
+     */
     public Armor getArmor(Armor.Slot slot) {
         return this.equippedArmor.get(slot);
     }
@@ -145,7 +182,11 @@ public abstract class Character extends GameObject {
         return targets.isEmpty() ? null : targets;
     }        
 
-    
+    /**
+     * Return list of GameObjects that can be picked up by this Character.
+     * 
+     * @return A list of GameObjects that can be picked up
+     */
     public List<GameObject> getValidPickUpTargets() {
         List<GameObject> items = new ArrayList<>();
         this.getLocation().getContainerTile().getInventory().getObjects().forEach(object -> {
@@ -183,7 +224,13 @@ public abstract class Character extends GameObject {
     public final void setCharacterLevel(int level) {
         this.characterLevel = level;
     }
-    
+
+    /**
+     * Get the amount of total experience points this Character needs in order to level up to the given level.
+     * 
+     * @param level The level
+     * @return Amount of experience points required for the level
+     */
     public int getExperiencePointsForCharacterLevel(int level) {
         final double maxIncreasePerLevel = 20000.0;
 
@@ -199,6 +246,11 @@ public abstract class Character extends GameObject {
         return (int) xp;
     }
     
+    /**
+     * Increase the character level by one.
+     * 
+     * @return A displayable text describing what was gained by the level increase.
+     */
     public String increaseCharacterLevel() {
         this.characterLevel++;
 
@@ -221,6 +273,11 @@ public abstract class Character extends GameObject {
         return increased + " +" + amount;
     }
     
+    /**
+     * Return the name of a random stat what to increase on level up.
+     * 
+     * @return The name of the stat to increase
+     */
     private String getStatToIncrease() {
         String increased;
         int base = 20;
@@ -241,6 +298,11 @@ public abstract class Character extends GameObject {
     }
     
     
+    /**
+     * Add buff to this Character.
+     * 
+     * @param buff The buff to add
+     */
     public void addBuff(Buff buff) {
         for (int i = 0; i < this.buffs.size(); i++) {
             Buff b = this.buffs.get(i);
@@ -254,6 +316,11 @@ public abstract class Character extends GameObject {
     }
     
     
+    /**
+     * Get all active buffs affecting this Character.
+     * 
+     * @return List of active buffs
+     */
     public List<Buff> getBuffs() {
         List<Buff> rv = new ArrayList<>();
         this.buffs.forEach(b -> {
@@ -265,6 +332,12 @@ public abstract class Character extends GameObject {
     }
     
     
+    /**
+     * Return the total amount of bonuses buffs give for the given buff type.
+     * 
+     * @param forType The buff type to look for
+     * @return The total amount of bonuses
+     */
     public double getBuffBonuses(Buff.Type forType) {
         double bonuses = 0;
         
@@ -287,11 +360,22 @@ public abstract class Character extends GameObject {
     }
     
     
+    /**
+     * Add a buff that can be randomly given to the attack target when attacking.
+     * 
+     * @param chance The chance for the buff to be given, in range [0..1]
+     * @param buff   The buff to give
+     */
     public void addAttackBuff(double chance, Buff buff) {
         this.attackBuffChances.add(chance);
         this.attackBuffs.add(buff);
     }
     
+    /**
+     * Return a random attack buff.
+     * 
+     * @return A random attack buff
+     */
     public Buff getRandomAttackBuff() {
         for (int i = 0; i < this.attackBuffs.size(); i++) {
             if (this.getRandom().nextDouble() < this.attackBuffChances.get(i)) {
@@ -384,6 +468,11 @@ public abstract class Character extends GameObject {
     }
 
     
+    /**
+     * Adjust the attack attribute.
+     * 
+     * @param amount The amount to adjust
+     */
     public void adjustAttack(int amount) {
         this.attack += amount;
         if (this.attack < 0) {
@@ -392,6 +481,11 @@ public abstract class Character extends GameObject {
         this.onChange.notifyObservers();
     }
     
+    /**
+     * Adjust the defence attribute.
+     * 
+     * @param amount The amount to adjust
+     */
     public void adjustDefence(int amount) {
         this.defence += amount;
         if (this.defence < 0) {
@@ -400,6 +494,11 @@ public abstract class Character extends GameObject {
         this.onChange.notifyObservers();
     }
     
+    /**
+     * Adjust the carrying capacity.
+     * 
+     * @param amount The amount to adjust
+     */
     public void adjustCarryingCapacity(int amount) {
         this.carryingCapacity += amount;
         if (this.carryingCapacity < 0) {
@@ -408,12 +507,21 @@ public abstract class Character extends GameObject {
         this.onChange.notifyObservers();
     }
     
+    /**
+     * Adjust the experience points.
+     * 
+     * @param amount The amount to adjust
+     */
     public void adjustExperiencePoints(int amount) {
         this.experiencePoints += amount;
         this.onChange.notifyObservers();
     }
 
-    
+    /**
+     * Return the Controller controlling this Character.
+     * 
+     * @return The controlling Controller
+     */
     public Controller getController() {
         return this.controller;
     }
@@ -464,7 +572,7 @@ public abstract class Character extends GameObject {
         }
     }
     
-    public final double getRegenerationPerSecond() {
+    private double getRegenerationPerSecond() {
         return this.naturalRegeneration + this.getBuffBonuses(Buff.Type.REGENERATION) - this.getBuffBonuses(Buff.Type.POISON);
     }
     

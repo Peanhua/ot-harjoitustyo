@@ -22,7 +22,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * Generic GameObject spawner: creates random new GameObjects based on rules.
+ * 
  * @author joyr
  */
 public class GameObjectSpawner {
@@ -34,14 +35,33 @@ public class GameObjectSpawner {
         this.maximumTotalCount = 0;
     }
     
+    /**
+     * Set the maximum number of GameObjects the container can have.
+     * 
+     * @param count The maximum number of GameObjects
+     */
     public final void setMaximumTotalCount(int count) {
         this.maximumTotalCount = count;
     }
     
+    /**
+     * Add a rule for the given GameObject type.
+     * 
+     * @param objectId     The type (passed to GameObjectFactory)
+     * @param maximumCount The maximum number of objects that can exist of this type
+     * @param weight       The randomizer weight, higher value equals higher chance
+     */
     public final void addType(String objectId, int maximumCount, double weight) {
         this.objects.add(new ObjectConfiguration(objectId, maximumCount, weight));
     }
     
+    /**
+     * Return the next object type to spawn in, or null if nothing should be spawned.
+     * 
+     * @param random    A random number generator to use
+     * @param container The container where the object is going to be spawned into
+     * @return The game object type, or null if nothing should be spawned
+     */
     public final String getNextObjectType(Random random, GameObjectContainer container) {
         int currentObjectCount = container.getObjectCount(null);
         if (this.maximumTotalCount > 0 && currentObjectCount >= this.maximumTotalCount) {
@@ -71,7 +91,11 @@ public class GameObjectSpawner {
     }
 }
 
-
+/**
+ * Configuration (rule) entry for a single game object type.
+ * 
+ * @author Joni Yrjänä <joniyrjana@gmail.com>
+ */
 class ObjectConfiguration implements Comparable<ObjectConfiguration> {
     private final String objectType;
     private final double weight;
@@ -93,11 +117,16 @@ class ObjectConfiguration implements Comparable<ObjectConfiguration> {
         return this.maxCount;
     }
 
+    /**
+     * Sets the current probability based on the modifier and the rule randomizer weight.
+     * 
+     * @param modifier Modifier, 1.0 equals to no change
+     */
     public void setProbabilityModifier(double modifier) {
         this.currentProbability *= modifier;
     }
 
-    public double getProbability() {
+    private double getProbability() {
         return this.currentProbability;
     }
 

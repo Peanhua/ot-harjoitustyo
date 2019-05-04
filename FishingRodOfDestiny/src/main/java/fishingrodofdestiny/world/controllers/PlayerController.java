@@ -40,7 +40,10 @@ import javafx.event.Event;
 import javafx.scene.input.KeyEvent;
 
 /**
- *
+ * The controller used by the Player character.
+ * <p>
+ * Asks the action specific details from the user via user interface.
+ * 
  * @author joyr
  */
 public class PlayerController extends Controller {
@@ -51,6 +54,13 @@ public class PlayerController extends Controller {
         this.player = owner;
     }
     
+    /**
+     * Initiates an action based on the JavaFX event.
+     * 
+     * @param screen The game screen
+     * @param event  The JavaFX event
+     * @return True if the event was handled
+     */
     public boolean handleJavaFXEvent(Screen screen, Event event) {
         Action.Type actionType = null;
         

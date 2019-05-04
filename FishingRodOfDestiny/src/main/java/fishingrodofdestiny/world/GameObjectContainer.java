@@ -20,7 +20,8 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.List;
 
 /**
- *
+ * Implementors of this interface hold GameObjects.
+ * 
  * @author joyr
  */
 public interface GameObjectContainer {

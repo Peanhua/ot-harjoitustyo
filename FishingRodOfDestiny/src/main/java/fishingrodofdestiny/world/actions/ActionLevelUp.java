@@ -19,7 +19,8 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.gameobjects.Character;
 
 /**
- *
+ * Action to level up the Character.
+ * 
  * @author joyr
  */
 public class ActionLevelUp extends Action {

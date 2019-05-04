@@ -24,7 +24,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * The master game object, represents a single instance of a game that is played.
+ * 
  * @author joyr
  */
 public class Game {
@@ -54,6 +55,13 @@ public class Game {
     private final Random       random;
     private final Cave         cave;
     
+    /**
+     * Create a new Game.
+     * 
+     * @param randomSeed   The seed used for the content generator
+     * @param player       The player object
+     * @param rescueTarget The rescue target, used for the plot
+     */
     public Game(long randomSeed, Player player, RescueTarget rescueTarget) {
         this.player       = player;
         this.rescueTarget = rescueTarget;
@@ -66,11 +74,21 @@ public class Game {
     }
     
     
+    /**
+     * Return the cave for this game.
+     * 
+     * @return Cave
+     */
     public final Cave getCave() {
         return this.cave;
     }
     
     
+    /**
+     * Generates and returns the plot as lines of texts.
+     * 
+     * @return The plot
+     */
     public List<String> getPlot() {
         List<String> rv = new ArrayList<>();
         
@@ -84,6 +102,11 @@ public class Game {
         return rv;
     }
     
+    /**
+     * Returns the message shown to the player when the player successfully finishes the game.
+     * 
+     * @return The game ending message
+     */
     public List<String> getPlotFinish() {
         List<String> rv = new ArrayList<>();
         
@@ -103,11 +126,19 @@ public class Game {
     }
 
     
+    /**
+     * Returns the player object.
+     * 
+     * @return Player
+     */
     public Player getPlayer() {
         return this.player;
     }
     
     
+    /**
+     * Advances the game "one step".
+     */
     public final void tick() {
         if (this.player == null || !this.player.isAlive()) {
             return;

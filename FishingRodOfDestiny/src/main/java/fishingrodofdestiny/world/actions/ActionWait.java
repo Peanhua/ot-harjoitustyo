@@ -20,7 +20,8 @@ import fishingrodofdestiny.world.gameobjects.Character;
 
 
 /**
- *
+ * Action to just pass time and do nothing.
+ * 
  * @author joyr
  */
 public class ActionWait extends Action {

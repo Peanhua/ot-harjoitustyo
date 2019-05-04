@@ -22,7 +22,8 @@ import fishingrodofdestiny.world.tiles.WallTile;
 import java.util.List;
 
 /**
- *
+ * Level generator, used to generate cave levels.
+ * 
  * @author joyr
  */
 public abstract class LevelGenerator {
@@ -38,6 +39,11 @@ public abstract class LevelGenerator {
     }
     
 
+    /**
+     * Place wall tiles around the edges of the level.
+     * 
+     * @param level Level to receive the borders
+     */
     protected void createLevelBorders(Level level) {
         for (int x = 0; x < level.getWidth(); x++) {
             int y = 0;
@@ -54,7 +60,11 @@ public abstract class LevelGenerator {
         }
     }
 
-
+    /**
+     * Place default wall tiles in locations where there is not yet any tile set.
+     * 
+     * @param level The level to operate on
+     */
     protected void fillEmptySpace(Level level) {
         for (int y = 0; y < level.getHeight(); y++) {
             for (int x = 0; x < level.getWidth(); x++) {
@@ -68,8 +78,19 @@ public abstract class LevelGenerator {
     
     
 
-    
+    /**
+     * Generate a new cave level.
+     * 
+     * @param caveLevel The depth of the level to generate
+     * @return A new cave level
+     */
     public abstract Level generateLevel(int caveLevel);
+    
+    /**
+     * Make sure there is a path between the start (stairs up) and end (stairs down).
+     * 
+     * @param level The level to operate on
+     */
     public abstract void  connectStartEnd(Level level);
     
     /**

@@ -22,7 +22,8 @@ import fishingrodofdestiny.world.controllers.SimpleAiController;
 import fishingrodofdestiny.world.TileGfx;
 
 /**
- *
+ * The non-player character.
+ * 
  * @author joyr
  */
 public class NonPlayerCharacter extends Character {

@@ -28,7 +28,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 /**
- *
+ * A simple screen to display the plot of the game.
+ * 
  * @author joyr
  */
 public class ScreenPlot extends Screen {

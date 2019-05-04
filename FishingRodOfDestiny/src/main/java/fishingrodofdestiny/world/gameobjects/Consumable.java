@@ -20,7 +20,8 @@ import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.tiles.Tile;
 
 /**
- *
+ * An item that can be used, and when used is consumed (destroys itself).
+ * 
  * @author joyr
  */
 public class Consumable extends Item {
@@ -51,10 +52,16 @@ public class Consumable extends Item {
         this.healOnUsePercentage = usePercentage;
     }
     
+    /**
+     * Sets this consumable to reveal the map when used.
+     */
     public final void setRevealsMap() {
         this.revealsMapOnUse = true;
     }
     
+    /**
+     * Sets this consumable to act as an antivenom when used.
+     */
     public final void setAntivenom() {
         this.givesAntivenomOnUse = true;
     }

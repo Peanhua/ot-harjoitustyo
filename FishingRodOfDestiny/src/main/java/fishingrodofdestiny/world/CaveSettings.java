@@ -19,7 +19,8 @@ package fishingrodofdestiny.world;
 import java.util.Random;
 
 /**
- *
+ * Settings for a cave, defines the rules how to construct the cave and its levels.
+ * 
  * @author joyr
  */
 public class CaveSettings {
@@ -31,34 +32,80 @@ public class CaveSettings {
         this.levelGenerator = new BSPLevelGenerator(this);
     }
     
+    /**
+     * Returns the random number generator associated to these settings.
+     * 
+     * @return Random number generator
+     */
     public Random getRandom() {
         return this.random;
     }
     
+    /**
+     * Return the number of cave levels the cave has.
+     * 
+     * @return Number of levels
+     */
     public int getNumberOfLevels() {
         return 10;
     }
     
+    /**
+     * Return the cave generator object used to generate the level at the given cave level (depth).
+     * 
+     * @param caveLevel The cave level
+     * @return LevelGenerator used to generate the level
+     */
     public LevelGenerator getLevelGenerator(int caveLevel) {
         return this.levelGenerator;
     }
     
+    /**
+     * Returns the width (number of tiles in X-axis) of the level at the given cave level.
+     * 
+     * @param caveLevel The cave level
+     * @return Number of tiles horizontally
+     */
     public int getLevelWidth(int caveLevel) {
         return 40;
     }
     
+    /**
+     * Returns the height (number of tiles in Y-axis) of the level at the given cave level.
+     * 
+     * @param caveLevel The cave level
+     * @return Number of tiles vertically
+     */
     public int getLevelHeight(int caveLevel) {
         return 30;
     }
     
+    /**
+     * Returns the maximum number of pit traps at the given cave level.
+     * 
+     * @param caveLevel The cave level
+     * @return Maximum number of pit traps
+     */
     public int getMaxPitTraps(int caveLevel) {
         return 15;
     }
     
+    /**
+     * Returns the maximum number of bear traps at the given cave level.
+     * 
+     * @param caveLevel The cave level
+     * @return Maximum number of bear traps
+     */
     public int getMaxBearTraps(int caveLevel) {
         return 5;
     }
     
+    /**
+     * Returns the number of statue tiles in the given cave level.
+     * 
+     * @param caveLevel The cave level
+     * @return Number of statues
+     */
     public int getStatues(int caveLevel) {
         if (caveLevel > 0 && caveLevel % 5 == 0) {
             return 1;
@@ -66,6 +113,12 @@ public class CaveSettings {
         return 0;
     }
     
+    /**
+     * Returns the GameObjectSpawner used to place items into the given cave level.
+     * 
+     * @param caveLevel The cave level
+     * @return GameObjectSpawner
+     */
     public GameObjectSpawner getItemSpawner(int caveLevel) {
         GameObjectSpawner itemSettings = new GameObjectSpawner();
         itemSettings.setMaximumTotalCount(5 + caveLevel * 2 + this.random.nextInt(1 + caveLevel * 5));
@@ -84,6 +137,12 @@ public class CaveSettings {
         return itemSettings;
     }
 
+    /**
+     * Returns the GameObjectSpawner used to place enemies into the given cave level.
+     * 
+     * @param caveLevel The cave level
+     * @return GameObjectSpawner
+     */
     public GameObjectSpawner getEnemySpawner(int caveLevel) {
         GameObjectSpawner enemySpawner = new GameObjectSpawner();
         int levelSizeBasedCount = this.getLevelWidth(caveLevel) * this.getLevelHeight(caveLevel) / 175;

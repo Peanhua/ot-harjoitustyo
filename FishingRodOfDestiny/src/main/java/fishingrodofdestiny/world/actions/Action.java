@@ -19,7 +19,8 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.gameobjects.Character;
 
 /**
- *
+ * A single action that a Character can perform.
+ * 
  * @author joyr
  */
 public abstract class Action {
@@ -48,5 +49,10 @@ public abstract class Action {
         return this.type;
     }
     
+    /**
+     * Perform the action this Action defines.
+     * 
+     * @param me The Character who performs this Action
+     */
     public abstract void act(Character me);
 }

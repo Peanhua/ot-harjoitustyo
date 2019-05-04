@@ -21,7 +21,8 @@ import fishingrodofdestiny.world.tiles.Tile;
 
 
 /**
- *
+ * Action to activate whatever the tile defines.
+ * 
  * @author joyr
  */
 public class ActionActivateTile extends Action {

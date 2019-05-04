@@ -29,6 +29,8 @@ import org.ini4j.Ini;
 
 /**
  * Create new game objects.
+ * <p>
+ * Uses singleton pattern, and loads the game object templates from an ini file.
  * 
  * @author joyr
  */
@@ -48,6 +50,12 @@ public class GameObjectFactory {
         }
     }
     
+    /**
+     * Create a new GameObject of the given type.
+     * 
+     * @param objectType The type of the GameObject to create
+     * @return A new GameObject
+     */
     public static GameObject create(String objectType) {
         if (objectType == null) {
             return null;

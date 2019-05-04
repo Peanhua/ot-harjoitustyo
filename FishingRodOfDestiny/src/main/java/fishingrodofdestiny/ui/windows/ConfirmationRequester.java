@@ -27,7 +27,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
- *
+ * A requester that asks the user confirmation to something.
+ * 
  * @author joyr
  */
 public class ConfirmationRequester extends Window {
@@ -41,6 +42,17 @@ public class ConfirmationRequester extends Window {
     private final String confirmText;
     private final ConfirmationHandler handler;
     
+    /**
+     * Create a new requester.
+     * <p>
+     * The handler is called only if the user confirms (ie. clicks the button with the confirm label).
+     * 
+     * @param screen  The screen where to place this requester.
+     * @param message The confirmation message (possibly a long text)
+     * @param cancel  The label for the "cancel" button
+     * @param confirm The label for the "ok" button
+     * @param handler The handler to be called if the user clicks "ok"
+     */
     public ConfirmationRequester(Screen screen, String message, String cancel, String confirm, ConfirmationHandler handler) {
         super(screen);
         this.messageText = message;

@@ -140,7 +140,7 @@ public abstract class Tile implements GameObjectContainer {
     }
 
     /**
-     * Called when the given object moves into this tile:
+     * Called when the given object moves into this tile.
      * 
      * @param object The GameObject that enters this tile.
      */
@@ -149,7 +149,7 @@ public abstract class Tile implements GameObjectContainer {
     
     
     /**
-     * Called when the given object wants to activate some tile specific special action in this tile:
+     * Called when the given object wants to activate some tile specific special action in this tile.
      * 
      * @param object The GameObject that activates this tile.
      */

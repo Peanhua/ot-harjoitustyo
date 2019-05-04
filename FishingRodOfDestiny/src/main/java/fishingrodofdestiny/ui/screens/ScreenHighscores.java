@@ -33,7 +33,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- *
+ * The screen responsible of showing the highscore lists.
+ * 
  * @author joyr
  */
 public class ScreenHighscores extends Screen {
@@ -66,7 +67,7 @@ public class ScreenHighscores extends Screen {
         return sp;
     }
     
-    public void refresh() {
+    private void refresh() {
         VBox vb = new VBox(0);
         vb.setAlignment(Pos.CENTER);
         

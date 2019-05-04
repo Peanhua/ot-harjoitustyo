@@ -20,7 +20,8 @@ import fishingrodofdestiny.dao.StatisticsDao;
 import fishingrodofdestiny.world.Game;
 
 /**
- *
+ * Holds statistics about all the games played.
+ * 
  * @author joyr
  */
 public class Statistics {
@@ -70,10 +71,18 @@ public class Statistics {
         this.enemiesKilled = count;
     }
     
+    /**
+     * Load statistics using the attached dao object.
+     */
     public void load() {
         this.dao.load(this);
     }
     
+    /**
+     * Update statistics from a Game object.
+     * 
+     * @param game The game object to use for updating the statistics
+     */
     public void addFromGame(Game game) {
         this.gamesPlayed++;
         if (game.getPlayer().getGameCompleted()) {

@@ -46,6 +46,12 @@ public class PointDistributor extends Widget {
         HITPOINTS,          // TODO: rename this to max hitpoints to make it map 1:1 with GameObject
         CARRYING_CAPACITY;  // TODO: rename this to inventory weight limit to make it map 1:1 with GameObject
         
+        /**
+         * Return a displayable name for given PointType.
+         * 
+         * @param pointType The point type
+         * @return A displayable name
+         */
         public static String getName(PointType pointType) {
             switch (pointType) {
                 case ATTACK:            return "Attack";

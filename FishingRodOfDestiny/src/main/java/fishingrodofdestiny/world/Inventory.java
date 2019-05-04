@@ -18,13 +18,13 @@ package fishingrodofdestiny.world;
 
 import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
-import fishingrodofdestiny.world.GameObjectContainer;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Inventory of GameObjects.
+ * 
  * @author joyr
  */
 public class Inventory implements GameObjectContainer {
@@ -36,30 +36,52 @@ public class Inventory implements GameObjectContainer {
         this.onChange = new Subject();
     }
     
-    
+    /**
+     * Register a callback to be called whenever this inventory is changed.
+     * 
+     * @param observer The callback listener
+     */
     public void listenOnChange(Observer observer) {
         this.onChange.addObserver(observer);
     }
     
-    
+    /**
+     * Add GameObject into this inventory.
+     * 
+     * @param object The GameObject to add
+     */
     public void add(GameObject object) {
         this.objects.add(object);
         this.onChange.notifyObservers();
     }
     
     
+    /**
+     * Remove GameObject from this inventory.
+     * 
+     * @param object The GameObject to remove
+     */
     public void remove(GameObject object) {
         this.objects.remove(object);
         this.onChange.notifyObservers();
     }
     
     
+    /**
+     * Get all GameObjects in this inventory.
+     * 
+     * @return All the GameObjects in this inventory
+     */
     public List<GameObject> getObjects() {
         return this.objects;
     }
 
     
-
+    /**
+     * Returns the total weight of this inventory.
+     * 
+     * @return The total weight
+     */
     public int getWeight() {
         int weight = 0;
         

@@ -31,7 +31,10 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * The cave, the game world where the game takes place.
+ * <p>
+ * Uses the given CaveSettings to generate the cave.
+ * 
  * @author joyr
  */
 public class Cave {
@@ -111,6 +114,12 @@ public class Cave {
     }
 
     
+    /**
+     * Return the cave Level at the given "depth" (starting from 0 as the top-most level).
+     * 
+     * @param depth The depth, starting from 0
+     * @return The level at the given depth
+     */
     public final Level getLevel(int depth) {
         return this.levels.get(depth);
     }

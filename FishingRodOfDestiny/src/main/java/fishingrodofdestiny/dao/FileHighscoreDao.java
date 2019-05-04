@@ -24,12 +24,18 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ * File based dao for highscorelist.
+ * 
  * @author joyr
  */
 public class FileHighscoreDao extends HighscoreDao {
     private final String filenameBase;
-    
+   
+    /**
+     * Create new FileHighscoreDao.
+     * 
+     * @param filenameBase The base name of the highscore file, the highscore type will be appended to it.
+     */
     public FileHighscoreDao(String filenameBase) {
         super();
         this.filenameBase = filenameBase;

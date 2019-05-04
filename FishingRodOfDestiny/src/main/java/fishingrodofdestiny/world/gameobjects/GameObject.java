@@ -225,6 +225,12 @@ public class GameObject implements GameObjectContainer {
         return this.currentHitpoints;
     }
     
+    /**
+     * Set the current hit points.
+     * Does not allow setting below 1 (ie. the GameObject can't be destroyed with this).
+     * 
+     * @param hitpoints The new current hit points
+     */
     public final void setHitpoints(int hitpoints) {
         if (hitpoints < 1) {
             return;

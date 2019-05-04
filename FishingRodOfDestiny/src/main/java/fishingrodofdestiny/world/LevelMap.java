@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Simple container to hold the tiles for a single cave level.
+ * 
  * @author joyr
  */
 public class LevelMap {
@@ -54,6 +55,12 @@ public class LevelMap {
     }
     
 
+    /**
+     * Returns all tiles whose class match the given class.
+     * 
+     * @param cls The class to find
+     * @return All tiles whose class match
+     */
     public List<Tile> getTiles(Class cls) {
         List<Tile> rv = new ArrayList<>();
         
@@ -68,11 +75,25 @@ public class LevelMap {
     }
     
 
+    /**
+     * Checks if a location is inside the cave level.
+     * 
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @return True if the location is inside the cave level
+     */
     public boolean isValidLocation(int x, int y) {
         return x >= 0 && x < this.width && y >= 0 && y < this.height;
     }
         
-    
+
+    /**
+     * Return a tile at the given location.
+     * 
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @return Tile at the given location, or null if the location is not valid
+     */
     public Tile getTile(int x, int y) {
         if (!this.isValidLocation(x, y)) {
             return null;
@@ -80,7 +101,13 @@ public class LevelMap {
         return this.tiles.get(y * this.width + x);
     }
 
-
+    /**
+     * Set/change a tile.
+     * 
+     * @param x    X coordinate
+     * @param y    Y coordinate
+     * @param tile The new Tile for the location
+     */
     public void setTile(int x, int y, Tile tile) {
         if (this.isValidLocation(x, y)) {
             this.tiles.set(y * this.width + x, tile);

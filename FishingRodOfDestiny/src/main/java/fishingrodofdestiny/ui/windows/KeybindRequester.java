@@ -28,7 +28,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
- *
+ * Requester to input a new keybinding.
+ * 
  * @author joyr
  */
 public class KeybindRequester extends Window {
@@ -39,6 +40,15 @@ public class KeybindRequester extends Window {
     private final String                  targetText;
     private final KeybindRequesterHandler handler;
 
+    /**
+     * Create a new requester.
+     * <p>
+     * The handler is only called if the user presses a key, if the user clicks the "cancel" button, the handler is not called.
+     * 
+     * @param screen     The screen where to place this requester.
+     * @param targetText The name of the action/command.
+     * @param handler    The callback handler which is called if the user presses any key.
+     */
     public KeybindRequester(Screen screen, String targetText, KeybindRequesterHandler handler) {
         super(screen);
         this.targetText = targetText;

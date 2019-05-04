@@ -24,7 +24,8 @@ import javafx.scene.input.KeyCode;
 import org.ini4j.Ini;
 
 /**
- *
+ * File based dao for settings.
+ * 
  * @author joyr
  */
 public class FileSettingsDao extends SettingsDao {
@@ -32,6 +33,11 @@ public class FileSettingsDao extends SettingsDao {
     private URL     url;
     private boolean loadable;
 
+    /**
+     * Create a new FileSettingsDao.
+     * 
+     * @param url URL to the file, usually starts with "file:"
+     */
     public FileSettingsDao(URL url) {
         super();
         this.ini = new Ini();

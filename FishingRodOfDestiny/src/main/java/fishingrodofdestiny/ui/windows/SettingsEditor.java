@@ -33,7 +33,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 /**
- *
+ * A window containing settings the users settings, and the controls to change them.
+ * 
  * @author joyr
  */
 public class SettingsEditor extends Window {

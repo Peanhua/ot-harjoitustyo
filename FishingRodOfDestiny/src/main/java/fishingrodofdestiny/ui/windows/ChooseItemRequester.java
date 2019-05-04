@@ -30,7 +30,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 
 /**
- *
+ * Requester allowing user to choose one GameObject from the given list.
+ * 
  * @author joyr
  */
 public class ChooseItemRequester extends Window {
@@ -43,6 +44,16 @@ public class ChooseItemRequester extends Window {
     private final ConfirmationHandler handler;
     private ListView<GameObject>      itemListView;
 
+    /**
+     * Create a new requester.
+     * <p>
+     * Once the user has made the choice, the handler is called with a list of the chosen items. Currently the list will always contain a maximum of one item.
+     * 
+     * @param screen  The screen where to place this requester
+     * @param title   The title of the requester window
+     * @param items   List of the GameObjects to choose from
+     * @param handler The callback handler, only called if the user clicks "Ok"
+     */
     public ChooseItemRequester(Screen screen, String title, List<GameObject> items, ConfirmationHandler handler) {
         super(screen);
         this.title        = title;
