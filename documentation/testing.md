@@ -9,7 +9,7 @@ All the testing have been done in a Linux system.
 
 ## Test coverage
 
-Test coverage report is generated using Jacoco-maven plugin. User interface code, in *fishingrodofdestiny.ui* and its child packages have been excluded from the test coverate report.
+Test coverage report is generated using Jacoco-maven plugin. User interface code, in *fishingrodofdestiny.ui* and its child packages, have been excluded from the test coverate report.
 
 The test coverage looks like the following on git commit `d07b36da2f2ccec0fa2facf4f5a443c01c02c142`:
 <img src="test-coverage.png" alt="Test coverage" />
