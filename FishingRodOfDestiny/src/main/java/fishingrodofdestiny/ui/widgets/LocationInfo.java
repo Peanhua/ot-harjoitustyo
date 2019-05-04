@@ -27,7 +27,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 /**
- *
+ * Shows information about the given location (tile) on the cave level.
+ * 
  * @author joyr
  */
 public class LocationInfo extends Widget {
@@ -150,7 +151,11 @@ public class LocationInfo extends Widget {
         return row + 1;
     }        
     
-
+    /**
+     * Set the tile to be used for the information.
+     * 
+     * @param tile The target tile
+     */
     public void setTile(Tile tile) {
         if (this.currentTile != tile) {
             this.currentTile = tile;

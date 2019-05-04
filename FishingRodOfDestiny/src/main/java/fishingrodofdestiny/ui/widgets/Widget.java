@@ -19,10 +19,20 @@ package fishingrodofdestiny.ui.widgets;
 import javafx.scene.Node;
 
 /**
- *
+ * User interface element containing some functionality.
+ * 
  * @author joyr
  */
 public abstract class Widget {
+    /**
+     * Create the user interface nodes to represent this widget.
+     * 
+     * @return A node containing all the nodes of this widget
+     */
     public abstract Node createUserInterface();
+    
+    /**
+     * Refresh any dynamic content of this widget.
+     */
     public abstract void refresh();
 }

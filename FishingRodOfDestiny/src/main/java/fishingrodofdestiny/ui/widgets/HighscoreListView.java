@@ -26,7 +26,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 /**
- *
+ * Shows a highscore list.
+ * 
  * @author joyr
  */
 public class HighscoreListView extends Widget {

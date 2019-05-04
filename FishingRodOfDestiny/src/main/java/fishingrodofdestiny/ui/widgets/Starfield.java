@@ -29,7 +29,8 @@ import javafx.scene.paint.Color;
 
 
 /**
- *
+ * A simple visual effect of stars going past the screen from one edge of the screen to another edge.
+ * 
  * @author joyr
  */
 public class Starfield extends Widget {
@@ -99,10 +100,16 @@ public class Starfield extends Widget {
     public void refresh() {
     }
 
+    /**
+     * Enable animation.
+     */
     public void enable() {
         this.animationTimer.start();
     }
     
+    /**
+     * Disable animation.
+     */
     public void disable() {
         this.animationTimer.stop();
     }
@@ -141,6 +148,11 @@ public class Starfield extends Widget {
 }
 
 
+/**
+ * A single star.
+ * 
+ * @author Joni Yrjänä <joniyrjana@gmail.com>
+ */
 class Star {
     private double x;
     private double y;
@@ -189,6 +201,13 @@ class Star {
         return new Color(r * brightness, g * brightness, b * brightness, 1.0);
     }
 
+    /**
+     * Move this star based on settings and given delta time.
+     * 
+     * @param deltaTime       The amount of time passed since last move (in seconds)
+     * @param pixelWriter     Pixelwriter object to use for drawing
+     * @param backgroundColor The background color, used to remove this star from the old location
+     */
     public void move(double deltaTime, PixelWriter pixelWriter, Color backgroundColor) {
         pixelWriter.setColor((int) this.x, (int) this.y, backgroundColor);
         double amount = speed * deltaTime;
@@ -209,6 +228,13 @@ class Star {
         pixelWriter.setColor((int) this.x, (int) this.y, this.color);
     }
 
+    /**
+     * Returns whether this star is still alive.
+     * <p>
+     * A star becomes dead once it reaches the opposite edge of the screen.
+     * 
+     * @return True if this star is still alive
+     */
     public boolean isAlive() {
         switch (this.direction) {
             case LEFT:  return this.x >= -1;
@@ -226,6 +252,11 @@ interface StarfieldAnimationTicker {
 }
 
 
+/**
+ * Animation timer to handle the starfield animation.
+ * 
+ * @author Joni Yrjänä <joniyrjana@gmail.com>
+ */
 class StarfieldAnimationTimer extends AnimationTimer {
     private long lastUpdate;
     private final StarfieldAnimationTicker ticker;

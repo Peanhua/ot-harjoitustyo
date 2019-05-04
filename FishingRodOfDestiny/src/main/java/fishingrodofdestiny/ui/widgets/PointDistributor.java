@@ -25,7 +25,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 /**
- *
+ * Shows user interface that allows the user to distribute attribute points to a character.
+ * 
  * @author joyr
  */
 public class PointDistributor extends Widget {
@@ -123,12 +124,23 @@ public class PointDistributor extends Widget {
         return row;
     }        
     
-    
+    /**
+     * Return the amount of points user has decided to put into the given attribute.
+     * 
+     * @param pointType The attribute
+     * @return The points put to the attribute
+     */
     public int getPoints(PointType pointType) {
         return this.pointValues.get(pointType.ordinal());
     }
     
     
+    /**
+     * Returns the points the given character had previously, before adding more via this user interface.
+     * 
+     * @param pointType The attribute
+     * @return The points character had before
+     */
     public int getExistingPoints(PointType pointType) {
         switch (pointType) {
             case ATTACK:            return this.character.getAttack();

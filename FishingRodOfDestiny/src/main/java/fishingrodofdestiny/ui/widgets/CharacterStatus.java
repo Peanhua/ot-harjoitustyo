@@ -17,7 +17,6 @@
 package fishingrodofdestiny.ui.widgets;
 
 import fishingrodofdestiny.world.gameobjects.Armor;
-import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.Character;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.ArrayList;
@@ -27,7 +26,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 /**
- *
+ * Shows information about the given character.
+ * 
  * @author joyr
  */
 public class CharacterStatus extends Widget {

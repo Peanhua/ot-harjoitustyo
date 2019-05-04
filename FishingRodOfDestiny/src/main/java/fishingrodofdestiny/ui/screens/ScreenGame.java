@@ -46,7 +46,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- *
+ * The screen active when a game is played.
+ * 
  * @author joyr
  */
 public class ScreenGame extends Screen {

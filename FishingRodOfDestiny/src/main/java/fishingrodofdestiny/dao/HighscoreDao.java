@@ -55,7 +55,7 @@ public abstract class HighscoreDao {
      * @param name        Name of the player
      * @param points      Points accumulated
      * @param timestamp   Game ended time
-     * @return 
+     * @return The highscore entry that was added
      */
     protected final Highscore createFromData(Integer highscoreId, Highscore.Type type, String name, long points, LocalDateTime timestamp) {
         Highscore hs = null;

@@ -23,7 +23,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- *
+ * The main class, starts the software.
+ * 
  * @author joyr
  */
 public class FishingRodOfDestinyUi extends Application {

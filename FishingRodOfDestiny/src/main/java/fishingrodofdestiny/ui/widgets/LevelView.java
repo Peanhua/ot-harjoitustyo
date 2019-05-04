@@ -25,7 +25,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 /**
- *
+ * Shows a top-down view of a single level of the cave.
+ * <p>
+ * The tiles are drawn as squares.
+ * 
  * @author joyr
  */
 public class LevelView extends Widget {
@@ -103,24 +106,45 @@ public class LevelView extends Widget {
         }
     }
     
-    
+    /**
+     * Set the cave level to be viewed.
+     * 
+     * @param level 
+     */
     public void setLevel(Level level) {
         this.level = level;
     }
     
     
+    /**
+     * Center the view on the given tile coordinate.
+     * 
+     * @param x Tile X coordinate to center at
+     * @param y Tile Y coordinate to center at
+     */
     public void centerAtTile(int x, int y) {
         this.centerAtX = x;
         this.centerAtY = y;
     }
     
-    
+    /**
+     * Sets the drawing size of the tiles to draw.
+     * <p>
+     * Smaller size means zooming out.
+     * 
+     * @param size The size of a single tile, normally 32
+     */
     public void setTileSize(int size) {
         if (size > 4 && size <= 64) {
             this.tileSize = size;
         }
     }
     
+    /**
+     * Return the current tile drawing size.
+     * 
+     * @return The drawing size
+     */
     public int getTileSize() {
         return this.tileSize;
     }
