@@ -16,6 +16,7 @@
  */
 package fishingrodofdestiny.world.gameobjects;
 
+import fishingrodofdestiny.observer.Observer;
 import fishingrodofdestiny.observer.Subject;
 import java.util.HashMap;
 
@@ -33,6 +34,16 @@ public class CharacterEquipment {
         this.weapon   = null;
         this.armor    = new HashMap<>();
         this.onChange = new Subject();
+    }
+    
+    
+    /**
+     * Register an observer to be called whenever the equipment is changed.
+     *
+     * @param observer The observer object to be called upon change.
+     */
+    public final void listenOnChange(Observer observer) {
+        this.onChange.addObserver(observer);
     }
     
     /**

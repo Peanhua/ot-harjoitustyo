@@ -63,6 +63,7 @@ public abstract class Character extends GameObject {
         this.actionsTaken        = 0;
         this.buffs               = new ArrayList<>();
         this.setDrawingOrder(100);
+        this.equipment.listenOnChange(() -> this.onChange.notifyObservers());
     }
     
     @Override

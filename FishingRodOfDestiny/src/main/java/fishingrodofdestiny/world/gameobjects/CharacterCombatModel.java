@@ -25,7 +25,7 @@ import java.util.List;
  * @author Joni Yrjänä <joniyrjana@gmail.com>
  */
 public class CharacterCombatModel {
-    private final Character owner;
+    private final Character    owner;
     private final List<Double> attackBuffChances;
     private final List<Buff>   attackBuffs;
     
