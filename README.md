@@ -8,6 +8,8 @@ The software is a [roguelike game](https://en.wikipedia.org/wiki/Roguelike) in w
 * [Requirements Specification](documentation/requirements_specification.md)
 * [Timesheet](documentation/timesheet.md)
 * [Manual](documentation/manual.md)
+* [Testing](documentation/testing.md)
+* [Issues and further development](documentation/issues.md)
 
 
 ## License
@@ -59,12 +61,6 @@ JavaDoc can be generated with:
 ```mvn javadoc:javadoc```
 
 And the results can be seen by pointing browser to *target/site/apidocs/index.html*.
-Some important classes to look at:
-* fishingrodofdestiny.resources.ImageCache in *target/site/apidocs/fishingrodofdestiny/resources/ImageCache.html*
-* fishingrodofdestiny.ui.screens.Screen in *target/site/apidocs/fishingrodofdestiny/ui/screens/Screen.html*
-* fishingrodofdestiny.world.controllers.Controller in *target/site/apidocs/fishingrodofdestiny/world/controllers/Controller.html*
-* fishingrodofdestiny.world.gameobjects.GameObject in *target/site/apidocs/fishingrodofdestiny/world/gameobjects/GameObject.html*
-* fishingrodofdestiny.world.gameobjects.Location in *target/site/apidocs/fishingrodofdestiny/world/gameobjects/Location.html*
 
 
 ### Checkstyle
