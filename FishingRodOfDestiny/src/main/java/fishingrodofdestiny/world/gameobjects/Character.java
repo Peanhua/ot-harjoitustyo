@@ -556,19 +556,11 @@ public abstract class Character extends GameObject {
     
     
     private void regenerationTick(double deltaTime) {
-        if (!this.isAlive()) {
-            return;
-        }
-        
         this.accumulatedRegeneration += deltaTime * this.getRegenerationPerSecond();
         int amount = (int) this.accumulatedRegeneration;
         if (amount != 0) {
             this.adjustHitpoints(amount);
             this.accumulatedRegeneration -= amount;
-            
-            if (!this.isAlive()) {
-                this.addMessage("You died.");
-            }
         }
     }
     
