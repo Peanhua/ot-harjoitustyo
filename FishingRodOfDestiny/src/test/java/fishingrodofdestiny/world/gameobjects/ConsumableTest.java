@@ -41,4 +41,17 @@ public class ConsumableTest {
         potion.useItem(this.character, this.character);
         assertTrue(this.character.getHitpoints() > 1);
     }
+    
+    @Test
+    public void enoughAntivenomsRemovePoison() {
+        int n = 1000;
+        Buff poison = new Buff(n * 10, Buff.Type.POISON, 1);
+        this.character.addBuff(poison);
+        for (int i = 0; i < n; i++) {
+            Consumable potion = (Consumable) GameObjectFactory.create("potion of antivenom");
+            potion.getLocation().moveTo(this.character);
+            potion.useItem(this.character, this.character);
+        }
+        assertFalse(poison.isAlive());
+    }
 }

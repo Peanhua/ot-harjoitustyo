@@ -101,7 +101,11 @@ public class Consumable extends Item {
             if (amount > 0.01) {
                 hadPoison = true;
                 amount *= 0.5;
-                buff.setBonus(Buff.Type.POISON, amount);
+                if (amount > 0.01) {
+                    buff.setBonus(Buff.Type.POISON, amount);
+                } else {
+                    buff.destroy();
+                }
             }
         }
         if (hadPoison) {
