@@ -21,7 +21,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
+ * A list containing one type of highscores.
+ * 
  * @author joyr
  */
 public class HighscoreList {
@@ -38,7 +39,14 @@ public class HighscoreList {
     public Highscore.Type getType() {
         return this.type;
     }
-    
+
+    /**
+     * Add a new highscore to this list.
+     * <p>
+     * Makes sure the list size does not exceed the maximum size, and keeps the list sorted.
+     * 
+     * @param highscore The highscore to add
+     */
     public void add(Highscore highscore) {
         this.dao.create(this.type, highscore);
 
@@ -54,6 +62,12 @@ public class HighscoreList {
         }
     }
     
+    /**
+     * Return a highscore from the given index.
+     * 
+     * @param index The index, in the range of [0, max]
+     * @return The highscore entry, or null
+     */
     public Highscore get(int index) {
         List<Highscore> list = this.dao.getHighscores(this.type);
         Collections.sort(list);
@@ -64,6 +78,11 @@ public class HighscoreList {
         return list.get(index);
     }
     
+    /**
+     * Return the maximum number of highscore entries this list keeps.
+     * 
+     * @return The maximum number of highscore entries.
+     */
     public int getMaximumNumberOfEntries() {
         return this.max;
     }

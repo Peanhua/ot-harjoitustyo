@@ -25,12 +25,21 @@ import fishingrodofdestiny.savedata.highscores.HighscoreList;
 import java.util.HashMap;
 
 /**
- *
+ * Manage highscorelists: loading, saving, and caching.
+ * <p>
+ * Uses singleton pattern.
+ * A dao object handles the actual loading/saving, determines the type of dao to use via environment variable.
+ * 
  * @author joyr
  */
 public class HighscoreListCache {
     private static HighscoreListCache instance = null;
     
+    /**
+     * Returns the single instance of HighscoreListCache object.
+     * 
+     * @return The HighscoreListCache object
+     */
     public static HighscoreListCache getInstance() {
         if (HighscoreListCache.instance == null) {
             HighscoreListCache.instance = new HighscoreListCache();
@@ -61,6 +70,12 @@ public class HighscoreListCache {
         }
     }
     
+    /**
+     * Return a highscorelist of the given type.
+     * 
+     * @param type The type of highscorelist to obtain
+     * @return The highscorelist
+     */
     public HighscoreList get(Highscore.Type type) {
         HighscoreList list = this.highscoreLists.get(type);
         if (list != null) {

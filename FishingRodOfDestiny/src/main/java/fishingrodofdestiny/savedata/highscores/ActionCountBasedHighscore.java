@@ -20,7 +20,10 @@ import fishingrodofdestiny.world.Game;
 import java.time.LocalDateTime;
 
 /**
- *
+ * Highscore entry based on action count.
+ * <p>
+ * Less actions is considered to be better than more actions.
+ * 
  * @author joyr
  */
 public class ActionCountBasedHighscore extends Highscore {

@@ -19,10 +19,21 @@ package fishingrodofdestiny.dao;
 import fishingrodofdestiny.savedata.statistics.Statistics;
 
 /**
- *
+ * Dao for game statistics.
+ * 
  * @author joyr
  */
 public interface StatisticsDao {
+    /**
+     * Load statistics to the given target object.
+     * 
+     * @param to The target object
+     */
     public void load(Statistics to);
+    /**
+     * Save statistics from the given source object.
+     * 
+     * @param from The statistics to save
+     */
     public void save(Statistics from);
 }

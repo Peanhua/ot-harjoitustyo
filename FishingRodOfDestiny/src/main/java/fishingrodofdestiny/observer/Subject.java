@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Observer pattern, the subject object.
+ * 
  * @author joyr
  */
 public class Subject {
@@ -30,14 +31,27 @@ public class Subject {
         this.observers = new ArrayList<>();
     }
     
+    /**
+     * Add a new observer to listen for state changes.
+     * 
+     * @param observer The observer to receive the notifications about state changes
+     */
     public void addObserver(Observer observer) {
         this.observers.add(observer);
     }
     
+    /**
+     * Stop observer from receiving notifications about state changes.
+     * 
+     * @param observer The observer to stop receiving notifications
+     */
     public void removeObserver(Observer observer) {
         this.observers.remove(observer);
     }
     
+    /**
+     * Notify all observers about a state change.
+     */
     public void notifyObservers() {
         this.observers.forEach(observer -> observer.update());
     }

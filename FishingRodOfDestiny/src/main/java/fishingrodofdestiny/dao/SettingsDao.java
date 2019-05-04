@@ -19,7 +19,8 @@ package fishingrodofdestiny.dao;
 import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 
 /**
- *
+ * Dao to handle user settings.
+ * 
  * @author joyr
  */
 public abstract class SettingsDao {
@@ -29,7 +30,17 @@ public abstract class SettingsDao {
         this.readOnly = false;
     }
 
+    /**
+     * Load all the keyboard settings (bindings).
+     * 
+     * @param to The target KeyboardSettings object
+     */
     public abstract void loadKeyboardSettings(KeyboardSettings to);
+    /**
+     * Save all the keyboard settings (bindings).
+     * 
+     * @param from The settings to save
+     */
     public abstract void saveKeyboardSettings(KeyboardSettings from);
 
     
@@ -41,7 +52,7 @@ public abstract class SettingsDao {
     public abstract boolean isLoadable();
     
     /**
-     * Set this DAO object to be in read only or in read-write -mode.
+     * Set this dao object to be in read only or in read-write -mode.
      * <p>
      * In read only mode, calling the save methods do nothing.
      * 
@@ -51,6 +62,13 @@ public abstract class SettingsDao {
         this.readOnly = readOnly;
     }
     
+    /**
+     * Return whether this dao is in read-only mode.
+     * <p>
+     * No writing should be performed when this dao is in read-only mode.
+     * 
+     * @return True if this dao is in read-only mode
+     */
     protected boolean isReadOnly() {
         return this.readOnly;
     }

@@ -17,9 +17,13 @@
 package fishingrodofdestiny.observer;
 
 /**
- *
+ * Observer pattern, the listening object.
+ * 
  * @author joyr
  */
 public interface Observer {
+    /**
+     * Called whenever the subject state is changed.
+     */
     void update();
 }

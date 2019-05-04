@@ -24,12 +24,21 @@ import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 import java.net.URL;
 
 /**
- *
+ * Manage settings: loading, saving, and caching.
+ * <p>
+ * Uses singleton pattern.
+ * A dao object handles the actual loading/saving, determines the type of dao to use via environment variable.
+ * 
  * @author joyr
  */
 public class SettingsCache {
     private static SettingsCache instance = null;
     
+    /**
+     * Returns the single instance of SettingsCache object.
+     * 
+     * @return The SettingsCache object
+     */
     public static SettingsCache getInstance() {
         if (SettingsCache.instance == null) {
             SettingsCache.instance = new SettingsCache();
@@ -94,10 +103,18 @@ public class SettingsCache {
         return dao;
     }
     
+    /**
+     * Returns the KeyboardSettings.
+     * 
+     * @return The KeyboardSettings
+     */
     public KeyboardSettings getKeyboardSettings() {
         return this.keyboardSettings;
     }
     
+    /**
+     * Save all settings.
+     */
     public void save() {
         this.keyboardSettings.save();
     }

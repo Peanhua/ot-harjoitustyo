@@ -21,7 +21,8 @@ import fishingrodofdestiny.world.gameobjects.Player;
 import java.time.LocalDateTime;
 
 /**
- *
+ * Highscore entry based on experience points and other such accomplishes.
+ * 
  * @author joyr
  */
 public class ScoreBasedHighscore extends Highscore {

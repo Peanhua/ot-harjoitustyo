@@ -27,7 +27,8 @@ import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
 
 /**
- *
+ * Handle database operations using Jdbc.
+ * 
  * @author joyr
  */
 public class JdbcHelper {
@@ -51,7 +52,7 @@ public class JdbcHelper {
         this.connection = null;
         this.debugging = false;
     }
-    
+   
     public void setDebugging(boolean debugging) {
         this.debugging = debugging;
     }
@@ -68,11 +69,24 @@ public class JdbcHelper {
         }
     }
     
-    
+    /**
+     * Do a normal read-only SQL query.
+     * @param sql The SQL clause to execute
+     * @return Rows of data
+     */
     public CachedRowSet query(String sql) {
         return this.query(sql, null);
     }
-    
+
+    /**
+     * Do a normal read-only SQL query with a statement preparer.
+     * <p>
+     * The statement preparer can be used for example to set the query parameters.
+     * 
+     * @param sql The SQL clause to execute
+     * @param preparer The statement preparer 
+     * @return Rows of data
+     */
     public CachedRowSet query(String sql, StatementPreparer preparer) {
         if (this.rowSetFactory == null) {
             return null;
@@ -107,10 +121,25 @@ public class JdbcHelper {
     }
     
     
+    /**
+     * Perform an SQL query updating the database.
+     * 
+     * @param sql The SQL query to execute
+     * @return True if the operation was successful
+     */
     public boolean update(String sql) {
         return this.update(sql, null);
     }
     
+    /**
+     * Perform an SQL query updating the database with a statement preparer.
+     * <p>
+     * The statement preparer can be used for example to set the query parameters.
+     * 
+     * @param sql The SQL query to execute
+     * @param preparer The statement preparer
+     * @return True if the operation was successful
+     */
     public boolean update(String sql, StatementPreparer preparer) {
         try {
             this.openConnection();
@@ -130,10 +159,25 @@ public class JdbcHelper {
     }
 
     
+    /**
+     * Perform an SQL insert query.
+     * 
+     * @param sql The SQL query to execute
+     * @return The primary key of the newly inserted row, or null upon failure
+     */
     public Integer insert(String sql) {
         return this.insert(sql, null);
     }
 
+    /**
+     * Perform an SQL insert query  with a statement preparer.
+     * <p>
+     * The statement preparer can be used for example to set the query parameters.
+     * 
+     * @param sql The SQL query to execute
+     * @param preparer The statement preparer
+     * @return The primary key of the newly inserted row, or null upon failure
+     */
     public Integer insert(String sql, StatementPreparer preparer) {
         try {
             this.openConnection();

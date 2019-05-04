@@ -23,12 +23,21 @@ import fishingrodofdestiny.dao.StatisticsDao;
 import fishingrodofdestiny.savedata.statistics.Statistics;
 
 /**
+ * Manage statistics: loading, saving, and caching.
+ * <p>
+ * Uses singleton pattern.
+ * A dao object handles the actual loading/saving, determines the type of dao to use via environment variable.
  *
  * @author joyr
  */
 public class StatisticsCache {
     private static StatisticsCache instance = null;
     
+    /**
+     * Returns the single instance of StatisticsCache object.
+     * 
+     * @return The StatisticsCache object
+     */
     public static StatisticsCache getInstance() {
         if (StatisticsCache.instance == null) {
             StatisticsCache.instance = new StatisticsCache();
@@ -59,6 +68,11 @@ public class StatisticsCache {
         this.statistics.load();
     }
     
+    /**
+     * Returns the statistics.
+     * 
+     * @return The statistics
+     */
     public Statistics getStatistics() {
         return this.statistics;
     }

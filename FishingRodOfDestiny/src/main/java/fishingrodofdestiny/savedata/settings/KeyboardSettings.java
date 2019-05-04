@@ -26,7 +26,9 @@ import java.util.List;
 import javafx.scene.input.KeyCode;
 
 /**
- * Singleton to query mapping between keys and actions.
+ * Holds mapping between keys and actions/commands.
+ * <p>
+ * Actions are performed by the player character, whereas commands are related to the non-game part of the user interface (for example zooming in/out).
  *
  * @author joyr
  */
@@ -57,16 +59,27 @@ public class KeyboardSettings {
         copyFrom.keysToCommands.forEach((k, v) -> this.keysToCommands.put(k, v));
     }
     
+    /**
+     * Register an observer to receive notifications whenever changes are made.
+     * 
+     * @param observer The observer to receive notifications
+     */
     public void listenOnChange(Observer observer) {
         this.onChange.addObserver(observer);
     }
     
+    /**
+     * Load settings.
+     */
     public void load() {
         this.dao.loadKeyboardSettings(this);
         this.onChange.notifyObservers();
         this.dirty = false;
     }
     
+    /**
+     * Save settings, if changes have been made since last save.
+     */
     public void save() {
         if (!this.dirty) {
             return;
@@ -77,6 +90,12 @@ public class KeyboardSettings {
         System.out.println("done.");
     }
     
+    /**
+     * Reteurn all the keys for given action.
+     * 
+     * @param forAction The action
+     * @return The keys
+     */
     public List<KeyCode> getKeys(Action.Type forAction) {
         List<KeyCode> rv = new ArrayList<>();
         this.keysToActions.forEach((key, action) -> {
@@ -87,6 +106,12 @@ public class KeyboardSettings {
         return rv;
     }
     
+    /**
+     * Return all the keys for given command.
+     * 
+     * @param forCommand The command
+     * @return The keys
+     */
     public List<KeyCode> getKeys(Command forCommand) {
         List<KeyCode> rv = new ArrayList<>();
         this.keysToCommands.forEach((key, command) -> {
@@ -97,14 +122,31 @@ public class KeyboardSettings {
         return rv;
     }
     
+    /**
+     * Return the action associated to the given key.
+     * 
+     * @param keyCode The key
+     * @return The action, or null if no action is bound to the given key
+     */
     public Action.Type getAction(KeyCode keyCode) {
         return this.keysToActions.get(keyCode);
     }
     
+    /**
+     * Return the command associated to the given key.
+     * 
+     * @param keyCode The key
+     * @return The command, or null if no command is bound to the given key
+     */
     public Command getCommand(KeyCode keyCode) {
         return this.keysToCommands.get(keyCode);
     }
     
+    /**
+     * Return list of keys that have been bound to either action or command.
+     * 
+     * @return The keys
+     */
     public List<KeyCode> getConfiguredKeys() {
         List<KeyCode> keys = new ArrayList<>();
         keys.addAll(this.keysToActions.keySet());
@@ -112,6 +154,12 @@ public class KeyboardSettings {
         return keys;
     }
 
+    /**
+     * Returns a string representing the action or command mapped for the given key.
+     * 
+     * @param key The key
+     * @return The action or the command in String form
+     */
     public String getActionStringForKey(KeyCode key) {
         String actionStr = null;
         Action.Type action = this.getAction(key);
@@ -126,10 +174,22 @@ public class KeyboardSettings {
         return actionStr;
     }
     
+    /**
+     * Bind a key to action or command.
+     * 
+     * @param key The key
+     * @param value The action or command
+     */
     public void addKeybinding(String key, String value) {
         this.addKeybinding(KeyCode.valueOf(key), value);
     }
     
+    /**
+     * Bind a key to action or command.
+     * 
+     * @param keyCode The key
+     * @param value The action or command
+     */
     public void addKeybinding(KeyCode keyCode, String value) {
         try {
             Action.Type action = Action.Type.valueOf(value);
@@ -160,6 +220,11 @@ public class KeyboardSettings {
         this.dirty = true;
     }
     
+    /**
+     * Removes all keybindings for the given action or command.
+     * 
+     * @param actionCommand The action or command whose keybindings are removed
+     */
     public void removeKeyMappings(String actionCommand) {
         try {
             Action.Type action = Action.Type.valueOf(actionCommand);
@@ -178,6 +243,11 @@ public class KeyboardSettings {
         throw new RuntimeException("Unknown actionCommand '" + actionCommand + "'");
     }
     
+    /**
+     * Remove all keybindings for the given action.
+     * 
+     * @param action The action whose keybindings are removed.
+     */
     public void removeActionKeyMappings(Action.Type action) {
         List<KeyCode> keysToRemove = new ArrayList<>();
         this.keysToActions.forEach((k, a) -> {
@@ -191,6 +261,11 @@ public class KeyboardSettings {
         this.dirty = true;
     }
     
+    /**
+     * Remove all keybindings for the given command.
+     * 
+     * @param command The command whose keybindings are removed.
+     */
     public void removeCommandKeyMappings(Command command) {
         List<KeyCode> keysToRemove = new ArrayList<>();
         this.keysToCommands.forEach((k, c) -> {

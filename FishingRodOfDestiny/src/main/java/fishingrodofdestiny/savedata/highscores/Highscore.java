@@ -20,11 +20,17 @@ import fishingrodofdestiny.world.Game;
 import java.time.LocalDateTime;
 
 /**
- *
+ * The base class for all highscore entries.
+ * 
  * @author joyr
  */
 public abstract class Highscore implements Comparable<Highscore> {
     
+    /**
+     * The type of the highscore entry.
+     * <p>
+     * Note that the type is not stored in the entry itself, but is an attribute of the list the entry belongs to.
+     */
     public enum Type {
         SCORE,
         ACTION_COUNT;
@@ -58,8 +64,19 @@ public abstract class Highscore implements Comparable<Highscore> {
         this.endTimestamp = endTimestamp;
     }
     
+    /**
+     * Calculate the points from the given Game object.
+     * 
+     * @param fromGame The Game object to use for calculations
+     * @return The calculated points
+     */
     protected abstract long calculatePoints(Game fromGame);
     
+    /**
+     * Get the unique id.
+     * 
+     * @return Unique id
+     */
     public Integer getId() {
         return this.highscoreId;
     }
@@ -80,6 +97,11 @@ public abstract class Highscore implements Comparable<Highscore> {
         this.points = points;
     }
     
+    /**
+     * Return the timestamp when the game ended.
+     * 
+     * @return Timestamp
+     */
     public LocalDateTime getEndTimestamp() {
         return this.endTimestamp;
     }
