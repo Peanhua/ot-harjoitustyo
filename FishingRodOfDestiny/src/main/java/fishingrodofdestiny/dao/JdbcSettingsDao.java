@@ -22,7 +22,8 @@ import javafx.scene.input.KeyCode;
 import javax.sql.rowset.CachedRowSet;
 
 /**
- *
+ * Jdbc based dao for settings.
+ * 
  * @author joyr
  */
 public class JdbcSettingsDao extends SettingsDao {

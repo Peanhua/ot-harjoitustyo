@@ -27,7 +27,7 @@ import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
 
 /**
- * Handle database operations using Jdbc.
+ * Helper class to handle database operations using Jdbc.
  * 
  * @author joyr
  */

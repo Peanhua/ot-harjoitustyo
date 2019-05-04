@@ -17,7 +17,8 @@
 package fishingrodofdestiny.world.gameobjects;
 
 /**
- *
+ * An item that can be used as a weapon.
+ * 
  * @author joyr
  */
 public class Weapon extends Item {

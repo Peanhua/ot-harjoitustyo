@@ -14,23 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fishingrodofdestiny.dao;
-
-import fishingrodofdestiny.savedata.statistics.Statistics;
-
 /**
- * Memory based dao for statistics.
- * 
- * @author joyr
+ * Actions characters can perform, for example move and attack.
  */
-public class MemoryStatisticsDao implements StatisticsDao {
-
-    @Override
-    public void load(Statistics to) {
-    }
-
-    @Override
-    public void save(Statistics from) {
-    }
-    
-}
+package fishingrodofdestiny.world.actions;

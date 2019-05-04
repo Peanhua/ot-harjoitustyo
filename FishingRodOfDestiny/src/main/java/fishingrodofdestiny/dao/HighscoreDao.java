@@ -26,7 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * Dao to handle highscores.
+ * 
  * @author joyr
  */
 public abstract class HighscoreDao {

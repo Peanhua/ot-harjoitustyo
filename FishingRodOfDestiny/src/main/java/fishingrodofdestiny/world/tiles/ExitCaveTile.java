@@ -22,7 +22,10 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Player;
 
 /**
- *
+ * The tile that can be used to finish the game successfully.
+ * <p>
+ * If player uses the "activate tile" in this tile, and has the fishing rod, the game is completed.
+ * 
  * @author joyr
  */
 public class ExitCaveTile extends FloorTile {

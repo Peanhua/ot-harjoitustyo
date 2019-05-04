@@ -20,7 +20,8 @@ import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.TileGfx;
 
 /**
- *
+ * A simple floor tile.
+ * 
  * @author joyr
  */
 public class FloorTile extends Tile {

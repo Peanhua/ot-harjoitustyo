@@ -20,7 +20,8 @@ import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.TileGfx;
 
 /**
- *
+ * An unbreakable wall tile. Can't be entered.
+ * 
  * @author joyr
  */
 public class WallTile extends Tile {

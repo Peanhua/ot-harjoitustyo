@@ -21,7 +21,8 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 
 
 /**
- *
+ * Base class for stairs (or ladder) tiles.
+ * 
  * @author joyr
  */
 public abstract class StairsTile extends Tile {

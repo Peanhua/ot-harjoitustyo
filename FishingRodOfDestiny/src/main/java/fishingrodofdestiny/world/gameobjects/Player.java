@@ -26,7 +26,8 @@ import rlforj.los.IFovAlgorithm;
 import rlforj.los.ShadowCasting;
 
 /**
- *
+ * The player character.
+ * 
  * @author joyr
  */
 public class Player extends Character {

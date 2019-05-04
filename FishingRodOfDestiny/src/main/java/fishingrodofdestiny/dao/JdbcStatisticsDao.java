@@ -20,7 +20,8 @@ import fishingrodofdestiny.savedata.statistics.Statistics;
 import javax.sql.rowset.CachedRowSet;
 
 /**
- *
+ * Jdbc based dao for statistics.
+ * 
  * @author joyr
  */
 public class JdbcStatisticsDao implements StatisticsDao {

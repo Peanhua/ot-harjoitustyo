@@ -21,7 +21,10 @@ import fishingrodofdestiny.world.TileGfx;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 
 /**
- *
+ * A tile with pit trap on it. Connected to a tile on a level below.
+ * <p>
+ * When a Character enters the tile, the trap is opened and the Character falls down to the level below onto the connected tile.
+ * 
  * @author joyr
  */
 public class PitTrapTile extends Tile {

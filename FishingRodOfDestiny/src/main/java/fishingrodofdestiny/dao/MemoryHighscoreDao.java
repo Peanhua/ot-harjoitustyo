@@ -20,7 +20,8 @@ import fishingrodofdestiny.savedata.highscores.Highscore;
 import java.util.List;
 
 /**
- *
+ * Memory based dao for highscores.
+ * 
  * @author joyr
  */
 public class MemoryHighscoreDao extends HighscoreDao {

@@ -23,7 +23,10 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import java.util.List;
 
 /**
- *
+ * A tile with a statue on it.
+ * <p>
+ * The "activate tile" action can be used to make a sacrifice. All gold coins from the Characters inventory are exchanged for a small amount of experience points and a tiny heal.
+ * 
  * @author joyr
  */
 public class StatueTile extends Tile {

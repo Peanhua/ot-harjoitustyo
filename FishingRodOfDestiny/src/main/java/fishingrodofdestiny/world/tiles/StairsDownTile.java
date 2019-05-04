@@ -20,7 +20,8 @@ import fishingrodofdestiny.world.Level;
 import fishingrodofdestiny.world.TileGfx;
 
 /**
- *
+ * Stairs (or ladders) leading to the cave level below.
+ * 
  * @author joyr
  */
 public class StairsDownTile extends StairsTile {

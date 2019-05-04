@@ -22,7 +22,8 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 /**
- *
+ * File based dao for statistics.
+ * 
  * @author joyr
  */
 public class FileStatisticsDao implements StatisticsDao {

@@ -29,7 +29,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 /**
- *
+ * The screen shown when player completes the game.
+ * 
  * @author joyr
  */
 public class ScreenGameCompletion extends Screen {

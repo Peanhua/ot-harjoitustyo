@@ -19,7 +19,8 @@ package fishingrodofdestiny.dao;
 import fishingrodofdestiny.savedata.settings.KeyboardSettings;
 
 /**
- *
+ * Memory based dao for settings.
+ * 
  * @author joyr
  */
 public class MemorySettingsDao extends SettingsDao {

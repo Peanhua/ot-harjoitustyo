@@ -23,7 +23,8 @@ import java.util.List;
 import javax.sql.rowset.CachedRowSet;
 
 /**
- *
+ * Jdbc based dao for highscores.
+ * 
  * @author joyr
  */
 public class JdbcHighscoreDao extends HighscoreDao {

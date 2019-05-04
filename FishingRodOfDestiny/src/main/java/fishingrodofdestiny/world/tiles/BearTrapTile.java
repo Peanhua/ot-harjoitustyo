@@ -22,7 +22,11 @@ import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
 
 /**
- *
+ * A tile with a bear trap on it.
+ * <p>
+ * When a Character enters the tile and if the trap is activated, the Character is damaged and stuck for a while unable to move.
+ * Can be reactivated with the "activate tile" action.
+ * 
  * @author joyr
  */
 public class BearTrapTile extends Tile {
