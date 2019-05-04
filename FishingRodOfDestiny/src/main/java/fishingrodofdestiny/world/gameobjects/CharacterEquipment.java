@@ -23,7 +23,7 @@ import java.util.HashMap;
 /**
  * Class to manage equipment held by a Character.
  * 
- * @author Joni Yrjänä <joniyrjana@gmail.com>
+ * @author Joni Yrjänä
  */
 public class CharacterEquipment {
     private final HashMap<Armor.Slot, Armor> armor;

@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Manage the calculations for the combat system.
  * 
- * @author Joni Yrjänä <joniyrjana@gmail.com>
+ * @author Joni Yrjänä
  */
 public class CharacterCombatModel {
     private final Character    owner;

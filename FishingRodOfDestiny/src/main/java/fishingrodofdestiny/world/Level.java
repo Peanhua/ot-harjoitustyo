@@ -217,6 +217,7 @@ public class Level implements GameObjectContainer {
      * Spawn a new NPC based on settings for this level.
      * 
      * @param random Random number generator
+     * @return The new NPC that was spawned
      */
     public GameObject spawnNPC(Random random) {
         // Generate the NPC:

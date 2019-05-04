@@ -109,7 +109,7 @@ public class LevelView extends Widget {
     /**
      * Set the cave level to be viewed.
      * 
-     * @param level 
+     * @param level The level to be viewed
      */
     public void setLevel(Level level) {
         this.level = level;

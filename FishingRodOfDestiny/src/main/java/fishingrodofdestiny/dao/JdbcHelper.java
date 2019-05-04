@@ -40,7 +40,7 @@ public class JdbcHelper {
          * Can be used for example to set query parameters.
          * 
          * @param stmt The statement that is prepared.
-         * @throws SQLException 
+         * @throws SQLException May throw SQLException
          */
         public void prepare(PreparedStatement stmt) throws SQLException;
     }
