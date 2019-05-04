@@ -203,7 +203,7 @@ public class GameObjectFactory {
             if (buffTime == null || buffAmount == null || buffChance == null) {
                 throw new RuntimeException("Missing AttackBuffTime, AttackBuffAmount, or AttackBuffChance");
             }
-            character.addAttackBuff(buffChance, new Buff(buffTime, Buff.Type.valueOf(buffType), buffAmount));
+            character.getCombatModel().addAttackBuff(buffChance, new Buff(buffTime, Buff.Type.valueOf(buffType), buffAmount));
         }
     }
     

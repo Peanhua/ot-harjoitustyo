@@ -170,12 +170,12 @@ public class PlayerController extends Controller {
     }
     
     private boolean isObjectInUse(GameObject object) {
-        if (object == this.getOwner().getWeapon()) {
+        if (object == this.getOwner().getEquipment().getWeapon()) {
             return true;
         }
         
         for (Armor.Slot slot : Armor.Slot.values()) {
-            if (object == this.getOwner().getArmor(slot)) {
+            if (object == this.getOwner().getEquipment().getArmor(slot)) {
                 return true;
             }
         }

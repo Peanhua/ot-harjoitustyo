@@ -51,13 +51,13 @@ public class Weapon extends Item {
         super.useItem(instigator, user);
         if (user instanceof Character) {
             Character me = (Character) user;
-            Weapon current = me.getWeapon();
+            Weapon current = me.getEquipment().getWeapon();
             if (current != null) {
                 me.addMessage("You swap your " + current.getName() + " to " + this.getName() + ".");
             } else {
                 me.addMessage("You wield " + this.getName() + ".");
             }
-            me.setWeapon(this);
+            me.getEquipment().setWeapon(this);
         }
     }
 }

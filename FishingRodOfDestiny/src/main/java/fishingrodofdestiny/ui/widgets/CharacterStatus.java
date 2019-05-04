@@ -158,7 +158,7 @@ public class CharacterStatus extends Widget {
             this.texts.get(type.ordinal()).setText(this.getValue(type));
         }
         
-        GameObject weapon = this.character.getWeapon();
+        GameObject weapon = this.character.getEquipment().getWeapon();
         if (weapon != null) {
             this.weaponText.setText(" " + weapon.getName());
         } else {
@@ -166,7 +166,7 @@ public class CharacterStatus extends Widget {
         }
         
         for (Armor.Slot slot : Armor.Slot.values()) {
-            Armor armor = this.character.getArmor(slot);
+            Armor armor = this.character.getEquipment().getArmor(slot);
             if (armor != null) {
                 this.armorTexts.get(slot.ordinal()).setText(" " + armor.getName());
             } else {
@@ -186,7 +186,7 @@ public class CharacterStatus extends Widget {
             case DEFENCE:     return "" + this.character.getDefence();
             case CARRY:       return "" + this.character.getCarryingCapacity();
             case AC:          return "" + this.character.getArmorClass();
-            case DAMAGE:      return "" + this.character.getDamage();
+            case DAMAGE:      return "" + this.character.getCombatModel().getDamage();
             case INVENTORY:   return this.getValueForInventory();
             case ACTIONS:     return "" + this.character.getActionsTaken();
             case BUFFS:       return this.getValueForBuffs();

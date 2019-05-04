@@ -19,6 +19,7 @@ package fishingrodofdestiny.world.actions;
 import fishingrodofdestiny.world.gameobjects.Buff;
 import fishingrodofdestiny.world.gameobjects.GameObject;
 import fishingrodofdestiny.world.gameobjects.Character;
+import fishingrodofdestiny.world.gameobjects.CharacterCombatModel;
 
 /**
  * Action to attack the given target.
@@ -46,7 +47,7 @@ public class ActionAttack extends Action {
             return;
         }
         
-        double chance = me.getChanceToHit(target);
+        double chance = me.getCombatModel().getChanceToHit(target);
         if (me.getRandom().nextDouble() < chance) {
             this.hitTarget(me);
             
@@ -57,16 +58,19 @@ public class ActionAttack extends Action {
     }
     
     private void hitTarget(Character me) {
-        int damage = me.getDamage();
+        CharacterCombatModel myModel = me.getCombatModel();
+        
+        int damage = myModel.getDamage();
         if (target instanceof Character) {
-            damage -= ((Character) target).getDamageReduction(damage);
+            damage -= ((Character) target).getCombatModel().getDamageReduction(damage);
         }
+        
         me.addMessage("You hit " + target.getName() + " for " + damage + "!");
         target.addMessage(me.getCapitalizedName() + " hits you for " + damage + "!");
         target.hit(me, damage);
         
         if (target instanceof Character) {
-            Buff buff = me.getRandomAttackBuff();
+            Buff buff = myModel.getRandomAttackBuff();
             if (buff != null) {
                 ((Character) target).addBuff(new Buff(buff));
             }

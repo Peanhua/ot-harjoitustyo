@@ -42,7 +42,7 @@ public class ActionUseTest {
         weapon.getLocation().moveTo(this.player);
         Action action = new ActionUse(weapon);
         action.act(this.player);
-        assertEquals(weapon, this.player.getWeapon());
+        assertEquals(weapon, this.player.getEquipment().getWeapon());
     }
 
     @Test
@@ -50,6 +50,6 @@ public class ActionUseTest {
         GameObject weapon = GameObjectFactory.create("kitchen knife");
         Action action = new ActionUse(weapon);
         action.act(this.player);
-        assertNull(this.player.getWeapon());
+        assertNull(this.player.getEquipment().getWeapon());
     }
 }

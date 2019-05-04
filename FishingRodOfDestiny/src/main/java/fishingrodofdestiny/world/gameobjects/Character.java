@@ -21,7 +21,6 @@ import fishingrodofdestiny.world.controllers.Controller;
 import fishingrodofdestiny.world.actions.Action;
 import fishingrodofdestiny.world.tiles.Tile;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -42,13 +41,11 @@ public abstract class Character extends GameObject {
     private int        characterLevel;
     private int        experiencePoints;
     private Controller controller;
-    private Weapon     weapon;
-    private final HashMap<Armor.Slot, Armor> equippedArmor;
+    private final CharacterEquipment   equipment;
+    private final CharacterCombatModel combatModel;
     private double     accumulatedRegeneration;
     private long       actionsTaken;
     private final List<Buff>   buffs;
-    private final List<Double> attackBuffChances;
-    private final List<Buff>   attackBuffs;
 
     public Character(String objectType) {
         super(objectType);
@@ -60,13 +57,11 @@ public abstract class Character extends GameObject {
         this.characterLevel      = 0;
         this.experiencePoints    = 0;
         this.controller          = null;
-        this.weapon              = null;
-        this.equippedArmor       = new HashMap<>();
+        this.equipment           = new CharacterEquipment();
+        this.combatModel         = new CharacterCombatModel(this);
         this.accumulatedRegeneration = 0.0;
         this.actionsTaken        = 0;
         this.buffs               = new ArrayList<>();
-        this.attackBuffChances   = new ArrayList<>();
-        this.attackBuffs         = new ArrayList<>();
         this.setDrawingOrder(100);
     }
     
@@ -115,54 +110,12 @@ public abstract class Character extends GameObject {
         return this.actionsTaken;
     }
     
-    
-    /**
-     * Set the currently wield weapon.
-     * 
-     * @param weapon The weapon to wield
-     */
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-        this.onChange.notifyObservers();
+    public final CharacterEquipment getEquipment() {
+        return this.equipment;
     }
     
-    /**
-     * Return the currently wield weapon.
-     * 
-     * @return The currently wield weapon
-     */
-    public Weapon getWeapon() {
-        return this.weapon;
-    }
-    
-    /**
-     * Equip the given armor.
-     * 
-     * @param armor The armor to equip
-     */
-    public void setArmor(Armor armor) {
-        this.equippedArmor.put(armor.getSlot(), armor);
-        this.onChange.notifyObservers();
-    }
-    
-    /**
-     * Un-equip armor from the given slot.
-     * 
-     * @param fromSlot The slot from where to remove the armor
-     */
-    public void removeArmor(Armor.Slot fromSlot) {
-        this.equippedArmor.remove(fromSlot);
-        this.onChange.notifyObservers();
-    }
-    
-    /**
-     * Return the armor worn at the given slot.
-     * 
-     * @param slot The slot to check
-     * @return Armor in the slot, or null
-     */
-    public Armor getArmor(Armor.Slot slot) {
-        return this.equippedArmor.get(slot);
+    public final CharacterCombatModel getCombatModel() {
+        return this.combatModel;
     }
     
     @Override
@@ -341,11 +294,11 @@ public abstract class Character extends GameObject {
     public double getBuffBonuses(Buff.Type forType) {
         double bonuses = 0;
         
-        if (this.weapon != null) {
-            bonuses += this.weapon.getBuffBonuses(forType);
+        if (this.equipment.getWeapon() != null) {
+            bonuses += this.equipment.getWeapon().getBuffBonuses(forType);
         }
         for (Armor.Slot slot : Armor.Slot.values()) {
-            Armor armor = this.getArmor(slot);
+            Armor armor = this.equipment.getArmor(slot);
             if (armor != null) {
                 bonuses += armor.getBuffBonuses(forType);
             }
@@ -357,32 +310,6 @@ public abstract class Character extends GameObject {
         }
         
         return bonuses;
-    }
-    
-    
-    /**
-     * Add a buff that can be randomly given to the attack target when attacking.
-     * 
-     * @param chance The chance for the buff to be given, in range [0..1]
-     * @param buff   The buff to give
-     */
-    public void addAttackBuff(double chance, Buff buff) {
-        this.attackBuffChances.add(chance);
-        this.attackBuffs.add(buff);
-    }
-    
-    /**
-     * Return a random attack buff.
-     * 
-     * @return A random attack buff
-     */
-    public Buff getRandomAttackBuff() {
-        for (int i = 0; i < this.attackBuffs.size(); i++) {
-            if (this.getRandom().nextDouble() < this.attackBuffChances.get(i)) {
-                return this.attackBuffs.get(i);
-            }
-        }
-        return null;
     }
     
     
@@ -411,62 +338,6 @@ public abstract class Character extends GameObject {
     public int getArmorClass() {
         return this.naturalArmorClass + (int) this.getBuffBonuses(Buff.Type.ARMOR_CLASS);
     }
-    
-    /**
-     * Calculate and return the damage this character does per hit.
-     * 
-     * @return amount of damage per hit
-     */
-    public int getDamage() {
-        int damage = 1;
-        
-        damage += this.getAttack() / 3;
-        
-        if (this.weapon != null) {
-            damage += this.weapon.getDamage();
-        }
-        
-        return damage;
-    }
-    
-    /**
-     * Calculate and return the chance to hit the target.
-     * 
-     * @param target At who the hit is aimed to.
-     * 
-     * @return chance in the range of [0..1]
-     */
-    public double getChanceToHit(GameObject target) {
-        if (target instanceof Character) {
-            Character targetCharacter = (Character) target;
-            double def = targetCharacter.getDefence();
-            if (def > 0.0) {
-                // Clamp the minimum chance to 5%:
-                double chance = Math.max(0.05, (double) this.getAttack() / def);
-                
-                if (this.weapon != null) {
-                    chance *= this.weapon.getChanceToHitMultiplier();
-                }
-                
-                return chance;
-            }
-        }
-        return 1.0;
-    }
-    
-    /**
-     * Calculate how much the damage is reduced based on armor class and other factors.
-     * 
-     * @param damage The damage before reduction.
-     * @return The damage that should be subtracted prior calling this.hit().
-     */
-    public int getDamageReduction(int damage) {
-        int ac = Math.min(100, this.getArmorClass()); // clamp max ac
-        double acModifier = (double) ac * 0.01;
-        double damageReduction = (double) damage * 0.9 * acModifier; // not all damage can be reduced by armor class
-        return (int) damageReduction;
-    }
-
     
     /**
      * Adjust the attack attribute.

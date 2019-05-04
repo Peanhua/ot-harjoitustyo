@@ -51,15 +51,15 @@ public class ActionDrop extends Action {
     }
     
     private void stopUsing(Character me) {
-        if (this.target == me.getWeapon()) {
+        if (this.target == me.getEquipment().getWeapon()) {
             me.addMessage("You unwield your " + this.target.getName() + ".");
-            me.setWeapon(null);
+            me.getEquipment().setWeapon(null);
         }
         for (Armor.Slot slot : Armor.Slot.values()) {
-            GameObject armor = me.getArmor(slot);
+            GameObject armor = me.getEquipment().getArmor(slot);
             if (armor == this.target) {
                 me.addMessage("You stop wearing " + this.target.getName() + ".");
-                me.removeArmor(slot);
+                me.getEquipment().removeArmor(slot);
             }
         }
     }

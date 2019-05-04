@@ -68,13 +68,13 @@ public class Armor extends Item {
         super.useItem(instigator, user);
         if (user instanceof Character) {
             Character me = (Character) user;
-            Armor current = me.getArmor(this.getSlot());
+            Armor current = me.getEquipment().getArmor(this.getSlot());
             if (current != null) {
                 me.addMessage("You swap your " + current.getName() + " to " + this.getName() + ".");
             } else {
                 me.addMessage("You equip " + this.getName() + ".");
             }
-            me.setArmor(this);
+            me.getEquipment().setArmor(this);
         }
     }
 }

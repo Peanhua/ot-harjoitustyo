@@ -69,7 +69,7 @@ public class ActionDropTest {
         this.weapon.useItem(this.character, this.character);
         Action action = new ActionDrop(this.weapon);
         action.act(this.character);
-        assertNull(this.character.getWeapon());
+        assertNull(this.character.getEquipment().getWeapon());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ActionDropTest {
         this.armor.useItem(this.character, this.character);
         Action action = new ActionDrop(this.armor);
         action.act(this.character);
-        assertNull(this.character.getArmor(this.armor.getSlot()));
+        assertNull(this.character.getEquipment().getArmor(this.armor.getSlot()));
     }
     
     @Test

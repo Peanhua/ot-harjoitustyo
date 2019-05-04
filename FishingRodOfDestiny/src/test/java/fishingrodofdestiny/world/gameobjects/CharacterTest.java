@@ -144,7 +144,7 @@ public class CharacterTest {
         int noBuffCount = 0;
         int n = 1000;
         for (int i = 0; i < n; i++) {
-            if (cobra.getRandomAttackBuff() == null) {
+            if (cobra.getCombatModel().getRandomAttackBuff() == null) {
                 noBuffCount++;
             } else {
                 buffCount++;
@@ -185,14 +185,14 @@ public class CharacterTest {
     
     @Test
     public void wieldWeaponIncreasesDamage() {
-        int damageAtStart = this.character.getDamage();
+        int damageAtStart = this.character.getCombatModel().getDamage();
         
         GameObject weapon = GameObjectFactory.create("short sword");
         weapon.getLocation().moveTo(this.character);
         Action action = new ActionUse(weapon);
         action.act(this.character);
         
-        assertTrue(this.character.getDamage() > damageAtStart);
+        assertTrue(this.character.getCombatModel().getDamage() > damageAtStart);
     }
     
     @Test
