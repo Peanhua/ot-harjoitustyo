@@ -79,6 +79,10 @@ public class Buff {
         return this.alive;
     }
     
+    public final void destroy() {
+        this.alive = false;
+    }
+    
     public final void tick(double deltaTime) {
         if (this.linkedTo == null) {
             this.timeToLive -= deltaTime;

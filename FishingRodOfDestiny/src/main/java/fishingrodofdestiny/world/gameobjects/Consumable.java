@@ -28,6 +28,7 @@ public class Consumable extends Item {
     private int     healOnUse;
     private boolean healOnUsePercentage;
     private boolean revealsMapOnUse;
+    private boolean givesAntivenomOnUse;
     
     public Consumable(String objectType) {
         super(objectType);
@@ -35,6 +36,7 @@ public class Consumable extends Item {
         this.healOnUse           = 0;
         this.healOnUsePercentage = false;
         this.revealsMapOnUse     = false;
+        this.givesAntivenomOnUse = false;
     }
     
     public final void setUseVerb(String useVerb) {
@@ -52,11 +54,22 @@ public class Consumable extends Item {
     public final void setRevealsMap() {
         this.revealsMapOnUse = true;
     }
+    
+    public final void setAntivenom() {
+        this.givesAntivenomOnUse = true;
+    }
 
     @Override
     public void useItem(GameObject instigator, GameObject user) {
         super.useItem(instigator, user);
         user.addMessage("You " + this.useVerb + " " + this.getName() + ".");
+        this.doHeal(user);
+        this.doRevealMap(user);
+        this.doAntivenom(user);
+        this.destroy(instigator);
+    }
+    
+    private void doHeal(GameObject user) {
         if (this.healOnUse != 0) {
             double amount;
             if (this.healOnUsePercentage) {
@@ -66,10 +79,34 @@ public class Consumable extends Item {
             }
             user.adjustHitpoints((int) amount);
         }
+    }
+    
+    private void doRevealMap(GameObject user) {
         if (this.revealsMapOnUse && user instanceof Player) {
             this.revealMap((Player) user);
         }
-        this.destroy(instigator);
+    }
+    
+    private void doAntivenom(GameObject user) {
+        if (this.givesAntivenomOnUse && user instanceof Character) {
+            this.antivenom((Character) user);
+        }
+    }
+
+    
+    private void antivenom(Character character) {
+        boolean hadPoison = false;
+        for (Buff buff : ((Character) character).getBuffs()) {
+            double amount = buff.getBonus(Buff.Type.POISON);
+            if (amount > 0.01) {
+                hadPoison = true;
+                amount *= 0.5;
+                buff.setBonus(Buff.Type.POISON, amount);
+            }
+        }
+        if (hadPoison) {
+            character.addMessage("You feel better as the poison in your veins weakens.");
+        }
     }
     
     private void revealMap(Player player) {

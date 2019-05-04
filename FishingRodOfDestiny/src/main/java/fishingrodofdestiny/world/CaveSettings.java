@@ -81,18 +81,20 @@ public class CaveSettings {
             itemSettings.addType("potion of healing",      1, 0.1);
             itemSettings.addType("potion of regeneration", 1, 0.1);
         }
-        if (caveLevel > 2) {
-            itemSettings.addType("ring of regeneration", this.random.nextInt(1), 0.1 * caveLevel);
-        }
         return itemSettings;
     }
 
     public GameObjectSpawner getEnemySpawner(int caveLevel) {
         GameObjectSpawner enemySpawner = new GameObjectSpawner();
-        enemySpawner.addType("rat", this.random.nextInt(10) + this.getLevelWidth(caveLevel) * this.getLevelHeight(caveLevel) / 175, 1.0);
+        int levelSizeBasedCount = this.getLevelWidth(caveLevel) * this.getLevelHeight(caveLevel) / 175;
+        enemySpawner.addType("rat", this.random.nextInt(10) + levelSizeBasedCount, 0.5);
         if (caveLevel > 2) {
-            enemySpawner.addType("cobra", this.random.nextInt(10 + caveLevel), 1.0);
+            enemySpawner.addType("cobra", this.random.nextInt(10 + caveLevel), 0.2);
         }
+        if (this.getStatues(caveLevel) > 0) {
+            enemySpawner.addType("kobold", 10 + this.random.nextInt(10 + caveLevel + levelSizeBasedCount), 0.75);
+        }
+        enemySpawner.addType("giant spider", this.random.nextInt(10) + levelSizeBasedCount, 1.0);
         return enemySpawner;
     }        
 }

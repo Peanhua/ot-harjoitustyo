@@ -306,10 +306,15 @@ public class GameObjectFactory {
     private static void loadConsumableSpecials(Ini.Section section, Consumable consumable) {
         String[] specials = section.getAll("Special", String[].class);
         for (int i = 0; i < specials.length; i++) {
-            if (specials[i].equals("REVEAL_MAP")) {
-                consumable.setRevealsMap();
-            } else {
-                throw new RuntimeException("Unknown consumable special: " + specials[i]);
+            switch (specials[i]) {
+                case "ANTIVENOM":
+                    consumable.setAntivenom();
+                    break;
+                case "REVEAL_MAP":
+                    consumable.setRevealsMap();
+                    break;
+                default:
+                    throw new RuntimeException("Unknown consumable special: " + specials[i]);
             }
         }
     }

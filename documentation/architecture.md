@@ -281,7 +281,7 @@ These define the buffs that are given to the target when attacking something. Fo
 * `UseVerb` used when displaying the "You *verb* the item." when the item is used
 * `HealOnUse` defines healing based on absolute value
 * `HealOnUse%` defines healing based on maximum hit points, 0 == 0%, 0.5 == 50%, 1 == 100%, etc.
-* `Special` can be specified multiple times, valid values are: REVEAL_MAP
+* `Special` can be specified multiple times, valid values are: ANTIVENOM, REVEAL_MAP
 
 ### Weapon attributes
 
