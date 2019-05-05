@@ -365,16 +365,16 @@
     </dia:object>
     <dia:object type="Flowchart - Box" version="0" id="O10">
       <dia:attribute name="obj_pos">
-        <dia:point val="49.4347,11.1"/>
+        <dia:point val="48.7075,11.1"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="49.3847,11.05;51.7828,13.05"/>
+        <dia:rectangle val="48.6575,11.05;52.51,13.05"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="49.4347,11.1"/>
+        <dia:point val="48.7075,11.1"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="2.2980970388562696"/>
+        <dia:real val="3.7524999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="1.9000000000000004"/>
@@ -388,7 +388,7 @@
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#tile#</dia:string>
+            <dia:string>#floor tile#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
             <dia:font family="sans" style="0" name="Helvetica"/>

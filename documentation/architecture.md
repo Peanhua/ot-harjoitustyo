@@ -145,7 +145,7 @@ Actions are used to define an action a Character can perform. Each action is res
 
 ### Moving GameObjects
 
-Moving a GameObject is done through the Location object each GameObject has. The following sequence diagram describes a basic moving of a `gold coin` GameObject to a floor tile on a cave level.
+Moving a GameObject is done through the Location object each GameObject has. The following sequence diagram describes a basic moving of a `gold coin` GameObject to the `floor tile` Tile on a cave level.
 
 <img src="moving_sequence_diagram.svg" alt="Sequence diagram about moving a GameObject" width="900" />
 
