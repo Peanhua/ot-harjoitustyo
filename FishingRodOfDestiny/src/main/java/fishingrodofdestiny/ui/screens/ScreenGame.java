@@ -99,7 +99,13 @@ public class ScreenGame extends Screen {
     
     private void onPlayerAction(Player player) {
         this.game.tick();
-        this.message.setText(player.popMessage());
+        
+        String msg = player.popMessage();
+        if (msg != null && msg.length() > 0) {
+            System.out.println(msg);
+        }
+        
+        this.message.setText(msg);
         this.locationInfo.refresh();
         this.levelView.refresh();
 

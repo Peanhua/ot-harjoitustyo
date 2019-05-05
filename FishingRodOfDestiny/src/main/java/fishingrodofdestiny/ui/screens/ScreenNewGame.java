@@ -135,8 +135,10 @@ public class ScreenNewGame extends Screen {
         
         this.close();
         
+        long seed = this.parseRandomSeedNumber();
+        System.out.println("Start new game: seed=" + seed);
         Game.RescueTarget rtarget = (Game.RescueTarget) this.rescueToggleGroup.getSelectedToggle().getUserData();
-        Game game = new Game(this.parseRandomSeedNumber(), player, rtarget);
+        Game game = new Game(seed, player, rtarget);
         Screen plot = new ScreenPlot(game, this.getParent(), this.getStage());
         plot.show();
     }
