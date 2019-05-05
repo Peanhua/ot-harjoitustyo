@@ -149,7 +149,7 @@ Moving a GameObject is done through the Location object each GameObject has. The
 
 <img src="moving_sequence_diagram.svg" alt="Sequence diagram about moving a GameObject" width="900" />
 
-The `previous inventory` object is known as a variable in the `location` object, it is set during the moveTo() call. Every location can potentially have observers listening to change events, and those would be fired, but are not shown here. Also the inventory objects can potentially have event listeners for change events, and those would also be fired for both the `previous inventory` object (when the remove() is called), and the destination `inventory` object (when the add() is called). The onEnter() method is tile type specific, the floor tiles onEnter() does nothing. Example of a tile that does something in the onEnter() method is BearTrapTile.
+The `previous inventory` object is known as a variable in the `location` object, it is set during the moveTo() call. Every location can potentially have observers listening to change events, and those would be fired, but are not shown here. Also the inventory objects can potentially have event listeners for change events, and those would also be fired for both the `previous inventory` object (when the remove() is called), and the destination `inventory` object (when the add() is called). The onEnter() method is tile type specific, the `floor tile`s onEnter() does nothing. Example of a tile that does something in the onEnter() method is the BearTrapTile.
 
 
 ## Datafiles
