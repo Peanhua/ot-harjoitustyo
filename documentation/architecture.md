@@ -143,10 +143,11 @@ The non player characters use artificial intelligence to determine the next acti
 Actions are used to define an action a Character can perform. Each action is responsible of making sure the action is possible to perform, and alter the game state accordingly. Both the player and non player characters use the same actions.
 
 
-### Monster hits player
+### Moving GameObjects
 
-The following sequence diagram describes what happens when a monster hits the player, and the player dies. The possible event listeners for onChange events are not shown, for the player this would be the CharacterStatus widget showing the players current status. Also the internal works of Location objects are not shown (which again for the players Location object would contain a triggered event, causing the LevelView to update).
-<div><img src="monster_hit_player_sequence_diagram.svg" alt="Sequence diagram about monster hitting the player" width="900" /></div>
+Moving GameObjects is done through the Location object each GameObject has. The following sequence diagram describes a basic moving of a gold coin to a floor tile on a cave level. The `previous inventory` object is known as a variable in the `location` object, it is set during the moveTo() call. Every location could potentially have observers listening to change events, and those would be fired, but are not shown here. Also the inventory objects can potentially have event listeners for change events, and those would also be fired for both the `previous inventory` object (when the remove() is called), and the new `inventory` object (when the add() is called). The onEnter() method is tile type specific, the floor tiles onEnter() does nothing, example of a tile that does something in the onEnter() method is BearTrapTile.
+
+<img src="moving_sequence_diagram.svg" alt="Sequence diagram about moving a GameObject" width="900" />
 
 
 ## Datafiles
