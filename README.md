@@ -25,6 +25,8 @@ This software is licensed under [The GNU General Public License version 3](LICEN
 
 [Week 6](https://github.com/Peanhua/ot-harjoitustyo/releases/tag/week6)
 
+[loppupalautus](https://github.com/Peanhua/ot-harjoitustyo/releases/tag/loppupalautus)
+
 
 ## Commandline functionality
 
