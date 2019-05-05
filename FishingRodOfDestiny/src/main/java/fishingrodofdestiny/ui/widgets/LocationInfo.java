@@ -33,6 +33,8 @@ import javafx.scene.text.Text;
  */
 public class LocationInfo extends Widget {
     
+    private final static int MAX_WIDTH = 120;
+    
     private Tile       currentTile;
     private Text       tileName;
     private Text       characterCount;
@@ -83,7 +85,7 @@ public class LocationInfo extends Widget {
         row++;
         
         this.characterList = UserInterfaceFactory.createSmallText("");
-        this.characterList.setWrappingWidth(100);
+        this.characterList.setWrappingWidth(LocationInfo.MAX_WIDTH);
         GridPane.setConstraints(this.characterList, 0, row);
         GridPane.setColumnSpan(this.characterList, 2);
         this.allFields.add(this.characterList);
@@ -103,7 +105,7 @@ public class LocationInfo extends Widget {
         row++;
         
         this.itemList = UserInterfaceFactory.createSmallText("");
-        this.itemList.setWrappingWidth(100);
+        this.itemList.setWrappingWidth(LocationInfo.MAX_WIDTH);
         GridPane.setConstraints(this.itemList, 0, row);
         GridPane.setColumnSpan(this.itemList, 2);
         this.allFields.add(this.itemList);
@@ -139,15 +141,24 @@ public class LocationInfo extends Widget {
         this.tileName.setText(this.currentTile.getName());
     }        
     
+    private String shortenString(String str, int maxLength) {
+        if (str.length() < maxLength) {
+            return str;
+        }
+        return str.substring(0, maxLength - 3) + "...";
+    }
+    
     private int refreshCreatures(int row, List<Character> creatures) {
         this.characterCount.setText("" + creatures.size());
-        this.characterList.setText(" " + creatures.stream().map(Character::getName).collect(Collectors.joining(", ")));
+        String creaturesStr = creatures.stream().map(Character::getName).collect(Collectors.joining(", "));
+        this.characterList.setText(" " + this.shortenString(creaturesStr, 80));
         return row + 1;
     }
     
     private int refreshItems(int row, List<GameObject> items) {
         this.itemCount.setText("" + items.size());
-        this.itemList.setText(" " + items.stream().map(GameObject::getName).collect(Collectors.joining(", ")));
+        String itemsStr = items.stream().map(GameObject::getName).collect(Collectors.joining(", "));
+        this.itemList.setText(" " + this.shortenString(itemsStr, 100));
         return row + 1;
     }        
     
