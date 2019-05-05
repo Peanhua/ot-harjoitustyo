@@ -42,3 +42,6 @@ The game could support different levels of difficulties, choosable when starting
 
 ## Saving and loading
 There should be an option to save an ongoing game, and then later load and continue it.
+
+## Class naming issues
+The *Character* and *Level* classes are not good names as they can be easily confused with other things named similarly. Java has a native Character class, and there are two kinds of levels in this software: the cave levels, and the character levels.
