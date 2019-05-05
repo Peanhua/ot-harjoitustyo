@@ -23,7 +23,7 @@ A seed number can be given to the random game generator, same seed number will a
 
 ### In game
 
-The game screen is split in three major parts. On the left side are shown player statistics and other information (the read area on the image below), on the right side is the view of the current level (the blue area on the image below), and at the bottom is a one line message (the green area on the image below). On the left side there are also two buttons, one to summon the settings window and another to quit the game, these buttons are only accessible with the mouse.
+The game screen is split in three major parts. On the left side are shown player statistics and other information (the red area on the image below), on the right side is the view of the current level (the blue area on the image below), and at the bottom is a one line message (the green area on the image below). On the left side there are also two buttons, one to summon the settings window and another to quit the game, these buttons are only accessible with the mouse.
 
 <img src="game-screen.png" alt="Game screen" />
 
