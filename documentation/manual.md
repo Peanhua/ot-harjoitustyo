@@ -2,7 +2,9 @@
 
 ## Starting the game
 
-The game can be run by executing the release package with
+Fishing Rod of Destiny requires Java 8 with JavaFX.
+
+Assuming that the default Java is of proper version, the game can be run by executing the release package with
 ```java -jar release.jar```
 Or straight from the source distribution with
 ```mvn compile exec:java -Dexec.mainClass=fishingrodofdestiny.ui.FishingRodOfDestinyUi```
