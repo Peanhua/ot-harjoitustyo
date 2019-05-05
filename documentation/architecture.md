@@ -122,6 +122,15 @@ The following classes are used heavily by the game objects:
 * LevelMemory - used by Player to keep track of what areas of the map are explored
 * Location - manages moving objects between inventories
 
+#### Moving GameObjects
+
+Moving a GameObject is done through the Location object each GameObject has. The following sequence diagram describes a basic moving of the `gold coin` GameObject to the `floor tile` FloorTile.
+
+<img src="moving_sequence_diagram.svg" alt="Sequence diagram about moving a GameObject" width="900" />
+
+The `previous inventory` object is known as a variable in the `location` object, it is set during the moveTo() call. Every location can potentially have observers listening to change events, and those would be fired, but are not shown here. Also the inventory objects can potentially have event listeners for change events, and those would also be fired for both the `previous inventory` object (when the remove() is called), and the destination `inventory` object (when the add() is called). The onEnter() method is tile type specific, the FloorTiles onEnter() does nothing. Example of a tile that does something in the onEnter() method is the BearTrapTile.
+
+
 
 ### Character controllers
 
@@ -142,14 +151,6 @@ The non player characters use artificial intelligence to determine the next acti
 
 Actions are used to define an action a Character can perform. Each action is responsible of making sure the action is possible to perform, and alter the game state accordingly. Both the player and non player characters use the same actions.
 
-
-### Moving GameObjects
-
-Moving a GameObject is done through the Location object each GameObject has. The following sequence diagram describes a basic moving of the `gold coin` GameObject to the `floor tile` FloorTile.
-
-<img src="moving_sequence_diagram.svg" alt="Sequence diagram about moving a GameObject" width="900" />
-
-The `previous inventory` object is known as a variable in the `location` object, it is set during the moveTo() call. Every location can potentially have observers listening to change events, and those would be fired, but are not shown here. Also the inventory objects can potentially have event listeners for change events, and those would also be fired for both the `previous inventory` object (when the remove() is called), and the destination `inventory` object (when the add() is called). The onEnter() method is tile type specific, the FloorTiles onEnter() does nothing. Example of a tile that does something in the onEnter() method is the BearTrapTile.
 
 
 ## Datafiles
