@@ -414,7 +414,7 @@ public abstract class Character extends GameObject {
         this.regenerationTick(deltaTime);
         this.buffTick(deltaTime);
         
-        if (this.controller == null) {
+        if (this.controller == null || !this.isAlive()) {
             return;
         }
         
