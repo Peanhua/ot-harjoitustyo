@@ -102,5 +102,6 @@ Time used for the project.
   <tr><td>     </td><td>  2.5</td><td>Documentation.</td></tr>
   <tr><td>     </td><td>  0.5</td><td>Refactoring.</td></tr>
   <tr><td> 5.5.</td><td>  2.5</td><td>Documentation.</td></tr>
-  <tr><th>Total</th><th>150.5</th><th></th></tr>
+  <tr><td>     </td><td>  1.0</td><td>Content, playtesting, balancing, and fixes.</td></tr>
+  <tr><th>Total</th><th>151.5</th><th></th></tr>
 </table>
